@@ -6,13 +6,32 @@
     <meta name="description" content="FAKE Memetics by HNFT Pepe — Fakest Rares on the Blockchain. Interactive arcade + full collection of Fake Rares and Fake Commons.">
     <meta name="theme-color" content="#05050a">
     <title>FAKE MEMETICS // HNFT PEPE ARCADE</title>
+
+    <!-- ===== Social link previews (Open Graph + Twitter) =====
+         TODO: set og:url + <link rel="canonical"> to the live domain,
+         and ideally replace og:image with a dedicated 1200x630 banner. -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="FAKE MEMETICS // HNFT PEPE ARCADE">
+    <meta property="og:description" content="Fakest Rares on the Blockchain — play FAKEQUEST and explore the full HNFT Pepe collection of Fake Rares and Fake Commons.">
+    <meta property="og:image" content="https://wiki.pepe.wtf/~gitbook/image?url=https%3A%2F%2F3880206652-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FtFGLX5vUSjQUQaKvGdHF%252Fuploads%252FM6xg0yoFLhdEFzfLJj2g%252FFAKEASF.gif%3Falt%3Dmedia%26token%3D0aefc37f-7d27-4138-83f5-45ad13d97e51&width=768&dpr=2&quality=100&sign=f112e188&sv=2">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@HnftPepe">
+    <meta name="twitter:title" content="FAKE MEMETICS // HNFT PEPE ARCADE">
+    <meta name="twitter:description" content="Fakest Rares on the Blockchain — play FAKEQUEST and explore the full HNFT Pepe collection of Fake Rares and Fake Commons.">
+    <meta name="twitter:image" content="https://wiki.pepe.wtf/~gitbook/image?url=https%3A%2F%2F3880206652-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FtFGLX5vUSjQUQaKvGdHF%252Fuploads%252FM6xg0yoFLhdEFzfLJj2g%252FFAKEASF.gif%3Falt%3Dmedia%26token%3D0aefc37f-7d27-4138-83f5-45ad13d97e51&width=768&dpr=2&quality=100&sign=f112e188&sv=2">
+
+    <!-- pixel-frog favicon (inline SVG, no extra request) -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%2016'%3E%3Crect%20width='16'%20height='16'%20rx='3'%20fill='%2305050a'/%3E%3Crect%20x='2'%20y='6'%20width='12'%20height='8'%20rx='2'%20fill='%2339ff14'/%3E%3Crect%20x='3'%20y='2'%20width='4'%20height='5'%20rx='1.5'%20fill='%2339ff14'/%3E%3Crect%20x='9'%20y='2'%20width='4'%20height='5'%20rx='1.5'%20fill='%2339ff14'/%3E%3Crect%20x='4'%20y='3'%20width='2'%20height='2'%20fill='%23fff'/%3E%3Crect%20x='10'%20y='3'%20width='2'%20height='2'%20fill='%23fff'/%3E%3Crect%20x='5'%20y='4'%20width='1'%20height='1'%20fill='%23000'/%3E%3Crect%20x='11'%20y='4'%20width='1'%20height='1'%20fill='%23000'/%3E%3Crect%20x='4'%20y='10'%20width='8'%20height='2'%20rx='1'%20fill='%23ff2e88'/%3E%3C/svg%3E">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
       /* ================================================================
-         FAKE MEMETICS — HYBRID BRUTAL + GLASS DESIGN SYSTEM
+         FAKE MEMETICS — HYBRID BRUTAL + GLASS DESIGN SYSTEM (v5)
          palette: deep-black / retro-purple / cyber-cyan / neon-lime / hot-pink
+         v5: data-driven cards + filters, detail modal, lazy media,
+             OG/favicon, noopener links
          ================================================================ */
       *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -51,6 +70,9 @@
         min-height: 100vh;
         position: relative;
       }
+      body.modal-open { overflow: hidden; }
+
+      :focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
 
       /* subtle animated aurora behind everything */
       body::before {
@@ -114,7 +136,10 @@
         color: var(--ink);
         text-transform: uppercase;
         position: relative;
+        text-decoration: none;
+        border-bottom: 0;
       }
+      .logo:hover { color: var(--ink); border-bottom: 0; }
       .logo .logo-text {
         background: var(--grad-1);
         -webkit-background-clip: text;
@@ -347,6 +372,9 @@
         letter-spacing: 1px;
         text-transform: uppercase;
         transition: all 0.2s ease;
+        text-decoration: none;
+        text-align: center;
+        display: block;
       }
       .cabinet-btn:hover {
         border-color: var(--cyan);
@@ -419,7 +447,7 @@
       }
       .hero-sub .blink { color: var(--lime); animation: flash 1s infinite; }
 
-      /* ========== FEATURE STRIP (home 3 featured gifs — images only, no chrome) ========== */
+      /* ========== FEATURE STRIP ========== */
       .feature-strip {
         display: flex;
         align-items: center;
@@ -454,7 +482,7 @@
         .feature-strip img { max-height: 280px; }
       }
 
-      /* ========== IN-CABINET ATTRACT MARQUEE (double-row scrolling gallery, fills cabinet screen) ========== */
+      /* ========== IN-CABINET ATTRACT MARQUEE ========== */
       .attract-marquee {
         display: flex;
         flex-direction: column;
@@ -570,7 +598,49 @@
       }
       .external-links h3.sub-h { margin-top: 0; }
 
-      /* ========== CARD GRID (FAKE RARES / COMMONS) ========== */
+      /* ========== FILTER BAR ========== */
+      .filter-bar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 0 0 2rem;
+      }
+      .filter-chip {
+        font-family: 'VT323', monospace;
+        font-size: 1.15rem;
+        padding: 0.45rem 1rem;
+        border: 2px solid var(--line);
+        border-radius: 6px;
+        background: var(--glass);
+        color: var(--ink);
+        cursor: pointer;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: all 0.2s ease;
+      }
+      .filter-chip:hover {
+        border-color: var(--cyan);
+        color: var(--cyan);
+        transform: translate(-1px,-1px);
+        box-shadow: 3px 3px 0 var(--purple);
+      }
+      .filter-chip.active {
+        background: var(--lime);
+        border-color: var(--lime);
+        color: var(--bg);
+        box-shadow: 3px 3px 0 var(--purple);
+      }
+      .filter-count {
+        margin-left: auto;
+        font-family: 'VT323', monospace;
+        font-size: 1.1rem;
+        color: var(--ink-dim);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      /* ========== CARD GRID ========== */
       .section-intro {
         max-width: 900px;
         font-family: 'VT323', monospace;
@@ -600,6 +670,7 @@
         transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
         display: flex;
         flex-direction: column;
+        cursor: pointer;
       }
       .viewing-window:hover {
         transform: translate(-3px, -3px) rotate(-0.2deg);
@@ -636,42 +707,56 @@
         height: 100%;
         object-fit: cover;
         display: block;
+        border: 0;
       }
 
-      /* flip for Fake Story */
-      .flip-container { perspective: 1200px; width: 100%; height: 100%; }
-      .flipper {
-        transition: transform 0.7s cubic-bezier(.4,.2,.2,1);
-        transform-style: preserve-3d;
-        position: relative;
-        width: 100%;
-        height: 100%;
+      /* grid-card iframes are previews only — clicks open the card modal
+         (also stops on-chain pages from hijacking page scroll) */
+      .window-content > iframe { pointer-events: none; }
+
+      /* pulsing dot inside the INTERACTIVE tag — signals the preview is live */
+      .interactive-label .live-dot {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        margin-right: 6px;
+        border-radius: 50%;
+        background: currentColor;
+        vertical-align: 1px;
+        animation: flash 1.2s infinite;
       }
-      .flipper.flipped { transform: rotateY(180deg); }
-      .front, .back {
-        backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
+
+      /* note glyph after the asset name on cards with a soundtrack */
+      .sound-note {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.2em;
+        color: var(--amber);
+        -webkit-text-fill-color: var(--amber); /* opt out of the name's gradient clip */
+        text-shadow: 0 0 8px rgba(255,184,0,0.45);
+        cursor: help;
       }
-      .front { transform: rotateY(0deg); z-index: 2; }
-      .back {
-        transform: rotateY(180deg);
-        background: linear-gradient(145deg, #0c0c16, #05050a);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 1.25rem;
-        text-align: center;
-        color: var(--ink-dim);
-        font-family: 'VT323', monospace;
-        font-size: 1.05rem;
-        letter-spacing: 0.5px;
-        overflow: hidden;
-        border: 2px solid var(--purple);
-        box-shadow: inset 0 0 40px rgba(168,85,247,0.25);
+      /* clickable version in the detail modal — flashes while muted to invite a click */
+      .sound-note--btn {
+        background: none;
+        border: 0;
+        padding: 0 0.15em;
+        font-size: 2rem;
+        line-height: 1;
+        vertical-align: middle;
+        cursor: pointer;
+        opacity: 0.9;
+        animation: flash 1.1s infinite;
+        transition: opacity 0.2s ease, text-shadow 0.2s ease;
+      }
+      .sound-note--btn:hover {
+        opacity: 1;
+        animation-play-state: paused;
+        text-shadow: 0 0 14px rgba(255,184,0,0.95);
+      }
+      .sound-note--btn.is-on {
+        animation: none;
+        opacity: 1;
+        text-shadow: 0 0 14px rgba(255,184,0,0.95);
       }
 
       .interactive-label {
@@ -713,18 +798,11 @@
         word-break: break-word;
       }
 
-      .window-controls {
-        display: grid;
-        gap: 0.5rem;
-        margin-top: 0.5rem;
-      }
-      .window-controls.five-buttons,
-      .window-controls.six-buttons {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .window-controls button {
+      /* shared pixel button (cards, modal, links) */
+      .pix-btn,
+      a.pix-btn {
         font-family: 'VT323', monospace;
-        font-size: 0.95rem;
+        font-size: 0.98rem;
         padding: 0.7rem 0.55rem;
         color: var(--ink);
         background: var(--glass-strong);
@@ -736,35 +814,186 @@
         transition: all 0.2s ease;
         text-align: center;
         line-height: 1.2;
+        text-decoration: none;
+        display: block;
       }
-      .window-controls button:hover:not(:disabled) {
+      .pix-btn:hover,
+      a.pix-btn:hover {
         border-color: var(--lime);
         color: var(--lime);
         background: rgba(57,255,20,0.08);
         transform: translate(-1px,-1px);
         box-shadow: 3px 3px 0 var(--purple);
       }
-      .window-controls .fake-story-btn {
-        border-color: var(--pink);
-        color: var(--pink);
-      }
-      .window-controls .fake-story-btn:hover {
+      .pix-btn--hot { border-color: var(--pink); color: var(--pink); }
+      .pix-btn--hot:hover {
         background: var(--pink);
         color: var(--bg);
         border-color: var(--ink);
+        box-shadow: 3px 3px 0 var(--purple);
       }
-      .window-controls .audio-toggle {
-        border-color: var(--amber);
-        color: var(--amber);
+      .pix-btn--lg {
+        font-size: 1.35rem;
+        padding: 0.5rem 0.6rem;
+        letter-spacing: 2px;
       }
-      .window-controls .audio-toggle:hover {
-        background: var(--amber);
+
+      .card-actions {
+        display: grid;
+        grid-template-columns: 1fr; /* single full-width action */
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
+
+      /* ========== CARD DETAIL MODAL ========== */
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 2000;
+        background: rgba(5,5,10,0.82);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.25rem;
+      }
+      .modal-backdrop[hidden] { display: none; }
+
+      .modal {
+        position: relative;
+        width: min(1100px, 100%);
+        max-height: 92vh;
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        border: 3px solid var(--ink);
+        border-radius: var(--radius);
+        background: linear-gradient(180deg, #12121c 0%, #07070d 100%);
+        box-shadow: var(--brutal-shadow);
+        overflow: hidden;
+      }
+
+      .modal-media {
+        position: relative;
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 320px;
+        border-right: 3px solid var(--ink);
+      }
+      .modal-media img,
+      .modal-media video {
+        width: 100%;
+        height: 100%;
+        max-height: 92vh;
+        object-fit: contain; /* full artwork, never cropped */
+        display: block;
+      }
+      .modal-media iframe {
+        width: 100%;
+        height: 100%;
+        min-height: 480px;
+        border: 0;
+        background: #000;
+      }
+
+      .modal-info {
+        padding: 1.5rem;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        min-height: 0;
+      }
+      .modal-title {
+        font-family: 'Press Start 2P', monospace;
+        font-size: clamp(0.95rem, 2vw, 1.3rem);
+        letter-spacing: 1.5px;
+        background: var(--grad-3);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        word-break: break-word;
+        padding-right: 5.5rem; /* keep clear of close button */
+      }
+      .modal-meta { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+      .modal-meta span {
+        font-family: 'VT323', monospace;
+        font-size: 0.95rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--cyan);
+        border: 2px solid rgba(0,240,255,0.35);
+        border-radius: 6px;
+        padding: 0.15rem 0.55rem;
+        background: rgba(0,240,255,0.06);
+      }
+      .modal-story {
+        font-family: 'VT323', monospace;
+        font-size: 1.25rem;
+        line-height: 1.5;
+        letter-spacing: 0.5px;
+        color: var(--ink-dim);
+        margin: 0;
+      }
+      .modal-links {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+      }
+      .modal-nav {
+        margin-top: auto;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding-top: 0.5rem;
+        border-top: 2px solid var(--line);
+      }
+      .modal-nav .pix-btn { flex: 1; }
+      .modal-counter {
+        font-family: 'VT323', monospace;
+        font-size: 1.05rem;
+        color: var(--ink-dim);
+        letter-spacing: 1px;
+        white-space: nowrap;
+      }
+      .modal-close {
+        position: absolute;
+        top: 0.6rem;
+        right: 0.6rem;
+        z-index: 10;
+        font-family: 'Press Start 2P', monospace;
+        font-size: 0.6rem;
+        padding: 0.6rem 0.8rem;
+        background: var(--lime);
         color: var(--bg);
-        border-color: var(--ink);
+        border: 2px solid var(--ink);
+        box-shadow: 3px 3px 0 var(--purple);
+        cursor: pointer;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
       }
-      .window-controls button:disabled {
-        opacity: 0.4;
-        cursor: not-allowed;
+      .modal-close:hover {
+        transform: translate(-1px,-1px);
+        box-shadow: 4px 4px 0 var(--purple);
+      }
+
+      @media (max-width: 860px) {
+        .modal {
+          grid-template-columns: 1fr;
+          overflow-y: auto;
+        }
+        .modal-media {
+          border-right: 0;
+          border-bottom: 3px solid var(--ink);
+          min-height: 0;
+        }
+        .modal-media img,
+        .modal-media video { max-height: 48vh; }
+        .modal-media iframe { min-height: 340px; }
+        .modal-info { overflow-y: visible; }
       }
 
       /* ========== FOOTER ========== */
@@ -827,10 +1056,10 @@
         section { padding: 9rem 1rem 2.5rem; }
 
         .card-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-        .window-controls.five-buttons,
-        .window-controls.six-buttons { grid-template-columns: 1fr 1fr; }
         .cabinet-controls { grid-template-columns: 1fr; }
         .hero-title { margin: 2rem auto 1rem; }
+        .modal-links { grid-template-columns: 1fr 1fr; }
+        .filter-count { width: 100%; margin-left: 0; }
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -913,14 +1142,14 @@
     </button>
 
     <nav>
-      <div class="logo" onclick='showSection("home")'>
+      <a class="logo" href="#home">
         <img src="https://stampchain.io/s/A9392207840692937001" alt="HNFT Pepe" class="nav-pfp">
         <span class="logo-text">HNFT PEPE // FAKE ART</span>
-      </div>
+      </a>
       <ul class="nav-links">
-        <li><a href="#home" class="nav-link active" onclick='showSection("home", this)'>HOME</a></li>
-        <li><a href="#fake-rares" class="nav-link" onclick='showSection("fake-rares", this)'>FAKE RARES</a></li>
-        <li><a href="#fake-commons" class="nav-link" onclick='showSection("fake-commons", this)'>FAKE COMMONS</a></li>
+        <li><a href="#home" class="nav-link active">HOME</a></li>
+        <li><a href="#fake-rares" class="nav-link">FAKE RARES</a></li>
+        <li><a href="#fake-commons" class="nav-link">FAKE COMMONS</a></li>
       </ul>
     </nav>
 
@@ -936,76 +1165,8 @@
         <div class="cabinet">
           <div class="cabinet-marquee">F A K E &nbsp; Q U E S T</div>
           <div class="cabinet-screen" id="cabinet-screen">
-            <div class="attract-marquee" id="attract-loop">
-            <div class="attract-row r1">
-              <div class="attract-item"><img src="https://5mmyzdwwyfobatmrrxup6vucubljm3pggw4lyiytztc3yoehr5mq.ar.io/6xmMjtbBXBBNkY3o_1aCoFaWbeY1uLwjE8zFvDiHj1k/j1d507_image.gif" alt="READYTOKEK" loading="lazy"></div>
-              <div class="attract-item"><img src="https://lwdl74u7wzn6hcq6qp4gkw6xstqwnw5qsmjvpdxlooha4did4l6q.ar.io/XYa_8p-2W-OKHoP4ZVvXlOFm27CTE1eO63OODg0D4v0/h0q8lu_image.gif" alt="DRPEPEMUMULV" loading="lazy"></div>
-              <div class="attract-item"><img src="https://bvrl5ihw7wa5ir5fznwpy2tkufo2ass5r5fwffm2eln2grsgf5na.ar.io/DWK-oPb9gdRHpcts_GpqoV2gSl2PS2KVmiLbo0ZGL1o" alt="PEPEWINTER" loading="lazy"></div>
-              <div class="attract-item"><video autoplay loop muted playsinline preload="metadata" aria-label="ESCHERWORLD"><source src="https://guhs7wqftvdzqsxsjf5lxq5fs4c525xl3sbj53x32h7izqox6suq.ar.io/NQ8v2gWdR5hK8kl6u8OllwXdduvcgp7u-9H-jMHX9Kk" type="video/mp4"></video></div>
-              <div class="attract-item"><video autoplay loop muted playsinline preload="metadata" aria-label="OLDGUITARIST"><source src="https://n5zym5r2potl5owl4r3ppk4gmnfmp2yf6txzlxiw577yjlvr7naa.ar.io/b3OGdjp7pr66y-R296uGY0rH6wX075XdFu__hK6x-0A/r5sqmv_video.mp4" type="video/mp4"></video></div>
-              <div class="attract-item"><video autoplay loop muted playsinline preload="metadata" aria-label="RAREPEPETOO"><source src="https://kuecrp7k2netqbx6db6wziec3spkgllynfvowefdu5lqt3xl6h2a.ar.io/VQgov-rTSTgG_hh9bKCC3J6jLXhpausQo6dXCe7r8fQ" type="video/mp4"></video></div>
-              <div class="attract-item"><video autoplay loop muted playsinline preload="metadata" aria-label="FAKEASSDAY"><source src="https://bsw25ytxwajiyje3mgktlmhed4cbnayd2dvrbwaafij7aplpcmva.ar.io/DK2u4newEowkm2GVNbDkHwQWgwPQ6xDYACoT8D1vEyo/2xqa5l_video.MP4" type="video/mp4"></video></div>
-              <div class="attract-item"><video autoplay loop muted playsinline preload="metadata" aria-label="PUNKSMEETUP"><source src="https://sd65hwpzkh3xdkdxfb2xwezvvvy4lb3hu5hvpbkfvc6ds5rq65vq.ar.io/kP3T2flR93Godyh1exM1rXHFh2enT1eFRai8OXYw92s" type="video/mp4"></video></div>
-              <div class="attract-item"><img src="https://4tcoeobjrydcpuawkjh4ptbfpivvezuro3pgbayocywwlvb2cayq.ar.io/5MTiOCmOBifQFlJPx8wleitSZpF23mCDDhYtZdQ6EDE/joxrxz_image.png" alt="TRUMPMOTO" loading="lazy"></div>
-              <div class="attract-item"><img src="https://stampchain.io/stamps/c90c0208afa9aea91a09f7d1a729904c8d4bc8d7d1209998b60af9253eba6588.svg" alt="SHITCOINJESUS" loading="lazy"></div>
-              <div class="attract-item"><img src="https://ykpqvr7h6kiq57nkf7sovb36yj4v5fev4yf7a7f2rm75br3p34da.ar.io/wp8Kx-fykQ79qi_k6od-wnlelJXmC_B8uos_0Mdv3wY/0iisll_image.gif" alt="PHATPEPEBOOK" loading="lazy"></div>
-              <div class="attract-item"><img src="https://n3whh5nj65jkml23fc7mypjbafdt2amyjtsur7zmljm6qfdni4eq.ar.io/buxz9an3UqYvWyi-zD0hAUc9AZhM5Uj_LFpZ6BRtRwk" alt="CUBISMPEPE" loading="lazy"></div>
-              <div class="attract-item"><img src="https://eoqc52ubmqop6xorvsnm6kcsx27usqio3zvrbnxcacnjocda6fda.ar.io/I6Au6oFkHP9d0ayazyhSvr9JQQ7eaxC24gCalwhg8UY" alt="OUTLAWPEPE" loading="lazy"></div>
-              <div class="attract-item"><img src="https://epjprumxjlywmx5vqdvp3v2sd4srce3kpmractbopzzrrhlp722a.ar.io/I9L40ZdK8WZftYDq_ddSHyURE2p7IgFMLn5zGJ1v_rQ" alt="TOBIPEPE" loading="lazy"></div>
-              <div class="attract-item"><img src="https://ctspdptllxby4ythrxqjpfxqdcwd42jyqkp4xx4ectwzrg5fvclq.ar.io/FOTxvmtdw45iZ43gl5bwGKw-aTiCn8vfhBTtmJulqJc" alt="FIGHTERPEPE" loading="lazy"></div>
-              <div class="attract-item"><img src="https://jiyngse3uxwnqikw6xhca3qtk4b7sh2ndl4gxoutl6gherxg2peq.ar.io/SjDTSJul7NghVvXOIG4TVwP5H00a-Gu6k1-Mckbm08k" alt="REALMSOFPEPE" loading="lazy"></div>
-              <div class="attract-item" aria-hidden="true"><img src="https://5mmyzdwwyfobatmrrxup6vucubljm3pggw4lyiytztc3yoehr5mq.ar.io/6xmMjtbBXBBNkY3o_1aCoFaWbeY1uLwjE8zFvDiHj1k/j1d507_image.gif" alt="READYTOKEK" loading="lazy"></div>
-              <div class="attract-item" aria-hidden="true"><img src="https://lwdl74u7wzn6hcq6qp4gkw6xstqwnw5qsmjvpdxlooha4did4l6q.ar.io/XYa_8p-2W-OKHoP4ZVvXlOFm27CTE1eO63OODg0D4v0/h0q8lu_image.gif" alt="DRPEPEMUMULV" loading="lazy"></div>
-              <div class="attract-item" aria-hidden="true"><img src="https://bvrl5ihw7wa5ir5fznwpy2tkufo2ass5r5fwffm2eln2grsgf5na.ar.io/DWK-oPb9gdRHpcts_GpqoV2gSl2PS2KVmiLbo0ZGL1o" alt="PEPEWINTER" loading="lazy"></div>
-              <div class="attract-item" aria-hidden="true"><video autoplay loop muted playsinline preload="metadata" aria-label="ESCHERWORLD"><source src="https://guhs7wqftvdzqsxsjf5lxq5fs4c525xl3sbj53x32h7izqox6suq.ar.io/NQ8v2gWdR5hK8kl6u8OllwXdduvcgp7u-9H-jMHX9Kk" type="video/mp4"></video></div>
-              <div class="attract-item" aria-hidden="true"><video autoplay loop muted playsinline preload="metadata" aria-label="OLDGUITARIST"><source src="https://n5zym5r2potl5owl4r3ppk4gmnfmp2yf6txzlxiw577yjlvr7naa.ar.io/b3OGdjp7pr66y-R296uGY0rH6wX075XdFu__hK6x-0A/r5sqmv_video.mp4" type="video/mp4"></video></div>
-              <div class="attract-item" aria-hidden="true"><video autoplay loop muted playsinline preload="metadata" aria-label="RAREPEPETOO"><source src="https://kuecrp7k2netqbx6db6wziec3spkgllynfvowefdu5lqt3xl6h2a.ar.io/VQgov-rTSTgG_hh9bKCC3J6jLXhpausQo6dXCe7r8fQ" type="video/mp4"></video></div>
-              <div class="attract-item" aria-hidden="true"><video autoplay loop muted playsinline preload="metadata" aria-label="FAKEASSDAY"><source src="https://bsw25ytxwajiyje3mgktlmhed4cbnayd2dvrbwaafij7aplpcmva.ar.io/DK2u4newEowkm2GVNbDkHwQWgwPQ6xDYACoT8D1vEyo/2xqa5l_video.MP4" type="video/mp4"></video></div>
-              <div class="attract-item" aria-hidden="true"><video autoplay loop muted playsinline preload="metadata" aria-label="PUNKSMEETUP"><source src="https://sd65hwpzkh3xdkdxfb2xwezvvvy4lb3hu5hvpbkfvc6ds5rq65vq.ar.io/kP3T2flR93Godyh1exM1rXHFh2enT1eFRai8OXYw92s" type="video/mp4"></video></div>
-              <div class="attract-item" aria-hidden="true"><img src="https://4tcoeobjrydcpuawkjh4ptbfpivvezuro3pgbayocywwlvb2cayq.ar.io/5MTiOCmOBifQFlJPx8wleitSZpF23mCDDhYtZdQ6EDE/joxrxz_image.png" alt="TRUMPMOTO" loading="lazy"></div>
-              <div class="attract-item" aria-hidden="true"><img src="https://stampchain.io/stamps/c90c0208afa9aea91a09f7d1a729904c8d4bc8d7d1209998b60af9253eba6588.svg" alt="SHITCOINJESUS" loading="lazy"></div>
-              <div class="attract-item" aria-hidden="true"><img src="https://ykpqvr7h6kiq57nkf7sovb36yj4v5fev4yf7a7f2rm75br3p34da.ar.io/wp8Kx-fykQ79qi_k6od-wnlelJXmC_B8uos_0Mdv3wY/0iisll_image.gif" alt="PHATPEPEBOOK" loading="lazy"></div>
-              <div class="attract-item" aria-hidden="true"><img src="https://n3whh5nj65jkml23fc7mypjbafdt2amyjtsur7zmljm6qfdni4eq.ar.io/buxz9an3UqYvWyi-zD0hAUc9AZhM5Uj_LFpZ6BRtRwk" alt="CUBISMPEPE" loading="lazy"></div>
-              <div class="attract-item" aria-hidden="true"><img src="https://eoqc52ubmqop6xorvsnm6kcsx27usqio3zvrbnxcacnjocda6fda.ar.io/I6Au6oFkHP9d0ayazyhSvr9JQQ7eaxC24gCalwhg8UY" alt="OUTLAWPEPE" loading="lazy"></div>
-              <div class="attract-item" aria-hidden="true"><img src="https://epjprumxjlywmx5vqdvp3v2sd4srce3kpmractbopzzrrhlp722a.ar.io/I9L40ZdK8WZftYDq_ddSHyURE2p7IgFMLn5zGJ1v_rQ" alt="TOBIPEPE" loading="lazy"></div>
-              <div class="attract-item" aria-hidden="true"><img src="https://ctspdptllxby4ythrxqjpfxqdcwd42jyqkp4xx4ectwzrg5fvclq.ar.io/FOTxvmtdw45iZ43gl5bwGKw-aTiCn8vfhBTtmJulqJc" alt="FIGHTERPEPE" loading="lazy"></div>
-              <div class="attract-item" aria-hidden="true"><img src="https://jiyngse3uxwnqikw6xhca3qtk4b7sh2ndl4gxoutl6gherxg2peq.ar.io/SjDTSJul7NghVvXOIG4TVwP5H00a-Gu6k1-Mckbm08k" alt="REALMSOFPEPE" loading="lazy"></div>
-            </div>
-            <div class="attract-row r2">
-              <div class="attract-item"><img src="https://stampchain.io/stamps/1876c3bbeab9a6046a0913591e9a8e9ee9fc147ed912fe151ecab777a2e102a5.svg" alt="A1619006396900464164" loading="lazy"></div>
-              <div class="attract-item"><img src="https://waepuuwvsaizbqpo2ixu2uuk5lyilxxrry7sujoux5n6jylj7gkq.ar.io/sAj6UtWQEZDB7tIvTVKK6vCF3vGOPyol1L9b5OFp-ZU" alt="DANKKAST" loading="lazy"></div>
-              <div class="attract-item"><video autoplay loop muted playsinline preload="metadata" aria-label="GREEDISGOOD"><source src="https://l4owhd4nbos4jgeqfss2ecfb6grwmpzr2s2skih76kmap2s434la.ar.io/Xx1jj40LpcSYkCylogih8aNmPzHUtSUg__KYB-pc3xY" type="video/mp4"></video></div>
-              <div class="attract-item"><img src="https://q5bx4t3qgbmaztx2yqfq5dxen4lj2gpq5jecd7dz5z5rlu6nthda.ar.io/h0N-T3AwWAzO-sQLDo7kbxadGfDqSCH8ee57FdPNmcY" alt="CHEETO" loading="lazy"></div>
-              <div class="attract-item"><img src="https://a5gvpb2sa2fmf3quupzcrfnib5l5anu5joc7lx55sshjjvxh3ygq.ar.io/B01Xh1IGisLuFKPyKJWoD1fQNp1LhfXfvZSOlNbn3g0" alt="RAREPEPEALSO" loading="lazy"></div>
-              <div class="attract-item"><img src="https://i3jbdwaspq4sjscp2xhe33fttxi5tjv3odmr3mfxsurnn4dhzxsq.ar.io/RtIR2BJ8OSTIT9XOTeyzndHZprtw2R2wt5Ui1vBnzeU" alt="KNOTRAREPEPE" loading="lazy"></div>
-              <div class="attract-item"><video autoplay loop muted playsinline preload="metadata" aria-label="A7007137931404140870"><source src="https://cdn.doggy.market/content/4700d316d8df9f3b5e9a7b60723bc2d04d56caa9c89124739c655cbf1701dbfdi0" type="video/mp4"></video></div>
-              <div class="attract-item"><video autoplay loop muted playsinline preload="metadata" aria-label="SHITTERPEPE"><source src="https://kecageqbvspwco6dypbz5myllflsqzhupxjits5keprzlf3cbhea.ar.io/UQQDEgGsn2E7w8PDnrMLWVcoZPR90onLqiPjlZdiCcg" type="video/mp4"></video></div>
-              <div class="attract-item"><img src="https://tokenscan.io/img/cards/RONALDPEPE.jpg" alt="RONALDPEPE" loading="lazy"></div>
-              <div class="attract-item"><img src="https://stampchain.io/stamps/3212afd135f4bd80baa36bfea32427de4ed02b5eeef59da285b6515c8dbfcd08.jpeg" alt="A1286795239919077352" loading="lazy"></div>
-              <div class="attract-item"><img src="https://2qkmc4ejel2rfdbubftzrqq7gsf3c465d66ij72gktod3g3m5siq.ar.io/1BTBcIki9RKMNAlnmMIfNIuxc90fvIT_RlTcPZts7JE" alt="GARUDAPEPE" loading="lazy"></div>
-              <div class="attract-item"><img src="https://2y5fmvtpohkz5lududwfk7qqizefpxyekvqxasop2rj5q2tofnna.ar.io/1jpWVm9x1Z6ug6DsVX4QRkhX3wRVYXBJz9RT2GpuK1o" alt="VECTOREDPEPE" loading="lazy"></div>
-              <div class="attract-item"><img src="https://tokenscan.io/img/cards/HOTLICKSPEPE.jpg" alt="HOTLICKSPEPE" loading="lazy"></div>
-              <div class="attract-item"><img src="https://eigd4dhdhzugvxe2sm7jl4ghyivppm3d2gohevlxsuk4gr64kkna.ar.io/Igw-DOM-aGrcmpM-lfDHwir3s2PRnHJVd5UVw0fcUpo" alt="CHATGTP" loading="lazy"></div>
-              <div class="attract-item"><img src="https://nrzwe72kcpymoa5jb3dmeswylwquybvllgd4m4o6q35lp6apoeza.ar.io/bHNif0oT8McDqQ7GwkrYXaFMBqtZh8Zx3ob6t_gPcTI" alt="CURIOPEPE" loading="lazy"></div>
-              <div class="attract-item"><img src="https://etotmjejrmm6rusm7kvw2pjabbip5qw4nk6r3y7lrn3vz6d6et2a.ar.io/JN02JImLGejSTPqrbT0gCFD-wtxqvR3j64t3XPh-JPQ" alt="PEPESLAMBO" loading="lazy"></div>
-              <div class="attract-item" aria-hidden="true"><img src="https://stampchain.io/stamps/1876c3bbeab9a6046a0913591e9a8e9ee9fc147ed912fe151ecab777a2e102a5.svg" alt="A1619006396900464164" loading="lazy"></div>
-              <div class="attract-item" aria-hidden="true"><img src="https://waepuuwvsaizbqpo2ixu2uuk5lyilxxrry7sujoux5n6jylj7gkq.ar.io/sAj6UtWQEZDB7tIvTVKK6vCF3vGOPyol1L9b5OFp-ZU" alt="DANKKAST" loading="lazy"></div>
-              <div class="attract-item" aria-hidden="true"><video autoplay loop muted playsinline preload="metadata" aria-label="GREEDISGOOD"><source src="https://l4owhd4nbos4jgeqfss2ecfb6grwmpzr2s2skih76kmap2s434la.ar.io/Xx1jj40LpcSYkCylogih8aNmPzHUtSUg__KYB-pc3xY" type="video/mp4"></video></div>
-              <div class="attract-item" aria-hidden="true"><img src="https://q5bx4t3qgbmaztx2yqfq5dxen4lj2gpq5jecd7dz5z5rlu6nthda.ar.io/h0N-T3AwWAzO-sQLDo7kbxadGfDqSCH8ee57FdPNmcY" alt="CHEETO" loading="lazy"></div>
-              <div class="attract-item" aria-hidden="true"><img src="https://a5gvpb2sa2fmf3quupzcrfnib5l5anu5joc7lx55sshjjvxh3ygq.ar.io/B01Xh1IGisLuFKPyKJWoD1fQNp1LhfXfvZSOlNbn3g0" alt="RAREPEPEALSO" loading="lazy"></div>
-              <div class="attract-item" aria-hidden="true"><img src="https://i3jbdwaspq4sjscp2xhe33fttxi5tjv3odmr3mfxsurnn4dhzxsq.ar.io/RtIR2BJ8OSTIT9XOTeyzndHZprtw2R2wt5Ui1vBnzeU" alt="KNOTRAREPEPE" loading="lazy"></div>
-              <div class="attract-item" aria-hidden="true"><video autoplay loop muted playsinline preload="metadata" aria-label="A7007137931404140870"><source src="https://cdn.doggy.market/content/4700d316d8df9f3b5e9a7b60723bc2d04d56caa9c89124739c655cbf1701dbfdi0" type="video/mp4"></video></div>
-              <div class="attract-item" aria-hidden="true"><video autoplay loop muted playsinline preload="metadata" aria-label="SHITTERPEPE"><source src="https://kecageqbvspwco6dypbz5myllflsqzhupxjits5keprzlf3cbhea.ar.io/UQQDEgGsn2E7w8PDnrMLWVcoZPR90onLqiPjlZdiCcg" type="video/mp4"></video></div>
-              <div class="attract-item" aria-hidden="true"><img src="https://tokenscan.io/img/cards/RONALDPEPE.jpg" alt="RONALDPEPE" loading="lazy"></div>
-              <div class="attract-item" aria-hidden="true"><img src="https://stampchain.io/stamps/3212afd135f4bd80baa36bfea32427de4ed02b5eeef59da285b6515c8dbfcd08.jpeg" alt="A1286795239919077352" loading="lazy"></div>
-              <div class="attract-item" aria-hidden="true"><img src="https://2qkmc4ejel2rfdbubftzrqq7gsf3c465d66ij72gktod3g3m5siq.ar.io/1BTBcIki9RKMNAlnmMIfNIuxc90fvIT_RlTcPZts7JE" alt="GARUDAPEPE" loading="lazy"></div>
-              <div class="attract-item" aria-hidden="true"><img src="https://2y5fmvtpohkz5lududwfk7qqizefpxyekvqxasop2rj5q2tofnna.ar.io/1jpWVm9x1Z6ug6DsVX4QRkhX3wRVYXBJz9RT2GpuK1o" alt="VECTOREDPEPE" loading="lazy"></div>
-              <div class="attract-item" aria-hidden="true"><img src="https://tokenscan.io/img/cards/HOTLICKSPEPE.jpg" alt="HOTLICKSPEPE" loading="lazy"></div>
-              <div class="attract-item" aria-hidden="true"><img src="https://eigd4dhdhzugvxe2sm7jl4ghyivppm3d2gohevlxsuk4gr64kkna.ar.io/Igw-DOM-aGrcmpM-lfDHwir3s2PRnHJVd5UVw0fcUpo" alt="CHATGTP" loading="lazy"></div>
-              <div class="attract-item" aria-hidden="true"><img src="https://nrzwe72kcpymoa5jb3dmeswylwquybvllgd4m4o6q35lp6apoeza.ar.io/bHNif0oT8McDqQ7GwkrYXaFMBqtZh8Zx3ob6t_gPcTI" alt="CURIOPEPE" loading="lazy"></div>
-              <div class="attract-item" aria-hidden="true"><img src="https://etotmjejrmm6rusm7kvw2pjabbip5qw4nk6r3y7lrn3vz6d6et2a.ar.io/JN02JImLGejSTPqrbT0gCFD-wtxqvR3j64t3XPh-JPQ" alt="PEPESLAMBO" loading="lazy"></div>
-            </div>
-            </div>
+            <!-- attract rows are built by JS from the card data (lazy-loaded) -->
+            <div class="attract-marquee" id="attract-loop"></div>
             <iframe class="game-frame" id="game-frame" title="FAKEQUEST" allow="autoplay; fullscreen" allowfullscreen></iframe>
             <div class="play-overlay" id="play-overlay" role="button" tabindex="0" aria-label="Click to play FAKEQUEST">
               <button class="play-btn" id="play-btn" type="button">&#9654;&nbsp; CLICK TO PLAY</button>
@@ -1015,16 +1176,16 @@
           <div class="cabinet-controls">
             <button class="cabinet-btn" id="fullscreen-btn" type="button">&#8599; FULLSCREEN</button>
             <button class="cabinet-btn" id="newtab-btn" type="button">&#8599; OPEN IN NEW TAB</button>
-            <button class="cabinet-btn" onclick='window.open("https://pepe.wtf/asset/FAKEQUEST","_blank")'>VIEW ON pepe.wtf</button>
+            <a class="cabinet-btn" href="https://pepe.wtf/asset/FAKEQUEST" target="_blank" rel="noopener noreferrer">VIEW ON pepe.wtf</a>
             <button class="cabinet-btn" id="reset-btn" type="button" style="display:none">&#x27F3; BACK TO DEFAULT</button>
           </div>
         </div>
       </div>
 
       <div class="feature-strip reveal">
-        <img src="https://fakeraredirectory.com/wp-content/uploads/2022/05/ezgif-5-97dfbd89e1.gif" alt="Fake Rare Animation" loading="lazy">
-        <img src="https://wiki.pepe.wtf/~gitbook/image?url=https%3A%2F%2F3880206652-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FtFGLX5vUSjQUQaKvGdHF%252Fuploads%252FM6xg0yoFLhdEFzfLJj2g%252FFAKEASF.gif%3Falt%3Dmedia%26token%3D0aefc37f-7d27-4138-83f5-45ad13d97e51&width=768&dpr=2&quality=100&sign=f112e188&sv=2" alt="FAKEASF" loading="lazy">
-        <img src="https://fakeraredirectory.com/wp-content/uploads/2022/05/2022-05-28-06.59.28.jpg" alt="Fake Rare Art" loading="lazy">
+        <img src="https://fakeraredirectory.com/wp-content/uploads/2022/05/ezgif-5-97dfbd89e1.gif" alt="Fake Rare Animation" loading="lazy" decoding="async">
+        <img src="https://wiki.pepe.wtf/~gitbook/image?url=https%3A%2F%2F3880206652-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FtFGLX5vUSjQUQaKvGdHF%252Fuploads%252FM6xg0yoFLhdEFzfLJj2g%252FFAKEASF.gif%3Falt%3Dmedia%26token%3D0aefc37f-7d27-4138-83f5-45ad13d97e51&width=768&dpr=2&quality=100&sign=f112e188&sv=2" alt="FAKEASF" loading="lazy" decoding="async">
+        <img src="https://fakeraredirectory.com/wp-content/uploads/2022/05/2022-05-28-06.59.28.jpg" alt="Fake Rare Art" loading="lazy" decoding="async">
       </div>
 
       <div class="content-wrapper reveal">
@@ -1034,13 +1195,13 @@
           <p>If you're here and have no idea what you've stumbled into, then welcome to the insane and wonderful world of Fake Rares.</p>
           <h3 class="sub-h">History</h3>
           <p>In April 2018, the Rare Pepe Scientists retired, leaving many Pepes unsubmitted, rejected, or created outside the Rare Pepe era but with significant memetic appeal. This situation led to the creation of the Fake Rare Directory and the Dank Directory, designed to preserve and showcase these overlooked pieces of Pepe culture.</p>
-          <p>The Fake Rare Pepe movement officially began in September 2021 when @ScrillaVentura, an OG Rare Pepe artist, shared a non-official Rare Pepe asset in the Official Rare Pepe Telegram group. This act led to his temporary ban from the community. In response, he created the BEWARE OF FAKE RARES Telegram group ( <a href="https://t.me/OFFICIALFAKERARES" target="_blank">https://t.me/OFFICIALFAKERARES</a>), marking the birth of an alternative movement. </p>
-          <p>The initial Fake Rare that sparked this movement, known as "Proof of Ban," became the first official Fake Rare, designated as S0 C0, the FREEDOMKEK ( <a href="https://pepe.wtf/asset/FREEDOMKEK" target="_blank">https://pepe.wtf/asset/FREEDOMKEK</a>). This card symbolized the beginning of a new era in Pepe memetics. </p>
+          <p>The Fake Rare Pepe movement officially began in September 2021 when @ScrillaVentura, an OG Rare Pepe artist, shared a non-official Rare Pepe asset in the Official Rare Pepe Telegram group. This act led to his temporary ban from the community. In response, he created the BEWARE OF FAKE RARES Telegram group ( <a href="https://t.me/OFFICIALFAKERARES" target="_blank" rel="noopener noreferrer">https://t.me/OFFICIALFAKERARES</a>), marking the birth of an alternative movement. </p>
+          <p>The initial Fake Rare that sparked this movement, known as "Proof of Ban," became the first official Fake Rare, designated as S0 C0, the FREEDOMKEK ( <a href="https://pepe.wtf/asset/FREEDOMKEK" target="_blank" rel="noopener noreferrer">https://pepe.wtf/asset/FREEDOMKEK</a>). This card symbolized the beginning of a new era in Pepe memetics. </p>
           <p>Fake Rares pay homage to Rare Pepes through a similar structure, rules, and ecosystem approach. However, the Fake Rare directory distinguishes itself through decentralization with no fees, and publication uses a community-derived, deflationary asset system that emphasizes collective ownership and curation.</p>
-          <p>The unofficial official first Fake Rare, designated S1 C1, was FAKEASF ( <a href="https://pepe.wtf/asset/FAKEASF" target="_blank">https://pepe.wtf/asset/FAKEASF</a>). This card was airdropped in batches of 20 to the first 100 members who joined the Telegram group, rewarding early supporters and building community engagement from the ground up. </p>
+          <p>The unofficial official first Fake Rare, designated S1 C1, was FAKEASF ( <a href="https://pepe.wtf/asset/FAKEASF" target="_blank" rel="noopener noreferrer">https://pepe.wtf/asset/FAKEASF</a>). This card was airdropped in batches of 20 to the first 100 members who joined the Telegram group, rewarding early supporters and building community engagement from the ground up. </p>
           <p>The "Fake Scientists" — the curators and community members behind Fake Rares — view both Rare Pepes and Fake Rares as reflecting Bitcoin's narrative on sovereignty, provenance, immutability, and the trustless dissemination of information, beliefs, and culture. In this framework, Pepes act as a conduit for these fundamental principles, evolving to bridge communities and expand the broader memetic landscape.</p>
           <p>This evolution ignited the Summer of Pepe in 2022 with an all-stars Series 8 curated by Vincent Van Dough, bringing together top artists and creators in a celebration of Pepe culture that bridged the gap between Rare and Fake Rare communities.</p>
-          <p>Joe Looney, the creator of the RarePepeWallet ( <a href="https://rarepepewallet.com/" target="_blank">https://rarepepewallet.com/</a>), recognized the importance of the Fake Rare movement and created the FakeRareWallet ( <a href="https://fakerarewallet.com/" target="_blank">https://fakerarewallet.com/</a>) specifically for Fake Rare Pepes. The FakeRareWallet displays all Fake Rare Pepes, including animated ones, with proper rendering — an improvement over the RarePepeWallet which only properly displays original Rare Pepes. </p>
+          <p>Joe Looney, the creator of the RarePepeWallet ( <a href="https://rarepepewallet.com/" target="_blank" rel="noopener noreferrer">https://rarepepewallet.com/</a>), recognized the importance of the Fake Rare movement and created the FakeRareWallet ( <a href="https://fakerarewallet.com/" target="_blank" rel="noopener noreferrer">https://fakerarewallet.com/</a>) specifically for Fake Rare Pepes. The FakeRareWallet displays all Fake Rare Pepes, including animated ones, with proper rendering — an improvement over the RarePepeWallet which only properly displays original Rare Pepes. </p>
           <h3 class="sub-h">Definitions</h3>
           <p><strong>Fake Rares:</strong>These are assets that are not official Rare Pepes. The term began as derogatory but has evolved into a badge of honor representing the continuation of the Rare Pepe legacy. They follow a structured, curated approach similar to Rare Pepes but with a decentralized mechanism that emphasizes community governance and accessibility.</p>
           <p><strong>Commons:</strong>These are Pepes that were left out of official Rare Pepe submissions due to various reasons — timing (created before or after the Rare Pepe era), rejection by the Rare Pepe Scientists, or simply existing outside the formal submission process. Despite not being official Rare Pepes, many Commons possess significant artistic merit and memetic value.</p>
@@ -1051,8 +1212,8 @@
             <li><strong>2022:</strong>The Summer of Pepe was ignited with Series 8, curated by Vincent Van Dough. This landmark series brought together all-star artists and helped legitimize the Fake Rare movement within the broader Pepe community.</li>
           </ul>
           <h3 class="sub-h">Notable Cards</h3>
-          <p><strong>FREEDOMKEK</strong>( <a href="https://pepe.wtf/asset/FREEDOMKEK" target="_blank">https://pepe.wtf/asset/FREEDOMKEK</a>): The first official Fake Rare, designated S0 C0. Originally created as "Proof of Ban" following @ScrillaVentura's temporary ban from the Official Rare Pepe Telegram, this card represents the founding moment of the Fake Rare movement and embodies the spirit of creative freedom and resistance to centralized authority.</p>
-          <p><strong>FAKEASF</strong>( <a href="https://pepe.wtf/asset/FAKEASF" target="_blank">https://pepe.wtf/asset/FAKEASF</a>): The unofficial official first Fake Rare, designated S1 C1. This card was airdropped to the first 100 members of the BEWARE OF FAKE RARES Telegram group in batches of 20, creating an immediate sense of community ownership and participation in the nascent movement.</p>
+          <p><strong>FREEDOMKEK</strong>( <a href="https://pepe.wtf/asset/FREEDOMKEK" target="_blank" rel="noopener noreferrer">https://pepe.wtf/asset/FREEDOMKEK</a>): The first official Fake Rare, designated S0 C0. Originally created as "Proof of Ban" following @ScrillaVentura's temporary ban from the Official Rare Pepe Telegram, this card represents the founding moment of the Fake Rare movement and embodies the spirit of creative freedom and resistance to centralized authority.</p>
+          <p><strong>FAKEASF</strong>( <a href="https://pepe.wtf/asset/FAKEASF" target="_blank" rel="noopener noreferrer">https://pepe.wtf/asset/FAKEASF</a>): The unofficial official first Fake Rare, designated S1 C1. This card was airdropped to the first 100 members of the BEWARE OF FAKE RARES Telegram group in batches of 20, creating an immediate sense of community ownership and participation in the nascent movement.</p>
           <h3 class="sub-h">Controversies</h3>
           <p>The term "Fake Rares" began as a tastefully derogatory label applied to non-official Rare Pepe assets — a way to distinguish them from the canonized Rare Pepe collection. However, the community embraced this label and transformed it into a badge of authenticity and independence.</p>
           <p>The movement itself started with @ScrillaVentura's deliberate rule-breaking and subsequent ban from the Official Rare Pepe Telegram. What some viewed as a troll action evolved into a legitimate homage to the Rare Pepe legacy, creating a parallel ecosystem that honors the original while forging its own identity based on decentralization and community curation.</p>
@@ -1062,8 +1223,8 @@
           <p>The FakeRareWallet represents a significant technical improvement in how Fake Rares are displayed and experienced. Unlike the RarePepeWallet which was optimized specifically for original Rare Pepes, the FakeRareWallet properly renders all types of Fake Rares including animated cards, providing a superior viewing experience for collectors and enthusiasts.</p>
           <div class="external-links">
             <h3 class="sub-h">External Resources</h3>
-            <p><strong>Fake Rare Directory:</strong><a href="https://fakeraredirectory.com/" target="_blank">https://fakeraredirectory.com/</a></p>
-            <p><strong>Fake Rare X (Twitter):</strong><a href="https://x.com/FAKERARES_XCP" target="_blank">https://x.com/FAKERARES_XCP</a></p>
+            <p><strong>Fake Rare Directory:</strong><a href="https://fakeraredirectory.com/" target="_blank" rel="noopener noreferrer">https://fakeraredirectory.com/</a></p>
+            <p><strong>Fake Rare X (Twitter):</strong><a href="https://x.com/FAKERARES_XCP" target="_blank" rel="noopener noreferrer">https://x.com/FAKERARES_XCP</a></p>
           </div>
         </div>
       </div>
@@ -1074,165 +1235,8 @@
       <div class="content-wrapper">
         <h2 class="section-h reveal">FAKE <span class="h-accent">RARES</span></h2>
         <p class="section-intro reveal">Explore the curated collection of Fake Rare Pepes by HP. Fakest Rares on the Blockchain. Each card represents a continuation of the Rare Pepe legacy with its own unique memetic value.</p>
-        <div class="card-grid">
-
-          <div class="viewing-window reveal">
-            <span class="interactive-label game-tag">GAME</span>
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <img src="https://7quvioek3qb6wutrdgrfrjrqilwy2zovup7yqvenvzfg5r332qbq.ar.io/_ClUOIrcA-tScRmiWKYwQu2NZdWj_4hUja5Kbsd71AM?.gif" alt="READYTOKEK">
-                  </div>
-                  <div class="back">FAKEQUEST: the ultimate 80s retro game. Conquer four levels packed with every HP FAKE RARE and FAKE Common approved as of the creation of FAKEQUEST. Every frog in the directory is a foe. Pixelated chaos, retro controls, 80s vibes, a chiptune FAKE anthem blazes through every screen. Defeat the collection to become the ultimate collector. The real flex: game code minted on Bitcoin. On-chain forever, etched into Bitcoin nodes. The game is the collection. Kek hard!</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">FAKEQUEST</div>
-            <div class="window-controls six-buttons">
-              <button onclick='window.open("https://hpep24.github.io/fake-quest-card/","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/FAKEQUEST","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/FAKEQUEST?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/FAKEQUEST?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button onclick='window.open("https://opensea.io/item/ethereum/0x4c03bcad293fb0562d26faa7d90a0cb3ea74c919/73911367149346780424866873265502597248743129685179094468491762614343670897395","_blank")'>COLLECT ON OpenSea</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <span class="interactive-label">INTERACTIVE</span>
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <iframe src="https://ordinals.com/content/b7635e9702b52d679c04136ed492a0d5265b18b2007a9d52928edef77bd1da68i0" alt="PEPEFLOW" frameborder="0"></iframe>
-                  </div>
-                  <div class="back">PEPEFLOW: generative neural field, fully on-chain. Pepe dissolves into particles, each one caught in a living current of flow vectors. Drag to disrupt it. Scroll to zoom in. Tune the Chaos Factor, dial the Flow Speed, shift the palette. Every interaction reshapes the field in real time. No two moments identical. The code is the art and the art is the code, inscribed on Bitcoin via Ordinals in Fall 2025. Drag. Disrupt. Watch the frog emerge from the chaos.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">PEPEFLOW</div>
-            <div class="window-controls six-buttons">
-              <button onclick='window.open("https://ordinals.com/content/b7635e9702b52d679c04136ed492a0d5265b18b2007a9d52928edef77bd1da68i0","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/PEPEFLOW","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/PEPEFLOW?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/PEPEFLOW?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button onclick='window.open("https://opensea.io/item/ethereum/0x4c03bcad293fb0562d26faa7d90a0cb3ea74c919/73911367149346780424866873265502597248743129685179094468491762614343670897395","_blank")'>COLLECT ON OpenSea</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <img src="https://5mmyzdwwyfobatmrrxup6vucubljm3pggw4lyiytztc3yoehr5mq.ar.io/6xmMjtbBXBBNkY3o_1aCoFaWbeY1uLwjE8zFvDiHj1k/j1d507_image.gif" alt="READYTOKEK">
-                  </div>
-                  <div class="back">Multiple fail-safes locked in: on-chain base64 fully embedded in the code, an Arweave version with increased detail and artistic edits, all data and links made immutable through the UTXO set and stored on every Bitcoin node. Edition 21. READYTOKEK: Pepe as Biggie, "Ready to Die" reborn through Frog Memetics. Digitally drawn Pepefication, nostalgic palette, animated GIF. Hip-hop legend and meme culture fused forever in an immutable, decentralized form.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">READYTOKEK</div>
-            <div class="window-controls six-buttons">
-              <button onclick='window.open("https://5mmyzdwwyfobatmrrxup6vucubljm3pggw4lyiytztc3yoehr5mq.ar.io/6xmMjtbBXBBNkY3o_1aCoFaWbeY1uLwjE8zFvDiHj1k/j1d507_image.gif","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/READYTOKEK","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/READYTOKEK?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/READYTOKEK?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button onclick='window.open("https://opensea.io/item/ethereum/0x4c03bcad293fb0562d26faa7d90a0cb3ea74c919/79554947407152248718728587302041082778211747676650592334381616100619096374592","_blank")'>COLLECT ON OpenSea</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <img src="https://stampchain.io/stamps/1876c3bbeab9a6046a0913591e9a8e9ee9fc147ed912fe151ecab777a2e102a5.svg" alt="A1619006396900464164">
-                  </div>
-                  <div class="back">CUBEMOTO bows to S1 C1, the Nakamoto RAREPEPE: a Pepe-fied Dorian Nakamoto portrait, the holy grail of cryptoart and the first Rare Pepe on Bitcoin. Cubist green planes fracture and reassemble, every angle at once: googly eyes splitting, red lips offset, blazer dissolving into Bitcoin code. Etched into the UTXO set: 28KB of unprunable SVG, in every node forever. Compressionism: max meaning, min bytes. FAKE Rareness 96. Blessed at Beeple Studios for PepeFest 2024.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">A1619006396900464164</div>
-            <div class="window-controls six-buttons">
-              <button onclick='window.open("https://stampchain.io/stamps/1876c3bbeab9a6046a0913591e9a8e9ee9fc147ed912fe151ecab777a2e102a5.svg","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/A1619006396900464164","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/A1619006396900464164?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/A1619006396900464164?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button onclick='window.open("https://opensea.io/item/ethereum/0x4c03bcad293fb0562d26faa7d90a0cb3ea74c919/49222075291044332845338162860808553535373908167811911720218053190121680927753","_blank")'>COLLECT ON OpenSea</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <img src="https://lwdl74u7wzn6hcq6qp4gkw6xstqwnw5qsmjvpdxlooha4did4l6q.ar.io/XYa_8p-2W-OKHoP4ZVvXlOFm27CTE1eO63OODg0D4v0/h0q8lu_image.gif" alt="DRPEPEMUMULV">
-                  </div>
-                  <div class="back">Doctor Dré and Ed Lover built Yo! MTV Raps from 1988, giving hip hop its first real television home. In 1994 they dropped "Back Up Off Me!", sampling Sugarhill Gang's Rapper's Delight and cracking the Hot Rap Singles chart. DRPEPEMUMULV fuses Pepe and Mumu into one card: the meme frog and the crypto bull sharing one legendary frame. The card bottom pulled straight from the 1991 Pro Set Yo! MTV Raps collectible trading cards. Vinyl spinning. Kek up off it.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">DRPEPEMUMULV</div>
-            <div class="window-controls six-buttons">
-              <button onclick='window.open("https://lwdl74u7wzn6hcq6qp4gkw6xstqwnw5qsmjvpdxlooha4did4l6q.ar.io/XYa_8p-2W-OKHoP4ZVvXlOFm27CTE1eO63OODg0D4v0/h0q8lu_image.gif","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/DRPEPEMUMULV","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/DRPEPEMUMULV?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/DRPEPEMUMULV?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button onclick='window.open("https://opensea.io/item/ethereum/0x4c03bcad293fb0562d26faa7d90a0cb3ea74c919/102125175629136206770607017959159158236719057933479079239896463411464817911405","_blank")'>COLLECT ON OpenSea</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <img src="https://waepuuwvsaizbqpo2ixu2uuk5lyilxxrry7sujoux5n6jylj7gkq.ar.io/sAj6UtWQEZDB7tIvTVKK6vCF3vGOPyol1L9b5OFp-ZU" alt="DANKKAST">
-                  </div>
-                  <div class="back">OutKast's 1996 ATLiens sent Big Boi and André 3000 to outer space: Atlanta outsiders, alien production, dub and gospel woven in, debuting at number two on the Billboard 200, certified double platinum, ranked among the greatest hip hop albums ever made. DANKKAST channels that alien frequency: Pepe and Coco the crocodile locked in front, Wojak looming in the back. Atlanta to the internet. Frog, crocodile, sad man. The dankest cast ever assembled.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">DANKKAST</div>
-            <div class="window-controls six-buttons">
-              <button onclick='window.open("https://waepuuwvsaizbqpo2ixu2uuk5lyilxxrry7sujoux5n6jylj7gkq.ar.io/sAj6UtWQEZDB7tIvTVKK6vCF3vGOPyol1L9b5OFp-ZU","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/DANKKAST","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/DANKKAST?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/DANKKAST?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button onclick='window.open("https://opensea.io/item/ethereum/0x4c03bcad293fb0562d26faa7d90a0cb3ea74c919/73911367149346780424866873265502597248743129685179094468491762614343670897395","_blank")'>COLLECT ON OpenSea</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <img src="https://bvrl5ihw7wa5ir5fznwpy2tkufo2ass5r5fwffm2eln2grsgf5na.ar.io/DWK-oPb9gdRHpcts_GpqoV2gSl2PS2KVmiLbo0ZGL1o" alt="PEPEWINTER">
-                  </div>
-                  <div class="back">The bear market checked in. It never checked out. PEPEWINTER is the frog at the end of Kubrick's 1980 The Shining: Pepe as Jack Torrance, five months deep, frozen solid in the Colorado snow, face locked mid-grin, barely clinging. Game of Thrones warned it. Crypto lived it. The very first HP FAKE RARE approved to the directory. Three winters in one card: Kubrick's, crypto, Pepe art. Featured at Beeple Studios, Crypto Winter Wonderland, December 2023.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">PEPEWINTER</div>
-            <div class="window-controls six-buttons">
-              <button onclick='window.open("https://bvrl5ihw7wa5ir5fznwpy2tkufo2ass5r5fwffm2eln2grsgf5na.ar.io/DWK-oPb9gdRHpcts_GpqoV2gSl2PS2KVmiLbo0ZGL1o","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/PEPEWINTER","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/PEPEWINTER?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/PEPEWINTER?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button onclick='window.open("https://opensea.io/item/ethereum/0x4c03bcad293fb0562d26faa7d90a0cb3ea74c919/107094990642449892235806470960333108805681833342075933838156189541116518381868","_blank")'>COLLECT ON OpenSea</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-        </div>
+        <div class="filter-bar" data-section="rares" role="group" aria-label="Filter Fake Rares"></div>
+        <div class="card-grid" id="grid-rares"></div>
       </div>
     </section>
 
@@ -1241,699 +1245,700 @@
       <div class="content-wrapper">
         <h2 class="section-h reveal">FAKE <span class="h-accent">COMMONS</span></h2>
         <p class="section-intro reveal">Discover Commons by HP — Fakest Commons on the Blockchain. Despite not being Fake Rares, these pieces possess significant artistic merit and memetic value.</p>
-        <div class="card-grid">
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <iframe src="https://ordinals.com/content/045a3389db42dedc6bcf50a447bf62f3c9c965d02ae35765f6b40d5c93e6b818i0" frameborder="0"></iframe>
-                  </div>
-                  <div class="back">The cover that haunted a generation. Alvin Schwartz's folklore nightmares, drawn by Gammell in charcoal: ghosts, cannibals, urban legends, called repulsive and unfit for kids, yet selling seven million copies, eventually inspiring a Guillermo del Toro film. KEKLASTIC pepe'd it: halftone-dotted frog, blue eye bulging wide, red grin jagged, joint lit. "Scary Stories to Tell About Memes." Retold from the trenches. On-chain forever.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">A198100000000001981</div>
-            <div class="window-controls five-buttons">
-              <button onclick='window.open("https://ordinals.com/content/045a3389db42dedc6bcf50a447bf62f3c9c965d02ae35765f6b40d5c93e6b818i0","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/A198100000000001981","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/A198100000000001981?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/A198100000000001981?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <span class="interactive-label">INTERACTIVE</span>
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <iframe src="https://hpep24.github.io/CUBED/" frameborder="0"></iframe>
-                  </div>
-                  <div class="back">16,000 particles, each carrying a pixel of Pepe's color, scattered across a black canvas in swirling physics-like motion. Click: free them. They explode. Click again: Pepe reassembles from the void. CUBED is a CounterParty token born October 6, 2015, now an interactive on-chain artifact. Blue neon title pulses on a 1.4-second cycle. Minted via CounterParty, inscribed via Ordinals. Coded Pepe memetics, forever.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">CUBED.CUBED</div>
-            <div class="window-controls five-buttons">
-              <button onclick='window.open("https://hpep24.github.io/CUBED/","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/CUBED.CUBED","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/CUBED.CUBED?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/CUBED.CUBED?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <video id="vid-greedisgood" autoplay loop muted playsinline src="https://l4owhd4nbos4jgeqfss2ecfb6grwmpzr2s2skih76kmap2s434la.ar.io/Xx1jj40LpcSYkCylogih8aNmPzHUtSUg__KYB-pc3xY"></video>
-                  </div>
-                  <div class="back">Gordon Gekko declared it in 1987. Jordan Belfort lived it at Stratton Oakmont. Now Pepe owns it. GREEDISGOOD: Wolf of Pepe Street, gold-trimmed green borders, Pepe and Bitcoin icons, stats reading Attack 69, Defense 420, Wealth: Rare Pepes. Skills: Memetics Master, Ponzinomics, BSD. Animated MP4, hype vocals: "Learn Fakes and realize the opportunity sucka." Proof of Ban. The hungriest frog wins.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">GREEDISGOOD</div>
-            <div class="window-controls six-buttons">
-              <button onclick='window.open("https://l4owhd4nbos4jgeqfss2ecfb6grwmpzr2s2skih76kmap2s434la.ar.io/Xx1jj40LpcSYkCylogih8aNmPzHUtSUg__KYB-pc3xY","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/GREEDISGOOD","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/GREEDISGOOD?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/GREEDISGOOD?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="audio-toggle" data-target="vid-greedisgood">SOUND: OFF</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <video id="vid-escherworld" autoplay loop muted playsinline src="https://guhs7wqftvdzqsxsjf5lxq5fs4c525xl3sbj53x32h7izqox6suq.ar.io/NQ8v2gWdR5hK8kl6u8OllwXdduvcgp7u-9H-jMHX9Kk"></video>
-                  </div>
-                  <div class="back">Escher's 1935 "Hand with Reflecting Sphere" turned a self-portrait into a study of perception, infinity, and anamorphic distortion. ESCHERWORLD Pepefies it: webbed hand, glowing orb, Pepe gazing in. Then dimensional magic erupts. He steps through. Distorted furniture. Psychedelic walls. An alien figure emerges from the shadows. The video cuts out. No resolution. No exit. Just a frog lost between reflections, and the suspense of what comes next.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">ESCHERWORLD</div>
-            <div class="window-controls six-buttons">
-              <button onclick='window.open("https://guhs7wqftvdzqsxsjf5lxq5fs4c525xl3sbj53x32h7izqox6suq.ar.io/NQ8v2gWdR5hK8kl6u8OllwXdduvcgp7u-9H-jMHX9Kk","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/ESCHERWORLD","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/ESCHERWORLD?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/ESCHERWORLD?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="audio-toggle" data-target="vid-escherworld">SOUND: OFF</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <img src="https://q5bx4t3qgbmaztx2yqfq5dxen4lj2gpq5jecd7dz5z5rlu6nthda.ar.io/h0N-T3AwWAzO-sQLDo7kbxadGfDqSCH8ee57FdPNmcY" alt="CHEETO">
-                  </div>
-                  <div class="back">October 10, 2025: the dam collapsed. CHEETO is an AI slop Pepe meme, orange and absurd, wedged into the crack of absolute failure. A cheeto stuck in a door lock against impossible pressure. It should have snapped. It did not. Not crushed. Not surrendered. Just there. Sleepless nights, reckless bets, rent-money gambles. The rare was always the mirage. The fake is the spine. We are all cheetos: born to be devoured, holding the maw open with stubborn starch.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">CHEETO</div>
-            <div class="window-controls five-buttons">
-              <button onclick='window.open("https://q5bx4t3qgbmaztx2yqfq5dxen4lj2gpq5jecd7dz5z5rlu6nthda.ar.io/h0N-T3AwWAzO-sQLDo7kbxadGfDqSCH8ee57FdPNmcY","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/CHEETO","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/CHEETO?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/CHEETO?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <video id="vid-oldguitarist" autoplay loop muted playsinline src="https://n5zym5r2potl5owl4r3ppk4gmnfmp2yf6txzlxiw577yjlvr7naa.ar.io/b3OGdjp7pr66y-R296uGY0rH6wX075XdFu__hK6x-0A/r5sqmv_video.mp4"></video>
-                  </div>
-                  <div class="back">Picasso's 1903 "The Old Guitarist" painted poverty, isolation, and despair in cold blue and gray. The Art Institute of Chicago holds the original. OLDGUITARIST holds the frog. Blue-tinged Pepe, tattered rags, bony fingers on worn strings, weary eyes cast down in the same moody blue void. Then he plays. Slow. Haunting. A Blue Period tune drifts through the frame. Ornate wooden carvings. A FAKE RARES emblem. The blues hit hardest when a Pepe picks up the guitar.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">OLDGUITARIST</div>
-            <div class="window-controls six-buttons">
-              <button onclick='window.open("https://n5zym5r2potl5owl4r3ppk4gmnfmp2yf6txzlxiw577yjlvr7naa.ar.io/b3OGdjp7pr66y-R296uGY0rH6wX075XdFu__hK6x-0A/r5sqmv_video.mp4","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/OLDGUITARIST","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/OLDGUITARIST?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/OLDGUITARIST?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="audio-toggle" data-target="vid-oldguitarist">SOUND: OFF</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <img src="https://a5gvpb2sa2fmf3quupzcrfnib5l5anu5joc7lx55sshjjvxh3ygq.ar.io/B01Xh1IGisLuFKPyKJWoD1fQNp1LhfXfvZSOlNbn3g0" alt="RAREPEPEALSO">
-                  </div>
-                  <div class="back">The Satoshi hunt never ends. S1C1 RARE PEPEs started it. RAREPEPEALSO keeps it alive: Weinermoto, green-skinned, grumpy, glasses, floating Bitcoin symbols, Rareness 69, flavor text reading "Also, the creator of the Bitcoin." Mr. Weiner, crypto veteran since the early 2010s, leaned into the mystery. "We are all Satoshi." Cryptic non-denials. Livestream teases. X Spaces speculation. No proof, just the world's most durable rabbit hole. Another FAKE Satoshi.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">RAREPEPEALSO</div>
-            <div class="window-controls five-buttons">
-              <button onclick='window.open("https://a5gvpb2sa2fmf3quupzcrfnib5l5anu5joc7lx55sshjjvxh3ygq.ar.io/B01Xh1IGisLuFKPyKJWoD1fQNp1LhfXfvZSOlNbn3g0","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/RAREPEPEALSO","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/RAREPEPEALSO?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/RAREPEPEALSO?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <video autoplay loop muted playsinline src="https://kuecrp7k2netqbx6db6wziec3spkgllynfvowefdu5lqt3xl6h2a.ar.io/VQgov-rTSTgG_hh9bKCC3J6jLXhpausQo6dXCe7r8fQ"></video>
-                  </div>
-                  <div class="back">Rodney Nakamoto: green-skinned elder, glasses, gray hair, knowing grin. Rareness 91, stats reading Ele=Buckazoids. Background: live Space Quest footage. The lore runs deep. Buckazoids, the 1991 adventure game's digital currency, bears a logo uncannily close to Bitcoin's, seeding endless memes about time-travel, Hal Finney, and cypherpunk easter eggs. RAREPEPETOO: a loving riff on S1C1 RARE PEPEs. The rabbit holes always start with a frog.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">RAREPEPETOO</div>
-            <div class="window-controls five-buttons">
-              <button onclick='window.open("https://kuecrp7k2netqbx6db6wziec3spkgllynfvowefdu5lqt3xl6h2a.ar.io/VQgov-rTSTgG_hh9bKCC3J6jLXhpausQo6dXCe7r8fQ","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/RAREPEPETOO","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/RAREPEPETOO?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/RAREPEPETOO?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <img src="https://i3jbdwaspq4sjscp2xhe33fttxi5tjv3odmr3mfxsurnn4dhzxsq.ar.io/RtIR2BJ8OSTIT9XOTeyzndHZprtw2R2wt5Ui1vBnzeU" alt="KNOTRAREPEPE">
-                  </div>
-                  <div class="back">Bitcoin Knots: the alternative full node that treats Ordinals, Runes, and arbitrary data as spam and filters them hard. Heated debates over protocol purity, network congestion, and user sovereignty followed. KNOTRAREPEPE channels that energy: Knotsmoto, green-skinned, bearded, orange hoodie, furious. Rareness 11. Stats: Ele=Filters. "The creator of spam protection on Bitcoin. One of the most angry Pepes in existence." On-chain forever. The spam wars never end.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">KNOTRAREPEPE</div>
-            <div class="window-controls five-buttons">
-              <button onclick='window.open("https://i3jbdwaspq4sjscp2xhe33fttxi5tjv3odmr3mfxsurnn4dhzxsq.ar.io/RtIR2BJ8OSTIT9XOTeyzndHZprtw2R2wt5Ui1vBnzeU","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/KNOTRAREPEPE","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/KNOTRAREPEPE?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/KNOTRAREPEPE?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <video id="vid-fakeassday" autoplay loop muted playsinline src="https://bsw25ytxwajiyje3mgktlmhed4cbnayd2dvrbwaafij7aplpcmva.ar.io/DK2u4newEowkm2GVNbDkHwQWgwPQ6xDYACoT8D1vEyo/2xqa5l_video.MP4"></video>
-                  </div>
-                  <div class="back">Straight outta the blockchain: one Pepe, one SoCal sunrise, one FAKEASSDAY. AI slop video bumping Dre-inspired beats. Pepe rolls through Compton in a low rider, all the homies deep, all the fly girls waving from the curb. Unique Fake and Pepe lyrics spitting truths only a frog could know. Green skin soaking in pure 90s gangsta rap glory. The chronic. The hood. The meme. Every bar a FAKE. Day in the life of the realest frog in the directory.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">FAKEASSDAY</div>
-            <div class="window-controls six-buttons">
-              <button onclick='window.open("https://bsw25ytxwajiyje3mgktlmhed4cbnayd2dvrbwaafij7aplpcmva.ar.io/DK2u4newEowkm2GVNbDkHwQWgwPQ6xDYACoT8D1vEyo/2xqa5l_video.MP4","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/FAKEASSDAY","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/FAKEASSDAY?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/FAKEASSDAY?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="audio-toggle" data-target="vid-fakeassday">SOUND: OFF</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <span class="interactive-label">INTERACTIVE</span>
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <iframe src="https://stampchain.io/stamps/db0f65ab1a49bd43ac221b849833515ef784e60c1b7924900ecfa5ca35f44c71.html" frameborder="0"></iframe>
-                  </div>
-                  <div class="back">Bitcoin Knots declared war on pixels. KNOTS PEPE fired back: an interactive HTML UTXO asset fully on-chain, living in every node that will have it. The warning loads first: KNOTS IS ATTEMPTING TO KNOT PEPE. One button: UNCENSOR. Click it. Pepe breathes. The drama is real: Knots filter spam, Bitcoin maxis rage at art spammers, art spammers rage right back. The punchline: the censorship tool cannot censor what is already written in stone. Kek.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">A757879848380698069</div>
-            <div class="window-controls five-buttons">
-              <button onclick='window.open("https://stampchain.io/stamps/db0f65ab1a49bd43ac221b849833515ef784e60c1b7924900ecfa5ca35f44c71.html","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/A757879848380698069","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/A757879848380698069?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/A757879848380698069?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <video autoplay loop muted playsinline src="https://cdn.doggy.market/content/4700d316d8df9f3b5e9a7b60723bc2d04d56caa9c89124739c655cbf1701dbfdi0"></video>
-                  </div>
-                  <div class="back">Banksy put it on the Christie's wall. Bobo the Bear plays judge, red gavel raised and lightning cracking, looming over Pepe in a green heap, fist clenching the Infinity Gauntlet. September 2025: Christie's shut the digital art department. The NFT era hammered into pavement. From the $69.3 million Beeple to a strategic reformatting. The establishment blessed it, then buried it. Pepe holds the Gauntlet. Bobo holds the hammer. The frog still has the stones.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">A7007137931404140870</div>
-            <div class="window-controls five-buttons">
-              <button onclick='window.open("https://cdn.doggy.market/content/4700d316d8df9f3b5e9a7b60723bc2d04d56caa9c89124739c655cbf1701dbfdi0","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/A7007137931404140870","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/A7007137931404140870?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/A7007137931404140870?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <video autoplay loop muted playsinline src="https://sd65hwpzkh3xdkdxfb2xwezvvvy4lb3hu5hvpbkfvc6ds5rq65vq.ar.io/kP3T2flR93Godyh1exM1rXHFh2enT1eFRai8OXYw92s"></video>
-                  </div>
-                  <div class="back">The first NFT? CryptoPunks claim 2017. Rare Pepes on Bitcoin arrived in 2016, community-verified, tradeable on Counterparty. V1 and V2 both claim the CryptoPunks original, Spider-Man meme style pointing at each other while a 2018 Pride Punk stands between them and a thousand derivatives blur in the background. Pepe steps forward, full RARE directory at his back. Look at me. I am the Captain now. Displayed at Beeple Studios, CryptoPunks Meet Up 2.0, August 2025.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">PUNKSMEETUP</div>
-            <div class="window-controls five-buttons">
-              <button onclick='window.open("https://sd65hwpzkh3xdkdxfb2xwezvvvy4lb3hu5hvpbkfvc6ds5rq65vq.ar.io/kP3T2flR93Godyh1exM1rXHFh2enT1eFRai8OXYw92s","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/PUNKSMEETUP","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/PUNKSMEETUP?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/PUNKSMEETUP?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <video autoplay loop muted playsinline src="https://kecageqbvspwco6dypbz5myllflsqzhupxjits5keprzlf3cbhea.ar.io/UQQDEgGsn2E7w8PDnrMLWVcoZPR90onLqiPjlZdiCcg"></video>
-                  </div>
-                  <div class="back">SHITTER PEPE: SVG vector art Pepe born in the filthiest bathroom on the blockchain. A green toilet head, psychedelic eyes, dripping brown, Skibidi Toilet lurking in the crumbling background. Three gold shitter tokens spin in the foreground: the degens love their meme coins, their shitcoin gambles, their 1000x dreams dissolving into 00. HP=#TWO, ATK=11, SPD=00, Ele=Shit. The video says it all. Rareness Score 100. The most perfect shit ever minted.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">SHITTERPEPE</div>
-            <div class="window-controls five-buttons">
-              <button onclick='window.open("https://kecageqbvspwco6dypbz5myllflsqzhupxjits5keprzlf3cbhea.ar.io/UQQDEgGsn2E7w8PDnrMLWVcoZPR90onLqiPjlZdiCcg","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/SHITTERPEPE","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/SHITTERPEPE?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/SHITTERPEPE?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <img src="https://4tcoeobjrydcpuawkjh4ptbfpivvezuro3pgbayocywwlvb2cayq.ar.io/5MTiOCmOBifQFlJPx8wleitSZpF23mCDDhYtZdQ6EDE/joxrxz_image.png" alt="TRUMPMOTO">
-                  </div>
-                  <div class="back">S1C1 RARE PEPE crowned Nakamoto the creator of Bitcoin. TRUMPMOTO answers with a different creator. Pepe as Trump: green skin, red tie, the self-declared originator of the Trump Pump. Minted early 2024 before markets knew what was coming. Supply 300: 277 on Stamps, 21 on OG Counterparty as FAKE Commons, 1 Uncommon Sat, 1 Black Uncommon Sat. Selected and displayed at Beeple Studios, Election Night, November 2024. The pump arrived. The frog had called it all along.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">TRUMPMOTO</div>
-            <div class="window-controls five-buttons">
-              <button onclick='window.open("https://4tcoeobjrydcpuawkjh4ptbfpivvezuro3pgbayocywwlvb2cayq.ar.io/5MTiOCmOBifQFlJPx8wleitSZpF23mCDDhYtZdQ6EDE/joxrxz_image.png","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/TRUMPMOTO","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/TRUMPMOTO?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/TRUMPMOTO?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <img src="https://tokenscan.io/img/cards/RONALDPEPE.jpg" alt="RONALDPEPE">
-                  </div>
-                  <div class="back">Ronald McDonald is the original mascot. Pepe is the original meme. RONALDPEPE fuses both: red wig, painted grin, green Pepe skin, full clown suit, the golden arches of a vintage 1940s San Bernardino McDonald's glowing warm in the background. Dick and Mac McDonald opened that first stand in 1940. The frog arrived on Bitcoin a few decades later. Not a Happy Meal toy. A fully on-chain minted artifact. The clown was always a little unhinged. The frog understood.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">RONALDPEPE</div>
-            <div class="window-controls five-buttons">
-              <button onclick='window.open("https://ordinals.com/content/15c2f55cb807601e3b9d515fef9bfb67a7a25d6ed0bbf6b594c8c1f03430dacbi0","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/RONALDPEPE","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/RONALDPEPE?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/RONALDPEPE?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <img src="https://stampchain.io/stamps/c90c0208afa9aea91a09f7d1a729904c8d4bc8d7d1209998b60af9253eba6588.svg" alt="STAMPSOFBTC.SHITCOINJESUS">
-                  </div>
-                  <div class="back">Murad of @MustStopMurad: Princeton alumnus, 727,000 followers, full-time SPX6900 messiah. Two years of daily posts. Stop trading. Believe. SHITCOINJESUS channels the archetype: Pepe as the meme-coin prophet, arms wide, preaching the greater fool doctrine to the faithful degens. Cryptoassets are communities not businesses. Conviction is the product. The coin is the church. Every holder a disciple waiting for the next believer to arrive. Fully on-chain. Kek.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">SHITCOINJESUS</div>
-            <div class="window-controls five-buttons">
-              <button onclick='window.open("https://stampchain.io/stamps/c90c0208afa9aea91a09f7d1a729904c8d4bc8d7d1209998b60af9253eba6588.svg","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/STAMPSOFBTC.SHITCOINJESUS","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/STAMPSOFBTC.SHITCOINJESUS?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/STAMPSOFBTC.SHITCOINJESUS?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <img src="https://stampchain.io/stamps/3212afd135f4bd80baa36bfea32427de4ed02b5eeef59da285b6515c8dbfcd08.jpeg" alt="A1286795239919077352">
-                  </div>
-                  <div class="back">MAD Magazine Issue 217, September 1980: Alfred E. Neuman for President. His face built from names, a hundred ridiculous candidates packed tight: Carter, Reagan, Kennedy, King Kong. Why not? We could do a lot worse. A1286795239919077352 answers: Pepe as Alfred, green face assembled from the names of a new era only a degen would recognize. Trump. Biden. Xi. SBF. Kwon. Putin. Same absurdist logic. New election cycle. Fully on-chain, in the UTXO set. Feels good, man.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">A1286795239919077352</div>
-            <div class="window-controls five-buttons">
-              <button onclick='window.open("https://stampchain.io/stamps/3212afd135f4bd80baa36bfea32427de4ed02b5eeef59da285b6515c8dbfcd08.jpeg","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/A1286795239919077352","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/A1286795239919077352?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/A1286795239919077352?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <img src="https://ykpqvr7h6kiq57nkf7sovb36yj4v5fev4yf7a7f2rm75br3p34da.ar.io/wp8Kx-fykQ79qi_k6od-wnlelJXmC_B8uos_0Mdv3wY/0iisll_image.gif" alt="PHATPEPEBOOK">
-                  </div>
-                  <div class="back">Hey hey hey! Fat Albert hit CBS in 1972. Junkyard Gang. North Philly. Thirteen years of educational cartoons, beloved by generations of Saturday morning kids. Then the creator got exposed and the whole thing went dark. Pepe does not care. Pepe memes all. Pepe absorbs what culture discards, flips it green, and keeps it alive. PHATPEPEBOOK: the frog inherits Fat Albert's frequency, round and hollering, unbothered by legacy. Na na na, gonna have a good time. Kek.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">PHATPEPEBOOK</div>
-            <div class="window-controls five-buttons">
-              <button onclick='window.open("https://ykpqvr7h6kiq57nkf7sovb36yj4v5fev4yf7a7f2rm75br3p34da.ar.io/wp8Kx-fykQ79qi_k6od-wnlelJXmC_B8uos_0Mdv3wY/0iisll_image.gif","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/PHATPEPEBOOK","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/PHATPEPEBOOK?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/PHATPEPEBOOK?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <img src="https://2qkmc4ejel2rfdbubftzrqq7gsf3c465d66ij72gktod3g3m5siq.ar.io/1BTBcIki9RKMNAlnmMIfNIuxc90fvIT_RlTcPZts7JE" alt="GARUDAPEPE">
-                  </div>
-                  <div class="back">King of the birds. Enemy of every serpent. State emblem of India, Indonesia, and Thailand. Garuda is divine, mythic, winged: the protector who travels anywhere in an instant. GARUDAPEPE pepefies the icon: Pepe's head transplanted onto the sacred bird, colors neon and strobing, a deity turned into a flashing sign in a Bali night market. Curated into the Pepe in Bali exhibition at Superlative Gallery, 2024. Sacred meets surreal. The frog reigns. Kek.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">GARUDAPEPE</div>
-            <div class="window-controls five-buttons">
-              <button onclick='window.open("https://2qkmc4ejel2rfdbubftzrqq7gsf3c465d66ij72gktod3g3m5siq.ar.io/1BTBcIki9RKMNAlnmMIfNIuxc90fvIT_RlTcPZts7JE","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/GARUDAPEPE","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/GARUDAPEPE?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/GARUDAPEPE?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <img src="https://n3whh5nj65jkml23fc7mypjbafdt2amyjtsur7zmljm6qfdni4eq.ar.io/buxz9an3UqYvWyi-zD0hAUc9AZhM5Uj_LFpZ6BRtRwk" alt="CUBISMPEPE">
-                  </div>
-                  <div class="back">Picasso and Braque broke reality in 1907: multiple viewpoints at once, fractured planes, geometry over illusion. Cubism shattered the single perspective and never apologized. CUBISMPEPE applies the same treatment to the frog: green planes fracturing, eyes splitting across angles, jaw offset, every surface exposed at once. The original lives in Bitcoin's UTXO set. This version inflated into 3D: cubist Pepe puffed out, geometry made flesh. Abstract forever.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">CUBISMPEPE</div>
-            <div class="window-controls five-buttons">
-              <button onclick='window.open("https://n3whh5nj65jkml23fc7mypjbafdt2amyjtsur7zmljm6qfdni4eq.ar.io/buxz9an3UqYvWyi-zD0hAUc9AZhM5Uj_LFpZ6BRtRwk","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/CUBISMPEPE","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/CUBISMPEPE?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/CUBISMPEPE?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <img src="https://2y5fmvtpohkz5lududwfk7qqizefpxyekvqxasop2rj5q2tofnna.ar.io/1jpWVm9x1Z6ug6DsVX4QRkhX3wRVYXBJz9RT2GpuK1o" alt="VECTOREDPEPE">
-                  </div>
-                  <div class="back">Vector art lives in math: bezier curves, anchor points, paths defined by coordinates, infinitely scalable without a single pixel degrading. The medium is precision. VECTOREDPEPE runs the frog through it: Pepe reduced to pure geometry, curves and nodes, the meme as mathematical object. The original lives in Bitcoin's UTXO set. This version inflated into 3D: flat vector paths extruded outward, the abstract frog puffed into relief. Clean lines. Infinite scale. Kek.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">VECTOREDPEPE</div>
-            <div class="window-controls five-buttons">
-              <button onclick='window.open("https://2y5fmvtpohkz5lududwfk7qqizefpxyekvqxasop2rj5q2tofnna.ar.io/1jpWVm9x1Z6ug6DsVX4QRkhX3wRVYXBJz9RT2GpuK1o","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/VECTOREDPEPE","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/VECTOREDPEPE?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/VECTOREDPEPE?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <img src="https://eoqc52ubmqop6xorvsnm6kcsx27usqio3zvrbnxcacnjocda6fda.ar.io/I6Au6oFkHP9d0ayazyhSvr9JQQ7eaxC24gCalwhg8UY" alt="OUTLAWPEPE">
-                  </div>
-                  <div class="back">WANTED: OUTLAWPEPE. Last seen warping reality across the frontier, inciting kek, resisting every authority that tried to erase him. Vector compressionism original, max meaning, min bytes, etched into Bitcoin's UTXO set. This version inflated into 3D: a vintage western wanted poster, the frog's face staring back from aged parchment. Reward: Bitcoin. Original logo. The sheriff cannot collect. No jail was built for a frog who lives in every node. Kek.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">OUTLAWPEPE</div>
-            <div class="window-controls five-buttons">
-              <button onclick='window.open("https://eoqc52ubmqop6xorvsnm6kcsx27usqio3zvrbnxcacnjocda6fda.ar.io/I6Au6oFkHP9d0ayazyhSvr9JQQ7eaxC24gCalwhg8UY","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/OUTLAWPEPE","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/OUTLAWPEPE?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/OUTLAWPEPE?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <img src="https://tokenscan.io/img/cards/HOTLICKSPEPE.jpg" alt="HOTLICKSPEPE">
-                  </div>
-                  <div class="back">The Rolling Stones needed a logo in 1970. Mick Jagger suggested the tongue of Kali. John Pasche sketched it for fifty pounds: lips apart, tongue out, rebellion made visual. It became the most famous logo in rock history. HOTLICKSPEPE: the frog steps into Mick's mouth, tongue extended, fully Peped. Vector compressionism original, max meaning, min bytes, etched into Bitcoin's UTXO set. Named for Rolling Stones Hot Licks. Can't get no satisfaction? Kek.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">HOTLICKSPEPE</div>
-            <div class="window-controls five-buttons">
-              <button onclick='window.open("https://ordinals.com/content/c08b8690ec7edc9a1b29f1ef11a9be0734e07070f67c17d17779b1feef9b0786i0","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/HOTLICKSPEPE","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/HOTLICKSPEPE?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/HOTLICKSPEPE?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <img src="https://epjprumxjlywmx5vqdvp3v2sd4srce3kpmractbopzzrrhlp722a.ar.io/I9L40ZdK8WZftYDq_ddSHyURE2p7IgFMLn5zGJ1v_rQ" alt="TOBIPEPE">
-                  </div>
-                  <div class="back">Sarutobi launched in 2015: a mobile game by Christian Moss where a monkey swings through the sky collecting Bitcoin, among the first games ever to put real cryptocurrency into players' hands. Sarutobi Island followed. TOBIPEPE salutes the legacy: Pepe with a jetpack, tropical palms, GIMMIE PEPES AND HISTORICAL NFTS NOM NOM NOM. One of ten in the original HNFT Pepe Collection. Dedicated to the blockchain gaming pioneers who showed up first.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">TOBIPEPE</div>
-            <div class="window-controls five-buttons">
-              <button onclick='window.open("https://epjprumxjlywmx5vqdvp3v2sd4srce3kpmractbopzzrrhlp722a.ar.io/I9L40ZdK8WZftYDq_ddSHyURE2p7IgFMLn5zGJ1v_rQ","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/TOBIPEPE","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/TOBIPEPE?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/TOBIPEPE?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <img src="https://eigd4dhdhzugvxe2sm7jl4ghyivppm3d2gohevlxsuk4gr64kkna.ar.io/Igw-DOM-aGrcmpM-lfDHwir3s2PRnHJVd5UVw0fcUpo" alt="CHATGTP">
-                  </div>
-                  <div class="back">November 30, 2022: OpenAI launched ChatGPT. One million users in five days. One hundred million in two months. Nothing would be the same. CHATGTP marks the moment: a bonus card for the mainstream AI surge, Pepe transformed into a glowing green robot, red eyes blazing, cyberpunk skyline behind him. HP=69, ATK=100, ELE=AI. Artificial intelligence Pepe. One of the most rare AI robots in existence. The frog adapted first. The frog always adapts.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">CHATGTP</div>
-            <div class="window-controls five-buttons">
-              <button onclick='window.open("https://eigd4dhdhzugvxe2sm7jl4ghyivppm3d2gohevlxsuk4gr64kkna.ar.io/Igw-DOM-aGrcmpM-lfDHwir3s2PRnHJVd5UVw0fcUpo","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/CHATGTP","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/CHATGTP?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/CHATGTP?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <img src="https://ctspdptllxby4ythrxqjpfxqdcwd42jyqkp4xx4ectwzrg5fvclq.ar.io/FOTxvmtdw45iZ43gl5bwGKw-aTiCn8vfhBTtmJulqJc" alt="FIGHTERPEPE">
-                  </div>
-                  <div class="back">Before the metaverse, before the big studios, there was CryptoFighters: 2018, Ethereum, collect warriors and battle them on-chain. FIGHTERPEPE is the tribute: Pepe in full armor, ready for battle. HP=25, ATK=50, SPD=18, ELE=Unusual, Rareness 61. A crypto warrior of battles on the block, sword drawn, charging hard. One of the most rare Fighters in existence. Part of the original HNFT Pepe Collection. Minted for the ones who built it first. Kek.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">FIGHTERPEPE</div>
-            <div class="window-controls five-buttons">
-              <button onclick='window.open("https://ctspdptllxby4ythrxqjpfxqdcwd42jyqkp4xx4ectwzrg5fvclq.ar.io/FOTxvmtdw45iZ43gl5bwGKw-aTiCn8vfhBTtmJulqJc","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/FIGHTERPEPE","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/FIGHTERPEPE?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/FIGHTERPEPE?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <img src="https://nrzwe72kcpymoa5jb3dmeswylwquybvllgd4m4o6q35lp6apoeza.ar.io/bHNif0oT8McDqQ7GwkrYXaFMBqtZh8Zx3ob6t_gPcTI" alt="CURIOPEPE">
-                  </div>
-                  <div class="back">Before most people knew what an NFT was, MyCurioCards was minting original art on Ethereum in 2017. Digital trading cards. Real artists. Verifiable ownership. CURIOPEPE channels that energy: Pepe as artist, as collector, as the art itself. Hat on. Colors wild. HP=29.7, ATK=30, SPD=17, ELE=Art, Rareness 84. One of the most rare Artists in existence. One of ten original HNFT Pepe Collection cards.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">CURIOPEPE</div>
-            <div class="window-controls five-buttons">
-              <button onclick='window.open("https://nrzwe72kcpymoa5jb3dmeswylwquybvllgd4m4o6q35lp6apoeza.ar.io/bHNif0oT8McDqQ7GwkrYXaFMBqtZh8Zx3ob6t_gPcTI","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/CURIOPEPE","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/CURIOPEPE?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/CURIOPEPE?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <img src="https://jiyngse3uxwnqikw6xhca3qtk4b7sh2ndl4gxoutl6gherxg2peq.ar.io/SjDTSJul7NghVvXOIG4TVwP5H00a-Gu6k1-Mckbm08k" alt="REALMSOFPEPE">
-                  </div>
-                  <div class="back">Realms of Ether launched on Ethereum in December 2017: one of the earliest NFT strategy games ever built. Players minted fortresses, defended territory, built kingdoms on-chain. REALMSOFPEPE is the tribute: Pepe as dragon, Pepe as ruler, Pepe as the kingdom itself. HP=105, STR=105, INT=105, DEX=105. The ruler of the Pepe Kingdom. One of the most rare realms in existence. Rareness 91. One of ten original HNFT Pepe Collection cards. The realm is forever.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">REALMSOFPEPE</div>
-            <div class="window-controls five-buttons">
-              <button onclick='window.open("https://jiyngse3uxwnqikw6xhca3qtk4b7sh2ndl4gxoutl6gherxg2peq.ar.io/SjDTSJul7NghVvXOIG4TVwP5H00a-Gu6k1-Mckbm08k","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/REALMSOFPEPE","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/REALMSOFPEPE?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/REALMSOFPEPE?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-          <div class="viewing-window reveal">
-            <div class="window-content ratio-4-5-6">
-              <div class="flip-container">
-                <div class="flipper">
-                  <div class="front">
-                    <img src="https://etotmjejrmm6rusm7kvw2pjabbip5qw4nk6r3y7lrn3vz6d6et2a.ar.io/JN02JImLGejSTPqrbT0gCFD-wtxqvR3j64t3XPh-JPQ" alt="PEPESLAMBO">
-                  </div>
-                  <div class="back">Etherlambos launched in 2018: collectible Lamborghinis on Ethereum, early NFT collecting before the world caught on. PEPESLAMBO is the first card ever minted in the HNFT Pepe Collection, on the sixth birthday of the legendary Nakamoto Card, and the very first HP FAKE approved to the directory. Green Lambo. MODEL-PEPE. HP=12, SPD=450, RPM=8400. The original Pepe Lambo. One of the most rare Lambos in existence. Rareness 88. When the Lambo question finally had an answer.</div>
-                </div>
-              </div>
-            </div>
-            <div class="asset-name">PEPESLAMBO</div>
-            <div class="window-controls five-buttons">
-              <button onclick='window.open("https://etotmjejrmm6rusm7kvw2pjabbip5qw4nk6r3y7lrn3vz6d6et2a.ar.io/JN02JImLGejSTPqrbT0gCFD-wtxqvR3j64t3XPh-JPQ","_blank")'>VIEW FAKE ART</button>
-              <button onclick='window.open("https://pepe.wtf/asset/PEPESLAMBO","_blank")'>VIEW ON pepe.wtf</button>
-              <button onclick='window.open("https://horizon.market/assets/PEPESLAMBO?from=1M&quote_asset=BTC&tab=buy&type=dispenser","_blank")'>COLLECT ON BTC</button>
-              <button onclick='window.open("https://horizon.market/assets/PEPESLAMBO?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser","_blank")'>COLLECT w/ XCP</button>
-              <button class="fake-story-btn">FAKE STORY</button>
-            </div>
-          </div>
-
-        </div>
+        <div class="filter-bar" data-section="commons" role="group" aria-label="Filter Fake Commons"></div>
+        <div class="card-grid" id="grid-commons"></div>
       </div>
     </section>
 
     <footer>
       <h3>Contact HNFT Pepe</h3>
       <p><strong>Email:</strong>hnftpepe@proton.me</p>
-      <p><strong>X (Twitter):</strong><a href="https://x.com/HnftPepe" target="_blank">https://x.com/HnftPepe</a></p>
+      <p><strong>X (Twitter):</strong><a href="https://x.com/HnftPepe" target="_blank" rel="noopener noreferrer">https://x.com/HnftPepe</a></p>
       <p><strong>Telegram:</strong>@HNFTPEPE</p>
     </footer>
 
+    <!-- ================== CARD DETAIL MODAL ================== -->
+    <div class="modal-backdrop" id="card-modal" hidden>
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button class="modal-close" id="modal-close" type="button" aria-label="Close card details">&#10005; CLOSE</button>
+        <div class="modal-media" id="modal-media"></div>
+        <div class="modal-info">
+          <h3 class="modal-title" id="modal-title"></h3>
+          <div class="modal-meta" id="modal-meta"></div>
+          <p class="modal-story" id="modal-story"></p>
+          <div class="modal-links" id="modal-links"></div>
+          <div class="modal-nav">
+            <button class="pix-btn" id="modal-prev" type="button" aria-label="Previous card">&#9664; PREV</button>
+            <span class="modal-counter" id="modal-counter"></span>
+            <button class="pix-btn" id="modal-next" type="button" aria-label="Next card">NEXT &#9654;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script>
-      // ============ SECTION NAV ============
-      function showSection(sectionId, clickedLink) {
+      'use strict';
+
+      /* ================================================================
+         CARD DATA — single source of truth.
+         Grids, filters, the attract marquee and the detail modal are all
+         rendered from this array. To add a card, add one entry here.
+
+         slug   = on-chain asset name (pepe.wtf + horizon.market slug)
+         name   = display name (usually = slug)
+         sec    = 'rares' | 'commons'
+         tags   = filterable: 'game' | 'interactive' | 'animated' | 'static'
+         media  = { k:'img'|'video'|'iframe', src } — card front + marquee thumb
+         view   = "VIEW RAW ART" target
+         opensea= full OpenSea URL or null (commons have none)
+         audio  = true if the video has a soundtrack
+         ================================================================ */
+      const CARDS = [
+
+        /* ---------- FAKE RARES ---------- */
+        {
+          slug: 'FAKEQUEST', name: 'FAKEQUEST', sec: 'rares', tags: ['game', 'animated'],
+          media: { k: 'img', src: 'https://7quvioek3qb6wutrdgrfrjrqilwy2zovup7yqvenvzfg5r332qbq.ar.io/_ClUOIrcA-tScRmiWKYwQu2NZdWj_4hUja5Kbsd71AM?.gif' },
+          view: 'https://hpep24.github.io/fake-quest-card/',
+          opensea: 'https://opensea.io/item/ethereum/0x4c03bcad293fb0562d26faa7d90a0cb3ea74c919/73911367149346780424866873265502597248743129685179094468491762614343670897395',
+          story: `FAKEQUEST: the ultimate 80s retro game. Conquer four levels packed with every HP FAKE RARE and FAKE Common approved as of the creation of FAKEQUEST. Every frog in the directory is a foe. Pixelated chaos, retro controls, 80s vibes, a chiptune FAKE anthem blazes through every screen. Defeat the collection to become the ultimate collector. The real flex: game code minted on Bitcoin. On-chain forever, etched into Bitcoin nodes. The game is the collection. Kek hard!`
+        },
+        {
+          slug: 'PEPEFLOW', name: 'PEPEFLOW', sec: 'rares', tags: ['interactive'],
+          media: { k: 'iframe', src: 'https://ordinals.com/content/b7635e9702b52d679c04136ed492a0d5265b18b2007a9d52928edef77bd1da68i0' },
+          view: 'https://ordinals.com/content/b7635e9702b52d679c04136ed492a0d5265b18b2007a9d52928edef77bd1da68i0',
+          opensea: null, /* TODO: original site reused FAKEQUEST's OpenSea token ID here — add the correct PEPEFLOW vault URL */
+          story: `PEPEFLOW: generative neural field, fully on-chain. Pepe dissolves into particles, each one caught in a living current of flow vectors. Drag to disrupt it. Scroll to zoom in. Tune the Chaos Factor, dial the Flow Speed, shift the palette. Every interaction reshapes the field in real time. No two moments identical. The code is the art and the art is the code, inscribed on Bitcoin via Ordinals in Fall 2025. Drag. Disrupt. Watch the frog emerge from the chaos.`
+        },
+        {
+          slug: 'READYTOKEK', name: 'READYTOKEK', sec: 'rares', tags: ['animated'],
+          media: { k: 'img', src: 'https://5mmyzdwwyfobatmrrxup6vucubljm3pggw4lyiytztc3yoehr5mq.ar.io/6xmMjtbBXBBNkY3o_1aCoFaWbeY1uLwjE8zFvDiHj1k/j1d507_image.gif' },
+          view: 'https://5mmyzdwwyfobatmrrxup6vucubljm3pggw4lyiytztc3yoehr5mq.ar.io/6xmMjtbBXBBNkY3o_1aCoFaWbeY1uLwjE8zFvDiHj1k/j1d507_image.gif',
+          opensea: 'https://opensea.io/item/ethereum/0x4c03bcad293fb0562d26faa7d90a0cb3ea74c919/79554947407152248718728587302041082778211747676650592334381616100619096374592',
+          story: `Multiple fail-safes locked in: on-chain base64 fully embedded in the code, an Arweave version with increased detail and artistic edits, all data and links made immutable through the UTXO set and stored on every Bitcoin node. Edition 21. READYTOKEK: Pepe as Biggie, "Ready to Die" reborn through Frog Memetics. Digitally drawn Pepefication, nostalgic palette, animated GIF. Hip-hop legend and meme culture fused forever in an immutable, decentralized form.`
+        },
+        {
+          slug: 'A1619006396900464164', name: 'A1619006396900464164', sec: 'rares', tags: ['static'],
+          media: { k: 'img', src: 'https://stampchain.io/stamps/1876c3bbeab9a6046a0913591e9a8e9ee9fc147ed912fe151ecab777a2e102a5.svg' },
+          view: 'https://stampchain.io/stamps/1876c3bbeab9a6046a0913591e9a8e9ee9fc147ed912fe151ecab777a2e102a5.svg',
+          opensea: 'https://opensea.io/item/ethereum/0x4c03bcad293fb0562d26faa7d90a0cb3ea74c919/49222075291044332845338162860808553535373908167811911720218053190121680927753',
+          story: `CUBEMOTO bows to S1 C1, the Nakamoto RAREPEPE: a Pepe-fied Dorian Nakamoto portrait, the holy grail of cryptoart and the first Rare Pepe on Bitcoin. Cubist green planes fracture and reassemble, every angle at once: googly eyes splitting, red lips offset, blazer dissolving into Bitcoin code. Etched into the UTXO set: 28KB of unprunable SVG, in every node forever. Compressionism: max meaning, min bytes. FAKE Rareness 96. Blessed at Beeple Studios for PepeFest 2024.`
+        },
+        {
+          slug: 'DRPEPEMUMULV', name: 'DRPEPEMUMULV', sec: 'rares', tags: ['animated'],
+          media: { k: 'img', src: 'https://lwdl74u7wzn6hcq6qp4gkw6xstqwnw5qsmjvpdxlooha4did4l6q.ar.io/XYa_8p-2W-OKHoP4ZVvXlOFm27CTE1eO63OODg0D4v0/h0q8lu_image.gif' },
+          view: 'https://lwdl74u7wzn6hcq6qp4gkw6xstqwnw5qsmjvpdxlooha4did4l6q.ar.io/XYa_8p-2W-OKHoP4ZVvXlOFm27CTE1eO63OODg0D4v0/h0q8lu_image.gif',
+          opensea: 'https://opensea.io/item/ethereum/0x4c03bcad293fb0562d26faa7d90a0cb3ea74c919/102125175629136206770607017959159158236719057933479079239896463411464817911405',
+          story: `Doctor Dré and Ed Lover built Yo! MTV Raps from 1988, giving hip hop its first real television home. In 1994 they dropped "Back Up Off Me!", sampling Sugarhill Gang's Rapper's Delight and cracking the Hot Rap Singles chart. DRPEPEMUMULV fuses Pepe and Mumu into one card: the meme frog and the crypto bull sharing one legendary frame. The card bottom pulled straight from the 1991 Pro Set Yo! MTV Raps collectible trading cards. Vinyl spinning. Kek up off it.`
+        },
+        {
+          slug: 'DANKKAST', name: 'DANKKAST', sec: 'rares', tags: ['animated'],
+          media: { k: 'img', src: 'https://waepuuwvsaizbqpo2ixu2uuk5lyilxxrry7sujoux5n6jylj7gkq.ar.io/sAj6UtWQEZDB7tIvTVKK6vCF3vGOPyol1L9b5OFp-ZU' },
+          view: 'https://waepuuwvsaizbqpo2ixu2uuk5lyilxxrry7sujoux5n6jylj7gkq.ar.io/sAj6UtWQEZDB7tIvTVKK6vCF3vGOPyol1L9b5OFp-ZU',
+          opensea: 'https://opensea.io/item/ethereum/0x4c03bcad293fb0562d26faa7d90a0cb3ea74c919/73911367149346780424866873265502597248743129685179094468491762614343670897395',
+          story: `OutKast's 1996 ATLiens sent Big Boi and André 3000 to outer space: Atlanta outsiders, alien production, dub and gospel woven in, debuting at number two on the Billboard 200, certified double platinum, ranked among the greatest hip hop albums ever made. DANKKAST channels that alien frequency: Pepe and Coco the crocodile locked in front, Wojak looming in the back. Atlanta to the internet. Frog, crocodile, sad man. The dankest cast ever assembled.`
+        },
+        {
+          slug: 'PEPEWINTER', name: 'PEPEWINTER', sec: 'rares', tags: ['animated'],
+          media: { k: 'img', src: 'https://bvrl5ihw7wa5ir5fznwpy2tkufo2ass5r5fwffm2eln2grsgf5na.ar.io/DWK-oPb9gdRHpcts_GpqoV2gSl2PS2KVmiLbo0ZGL1o' },
+          view: 'https://bvrl5ihw7wa5ir5fznwpy2tkufo2ass5r5fwffm2eln2grsgf5na.ar.io/DWK-oPb9gdRHpcts_GpqoV2gSl2PS2KVmiLbo0ZGL1o',
+          opensea: 'https://opensea.io/item/ethereum/0x4c03bcad293fb0562d26faa7d90a0cb3ea74c919/107094990642449892235806470960333108805681833342075933838156189541116518381868',
+          story: `The bear market checked in. It never checked out. PEPEWINTER is the frog at the end of Kubrick's 1980 The Shining: Pepe as Jack Torrance, five months deep, frozen solid in the Colorado snow, face locked mid-grin, barely clinging. Game of Thrones warned it. Crypto lived it. The very first HP FAKE RARE approved to the directory. Three winters in one card: Kubrick's, crypto, Pepe art. Featured at Beeple Studios, Crypto Winter Wonderland, December 2023.`
+        },
+
+        /* ---------- FAKE COMMONS ---------- */
+        {
+          slug: 'A198100000000001981', name: 'A198100000000001981', sec: 'commons', tags: ['static'],
+          media: { k: 'iframe', src: 'https://ordinals.com/content/045a3389db42dedc6bcf50a447bf62f3c9c965d02ae35765f6b40d5c93e6b818i0' },
+          view: 'https://ordinals.com/content/045a3389db42dedc6bcf50a447bf62f3c9c965d02ae35765f6b40d5c93e6b818i0',
+          opensea: null,
+          story: `The cover that haunted a generation. Alvin Schwartz's folklore nightmares, drawn by Gammell in charcoal: ghosts, cannibals, urban legends, called repulsive and unfit for kids, yet selling seven million copies, eventually inspiring a Guillermo del Toro film. KEKLASTIC pepe'd it: halftone-dotted frog, blue eye bulging wide, red grin jagged, joint lit. "Scary Stories to Tell About Memes." Retold from the trenches. On-chain forever.`
+        },
+        {
+          slug: 'CUBED.CUBED', name: 'CUBED.CUBED', sec: 'commons', tags: ['interactive'],
+          media: { k: 'iframe', src: 'https://hpep24.github.io/CUBED/' },
+          view: 'https://hpep24.github.io/CUBED/',
+          opensea: null,
+          story: `16,000 particles, each carrying a pixel of Pepe's color, scattered across a black canvas in swirling physics-like motion. Click: free them. They explode. Click again: Pepe reassembles from the void. CUBED is a CounterParty token born October 6, 2015, now an interactive on-chain artifact. Blue neon title pulses on a 1.4-second cycle. Minted via CounterParty, inscribed via Ordinals. Coded Pepe memetics, forever.`
+        },
+        {
+          slug: 'GREEDISGOOD', name: 'GREEDISGOOD', sec: 'commons', tags: ['animated'], audio: true,
+          media: { k: 'video', src: 'https://l4owhd4nbos4jgeqfss2ecfb6grwmpzr2s2skih76kmap2s434la.ar.io/Xx1jj40LpcSYkCylogih8aNmPzHUtSUg__KYB-pc3xY' },
+          view: 'https://l4owhd4nbos4jgeqfss2ecfb6grwmpzr2s2skih76kmap2s434la.ar.io/Xx1jj40LpcSYkCylogih8aNmPzHUtSUg__KYB-pc3xY',
+          opensea: null,
+          story: `Gordon Gekko declared it in 1987. Jordan Belfort lived it at Stratton Oakmont. Now Pepe owns it. GREEDISGOOD: Wolf of Pepe Street, gold-trimmed green borders, Pepe and Bitcoin icons, stats reading Attack 69, Defense 420, Wealth: Rare Pepes. Skills: Memetics Master, Ponzinomics, BSD. Animated MP4, hype vocals: "Learn Fakes and realize the opportunity sucka." Proof of Ban. The hungriest frog wins.`
+        },
+        {
+          slug: 'ESCHERWORLD', name: 'ESCHERWORLD', sec: 'commons', tags: ['animated'], audio: true,
+          media: { k: 'video', src: 'https://guhs7wqftvdzqsxsjf5lxq5fs4c525xl3sbj53x32h7izqox6suq.ar.io/NQ8v2gWdR5hK8kl6u8OllwXdduvcgp7u-9H-jMHX9Kk' },
+          view: 'https://guhs7wqftvdzqsxsjf5lxq5fs4c525xl3sbj53x32h7izqox6suq.ar.io/NQ8v2gWdR5hK8kl6u8OllwXdduvcgp7u-9H-jMHX9Kk',
+          opensea: null,
+          story: `Escher's 1935 "Hand with Reflecting Sphere" turned a self-portrait into a study of perception, infinity, and anamorphic distortion. ESCHERWORLD Pepefies it: webbed hand, glowing orb, Pepe gazing in. Then dimensional magic erupts. He steps through. Distorted furniture. Psychedelic walls. An alien figure emerges from the shadows. The video cuts out. No resolution. No exit. Just a frog lost between reflections, and the suspense of what comes next.`
+        },
+        {
+          slug: 'CHEETO', name: 'CHEETO', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://q5bx4t3qgbmaztx2yqfq5dxen4lj2gpq5jecd7dz5z5rlu6nthda.ar.io/h0N-T3AwWAzO-sQLDo7kbxadGfDqSCH8ee57FdPNmcY' },
+          view: 'https://q5bx4t3qgbmaztx2yqfq5dxen4lj2gpq5jecd7dz5z5rlu6nthda.ar.io/h0N-T3AwWAzO-sQLDo7kbxadGfDqSCH8ee57FdPNmcY',
+          opensea: null,
+          story: `October 10, 2025: the dam collapsed. CHEETO is an AI slop Pepe meme, orange and absurd, wedged into the crack of absolute failure. A cheeto stuck in a door lock against impossible pressure. It should have snapped. It did not. Not crushed. Not surrendered. Just there. Sleepless nights, reckless bets, rent-money gambles. The rare was always the mirage. The fake is the spine. We are all cheetos: born to be devoured, holding the maw open with stubborn starch.`
+        },
+        {
+          slug: 'OLDGUITARIST', name: 'OLDGUITARIST', sec: 'commons', tags: ['animated'], audio: true,
+          media: { k: 'video', src: 'https://n5zym5r2potl5owl4r3ppk4gmnfmp2yf6txzlxiw577yjlvr7naa.ar.io/b3OGdjp7pr66y-R296uGY0rH6wX075XdFu__hK6x-0A/r5sqmv_video.mp4' },
+          view: 'https://n5zym5r2potl5owl4r3ppk4gmnfmp2yf6txzlxiw577yjlvr7naa.ar.io/b3OGdjp7pr66y-R296uGY0rH6wX075XdFu__hK6x-0A/r5sqmv_video.mp4',
+          opensea: null,
+          story: `Picasso's 1903 "The Old Guitarist" painted poverty, isolation, and despair in cold blue and gray. The Art Institute of Chicago holds the original. OLDGUITARIST holds the frog. Blue-tinged Pepe, tattered rags, bony fingers on worn strings, weary eyes cast down in the same moody blue void. Then he plays. Slow. Haunting. A Blue Period tune drifts through the frame. Ornate wooden carvings. A FAKE RARES emblem. The blues hit hardest when a Pepe picks up the guitar.`
+        },
+        {
+          slug: 'RAREPEPEALSO', name: 'RAREPEPEALSO', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://a5gvpb2sa2fmf3quupzcrfnib5l5anu5joc7lx55sshjjvxh3ygq.ar.io/B01Xh1IGisLuFKPyKJWoD1fQNp1LhfXfvZSOlNbn3g0' },
+          view: 'https://a5gvpb2sa2fmf3quupzcrfnib5l5anu5joc7lx55sshjjvxh3ygq.ar.io/B01Xh1IGisLuFKPyKJWoD1fQNp1LhfXfvZSOlNbn3g0',
+          opensea: null,
+          story: `The Satoshi hunt never ends. S1C1 RARE PEPEs started it. RAREPEPEALSO keeps it alive: Weinermoto, green-skinned, grumpy, glasses, floating Bitcoin symbols, Rareness 69, flavor text reading "Also, the creator of the Bitcoin." Mr. Weiner, crypto veteran since the early 2010s, leaned into the mystery. "We are all Satoshi." Cryptic non-denials. Livestream teases. X Spaces speculation. No proof, just the world's most durable rabbit hole. Another FAKE Satoshi.`
+        },
+        {
+          slug: 'RAREPEPETOO', name: 'RAREPEPETOO', sec: 'commons', tags: ['animated'],
+          media: { k: 'video', src: 'https://kuecrp7k2netqbx6db6wziec3spkgllynfvowefdu5lqt3xl6h2a.ar.io/VQgov-rTSTgG_hh9bKCC3J6jLXhpausQo6dXCe7r8fQ' },
+          view: 'https://kuecrp7k2netqbx6db6wziec3spkgllynfvowefdu5lqt3xl6h2a.ar.io/VQgov-rTSTgG_hh9bKCC3J6jLXhpausQo6dXCe7r8fQ',
+          opensea: null,
+          story: `Rodney Nakamoto: green-skinned elder, glasses, gray hair, knowing grin. Rareness 91, stats reading Ele=Buckazoids. Background: live Space Quest footage. The lore runs deep. Buckazoids, the 1991 adventure game's digital currency, bears a logo uncannily close to Bitcoin's, seeding endless memes about time-travel, Hal Finney, and cypherpunk easter eggs. RAREPEPETOO: a loving riff on S1C1 RARE PEPEs. The rabbit holes always start with a frog.`
+        },
+        {
+          slug: 'KNOTRAREPEPE', name: 'KNOTRAREPEPE', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://i3jbdwaspq4sjscp2xhe33fttxi5tjv3odmr3mfxsurnn4dhzxsq.ar.io/RtIR2BJ8OSTIT9XOTeyzndHZprtw2R2wt5Ui1vBnzeU' },
+          view: 'https://i3jbdwaspq4sjscp2xhe33fttxi5tjv3odmr3mfxsurnn4dhzxsq.ar.io/RtIR2BJ8OSTIT9XOTeyzndHZprtw2R2wt5Ui1vBnzeU',
+          opensea: null,
+          story: `Bitcoin Knots: the alternative full node that treats Ordinals, Runes, and arbitrary data as spam and filters them hard. Heated debates over protocol purity, network congestion, and user sovereignty followed. KNOTRAREPEPE channels that energy: Knotsmoto, green-skinned, bearded, orange hoodie, furious. Rareness 11. Stats: Ele=Filters. "The creator of spam protection on Bitcoin. One of the most angry Pepes in existence." On-chain forever. The spam wars never end.`
+        },
+        {
+          slug: 'FAKEASSDAY', name: 'FAKEASSDAY', sec: 'commons', tags: ['animated'], audio: true,
+          media: { k: 'video', src: 'https://bsw25ytxwajiyje3mgktlmhed4cbnayd2dvrbwaafij7aplpcmva.ar.io/DK2u4newEowkm2GVNbDkHwQWgwPQ6xDYACoT8D1vEyo/2xqa5l_video.MP4' },
+          view: 'https://bsw25ytxwajiyje3mgktlmhed4cbnayd2dvrbwaafij7aplpcmva.ar.io/DK2u4newEowkm2GVNbDkHwQWgwPQ6xDYACoT8D1vEyo/2xqa5l_video.MP4',
+          opensea: null,
+          story: `Straight outta the blockchain: one Pepe, one SoCal sunrise, one FAKEASSDAY. AI slop video bumping Dre-inspired beats. Pepe rolls through Compton in a low rider, all the homies deep, all the fly girls waving from the curb. Unique Fake and Pepe lyrics spitting truths only a frog could know. Green skin soaking in pure 90s gangsta rap glory. The chronic. The hood. The meme. Every bar a FAKE. Day in the life of the realest frog in the directory.`
+        },
+        {
+          slug: 'A757879848380698069', name: 'A757879848380698069', sec: 'commons', tags: ['interactive'],
+          media: { k: 'iframe', src: 'https://stampchain.io/stamps/db0f65ab1a49bd43ac221b849833515ef784e60c1b7924900ecfa5ca35f44c71.html' },
+          view: 'https://stampchain.io/stamps/db0f65ab1a49bd43ac221b849833515ef784e60c1b7924900ecfa5ca35f44c71.html',
+          opensea: null,
+          story: `Bitcoin Knots declared war on pixels. KNOTS PEPE fired back: an interactive HTML UTXO asset fully on-chain, living in every node that will have it. The warning loads first: KNOTS IS ATTEMPTING TO KNOT PEPE. One button: UNCENSOR. Click it. Pepe breathes. The drama is real: Knots filter spam, Bitcoin maxis rage at art spammers, art spammers rage right back. The punchline: the censorship tool cannot censor what is already written in stone. Kek.`
+        },
+        {
+          slug: 'A7007137931404140870', name: 'A7007137931404140870', sec: 'commons', tags: ['animated'],
+          media: { k: 'video', src: 'https://cdn.doggy.market/content/4700d316d8df9f3b5e9a7b60723bc2d04d56caa9c89124739c655cbf1701dbfdi0' },
+          view: 'https://cdn.doggy.market/content/4700d316d8df9f3b5e9a7b60723bc2d04d56caa9c89124739c655cbf1701dbfdi0',
+          opensea: null,
+          story: `Banksy put it on the Christie's wall. Bobo the Bear plays judge, red gavel raised and lightning cracking, looming over Pepe in a green heap, fist clenching the Infinity Gauntlet. September 2025: Christie's shut the digital art department. The NFT era hammered into pavement. From the $69.3 million Beeple to a strategic reformatting. The establishment blessed it, then buried it. Pepe holds the Gauntlet. Bobo holds the hammer. The frog still has the stones.`
+        },
+        {
+          slug: 'PUNKSMEETUP', name: 'PUNKSMEETUP', sec: 'commons', tags: ['animated'],
+          media: { k: 'video', src: 'https://sd65hwpzkh3xdkdxfb2xwezvvvy4lb3hu5hvpbkfvc6ds5rq65vq.ar.io/kP3T2flR93Godyh1exM1rXHFh2enT1eFRai8OXYw92s' },
+          view: 'https://sd65hwpzkh3xdkdxfb2xwezvvvy4lb3hu5hvpbkfvc6ds5rq65vq.ar.io/kP3T2flR93Godyh1exM1rXHFh2enT1eFRai8OXYw92s',
+          opensea: null,
+          story: `The first NFT? CryptoPunks claim 2017. Rare Pepes on Bitcoin arrived in 2016, community-verified, tradeable on Counterparty. V1 and V2 both claim the CryptoPunks original, Spider-Man meme style pointing at each other while a 2018 Pride Punk stands between them and a thousand derivatives blur in the background. Pepe steps forward, full RARE directory at his back. Look at me. I am the Captain now. Displayed at Beeple Studios, CryptoPunks Meet Up 2.0, August 2025.`
+        },
+        {
+          slug: 'SHITTERPEPE', name: 'SHITTERPEPE', sec: 'commons', tags: ['animated'],
+          media: { k: 'video', src: 'https://kecageqbvspwco6dypbz5myllflsqzhupxjits5keprzlf3cbhea.ar.io/UQQDEgGsn2E7w8PDnrMLWVcoZPR90onLqiPjlZdiCcg' },
+          view: 'https://kecageqbvspwco6dypbz5myllflsqzhupxjits5keprzlf3cbhea.ar.io/UQQDEgGsn2E7w8PDnrMLWVcoZPR90onLqiPjlZdiCcg',
+          opensea: null,
+          story: `SHITTER PEPE: SVG vector art Pepe born in the filthiest bathroom on the blockchain. A green toilet head, psychedelic eyes, dripping brown, Skibidi Toilet lurking in the crumbling background. Three gold shitter tokens spin in the foreground: the degens love their meme coins, their shitcoin gambles, their 1000x dreams dissolving into 00. HP=#TWO, ATK=11, SPD=00, Ele=Shit. The video says it all. Rareness Score 100. The most perfect shit ever minted.`
+        },
+        {
+          slug: 'TRUMPMOTO', name: 'TRUMPMOTO', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://4tcoeobjrydcpuawkjh4ptbfpivvezuro3pgbayocywwlvb2cayq.ar.io/5MTiOCmOBifQFlJPx8wleitSZpF23mCDDhYtZdQ6EDE/joxrxz_image.png' },
+          view: 'https://4tcoeobjrydcpuawkjh4ptbfpivvezuro3pgbayocywwlvb2cayq.ar.io/5MTiOCmOBifQFlJPx8wleitSZpF23mCDDhYtZdQ6EDE/joxrxz_image.png',
+          opensea: null,
+          story: `S1C1 RARE PEPE crowned Nakamoto the creator of Bitcoin. TRUMPMOTO answers with a different creator. Pepe as Trump: green skin, red tie, the self-declared originator of the Trump Pump. Minted early 2024 before markets knew what was coming. Supply 300: 277 on Stamps, 21 on OG Counterparty as FAKE Commons, 1 Uncommon Sat, 1 Black Uncommon Sat. Selected and displayed at Beeple Studios, Election Night, November 2024. The pump arrived. The frog had called it all along.`
+        },
+        {
+          slug: 'RONALDPEPE', name: 'RONALDPEPE', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://tokenscan.io/img/cards/RONALDPEPE.jpg' },
+          view: 'https://ordinals.com/content/15c2f55cb807601e3b9d515fef9bfb67a7a25d6ed0bbf6b594c8c1f03430dacbi0',
+          opensea: null,
+          story: `Ronald McDonald is the original mascot. Pepe is the original meme. RONALDPEPE fuses both: red wig, painted grin, green Pepe skin, full clown suit, the golden arches of a vintage 1940s San Bernardino McDonald's glowing warm in the background. Dick and Mac McDonald opened that first stand in 1940. The frog arrived on Bitcoin a few decades later. Not a Happy Meal toy. A fully on-chain minted artifact. The clown was always a little unhinged. The frog understood.`
+        },
+        {
+          slug: 'STAMPSOFBTC.SHITCOINJESUS', name: 'SHITCOINJESUS', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://stampchain.io/stamps/c90c0208afa9aea91a09f7d1a729904c8d4bc8d7d1209998b60af9253eba6588.svg' },
+          view: 'https://stampchain.io/stamps/c90c0208afa9aea91a09f7d1a729904c8d4bc8d7d1209998b60af9253eba6588.svg',
+          opensea: null,
+          story: `Murad of @MustStopMurad: Princeton alumnus, 727,000 followers, full-time SPX6900 messiah. Two years of daily posts. Stop trading. Believe. SHITCOINJESUS channels the archetype: Pepe as the meme-coin prophet, arms wide, preaching the greater fool doctrine to the faithful degens. Cryptoassets are communities not businesses. Conviction is the product. The coin is the church. Every holder a disciple waiting for the next believer to arrive. Fully on-chain. Kek.`
+        },
+        {
+          slug: 'A1286795239919077352', name: 'A1286795239919077352', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://stampchain.io/stamps/3212afd135f4bd80baa36bfea32427de4ed02b5eeef59da285b6515c8dbfcd08.jpeg' },
+          view: 'https://stampchain.io/stamps/3212afd135f4bd80baa36bfea32427de4ed02b5eeef59da285b6515c8dbfcd08.jpeg',
+          opensea: null,
+          story: `MAD Magazine Issue 217, September 1980: Alfred E. Neuman for President. His face built from names, a hundred ridiculous candidates packed tight: Carter, Reagan, Kennedy, King Kong. Why not? We could do a lot worse. A1286795239919077352 answers: Pepe as Alfred, green face assembled from the names of a new era only a degen would recognize. Trump. Biden. Xi. SBF. Kwon. Putin. Same absurdist logic. New election cycle. Fully on-chain, in the UTXO set. Feels good, man.`
+        },
+        {
+          slug: 'PHATPEPEBOOK', name: 'PHATPEPEBOOK', sec: 'commons', tags: ['animated'],
+          media: { k: 'img', src: 'https://ykpqvr7h6kiq57nkf7sovb36yj4v5fev4yf7a7f2rm75br3p34da.ar.io/wp8Kx-fykQ79qi_k6od-wnlelJXmC_B8uos_0Mdv3wY/0iisll_image.gif' },
+          view: 'https://ykpqvr7h6kiq57nkf7sovb36yj4v5fev4yf7a7f2rm75br3p34da.ar.io/wp8Kx-fykQ79qi_k6od-wnlelJXmC_B8uos_0Mdv3wY/0iisll_image.gif',
+          opensea: null,
+          story: `Hey hey hey! Fat Albert hit CBS in 1972. Junkyard Gang. North Philly. Thirteen years of educational cartoons, beloved by generations of Saturday morning kids. Then the creator got exposed and the whole thing went dark. Pepe does not care. Pepe memes all. Pepe absorbs what culture discards, flips it green, and keeps it alive. PHATPEPEBOOK: the frog inherits Fat Albert's frequency, round and hollering, unbothered by legacy. Na na na, gonna have a good time. Kek.`
+        },
+        {
+          slug: 'GARUDAPEPE', name: 'GARUDAPEPE', sec: 'commons', tags: ['animated'],
+          media: { k: 'img', src: 'https://2qkmc4ejel2rfdbubftzrqq7gsf3c465d66ij72gktod3g3m5siq.ar.io/1BTBcIki9RKMNAlnmMIfNIuxc90fvIT_RlTcPZts7JE' },
+          view: 'https://2qkmc4ejel2rfdbubftzrqq7gsf3c465d66ij72gktod3g3m5siq.ar.io/1BTBcIki9RKMNAlnmMIfNIuxc90fvIT_RlTcPZts7JE',
+          opensea: null,
+          story: `King of the birds. Enemy of every serpent. State emblem of India, Indonesia, and Thailand. Garuda is divine, mythic, winged: the protector who travels anywhere in an instant. GARUDAPEPE pepefies the icon: Pepe's head transplanted onto the sacred bird, colors neon and strobing, a deity turned into a flashing sign in a Bali night market. Curated into the Pepe in Bali exhibition at Superlative Gallery, 2024. Sacred meets surreal. The frog reigns. Kek.`
+        },
+        {
+          slug: 'CUBISMPEPE', name: 'CUBISMPEPE', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://n3whh5nj65jkml23fc7mypjbafdt2amyjtsur7zmljm6qfdni4eq.ar.io/buxz9an3UqYvWyi-zD0hAUc9AZhM5Uj_LFpZ6BRtRwk' },
+          view: 'https://n3whh5nj65jkml23fc7mypjbafdt2amyjtsur7zmljm6qfdni4eq.ar.io/buxz9an3UqYvWyi-zD0hAUc9AZhM5Uj_LFpZ6BRtRwk',
+          opensea: null,
+          story: `Picasso and Braque broke reality in 1907: multiple viewpoints at once, fractured planes, geometry over illusion. Cubism shattered the single perspective and never apologized. CUBISMPEPE applies the same treatment to the frog: green planes fracturing, eyes splitting across angles, jaw offset, every surface exposed at once. The original lives in Bitcoin's UTXO set. This version inflated into 3D: cubist Pepe puffed out, geometry made flesh. Abstract forever.`
+        },
+        {
+          slug: 'VECTOREDPEPE', name: 'VECTOREDPEPE', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://2y5fmvtpohkz5lududwfk7qqizefpxyekvqxasop2rj5q2tofnna.ar.io/1jpWVm9x1Z6ug6DsVX4QRkhX3wRVYXBJz9RT2GpuK1o' },
+          view: 'https://2y5fmvtpohkz5lududwfk7qqizefpxyekvqxasop2rj5q2tofnna.ar.io/1jpWVm9x1Z6ug6DsVX4QRkhX3wRVYXBJz9RT2GpuK1o',
+          opensea: null,
+          story: `Vector art lives in math: bezier curves, anchor points, paths defined by coordinates, infinitely scalable without a single pixel degrading. The medium is precision. VECTOREDPEPE runs the frog through it: Pepe reduced to pure geometry, curves and nodes, the meme as mathematical object. The original lives in Bitcoin's UTXO set. This version inflated into 3D: flat vector paths extruded outward, the abstract frog puffed into relief. Clean lines. Infinite scale. Kek.`
+        },
+        {
+          slug: 'OUTLAWPEPE', name: 'OUTLAWPEPE', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://eoqc52ubmqop6xorvsnm6kcsx27usqio3zvrbnxcacnjocda6fda.ar.io/I6Au6oFkHP9d0ayazyhSvr9JQQ7eaxC24gCalwhg8UY' },
+          view: 'https://eoqc52ubmqop6xorvsnm6kcsx27usqio3zvrbnxcacnjocda6fda.ar.io/I6Au6oFkHP9d0ayazyhSvr9JQQ7eaxC24gCalwhg8UY',
+          opensea: null,
+          story: `WANTED: OUTLAWPEPE. Last seen warping reality across the frontier, inciting kek, resisting every authority that tried to erase him. Vector compressionism original, max meaning, min bytes, etched into Bitcoin's UTXO set. This version inflated into 3D: a vintage western wanted poster, the frog's face staring back from aged parchment. Reward: Bitcoin. Original logo. The sheriff cannot collect. No jail was built for a frog who lives in every node. Kek.`
+        },
+        {
+          slug: 'HOTLICKSPEPE', name: 'HOTLICKSPEPE', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://tokenscan.io/img/cards/HOTLICKSPEPE.jpg' },
+          view: 'https://ordinals.com/content/c08b8690ec7edc9a1b29f1ef11a9be0734e07070f67c17d17779b1feef9b0786i0',
+          opensea: null,
+          story: `The Rolling Stones needed a logo in 1970. Mick Jagger suggested the tongue of Kali. John Pasche sketched it for fifty pounds: lips apart, tongue out, rebellion made visual. It became the most famous logo in rock history. HOTLICKSPEPE: the frog steps into Mick's mouth, tongue extended, fully Peped. Vector compressionism original, max meaning, min bytes, etched into Bitcoin's UTXO set. Named for Rolling Stones Hot Licks. Can't get no satisfaction? Kek.`
+        },
+        {
+          slug: 'TOBIPEPE', name: 'TOBIPEPE', sec: 'commons', tags: ['animated'],
+          media: { k: 'img', src: 'https://epjprumxjlywmx5vqdvp3v2sd4srce3kpmractbopzzrrhlp722a.ar.io/I9L40ZdK8WZftYDq_ddSHyURE2p7IgFMLn5zGJ1v_rQ' },
+          view: 'https://epjprumxjlywmx5vqdvp3v2sd4srce3kpmractbopzzrrhlp722a.ar.io/I9L40ZdK8WZftYDq_ddSHyURE2p7IgFMLn5zGJ1v_rQ',
+          opensea: null,
+          story: `Sarutobi launched in 2015: a mobile game by Christian Moss where a monkey swings through the sky collecting Bitcoin, among the first games ever to put real cryptocurrency into players' hands. Sarutobi Island followed. TOBIPEPE salutes the legacy: Pepe with a jetpack, tropical palms, GIMMIE PEPES AND HISTORICAL NFTS NOM NOM NOM. One of ten in the original HNFT Pepe Collection. Dedicated to the blockchain gaming pioneers who showed up first.`
+        },
+        {
+          slug: 'CHATGTP', name: 'CHATGTP', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://eigd4dhdhzugvxe2sm7jl4ghyivppm3d2gohevlxsuk4gr64kkna.ar.io/Igw-DOM-aGrcmpM-lfDHwir3s2PRnHJVd5UVw0fcUpo' },
+          view: 'https://eigd4dhdhzugvxe2sm7jl4ghyivppm3d2gohevlxsuk4gr64kkna.ar.io/Igw-DOM-aGrcmpM-lfDHwir3s2PRnHJVd5UVw0fcUpo',
+          opensea: null,
+          story: `November 30, 2022: OpenAI launched ChatGPT. One million users in five days. One hundred million in two months. Nothing would be the same. CHATGTP marks the moment: a bonus card for the mainstream AI surge, Pepe transformed into a glowing green robot, red eyes blazing, cyberpunk skyline behind him. HP=69, ATK=100, ELE=AI. Artificial intelligence Pepe. One of the most rare AI robots in existence. The frog adapted first. The frog always adapts.`
+        },
+        {
+          slug: 'FIGHTERPEPE', name: 'FIGHTERPEPE', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://ctspdptllxby4ythrxqjpfxqdcwd42jyqkp4xx4ectwzrg5fvclq.ar.io/FOTxvmtdw45iZ43gl5bwGKw-aTiCn8vfhBTtmJulqJc' },
+          view: 'https://ctspdptllxby4ythrxqjpfxqdcwd42jyqkp4xx4ectwzrg5fvclq.ar.io/FOTxvmtdw45iZ43gl5bwGKw-aTiCn8vfhBTtmJulqJc',
+          opensea: null,
+          story: `Before the metaverse, before the big studios, there was CryptoFighters: 2018, Ethereum, collect warriors and battle them on-chain. FIGHTERPEPE is the tribute: Pepe in full armor, ready for battle. HP=25, ATK=50, SPD=18, ELE=Unusual, Rareness 61. A crypto warrior of battles on the block, sword drawn, charging hard. One of the most rare Fighters in existence. Part of the original HNFT Pepe Collection. Minted for the ones who built it first. Kek.`
+        },
+        {
+          slug: 'CURIOPEPE', name: 'CURIOPEPE', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://nrzwe72kcpymoa5jb3dmeswylwquybvllgd4m4o6q35lp6apoeza.ar.io/bHNif0oT8McDqQ7GwkrYXaFMBqtZh8Zx3ob6t_gPcTI' },
+          view: 'https://nrzwe72kcpymoa5jb3dmeswylwquybvllgd4m4o6q35lp6apoeza.ar.io/bHNif0oT8McDqQ7GwkrYXaFMBqtZh8Zx3ob6t_gPcTI',
+          opensea: null,
+          story: `Before most people knew what an NFT was, MyCurioCards was minting original art on Ethereum in 2017. Digital trading cards. Real artists. Verifiable ownership. CURIOPEPE channels that energy: Pepe as artist, as collector, as the art itself. Hat on. Colors wild. HP=29.7, ATK=30, SPD=17, ELE=Art, Rareness 84. One of the most rare Artists in existence. One of ten original HNFT Pepe Collection cards.`
+        },
+        {
+          slug: 'REALMSOFPEPE', name: 'REALMSOFPEPE', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://jiyngse3uxwnqikw6xhca3qtk4b7sh2ndl4gxoutl6gherxg2peq.ar.io/SjDTSJul7NghVvXOIG4TVwP5H00a-Gu6k1-Mckbm08k' },
+          view: 'https://jiyngse3uxwnqikw6xhca3qtk4b7sh2ndl4gxoutl6gherxg2peq.ar.io/SjDTSJul7NghVvXOIG4TVwP5H00a-Gu6k1-Mckbm08k',
+          opensea: null,
+          story: `Realms of Ether launched on Ethereum in December 2017: one of the earliest NFT strategy games ever built. Players minted fortresses, defended territory, built kingdoms on-chain. REALMSOFPEPE is the tribute: Pepe as dragon, Pepe as ruler, Pepe as the kingdom itself. HP=105, STR=105, INT=105, DEX=105. The ruler of the Pepe Kingdom. One of the most rare realms in existence. Rareness 91. One of ten original HNFT Pepe Collection cards. The realm is forever.`
+        },
+        {
+          slug: 'PEPESLAMBO', name: 'PEPESLAMBO', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://etotmjejrmm6rusm7kvw2pjabbip5qw4nk6r3y7lrn3vz6d6et2a.ar.io/JN02JImLGejSTPqrbT0gCFD-wtxqvR3j64t3XPh-JPQ' },
+          view: 'https://etotmjejrmm6rusm7kvw2pjabbip5qw4nk6r3y7lrn3vz6d6et2a.ar.io/JN02JImLGejSTPqrbT0gCFD-wtxqvR3j64t3XPh-JPQ',
+          opensea: null,
+          story: `Etherlambos launched in 2018: collectible Lamborghinis on Ethereum, early NFT collecting before the world caught on. PEPESLAMBO is the first card ever minted in the HNFT Pepe Collection, on the sixth birthday of the legendary Nakamoto Card, and the very first HP FAKE approved to the directory. Green Lambo. MODEL-PEPE. HP=12, SPD=450, RPM=8400. The original Pepe Lambo. One of the most rare Lambos in existence. Rareness 88. When the Lambo question finally had an answer.`
+        }
+      ];
+
+      /* attract-marquee row order (matches the original site) */
+      const MARQUEE_R1 = ['READYTOKEK','DRPEPEMUMULV','PEPEWINTER','ESCHERWORLD','OLDGUITARIST','RAREPEPETOO','FAKEASSDAY','PUNKSMEETUP','TRUMPMOTO','STAMPSOFBTC.SHITCOINJESUS','PHATPEPEBOOK','CUBISMPEPE','OUTLAWPEPE','TOBIPEPE','FIGHTERPEPE','REALMSOFPEPE'];
+      const MARQUEE_R2 = ['A1619006396900464164','DANKKAST','GREEDISGOOD','CHEETO','RAREPEPEALSO','KNOTRAREPEPE','A7007137931404140870','SHITTERPEPE','RONALDPEPE','A1286795239919077352','GARUDAPEPE','VECTOREDPEPE','HOTLICKSPEPE','CHATGTP','CURIOPEPE','PEPESLAMBO'];
+
+      /* ================================================================
+         HELPERS
+         ================================================================ */
+      const CARD_BY_SLUG = {};
+      CARDS.forEach(c => { CARD_BY_SLUG[c.slug] = c; });
+      const byId = slug => CARD_BY_SLUG[slug];
+
+      const HORIZON_BTC = s => 'https://horizon.market/assets/' + s + '?from=1M&quote_asset=BTC&tab=buy&type=dispenser';
+      const HORIZON_XCP = s => 'https://horizon.market/assets/' + s + '?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser';
+      const PEPE_WTF    = s => 'https://pepe.wtf/asset/' + s;
+
+      /* ================================================================
+         SCROLL REVEAL
+         ================================================================ */
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            revealObserver.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+      /* ================================================================
+         LAZY MEDIA — videos only get a src when near the viewport,
+         and are paused whenever they leave it.
+         ================================================================ */
+      const vidIO = new IntersectionObserver((entries) => {
+        entries.forEach(en => {
+          const v = en.target;
+          if (en.isIntersecting) {
+            if (v.dataset.src && !v.getAttribute('src')) {
+              v.muted = true;
+              v.src = v.dataset.src;
+            }
+            const p = v.play();
+            if (p && typeof p.catch === 'function') p.catch(() => {});
+          } else if (!v.paused) {
+            v.pause();
+          }
+        });
+      }, { rootMargin: '250px' });
+
+      function observeLazyVideos(root) {
+        (root || document).querySelectorAll('video.lazy-video').forEach(v => vidIO.observe(v));
+      }
+
+      /* live interactive iframes load once they approach the viewport, then stay loaded */
+      const frameIO = new IntersectionObserver((entries) => {
+        entries.forEach(en => {
+          if (en.isIntersecting) {
+            const f = en.target;
+            if (f.dataset.src && !f.getAttribute('src')) f.src = f.dataset.src;
+            frameIO.unobserve(f);
+          }
+        });
+      }, { rootMargin: '250px' });
+
+      /* ================================================================
+         SECTION NAV + HASH ROUTING (deep-linkable tabs & cards)
+         ================================================================ */
+      let currentSection = 'home';
+      const SECTION_IDS = ['home', 'fake-rares', 'fake-commons'];
+
+      function showSection(sectionId) {
         document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
         const target = document.getElementById(sectionId);
         if (target) {
           target.classList.add('active');
           window.scrollTo({ top: 0, behavior: 'smooth' });
-          // re-fire reveal on newly shown section
           target.querySelectorAll('.reveal').forEach(el => {
             el.classList.remove('in');
             requestAnimationFrame(() => revealObserver.observe(el));
           });
         }
-        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-        if (clickedLink) {
-          clickedLink.classList.add('active');
-        } else {
-          // fallback: match by href
-          const match = document.querySelector('.nav-link[href="#' + sectionId + '"]');
-          if (match) match.classList.add('active');
-        }
+        document.querySelectorAll('.nav-link').forEach(l => {
+          l.classList.toggle('active', l.getAttribute('href') === '#' + sectionId);
+        });
+        currentSection = sectionId;
       }
 
-      // ============ ARCADE CABINET ============
-      const GAME_URL = 'https://5t2d7nntkzfihmarwgga5ivitr27yare7bmd75mtv36jmh6fnixa.ar.io/7PQ_tbNWSoOwEbGMDqKonHX8AiT4WD_1k678lh_Fai4';
-      const playOverlay = document.getElementById('play-overlay');
-      const playBtn     = document.getElementById('play-btn');
-      const gameFrame   = document.getElementById('game-frame');
+      function route() {
+        const h = decodeURIComponent(location.hash.slice(1));
+        if (h.indexOf('card-') === 0) {
+          const c = byId(h.slice(5));
+          if (c) {
+            const secId = c.sec === 'rares' ? 'fake-rares' : 'fake-commons';
+            if (currentSection !== secId) showSection(secId);
+            openModal(c.slug, false);
+            return;
+          }
+        }
+        closeModal(false);
+        showSection(SECTION_IDS.indexOf(h) !== -1 ? h : 'home');
+      }
+      window.addEventListener('hashchange', route);
+
+      /* ================================================================
+         ATTRACT MARQUEE — built from card data, cloned row for the loop
+         ================================================================ */
       const attractLoop = document.getElementById('attract-loop');
+
+      function attractItemHTML(slug, hidden) {
+        const c = byId(slug);
+        if (!c) return '';
+        const ah = hidden ? ' aria-hidden="true"' : '';
+        if (c.media.k === 'video') {
+          return '<div class="attract-item"' + ah + '><video class="lazy-video" data-src="' + c.media.src + '" muted loop playsinline preload="none" aria-label="' + c.name + '"></video></div>';
+        }
+        return '<div class="attract-item"' + ah + '><img loading="lazy" decoding="async" src="' + c.media.src + '" alt="' + c.name + '"></div>';
+      }
+
+      function buildMarquee() {
+        if (!attractLoop) return;
+        [['r1', MARQUEE_R1], ['r2', MARQUEE_R2]].forEach(pair => {
+          const row = document.createElement('div');
+          row.className = 'attract-row ' + pair[0];
+          row.innerHTML =
+            pair[1].map(id => attractItemHTML(id, false)).join('') +
+            pair[1].map(id => attractItemHTML(id, true)).join('');
+          attractLoop.appendChild(row);
+        });
+        // hide only items whose video fails (bad Arweave MIME configs etc.)
+        attractLoop.querySelectorAll('video').forEach(v => {
+          v.addEventListener('error', () => {
+            const item = v.closest('.attract-item');
+            if (item) item.style.display = 'none';
+          });
+        });
+        observeLazyVideos(attractLoop);
+      }
+
+      /* ================================================================
+         CARD GRIDS — rendered from CARDS, filterable
+         ================================================================ */
+      function cardMediaHTML(c) {
+        if (c.media.k === 'img') {
+          return '<img loading="lazy" decoding="async" src="' + c.media.src + '" alt="' + c.name + '">';
+        }
+        if (c.media.k === 'video') {
+          return '<video class="lazy-video" data-src="' + c.media.src + '" muted loop playsinline preload="none" aria-label="' + c.name + '"></video>';
+        }
+        // interactive pieces: live, locked preview (loads near the viewport; full
+        // interaction happens in the modal). Plain on-chain art iframes load directly.
+        if (c.tags.indexOf('interactive') !== -1) {
+          return '<iframe class="lazy-frame" data-src="' + c.media.src + '" title="' + c.name + '" allow="autoplay"></iframe>';
+        }
+        return '<iframe src="' + c.media.src + '" title="' + c.name + '" loading="lazy" allow="autoplay"></iframe>';
+      }
+
+      function cardHTML(c) {
+        let label = '';
+        if (c.tags.indexOf('game') !== -1) label = '<span class="interactive-label game-tag">GAME</span>';
+        else if (c.tags.indexOf('interactive') !== -1) label = '<span class="interactive-label"><i class="live-dot" aria-hidden="true"></i>INTERACTIVE</span>';
+        return '<article class="viewing-window reveal card" data-slug="' + c.slug + '" data-tags="' + c.tags.join(' ') + '" tabindex="0" aria-label="' + c.name + ' — open details">' +
+          label +
+          '<div class="window-content ratio-4-5-6">' + cardMediaHTML(c) + '</div>' +
+          '<div class="asset-name">' + c.name + (c.audio ? ' <span class="sound-note" title="This card has sound">&#9834;</span>' : '') + '</div>' +
+          '<div class="card-actions">' +
+            '<button class="pix-btn pix-btn--hot pix-btn--lg" type="button">FAKE STORY + LINKS</button>' +
+          '</div>' +
+        '</article>';
+      }
+
+      function renderGrids() {
+        ['rares', 'commons'].forEach(sec => {
+          const grid = document.getElementById('grid-' + sec);
+          if (!grid) return;
+          grid.innerHTML = CARDS.filter(c => c.sec === sec).map(cardHTML).join('');
+
+          grid.addEventListener('click', e => {
+            if (e.target.closest('a')) return; // real links pass through
+            const card = e.target.closest('.card');
+            if (card) openModal(card.dataset.slug);
+          });
+          grid.addEventListener('keydown', e => {
+            if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('card')) {
+              e.preventDefault();
+              openModal(e.target.dataset.slug);
+            }
+          });
+        });
+        observeLazyVideos(document.getElementById('grid-rares'));
+        observeLazyVideos(document.getElementById('grid-commons'));
+        document.querySelectorAll('.card-grid iframe.lazy-frame').forEach(f => frameIO.observe(f));
+      }
+
+      /* ================================================================
+         FILTERS
+         ================================================================ */
+      const FILTERS = {
+        rares:   ['all', 'game', 'interactive', 'animated', 'static'],
+        commons: ['all', 'interactive', 'animated', 'static']
+      };
+
+      function applyFilter(sec, f) {
+        let shown = 0;
+        document.querySelectorAll('#grid-' + sec + ' .card').forEach(el => {
+          const ok = f === 'all' || el.dataset.tags.split(' ').indexOf(f) !== -1;
+          el.style.display = ok ? '' : 'none';
+          if (ok) { shown++; el.classList.add('in'); }
+        });
+        const total = CARDS.filter(c => c.sec === sec).length;
+        const count = document.getElementById('count-' + sec);
+        if (count) count.textContent = 'SHOWING ' + shown + ' / ' + total;
+      }
+
+      function buildFilterBars() {
+        document.querySelectorAll('.filter-bar').forEach(bar => {
+          const sec = bar.dataset.section;
+          bar.innerHTML = FILTERS[sec].map((f, i) =>
+            '<button class="filter-chip' + (i === 0 ? ' active' : '') + '" data-filter="' + f + '" type="button">' + f.toUpperCase() + '</button>'
+          ).join('') + '<span class="filter-count" id="count-' + sec + '"></span>';
+
+          bar.addEventListener('click', e => {
+            const chip = e.target.closest('.filter-chip');
+            if (!chip) return;
+            bar.querySelectorAll('.filter-chip').forEach(c => c.classList.toggle('active', c === chip));
+            applyFilter(sec, chip.dataset.filter);
+          });
+          applyFilter(sec, 'all');
+        });
+      }
+
+      /* ================================================================
+         CARD DETAIL MODAL — full art (uncropped), readable story,
+         all collect links, prev/next, deep links (#card-NAME)
+         ================================================================ */
+      const modalBackdrop = document.getElementById('card-modal');
+      const modalMedia    = document.getElementById('modal-media');
+      let modalList = [];
+      let modalIdx  = -1;
+
+      function visibleSlugs(sec) {
+        return Array.prototype.slice.call(document.querySelectorAll('#grid-' + sec + ' .card'))
+          .filter(el => el.style.display !== 'none')
+          .map(el => el.dataset.slug);
+      }
+
+      function openModal(slug, updateHash) {
+        const c = byId(slug);
+        if (!c) return;
+        if (updateHash === undefined) updateHash = true;
+
+        modalList = visibleSlugs(c.sec);
+        if (modalList.indexOf(slug) === -1) modalList = [slug];
+        modalIdx = modalList.indexOf(slug);
+
+        // media (always uncropped via object-fit: contain)
+        modalMedia.innerHTML = '';
+        if (c.media.k === 'img') {
+          const img = document.createElement('img');
+          img.src = c.media.src;
+          img.alt = c.name;
+          modalMedia.appendChild(img);
+        } else if (c.media.k === 'video') {
+          const v = document.createElement('video');
+          v.src = c.media.src;
+          v.controls = true;
+          v.autoplay = true;
+          v.loop = true;
+          v.muted = true;
+          v.playsInline = true;
+          // duck the background music when the card's own sound is on
+          v.addEventListener('volumechange', () => {
+            const on = !v.muted && v.volume > 0;
+            if (on) pauseMusic(); else tryPlayMusic();
+            const sBtn = document.querySelector('.modal-title .sound-note--btn');
+            if (sBtn) {
+              sBtn.classList.toggle('is-on', on);
+              sBtn.setAttribute('aria-pressed', String(on));
+            }
+          });
+          modalMedia.appendChild(v);
+          const p = v.play();
+          if (p && typeof p.catch === 'function') p.catch(() => {});
+        } else {
+          const f = document.createElement('iframe');
+          f.src = c.media.src;
+          f.title = c.name;
+          f.setAttribute('allow', 'autoplay; fullscreen');
+          modalMedia.appendChild(f);
+        }
+
+        const titleEl = document.getElementById('modal-title');
+        titleEl.textContent = c.name;
+        if (c.media.k === 'video' && c.audio) {
+          const sBtn = document.createElement('button');
+          sBtn.className = 'sound-note sound-note--btn';
+          sBtn.title = 'Toggle sound';
+          sBtn.setAttribute('aria-pressed', 'false');
+          sBtn.innerHTML = '&#9834;';
+          sBtn.addEventListener('click', () => {
+            const v = modalMedia.querySelector('video');
+            if (!v) return;
+            v.muted = !v.muted;
+            if (!v.muted && v.volume === 0) v.volume = 1;
+          });
+          titleEl.appendChild(document.createTextNode(' '));
+          titleEl.appendChild(sBtn);
+        }
+
+        const meta = [c.sec === 'rares' ? 'FAKE RARE' : 'FAKE COMMON']
+          .concat(c.tags.map(t => t.toUpperCase()));
+        if (c.audio) meta.push('HAS SOUND');
+        document.getElementById('modal-meta').innerHTML = meta.map(m => '<span>' + m + '</span>').join('');
+
+        document.getElementById('modal-story').textContent = c.story;
+
+        const links = [
+          [c.view, 'VIEW RAW ART'],
+          [PEPE_WTF(c.slug), 'VIEW ON pepe.wtf'],
+          [HORIZON_BTC(c.slug), 'COLLECT ON BTC'],
+          [HORIZON_XCP(c.slug), 'COLLECT w/ XCP']
+        ];
+        if (c.opensea) links.push([c.opensea, 'COLLECT ON OpenSea']);
+        document.getElementById('modal-links').innerHTML = links.map(l =>
+          '<a class="pix-btn" href="' + l[0] + '" target="_blank" rel="noopener noreferrer">' + l[1] + '</a>'
+        ).join('');
+
+        document.getElementById('modal-counter').textContent = (modalIdx + 1) + ' / ' + modalList.length;
+
+        modalBackdrop.hidden = false;
+        document.body.classList.add('modal-open');
+        if (updateHash) history.replaceState(null, '', '#card-' + c.slug);
+        document.getElementById('modal-close').focus();
+      }
+
+      function closeModal(updateHash) {
+        if (modalBackdrop.hidden) return;
+        if (updateHash === undefined) updateHash = true;
+        modalBackdrop.hidden = true;
+        document.body.classList.remove('modal-open');
+        modalMedia.innerHTML = ''; // stops video/iframe playback immediately
+        tryPlayMusic();
+        if (updateHash) history.replaceState(null, '', '#' + currentSection);
+      }
+
+      function modalStep(dir) {
+        if (!modalList.length) return;
+        modalIdx = (modalIdx + dir + modalList.length) % modalList.length;
+        openModal(modalList[modalIdx]);
+      }
+
+      document.getElementById('modal-close').addEventListener('click', () => closeModal());
+      document.getElementById('modal-prev').addEventListener('click', () => modalStep(-1));
+      document.getElementById('modal-next').addEventListener('click', () => modalStep(1));
+      modalBackdrop.addEventListener('click', e => { if (e.target === modalBackdrop) closeModal(); });
+      document.addEventListener('keydown', e => {
+        if (modalBackdrop.hidden) return;
+        if (e.key === 'Escape') closeModal();
+        else if (e.key === 'ArrowLeft') modalStep(-1);
+        else if (e.key === 'ArrowRight') modalStep(1);
+      });
+
+      /* ================================================================
+         ARCADE CABINET
+         ================================================================ */
+      const GAME_URL = 'https://5t2d7nntkzfihmarwgga5ivitr27yare7bmd75mtv36jmh6fnixa.ar.io/7PQ_tbNWSoOwEbGMDqKonHX8AiT4WD_1k678lh_Fai4';
+      const playOverlay   = document.getElementById('play-overlay');
+      const playBtn       = document.getElementById('play-btn');
+      const gameFrame     = document.getElementById('game-frame');
       const fullscreenBtn = document.getElementById('fullscreen-btn');
       const resetBtn      = document.getElementById('reset-btn');
       const newTabBtn     = document.getElementById('newtab-btn');
       const cabinetScreen = document.getElementById('cabinet-screen');
 
-      // ============ BACKGROUND MUSIC ============
-      // Plays ambient track site-wide. Pauses while the FAKEQUEST iframe is active so
-      // the game's own audio is the only thing the user hears. Resumes on reset.
-      // First-interaction gating is required by browsers that block autoplay-with-sound.
-      const bgMusic      = document.getElementById('bg-music');
-      const musicToggle  = document.getElementById('music-toggle');
-      const musicLabel   = document.getElementById('music-label');
-      let musicEnabled   = true;  // user preference: does the user want music at all
-      let gameIsPlaying  = false; // set true while the iframe is active
+      /* ================================================================
+         BACKGROUND MUSIC — preference persisted in localStorage
+         ================================================================ */
+      const bgMusic     = document.getElementById('bg-music');
+      const musicToggle = document.getElementById('music-toggle');
+      const musicLabel  = document.getElementById('music-label');
+      let musicEnabled  = true;
+      try { musicEnabled = localStorage.getItem('fm-music') !== 'off'; } catch (e) {}
+      let gameIsPlaying = false;
 
       function setToggleUI() {
         if (!musicToggle) return;
@@ -1947,6 +1952,9 @@
       }
       function tryPlayMusic() {
         if (!bgMusic || !musicEnabled || gameIsPlaying) return;
+        // don't fight a modal video that has its sound on
+        const mv = modalMedia.querySelector('video');
+        if (mv && !mv.muted && mv.volume > 0 && !modalBackdrop.hidden) return;
         bgMusic.volume = 0.35;
         const p = bgMusic.play();
         if (p && typeof p.catch === 'function') p.catch(() => {});
@@ -1956,11 +1964,7 @@
         try { bgMusic.pause(); } catch (e) {}
       }
 
-      // try once on load (may be blocked by browser autoplay policy)
-      if (bgMusic) {
-        bgMusic.addEventListener('loadeddata', tryPlayMusic, { once: true });
-      }
-      // ...then fall back to first user interaction if autoplay was blocked
+      if (bgMusic) bgMusic.addEventListener('loadeddata', tryPlayMusic, { once: true });
       const kickstartMusic = () => {
         if (musicEnabled && !gameIsPlaying && bgMusic && bgMusic.paused) tryPlayMusic();
         document.removeEventListener('pointerdown', kickstartMusic);
@@ -1970,28 +1974,34 @@
       document.addEventListener('keydown', kickstartMusic);
 
       if (musicToggle) {
-        musicToggle.addEventListener('click', function(e) {
+        musicToggle.addEventListener('click', e => {
           e.stopPropagation();
           musicEnabled = !musicEnabled;
-          if (musicEnabled) {
-            tryPlayMusic();
-          } else {
-            pauseMusic();
-          }
+          try { localStorage.setItem('fm-music', musicEnabled ? 'on' : 'off'); } catch (err) {}
+          if (musicEnabled) tryPlayMusic(); else pauseMusic();
           setToggleUI();
         });
       }
       setToggleUI();
 
-      // ============ GAME PLAY / RESET / NEW TAB ============
+      /* ================================================================
+         GAME PLAY / RESET / NEW TAB / FULLSCREEN
+         ================================================================ */
+      function setMarqueeVideos(playing) {
+        if (!attractLoop) return;
+        attractLoop.querySelectorAll('video').forEach(v => {
+          if (playing) { const p = v.play(); if (p && typeof p.catch === 'function') p.catch(() => {}); }
+          else v.pause();
+        });
+      }
+
       function startGame() {
         gameFrame.src = GAME_URL;
         gameFrame.classList.add('playing');
         playOverlay.classList.add('hidden');
-        // hiding the attract marquee also pauses its inner videos (display:none)
         attractLoop.classList.add('hidden');
+        setMarqueeVideos(false); // display:none alone does not pause videos
         if (resetBtn) resetBtn.style.display = '';
-        // hand audio over to the game
         gameIsPlaying = true;
         pauseMusic();
         setToggleUI();
@@ -1999,111 +2009,55 @@
       function resetGame() {
         gameFrame.src = '';
         gameFrame.classList.remove('playing');
-        // showing the attract marquee again resumes inner autoplay videos
         attractLoop.classList.remove('hidden');
+        setMarqueeVideos(true);
         playOverlay.classList.remove('hidden');
         if (resetBtn) resetBtn.style.display = 'none';
-        // take audio back
         gameIsPlaying = false;
         tryPlayMusic();
         setToggleUI();
       }
 
-      if (playBtn)     playBtn.addEventListener('click', startGame);
-      if (playOverlay) playOverlay.addEventListener('click', function(e) {
-        // only trigger if clicking the overlay itself, not the button (button handles its own click)
-        if (e.target === playOverlay) startGame();
-      });
-      if (playOverlay) playOverlay.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); startGame(); }
-      });
+      if (playBtn) playBtn.addEventListener('click', startGame);
+      if (playOverlay) {
+        playOverlay.addEventListener('click', e => { if (e.target === playOverlay) startGame(); });
+        playOverlay.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); startGame(); }
+        });
+      }
       if (resetBtn) resetBtn.addEventListener('click', resetGame);
-
-      // dedicated "open in new tab" button uses the same GAME_URL as the embed
-      if (newTabBtn) newTabBtn.addEventListener('click', function() {
-        window.open(GAME_URL, '_blank', 'noopener');
-      });
-
-      if (fullscreenBtn) fullscreenBtn.addEventListener('click', function() {
-        // if game is running, fullscreen the iframe; otherwise fullscreen the cabinet screen
+      if (newTabBtn) newTabBtn.addEventListener('click', () => window.open(GAME_URL, '_blank', 'noopener'));
+      if (fullscreenBtn) fullscreenBtn.addEventListener('click', () => {
         if (gameFrame.classList.contains('playing') && gameFrame.requestFullscreen) {
-          gameFrame.requestFullscreen().catch(() => window.open(GAME_URL, '_blank'));
+          gameFrame.requestFullscreen().catch(() => window.open(GAME_URL, '_blank', 'noopener'));
         } else if (cabinetScreen && cabinetScreen.requestFullscreen) {
-          cabinetScreen.requestFullscreen().catch(() => window.open(GAME_URL, '_blank'));
+          cabinetScreen.requestFullscreen().catch(() => window.open(GAME_URL, '_blank', 'noopener'));
         } else {
-          window.open(GAME_URL, '_blank');
+          window.open(GAME_URL, '_blank', 'noopener');
         }
       });
 
-      // if the user ever exits fullscreen on the iframe, treat it like a reset prompt hint
-      document.addEventListener('fullscreenchange', function() {
-        // no-op placeholder; keeps the hook available if future behavior is needed
-      });
-
-      // ============ AUDIO + FLIP + REVEAL ============
-      document.addEventListener('DOMContentLoaded', function() {
-        document.documentElement.style.scrollBehavior = 'smooth';
-
-        // audio toggles on video cards
-        document.querySelectorAll('.audio-toggle').forEach(btn => {
-          btn.addEventListener('click', function() {
-            const v = document.getElementById(this.getAttribute('data-target'));
-            if (v) {
-              v.muted = !v.muted;
-              this.textContent = v.muted ? 'SOUND: OFF' : 'SOUND: ON';
-            }
-          });
-        });
-
-        // auto-fit .back text: shrink font until no overflow, then re-center
-        function fitBackText(el) {
-          var max = 1.05, min = 0.5, step = 0.02, size = max;
-          el.style.fontSize = size + 'rem';
-          while (el.scrollHeight > el.clientHeight && size > min) {
-            size = Math.round((size - step) * 1000) / 1000;
-            el.style.fontSize = size + 'rem';
-          }
-        }
-        function fitAllBacks() {
-          document.querySelectorAll('.back').forEach(fitBackText);
-        }
-        fitAllBacks();
-        window.addEventListener('resize', fitAllBacks);
-
-        // fake-story flip
-        document.querySelectorAll('.fake-story-btn').forEach(btn => {
-          btn.addEventListener('click', function() {
-            const flipper = this.closest('.viewing-window').querySelector('.flipper');
-            if (flipper) {
-              flipper.classList.toggle('flipped');
-              const back = flipper.querySelector('.back');
-              if (back) setTimeout(() => fitBackText(back), 720);
-            }
-          });
-        });
-
-        // individual attract-marquee videos may fail on some Arweave MIME configs; hide
-        // only the offending item so the rest of the marquee keeps flowing smoothly
-        if (attractLoop) {
-          attractLoop.querySelectorAll('video').forEach(v => {
-            v.addEventListener('error', () => {
-              const item = v.closest('.attract-item');
-              if (item) item.style.display = 'none';
-            });
-          });
+      /* ================================================================
+         TAB VISIBILITY — stop all media work when the tab is hidden
+         ================================================================ */
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          document.querySelectorAll('video').forEach(v => { if (!v.paused) v.pause(); });
+          pauseMusic();
+        } else {
+          if (!gameIsPlaying && attractLoop && !attractLoop.classList.contains('hidden')) setMarqueeVideos(true);
+          tryPlayMusic();
         }
       });
 
-      // scroll-reveal
-      const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('in');
-            revealObserver.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+      /* ================================================================
+         INIT
+         ================================================================ */
+      buildMarquee();
+      renderGrids();
+      buildFilterBars();
       document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+      route(); // honor #fake-rares / #fake-commons / #card-NAME deep links on load
     </script>
   </body>
 </html>
