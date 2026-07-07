@@ -1,0 +1,3762 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="FAKE Memetics by HNFT Pepe — Fakest Rares on the Blockchain. Interactive arcade + full collection of Fake Rares and Fake Commons.">
+    <meta name="theme-color" content="#05050a">
+    <title>FAKE MEMETICS // HNFT PEPE ARCADE</title>
+
+    <!-- ===== Social link previews (Open Graph + Twitter) =====
+         TODO: set og:url + <link rel="canonical"> to the live domain,
+         and ideally replace og:image with a dedicated 1200x630 banner. -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="FAKE MEMETICS // HNFT PEPE ARCADE">
+    <meta property="og:description" content="Fakest Rares on the Blockchain — play FAKEQUEST and explore the full HNFT Pepe collection of Fake Rares and Fake Commons.">
+    <meta property="og:image" content="https://wiki.pepe.wtf/~gitbook/image?url=https%3A%2F%2F3880206652-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FtFGLX5vUSjQUQaKvGdHF%252Fuploads%252FM6xg0yoFLhdEFzfLJj2g%252FFAKEASF.gif%3Falt%3Dmedia%26token%3D0aefc37f-7d27-4138-83f5-45ad13d97e51&width=768&dpr=2&quality=100&sign=f112e188&sv=2">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@HnftPepe">
+    <meta name="twitter:title" content="FAKE MEMETICS // HNFT PEPE ARCADE">
+    <meta name="twitter:description" content="Fakest Rares on the Blockchain — play FAKEQUEST and explore the full HNFT Pepe collection of Fake Rares and Fake Commons.">
+    <meta name="twitter:image" content="https://wiki.pepe.wtf/~gitbook/image?url=https%3A%2F%2F3880206652-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FtFGLX5vUSjQUQaKvGdHF%252Fuploads%252FM6xg0yoFLhdEFzfLJj2g%252FFAKEASF.gif%3Falt%3Dmedia%26token%3D0aefc37f-7d27-4138-83f5-45ad13d97e51&width=768&dpr=2&quality=100&sign=f112e188&sv=2">
+
+    <!-- pixel-frog favicon (inline SVG, no extra request) -->
+    <link rel="icon" id="app-icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%2016'%3E%3Crect%20width='16'%20height='16'%20rx='3'%20fill='%2305050a'/%3E%3Crect%20x='2'%20y='6'%20width='12'%20height='8'%20rx='2'%20fill='%2339ff14'/%3E%3Crect%20x='3'%20y='2'%20width='4'%20height='5'%20rx='1.5'%20fill='%2339ff14'/%3E%3Crect%20x='9'%20y='2'%20width='4'%20height='5'%20rx='1.5'%20fill='%2339ff14'/%3E%3Crect%20x='4'%20y='3'%20width='2'%20height='2'%20fill='%23fff'/%3E%3Crect%20x='10'%20y='3'%20width='2'%20height='2'%20fill='%23fff'/%3E%3Crect%20x='5'%20y='4'%20width='1'%20height='1'%20fill='%23000'/%3E%3Crect%20x='11'%20y='4'%20width='1'%20height='1'%20fill='%23000'/%3E%3Crect%20x='4'%20y='10'%20width='8'%20height='2'%20rx='1'%20fill='%23ff2e88'/%3E%3C/svg%3E">
+    <!-- PWA manifest is injected at runtime as a Blob (keeps this file self-contained) -->
+    <link rel="manifest" id="manifest-link">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://stampchain.io">
+    <link rel="preconnect" href="https://tokenscan.io">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+      /* ================================================================
+         FAKE MEMETICS — HYBRID BRUTAL + GLASS DESIGN SYSTEM (v6 / V2)
+         palette: deep-black / retro-purple / cyber-cyan / neon-lime / hot-pink
+         v6: holo cards + FAKE PACK + SFX + audio-reactive UI,
+             view transitions + scroll-driven reveals + cheat console,
+             live on-chain stats + wallet checklist + ticker,
+             history timeline, PWA/JSON-LD/share, FAKE ORACLE.
+             Design refinement: one neon per moment — art is the hero.
+         ================================================================ */
+      *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+      :root {
+        --bg: #05050a;
+        --bg-2: #0b0b14;
+        --ink: #f5f6ff;
+        --ink-dim: #9aa0bf;
+        --purple: #a855f7;
+        --cyan: #00f0ff;
+        --lime: #39ff14;
+        --pink: #ff2e88;
+        --amber: #ffb800;
+        --glass: rgba(255,255,255,0.035);
+        --glass-strong: rgba(255,255,255,0.07);
+        --line: rgba(255,255,255,0.12);
+        --brutal-border: 3px solid #fff;
+        --brutal-shadow: 6px 6px 0 var(--purple), 12px 12px 0 var(--cyan);
+        --brutal-shadow-sm: 4px 4px 0 var(--purple);
+        --grad-1: linear-gradient(135deg, #a855f7 0%, #00f0ff 100%);
+        --grad-2: linear-gradient(135deg, #39ff14 0%, #00f0ff 100%);
+        --grad-3: linear-gradient(135deg, #ff2e88 0%, #ffb800 60%, #39ff14 100%);
+        --grad-scan: repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 3px);
+        --radius: 14px;
+        --radius-sm: 8px;
+        --amp: 0; /* audio-reactive amplitude 0..1, set by JS */
+      }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        line-height: 1.6;
+        overflow-x: hidden;
+        min-height: 100vh;
+        position: relative;
+      }
+      body.modal-open { overflow: hidden; }
+
+      :focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+
+      /* subtle animated aurora behind everything */
+      body::before {
+        content: '';
+        position: fixed;
+        inset: -10vh -10vw;
+        z-index: -2;
+        background:
+          radial-gradient(40vw 40vw at 10% 10%, rgba(168,85,247,0.18), transparent 60%),
+          radial-gradient(45vw 45vw at 90% 20%, rgba(0,240,255,0.14), transparent 60%),
+          radial-gradient(40vw 40vw at 50% 90%, rgba(57,255,20,0.10), transparent 60%);
+        animation: aurora 22s ease-in-out infinite alternate;
+        pointer-events: none;
+      }
+      @keyframes aurora {
+        0%   { transform: translate3d(0,0,0) scale(1); }
+        100% { transform: translate3d(-3%, 2%, 0) scale(1.08); }
+      }
+
+      /* CRT scanline overlay — softened in v6 */
+      body::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background: var(--grad-scan);
+        pointer-events: none;
+        opacity: 0.45;
+      }
+
+      /* scroll progress bar (CSS scroll-driven where supported, JS fallback) */
+      .scroll-progress {
+        position: fixed;
+        top: 0; left: 0;
+        height: 3px;
+        width: 100%;
+        z-index: 1200;
+        background: var(--grad-3);
+        transform: scaleX(0);
+        transform-origin: 0 50%;
+        pointer-events: none;
+      }
+      @supports (animation-timeline: scroll()) {
+        .scroll-progress {
+          animation: grow-progress linear both;
+          animation-timeline: scroll(root);
+        }
+        @keyframes grow-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+      }
+
+      /* ========== NAV ========== */
+      nav.top-nav {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 1000;
+        padding: 1rem clamp(1rem, 5vw, 3rem);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        background: rgba(5,5,10,0.7);
+        backdrop-filter: blur(16px) saturate(140%);
+        -webkit-backdrop-filter: blur(16px) saturate(140%);
+        border-bottom: 2px solid var(--line);
+      }
+      nav.top-nav::after {
+        content: '';
+        position: absolute; left: 0; right: 0; bottom: -2px; height: 2px;
+        background: var(--grad-1);
+        opacity: calc(0.75 + var(--amp) * 0.25); /* pulses with the music */
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: 'Press Start 2P', monospace;
+        font-size: clamp(0.75rem, 1.5vw, 0.95rem);
+        letter-spacing: 1px;
+        cursor: pointer;
+        color: var(--ink);
+        text-transform: uppercase;
+        position: relative;
+        text-decoration: none;
+        border-bottom: 0;
+      }
+      .logo:hover { color: var(--ink); border-bottom: 0; }
+      .logo .logo-text {
+        background: var(--grad-1);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 20px rgba(168,85,247,0.35);
+      }
+      .nav-pfp {
+        height: 2.4rem;
+        width: 2.4rem;
+        object-fit: cover;
+        border-radius: 6px;
+        border: 2px solid var(--lime);
+        box-shadow: 3px 3px 0 var(--purple), 0 0 18px rgba(57,255,20,0.4);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: clamp(0.5rem, 2vw, 1.25rem);
+        list-style: none;
+        align-items: center;
+      }
+      .nav-links a {
+        font-family: 'VT323', monospace;
+        font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+        color: var(--ink);
+        text-decoration: none;
+        padding: 0.45rem 1rem;
+        border: 2px solid var(--line);
+        border-radius: 6px;
+        background: var(--glass);
+        backdrop-filter: blur(8px);
+        transition: all 0.2s ease;
+        cursor: pointer;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        white-space: nowrap;
+        position: relative;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--bg);
+        background: var(--lime);
+        border-color: var(--lime);
+        box-shadow: 3px 3px 0 var(--purple);
+        transform: translate(-1px, -1px);
+      }
+      .nav-links a.nav-console { color: var(--cyan); border-color: rgba(0,240,255,0.35); }
+      .nav-links a.nav-console:hover { color: var(--bg); }
+
+      /* mobile bottom tab bar (app-like, thumb-reachable) */
+      .bottom-nav {
+        display: none;
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        z-index: 1100;
+        background: rgba(5,5,10,0.85);
+        backdrop-filter: blur(16px) saturate(140%);
+        -webkit-backdrop-filter: blur(16px) saturate(140%);
+        border-top: 2px solid var(--line);
+        padding: 0.4rem 0.4rem calc(0.4rem + env(safe-area-inset-bottom, 0px));
+      }
+      .bottom-nav a {
+        flex: 1;
+        text-align: center;
+        font-family: 'VT323', monospace;
+        font-size: 1.05rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--ink-dim);
+        text-decoration: none;
+        border: 0;
+        padding: 0.45rem 0.2rem;
+        border-radius: 6px;
+      }
+      .bottom-nav a.active, .bottom-nav a:hover { color: var(--bg); background: var(--lime); }
+
+      /* ========== SECTIONS ========== */
+      section {
+        display: none;
+        padding: 7rem clamp(1rem, 5vw, 3rem) 4rem;
+        min-height: 100vh;
+      }
+      section.active { display: block; }
+
+      .content-wrapper {
+        max-width: 1500px;
+        margin: 0 auto;
+      }
+
+      /* ========== LIVE ON-CHAIN TICKER (fail-soft: stays hidden if APIs don't answer) ========== */
+      .chain-tick {
+        max-width: 1400px;
+        margin: 0 auto 1.5rem;
+        overflow: hidden;
+        border: 2px solid var(--line);
+        border-radius: var(--radius-sm);
+        background: rgba(0,0,0,0.55);
+        -webkit-mask-image: linear-gradient(to right, transparent 0, #000 4%, #000 96%, transparent 100%);
+                mask-image: linear-gradient(to right, transparent 0, #000 4%, #000 96%, transparent 100%);
+      }
+      .chain-tick[hidden] { display: none; }
+      .chain-tick .tick-row {
+        display: flex;
+        width: max-content;
+        animation: tick-l 40s linear infinite;
+      }
+      .chain-tick:hover .tick-row { animation-play-state: paused; }
+      .chain-tick span.ti {
+        font-family: 'VT323', monospace;
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+        color: var(--ink-dim);
+        padding: 0.45rem 1.4rem;
+        white-space: nowrap;
+      }
+      .chain-tick span.ti b { color: var(--lime); font-weight: 400; }
+      .chain-tick span.ti i { font-style: normal; color: var(--pink); }
+      @keyframes tick-l { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
+
+      /* ========== HERO ARCADE CABINET ========== */
+      .hero-cabinet-wrap {
+        max-width: 1400px;
+        margin: 0 auto 3rem;
+        padding: 0 0.5rem;
+      }
+
+      .cabinet-label {
+        font-family: 'Press Start 2P', monospace;
+        font-size: 0.75rem;
+        color: var(--lime);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .cabinet-label::before,
+      .cabinet-label::after {
+        content: '';
+        flex: 1;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--lime), transparent);
+      }
+
+      .cabinet {
+        position: relative;
+        border: 3px solid var(--ink);
+        border-radius: var(--radius);
+        background: linear-gradient(180deg, #12121c 0%, #07070d 100%);
+        box-shadow: var(--brutal-shadow);
+        padding: 1.25rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .cabinet:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 8px 8px 0 var(--purple), 16px 16px 0 var(--cyan);
+      }
+      .cabinet-marquee {
+        font-family: 'Press Start 2P', monospace;
+        font-size: clamp(0.85rem, 2vw, 1.25rem);
+        color: var(--ink);
+        background: var(--grad-1);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+        padding: 0.75rem;
+        border-bottom: 3px solid var(--ink);
+        margin: -1.25rem -1.25rem 1rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        position: relative;
+      }
+      .cabinet-marquee::after {
+        content: '';
+        position: absolute;
+        left: 0; right: 0; bottom: -3px; height: 3px;
+        background: var(--grad-3);
+        opacity: 0.6;
+      }
+
+      .cabinet-screen {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        background: #000;
+        border: 3px solid var(--ink);
+        border-radius: var(--radius-sm);
+        overflow: hidden;
+        box-shadow: inset 0 0 120px rgba(168,85,247,0.25), inset 0 0 24px rgba(0,0,0,0.8);
+      }
+      /* CRT scanlines on the screen itself */
+      .cabinet-screen::after {
+        content: '';
+        position: absolute; inset: 0;
+        background: repeating-linear-gradient(0deg, rgba(0,0,0,0.18) 0 2px, transparent 2px 4px);
+        pointer-events: none;
+        z-index: 3;
+        mix-blend-mode: overlay;
+      }
+      /* subtle vignette */
+      .cabinet-screen::before {
+        content: '';
+        position: absolute; inset: 0;
+        box-shadow: inset 0 0 80px rgba(0,0,0,0.6);
+        pointer-events: none;
+        z-index: 3;
+      }
+
+      .attract-marquee,
+      .game-frame {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        z-index: 1;
+      }
+      .game-frame { background: #000; z-index: 2; display: none; }
+      .game-frame.playing { display: block; }
+      .attract-marquee.hidden { display: none; }
+
+      .play-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.25rem;
+        background: radial-gradient(ellipse at center, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 100%);
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+      }
+      .play-overlay.hidden { display: none; }
+
+      .play-hint {
+        font-family: 'VT323', monospace;
+        font-size: clamp(1.4rem, 3.2vw, 2.1rem);
+        color: var(--lime);
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        animation: flash 1.1s infinite;
+        text-shadow: 0 0 12px rgba(57,255,20,0.9);
+      }
+
+      .play-btn {
+        font-family: 'Press Start 2P', monospace;
+        font-size: clamp(1.3rem, 3.4vw, 2.2rem);
+        padding: 1.5rem 3rem;
+        border: 4px solid var(--ink);
+        background: var(--lime);
+        color: var(--bg);
+        cursor: pointer;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        box-shadow: 7px 7px 0 var(--purple), 14px 14px 0 var(--cyan);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+        position: relative;
+      }
+      .play-btn:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 9px 9px 0 var(--purple), 18px 18px 0 var(--cyan);
+      }
+      .play-btn:active {
+        transform: translate(3px, 3px);
+        box-shadow: 4px 4px 0 var(--purple), 8px 8px 0 var(--cyan);
+      }
+
+      .cabinet-controls {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 0.75rem;
+        margin-top: 1rem;
+      }
+      .cabinet-btn {
+        font-family: 'VT323', monospace;
+        font-size: 1.2rem;
+        padding: 0.75rem 1rem;
+        color: var(--ink);
+        background: var(--glass);
+        backdrop-filter: blur(10px);
+        border: 2px solid var(--line);
+        border-radius: 6px;
+        cursor: pointer;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        text-align: center;
+        display: block;
+      }
+      .cabinet-btn:hover {
+        border-color: var(--cyan);
+        color: var(--cyan);
+        background: rgba(0,240,255,0.08);
+        box-shadow: 3px 3px 0 var(--purple);
+        transform: translate(-1px,-1px);
+      }
+      .cabinet-btn--pack { border-color: rgba(255,46,136,0.5); color: var(--pink); }
+      .cabinet-btn--pack:hover { border-color: var(--pink); color: var(--pink); background: rgba(255,46,136,0.08); }
+
+      @keyframes flash {
+        0%, 100% { opacity: 1; }
+        50%      { opacity: 0.35; }
+      }
+
+      /* ========== HERO TEXT + GLITCH TITLE ========== */
+      .hero-title {
+        text-align: center;
+        margin: 3rem auto 2rem;
+        max-width: 1000px;
+      }
+      .glitch {
+        position: relative;
+        font-family: 'Press Start 2P', monospace;
+        font-size: clamp(1.8rem, 6vw, 4.5rem);
+        letter-spacing: 2px;
+        color: var(--ink);
+        line-height: 1.1;
+        text-transform: uppercase;
+      }
+      .glitch::before,
+      .glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        left: 0; top: 0; width: 100%;
+        overflow: hidden;
+        pointer-events: none;
+      }
+      .glitch::before {
+        color: var(--pink);
+        clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+        animation: glitch-x 3.2s infinite steps(1);
+        mix-blend-mode: screen;
+      }
+      .glitch::after {
+        color: var(--cyan);
+        clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+        animation: glitch-y 2.7s infinite steps(1);
+        mix-blend-mode: screen;
+      }
+      @keyframes glitch-x {
+        0%, 92%, 100% { transform: translate(0,0); }
+        93% { transform: translate(-3px, 0); }
+        95% { transform: translate(2px, 1px); }
+        97% { transform: translate(-2px,-1px); }
+      }
+      @keyframes glitch-y {
+        0%, 88%, 100% { transform: translate(0,0); }
+        89% { transform: translate(2px,-1px); }
+        92% { transform: translate(-3px, 1px); }
+        96% { transform: translate(1px, 1px); }
+      }
+
+      .hero-sub {
+        font-family: 'VT323', monospace;
+        font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+        color: var(--ink-dim);
+        max-width: 700px;
+        margin: 1rem auto 0;
+        letter-spacing: 1px;
+      }
+      .hero-sub .blink { color: var(--lime); animation: flash 1s infinite; }
+
+      /* ========== FEATURE STRIP ========== */
+      .feature-strip {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2.75rem;
+        flex-wrap: wrap;
+        margin: 3rem auto 4rem;
+        max-width: 1400px;
+        padding: 1.5rem 1rem;
+      }
+      .feature-strip img {
+        max-width: 100%;
+        max-height: 340px;
+        width: auto;
+        height: auto;
+        display: block;
+        filter: drop-shadow(6px 6px 0 rgba(168,85,247,0.85));
+        transition: transform 0.35s ease, filter 0.35s ease;
+        will-change: transform;
+      }
+      .feature-strip img:nth-child(1) { transform: rotate(-1.6deg); }
+      .feature-strip img:nth-child(2) { transform: rotate(0.8deg);  }
+      .feature-strip img:nth-child(3) { transform: rotate(-0.6deg); }
+      .feature-strip img:hover {
+        filter: drop-shadow(8px 8px 0 rgba(57,255,20,0.9));
+      }
+      .feature-strip img:nth-child(1):hover { transform: rotate(-1.6deg) translate(-4px,-4px) scale(1.015); }
+      .feature-strip img:nth-child(2):hover { transform: rotate(0.8deg)  translate(-4px,-4px) scale(1.015); }
+      .feature-strip img:nth-child(3):hover { transform: rotate(-0.6deg) translate(-4px,-4px) scale(1.015); }
+      @media (max-width: 900px) {
+        .feature-strip { flex-direction: column; gap: 2rem; }
+        .feature-strip img { max-height: 280px; }
+      }
+
+      /* ========== IN-CABINET ATTRACT MARQUEE ========== */
+      .attract-marquee {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px 0;
+        background:
+          radial-gradient(ellipse at 50% 50%, rgba(168,85,247,0.14) 0%, transparent 70%),
+          linear-gradient(180deg, #0b0015 0%, #000 70%);
+        overflow: hidden;
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 5%, #000 95%, transparent 100%);
+                mask-image: linear-gradient(to right, transparent 0%, #000 5%, #000 95%, transparent 100%);
+      }
+      .attract-row {
+        display: flex;
+        width: max-content;
+        flex: 1 1 0;
+        min-height: 0;
+        will-change: transform;
+      }
+      .attract-row.r1 { animation: attract-left  78s linear infinite; }
+      .attract-row.r2 { animation: attract-right 104s linear infinite; }
+      .attract-item {
+        flex: 0 0 auto;
+        height: 100%;
+        margin-right: 14px;
+        filter: drop-shadow(3px 3px 0 rgba(168,85,247,0.85));
+        transition: filter 0.3s ease;
+      }
+      .attract-item img,
+      .attract-item video {
+        height: 100%;
+        width: auto;
+        display: block;
+        object-fit: contain;
+        pointer-events: none;
+        background: transparent;
+      }
+      @keyframes attract-left  { from { transform: translate3d(0, 0, 0);    } to { transform: translate3d(-50%, 0, 0); } }
+      @keyframes attract-right { from { transform: translate3d(-50%, 0, 0); } to { transform: translate3d(0, 0, 0);    } }
+      .cabinet-screen:hover .attract-row,
+      .cabinet-screen:focus-within .attract-row {
+        animation-play-state: paused;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .attract-row { animation: none; }
+      }
+
+      /* ========== SECTION HEADERS ========== */
+      h2.section-h {
+        font-family: 'Press Start 2P', monospace;
+        font-size: clamp(1.4rem, 4vw, 2.6rem);
+        line-height: 1.2;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin: 2.5rem 0 1rem;
+        color: var(--ink);
+        position: relative;
+        padding-left: 1rem;
+      }
+      h2.section-h::before {
+        content: '';
+        position: absolute;
+        left: 0; top: 0.15em; bottom: 0.15em;
+        width: 0.4rem;
+        background: var(--grad-3);
+      }
+      h2.section-h .h-accent {
+        background: var(--grad-1);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      h3.sub-h {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+        margin: 2.5rem 0 1rem;
+        color: var(--ink);
+        letter-spacing: -0.01em;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      h3.sub-h::before {
+        content: '▊';
+        color: var(--lime);
+        font-family: 'VT323', monospace;
+      }
+
+      p { color: var(--ink-dim); font-size: clamp(0.98rem, 1.3vw, 1.1rem); margin-bottom: 1rem; }
+      .info-section p,
+      .info-section li { color: var(--ink-dim); }
+      .info-section { margin: 2rem 0; max-width: 900px; }
+      .info-section ul { margin: 1rem 0 1rem 1.5rem; }
+      .info-section li { margin-bottom: 0.75rem; }
+      .info-section p strong,
+      .info-section li strong { color: var(--ink); margin-right: 0.35rem; }
+
+      a { color: var(--cyan); text-decoration: none; transition: color 0.2s ease; border-bottom: 1px dashed rgba(0,240,255,0.3); }
+      a:hover { color: var(--lime); border-bottom-color: var(--lime); }
+
+      .external-links {
+        margin: 2rem 0;
+        padding: 1.75rem;
+        background: var(--glass);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 2px solid var(--line);
+        border-radius: var(--radius);
+        box-shadow: var(--brutal-shadow-sm);
+      }
+      .external-links h3.sub-h { margin-top: 0; }
+
+      /* ========== FILTER BAR ========== */
+      .filter-bar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 0 0 2rem;
+      }
+      .filter-chip {
+        font-family: 'VT323', monospace;
+        font-size: 1.15rem;
+        padding: 0.45rem 1rem;
+        border: 2px solid var(--line);
+        border-radius: 6px;
+        background: var(--glass);
+        color: var(--ink);
+        cursor: pointer;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: all 0.2s ease;
+      }
+      .filter-chip:hover {
+        border-color: var(--cyan);
+        color: var(--cyan);
+        transform: translate(-1px,-1px);
+        box-shadow: 3px 3px 0 var(--purple);
+      }
+      .filter-chip.active {
+        background: var(--lime);
+        border-color: var(--lime);
+        color: var(--bg);
+        box-shadow: 3px 3px 0 var(--purple);
+      }
+      .filter-count {
+        margin-left: auto;
+        font-family: 'VT323', monospace;
+        font-size: 1.1rem;
+        color: var(--ink-dim);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      /* ========== CARD GRID — refined chrome (v6): art is the hero ========== */
+      .section-intro {
+        max-width: 900px;
+        font-family: 'VT323', monospace;
+        font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+        color: var(--ink-dim);
+        margin-bottom: 2rem;
+        letter-spacing: 0.5px;
+      }
+
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+
+      .viewing-window {
+        position: relative;
+        padding: 1rem;
+        border: 2px solid var(--line);
+        border-radius: var(--radius);
+        background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015));
+        backdrop-filter: blur(14px) saturate(140%);
+        -webkit-backdrop-filter: blur(14px) saturate(140%);
+        box-shadow: 0 12px 34px rgba(0,0,0,0.5);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        content-visibility: auto;
+        contain-intrinsic-size: auto 640px;
+      }
+      .viewing-window:hover,
+      .viewing-window:focus-visible {
+        transform: translate(-2px, -2px);
+        border-color: var(--lime);
+        box-shadow: 0 16px 44px rgba(0,0,0,0.6), 0 0 26px rgba(57,255,20,0.14);
+      }
+      .viewing-window::before {
+        content: '';
+        position: absolute;
+        inset: 6px;
+        border-radius: calc(var(--radius) - 4px);
+        background: var(--grad-scan);
+        opacity: 0.25;
+        pointer-events: none;
+        mix-blend-mode: overlay;
+      }
+
+      /* 3D holo tilt wrapper around the art (pointer-tracked via JS custom props) */
+      .holo-tilt {
+        position: relative;
+        border-radius: var(--radius-sm);
+        transform: perspective(950px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+        transition: transform 0.14s ease;
+        transform-style: preserve-3d;
+        will-change: transform;
+      }
+      .holo-tilt::before { /* glare follows the pointer */
+        content: '';
+        position: absolute; inset: 0;
+        z-index: 4;
+        border-radius: var(--radius-sm);
+        background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,0.38), transparent 44%);
+        mix-blend-mode: overlay;
+        opacity: 0;
+        transition: opacity 0.25s ease;
+        pointer-events: none;
+      }
+      .holo-tilt::after { /* rainbow foil, rarity-tinted */
+        content: '';
+        position: absolute; inset: 0;
+        z-index: 3;
+        border-radius: var(--radius-sm);
+        background:
+          conic-gradient(from var(--hue, 0deg) at var(--mx, 50%) var(--my, 50%), rgba(255,46,136,0.5), rgba(0,240,255,0.5), rgba(57,255,20,0.5), rgba(255,184,0,0.5), rgba(168,85,247,0.5), rgba(255,46,136,0.5)),
+          repeating-linear-gradient(115deg, rgba(255,255,255,0.12) 0 2px, transparent 2px 6px);
+        mix-blend-mode: color-dodge;
+        filter: saturate(1.5);
+        opacity: 0;
+        transition: opacity 0.25s ease;
+        pointer-events: none;
+      }
+      .holo-tilt:hover::before { opacity: 0.9; }
+      .card.r-rare   .holo-tilt:hover::after { opacity: 0.45; }
+      .card.r-common .holo-tilt:hover::after { opacity: 0.24; }
+      .pack-card.r-rare   .holo-tilt:hover::after { opacity: 0.5; }
+      .pack-card.r-common .holo-tilt:hover::after { opacity: 0.28; }
+
+      .window-content {
+        width: 100%;
+        background-color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border-radius: var(--radius-sm);
+        border: 2px solid var(--line);
+        position: relative;
+      }
+      .window-content.ratio-4-5-6 { aspect-ratio: 4 / 5.6; }
+      .window-content iframe,
+      .window-content img,
+      .window-content video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        border: 0;
+      }
+
+      /* grid-card iframes are previews only — clicks open the card modal
+         (also stops on-chain pages from hijacking page scroll) */
+      .window-content > iframe { pointer-events: none; }
+
+      /* pulsing dot inside the INTERACTIVE tag — signals the preview is live */
+      .interactive-label .live-dot {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        margin-right: 6px;
+        border-radius: 50%;
+        background: currentColor;
+        vertical-align: 1px;
+        animation: flash 1.2s infinite;
+      }
+
+      /* note glyph after the asset name on cards with a soundtrack */
+      .sound-note {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.2em;
+        color: var(--amber);
+        text-shadow: 0 0 8px rgba(255,184,0,0.45);
+        cursor: help;
+      }
+      /* clickable version in the detail modal — flashes while muted to invite a click */
+      .sound-note--btn {
+        background: none;
+        border: 0;
+        padding: 0 0.15em;
+        font-size: 2rem;
+        line-height: 1;
+        vertical-align: middle;
+        cursor: pointer;
+        opacity: 0.9;
+        animation: flash 1.1s infinite;
+        transition: opacity 0.2s ease, text-shadow 0.2s ease;
+      }
+      .sound-note--btn:hover {
+        opacity: 1;
+        animation-play-state: paused;
+        text-shadow: 0 0 14px rgba(255,184,0,0.95);
+      }
+      .sound-note--btn.is-on {
+        animation: none;
+        opacity: 1;
+        text-shadow: 0 0 14px rgba(255,184,0,0.95);
+      }
+
+      .interactive-label {
+        position: absolute;
+        top: -10px;
+        right: 12px;
+        font-family: 'Press Start 2P', monospace;
+        font-size: 0.55rem;
+        padding: 0.35rem 0.6rem;
+        background: var(--lime);
+        color: var(--bg);
+        border: 2px solid var(--ink);
+        box-shadow: 2px 2px 0 var(--purple);
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        z-index: 5;
+        animation: tagPulse 1.6s ease-in-out infinite;
+      }
+      .interactive-label.game-tag {
+        background: var(--pink);
+        color: var(--ink);
+      }
+      @keyframes tagPulse {
+        0%, 100% { transform: translateY(0); box-shadow: 2px 2px 0 var(--purple); }
+        50%      { transform: translateY(-2px); box-shadow: 2px 4px 0 var(--purple); }
+      }
+
+      .asset-name {
+        font-family: 'Press Start 2P', monospace;
+        font-size: 0.8rem;
+        text-align: center;
+        padding: 1rem 0.5rem 0.25rem;
+        letter-spacing: 1.5px;
+        color: var(--ink);
+        word-break: break-word;
+      }
+      .asset-meta {
+        font-family: 'VT323', monospace;
+        font-size: 0.95rem;
+        text-align: center;
+        color: var(--ink-dim);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding-bottom: 0.5rem;
+      }
+
+      /* shared pixel button (cards, modal, links) */
+      .pix-btn,
+      a.pix-btn {
+        font-family: 'VT323', monospace;
+        font-size: 0.98rem;
+        padding: 0.7rem 0.55rem;
+        color: var(--ink);
+        background: var(--glass-strong);
+        border: 2px solid var(--line);
+        border-radius: 6px;
+        cursor: pointer;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: all 0.2s ease;
+        text-align: center;
+        line-height: 1.2;
+        text-decoration: none;
+        display: block;
+      }
+      .pix-btn:hover,
+      a.pix-btn:hover {
+        border-color: var(--lime);
+        color: var(--lime);
+        background: rgba(57,255,20,0.08);
+        transform: translate(-1px,-1px);
+        box-shadow: 3px 3px 0 var(--purple);
+      }
+      .pix-btn--hot { border-color: var(--pink); color: var(--pink); }
+      .pix-btn--hot:hover {
+        background: var(--pink);
+        color: var(--bg);
+        border-color: var(--ink);
+        box-shadow: 3px 3px 0 var(--purple);
+      }
+      /* refined single card action — one neon per moment */
+      .pix-btn--go {
+        background: var(--lime);
+        border-color: var(--lime);
+        color: var(--bg);
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+      }
+      .pix-btn--go:hover {
+        background: var(--lime);
+        color: var(--bg);
+        border-color: var(--lime);
+        box-shadow: 3px 3px 0 var(--purple);
+      }
+      .pix-btn--lg {
+        font-size: 1.35rem;
+        padding: 0.5rem 0.6rem;
+        letter-spacing: 2px;
+      }
+
+      .card-actions {
+        display: grid;
+        grid-template-columns: 1fr; /* single full-width action */
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
+
+      /* ========== CARD DETAIL MODAL ========== */
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 2000;
+        background: rgba(5,5,10,0.82);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.25rem;
+      }
+      .modal-backdrop[hidden] { display: none; }
+
+      .modal {
+        position: relative;
+        width: min(1100px, 100%);
+        max-height: 92vh;
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        border: 3px solid var(--ink);
+        border-radius: var(--radius);
+        background: linear-gradient(180deg, #12121c 0%, #07070d 100%);
+        box-shadow: var(--brutal-shadow);
+        overflow: hidden;
+      }
+
+      .modal-media {
+        position: relative;
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 320px;
+        border-right: 3px solid var(--ink);
+      }
+      .modal-media img,
+      .modal-media video {
+        width: 100%;
+        height: 100%;
+        max-height: 92vh;
+        object-fit: contain; /* full artwork, never cropped */
+        display: block;
+      }
+      .modal-media iframe {
+        width: 100%;
+        height: 100%;
+        min-height: 480px;
+        border: 0;
+        background: #000;
+      }
+      /* gentle holo glare on modal artwork (no foil — art appreciation mode) */
+      .modal-media.holo-lite {
+        transform: perspective(1400px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+        transition: transform 0.16s ease;
+      }
+      .modal-media.holo-lite::after {
+        content: '';
+        position: absolute; inset: 0;
+        background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,0.22), transparent 46%);
+        mix-blend-mode: overlay;
+        opacity: 0;
+        transition: opacity 0.25s ease;
+        pointer-events: none;
+      }
+      .modal-media.holo-lite:hover::after { opacity: 1; }
+
+      .modal-info {
+        padding: 1.5rem;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        min-height: 0;
+      }
+      .modal-title {
+        font-family: 'Press Start 2P', monospace;
+        font-size: clamp(0.95rem, 2vw, 1.3rem);
+        letter-spacing: 1.5px;
+        background: var(--grad-3);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        word-break: break-word;
+        padding-right: 5.5rem; /* keep clear of close button */
+      }
+      .modal-title .sound-note--btn { -webkit-text-fill-color: var(--amber); }
+      .modal-meta { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+      .modal-meta span {
+        font-family: 'VT323', monospace;
+        font-size: 0.95rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--cyan);
+        border: 2px solid rgba(0,240,255,0.35);
+        border-radius: 6px;
+        padding: 0.15rem 0.55rem;
+        background: rgba(0,240,255,0.06);
+      }
+      /* live on-chain stats row (fail-soft: hidden until data arrives) */
+      .modal-stats { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+      .modal-stats[hidden] { display: none; }
+      .modal-stats span {
+        font-family: 'VT323', monospace;
+        font-size: 0.98rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--ink-dim);
+        border: 2px solid var(--line);
+        border-radius: 6px;
+        padding: 0.15rem 0.55rem;
+        background: var(--glass);
+      }
+      .modal-stats span b { color: var(--lime); font-weight: 400; margin-left: 0.35rem; }
+      .modal-stats .live-dot {
+        display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+        background: var(--lime); margin-right: 6px; vertical-align: 1px;
+        animation: flash 1.2s infinite;
+      }
+      .modal-story {
+        font-family: 'VT323', monospace;
+        font-size: 1.25rem;
+        line-height: 1.5;
+        letter-spacing: 0.5px;
+        color: var(--ink-dim);
+        margin: 0;
+      }
+      .modal-links {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+      }
+      .modal-nav {
+        margin-top: auto;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding-top: 0.5rem;
+        border-top: 2px solid var(--line);
+      }
+      .modal-nav .pix-btn { flex: 1; }
+      .modal-counter {
+        font-family: 'VT323', monospace;
+        font-size: 1.05rem;
+        color: var(--ink-dim);
+        letter-spacing: 1px;
+        white-space: nowrap;
+      }
+      .modal-close {
+        position: absolute;
+        top: 0.6rem;
+        right: 0.6rem;
+        z-index: 10;
+        font-family: 'Press Start 2P', monospace;
+        font-size: 0.6rem;
+        padding: 0.6rem 0.8rem;
+        background: var(--lime);
+        color: var(--bg);
+        border: 2px solid var(--ink);
+        box-shadow: 3px 3px 0 var(--purple);
+        cursor: pointer;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+      .modal-close:hover {
+        transform: translate(-1px,-1px);
+        box-shadow: 4px 4px 0 var(--purple);
+      }
+
+      @media (max-width: 860px) {
+        .modal {
+          grid-template-columns: 1fr;
+          overflow-y: auto;
+        }
+        .modal-media {
+          border-right: 0;
+          border-bottom: 3px solid var(--ink);
+          min-height: 0;
+        }
+        .modal-media img,
+        .modal-media video { max-height: 48vh; }
+        .modal-media iframe { min-height: 340px; }
+        .modal-info { overflow-y: visible; }
+      }
+      /* ========== FOOTER ========== */
+      footer {
+        margin-top: 6rem;
+        padding: 3rem clamp(1rem, 5vw, 3rem);
+        text-align: center;
+        background: linear-gradient(180deg, rgba(11,11,20,0.4), rgba(5,5,10,0.9));
+        border-top: 3px solid var(--ink);
+        position: relative;
+      }
+      footer::before {
+        content: '';
+        position: absolute;
+        left: 0; right: 0; top: -3px; height: 3px;
+        background: var(--grad-3);
+      }
+      footer h3 {
+        font-family: 'Press Start 2P', monospace;
+        font-size: clamp(0.9rem, 2vw, 1.25rem);
+        letter-spacing: 2px;
+        margin-bottom: 1.5rem;
+        background: var(--grad-1);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      footer p {
+        font-family: 'VT323', monospace;
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        color: var(--ink-dim);
+        letter-spacing: 1px;
+      }
+      footer p strong { color: var(--ink); margin-right: 0.35rem; }
+
+      /* ========== SCROLL REVEAL ==========
+         v6: scroll-scrubbed via CSS animation-timeline where supported;
+         IntersectionObserver one-shot reveal remains as the fallback. */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+        will-change: opacity, transform;
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+      @supports (animation-timeline: view()) {
+        .reveal, .reveal.in {
+          opacity: 1;
+          transform: none;
+          transition: none;
+          animation: sd-reveal both;
+          animation-timeline: view();
+          animation-range: entry 0% entry 55%;
+        }
+        @keyframes sd-reveal {
+          from { opacity: 0; transform: translateY(44px) scale(0.97); }
+          to   { opacity: 1; transform: none; }
+        }
+        /* hero cabinet: slight scrubbed parallax drift */
+        .hero-cabinet-wrap.reveal {
+          animation-name: sd-hero;
+          animation-range: entry 0% entry 100%;
+        }
+        @keyframes sd-hero {
+          from { opacity: 0.2; transform: translateY(60px) scale(0.985); }
+          to   { opacity: 1; transform: none; }
+        }
+      }
+
+      /* ========== MOBILE ========== */
+      @media (max-width: 768px) {
+        nav.top-nav {
+          justify-content: center;
+          padding: 0.75rem 1rem;
+        }
+        nav.top-nav .nav-links { display: none; } /* replaced by bottom tab bar */
+        .bottom-nav { display: flex; }
+        .logo { font-size: 0.7rem; }
+        .nav-pfp { height: 1.9rem; width: 1.9rem; }
+
+        section { padding: 5.5rem 1rem 6.5rem; } /* clear the bottom bar */
+        footer { padding-bottom: 6rem; }
+
+        .card-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+        .cabinet-controls { grid-template-columns: 1fr 1fr; }
+        .hero-title { margin: 2rem auto 1rem; }
+        .modal-links { grid-template-columns: 1fr 1fr; }
+        .filter-count { width: 100%; margin-left: 0; }
+
+        .music-toggle { right: 0.75rem; bottom: calc(3.6rem + env(safe-area-inset-bottom, 0px)); padding: 0.55rem 0.8rem; font-size: 0.55rem; }
+        .oracle-fab   { left: 0.75rem;  bottom: calc(3.6rem + env(safe-area-inset-bottom, 0px)); padding: 0.55rem 0.8rem; font-size: 0.55rem; }
+        .oracle-panel { left: 0.5rem; right: 0.5rem; width: auto; bottom: calc(6.8rem + env(safe-area-inset-bottom, 0px)); }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.001ms !important;
+        }
+      }
+
+      /* ========== MUSIC + SFX TOGGLES (floating, stacked) ========== */
+      .music-toggle {
+        position: fixed;
+        right: 1.25rem;
+        bottom: 1.25rem;
+        z-index: 9999;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.7rem 1rem;
+        font-family: 'Press Start 2P', monospace;
+        font-size: 0.62rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--bg);
+        background: var(--lime);
+        border: 3px solid var(--ink);
+        border-radius: 999px;
+        box-shadow: 4px 4px 0 var(--ink), 4px 4px 0 3px var(--purple);
+        cursor: pointer;
+        transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease, color 0.2s ease;
+      }
+      .music-toggle:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0 var(--ink), 6px 6px 0 3px var(--purple);
+      }
+      .music-toggle:active {
+        transform: translate(1px, 1px);
+        box-shadow: 2px 2px 0 var(--ink), 2px 2px 0 3px var(--purple);
+      }
+      .music-toggle.is-muted {
+        background: #15151d;
+        color: var(--ink-dim);
+        box-shadow: 4px 4px 0 var(--ink), 4px 4px 0 3px rgba(255,255,255,0.15);
+      }
+      .music-toggle .music-wave {
+        display: inline-flex;
+        align-items: end;
+        gap: 2px;
+        height: 12px;
+      }
+      .music-toggle .music-wave i {
+        display: block;
+        width: 2px;
+        background: currentColor;
+        animation: wave-bar 900ms ease-in-out infinite;
+      }
+      .music-toggle .music-wave i:nth-child(1) { height: 40%; animation-delay: 0ms; }
+      .music-toggle .music-wave i:nth-child(2) { height: 75%; animation-delay: 140ms; }
+      .music-toggle .music-wave i:nth-child(3) { height: 55%; animation-delay: 280ms; }
+      .music-toggle .music-wave i:nth-child(4) { height: 90%; animation-delay: 420ms; }
+      .music-toggle.is-muted .music-wave i { animation-play-state: paused; height: 35%; opacity: 0.5; }
+      .music-toggle.viz-live .music-wave i { animation: none; } /* JS drives real bar heights */
+      @keyframes wave-bar {
+        0%, 100% { transform: scaleY(0.4); }
+        50%      { transform: scaleY(1); }
+      }
+      /* ========== FAKE PACK OPENING ========== */
+      .pk-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 2400;
+        background: rgba(5,5,10,0.92);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        padding: 1rem;
+        overflow-y: auto;
+      }
+      .pk-backdrop[hidden] { display: none; }
+      .pack {
+        width: 230px;
+        height: 320px;
+        border: 4px solid #fff;
+        border-radius: 12px;
+        background:
+          radial-gradient(120px 120px at 50% 38%, rgba(57,255,20,0.35), transparent 70%),
+          repeating-linear-gradient(45deg, rgba(255,255,255,0.06) 0 3px, transparent 3px 9px),
+          linear-gradient(160deg, #1a0b2e 0%, #0b0b14 60%, #05050a 100%);
+        box-shadow: 8px 8px 0 var(--purple), 16px 16px 0 rgba(0,240,255,0.5);
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.9rem;
+        position: relative;
+        transition: transform 0.15s ease;
+      }
+      .pack:hover { transform: translate(-2px,-2px) rotate(-1deg); }
+      .pack .pk-logo {
+        font-family: 'Press Start 2P', monospace;
+        font-size: 1.05rem;
+        letter-spacing: 2px;
+        background: var(--grad-3);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+        line-height: 1.6;
+      }
+      .pack .pk-sub {
+        font-family: 'VT323', monospace;
+        font-size: 1.05rem;
+        color: var(--ink-dim);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+      .pack .pk-tear { position: absolute; top: 14px; left: 0; right: 0; border-top: 3px dashed rgba(255,255,255,0.35); }
+      .pack.rip { animation: pk-shake 0.55s ease-in-out; }
+      @keyframes pk-shake {
+        0%, 100% { transform: rotate(0); }
+        20% { transform: rotate(-4deg) scale(1.02); }
+        40% { transform: rotate(4deg) scale(1.04); }
+        60% { transform: rotate(-5deg) scale(1.05); }
+        80% { transform: rotate(3deg) scale(1.02); }
+      }
+      .pk-flash { position: fixed; inset: 0; z-index: 2401; background: #fff; opacity: 0; pointer-events: none; }
+      .pk-flash.go { animation: pk-flash-a 0.45s ease-out; }
+      @keyframes pk-flash-a { 0% { opacity: 0; } 25% { opacity: 0.9; } 100% { opacity: 0; } }
+      .pk-cards { display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center; }
+      .pk-cards .pack-card {
+        width: 210px;
+        opacity: 0;
+        transform: translateY(50px) scale(0.8);
+        animation: pk-in 0.5s cubic-bezier(0.2, 1.4, 0.4, 1) forwards;
+        animation-delay: var(--d, 0s);
+        cursor: pointer;
+      }
+      @keyframes pk-in { to { opacity: 1; transform: none; } }
+      .pack-card .window-content { border: 3px solid #fff; }
+      .pack-card .pk-name {
+        font-family: 'Press Start 2P', monospace;
+        font-size: 0.55rem;
+        letter-spacing: 1px;
+        text-align: center;
+        padding: 0.55rem 0.3rem;
+        color: var(--ink);
+      }
+      .pack-card .pk-rar {
+        position: absolute;
+        top: 8px; right: 8px;
+        z-index: 5;
+        font-family: 'Press Start 2P', monospace;
+        font-size: 0.45rem;
+        letter-spacing: 1px;
+        padding: 0.3rem 0.45rem;
+        border: 2px solid #fff;
+        box-shadow: 2px 2px 0 var(--purple);
+      }
+      .pack-card.r-rare .pk-rar { background: var(--pink); color: #fff; }
+      .pack-card.r-common .pk-rar { background: var(--cyan); color: var(--bg); }
+      .pk-row { display: flex; gap: 0.75rem; }
+      .pk-hint {
+        font-family: 'VT323', monospace;
+        font-size: 1.3rem;
+        color: var(--lime);
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        animation: flash 1.1s infinite;
+      }
+      .pk-btn {
+        font-family: 'VT323', monospace;
+        font-size: 1.15rem;
+        padding: 0.6rem 1.2rem;
+        color: var(--ink);
+        background: var(--glass-strong);
+        border: 2px solid var(--line);
+        border-radius: 6px;
+        cursor: pointer;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: all 0.15s ease;
+      }
+      .pk-btn:hover { border-color: var(--lime); color: var(--lime); transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--purple); }
+      .pk-btn--hot { border-color: var(--pink); color: var(--pink); }
+      .pk-btn--hot:hover { background: var(--pink); color: var(--bg); border-color: #fff; }
+
+      /* ========== CHEAT CONSOLE (⌘K command palette) ========== */
+      .pal-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 2500;
+        background: rgba(5,5,10,0.8);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 14vh;
+      }
+      .pal-backdrop[hidden] { display: none; }
+      .pal {
+        width: min(560px, 92vw);
+        border: 3px solid #fff;
+        border-radius: var(--radius);
+        background: linear-gradient(180deg, #12121c, #07070d);
+        box-shadow: 6px 6px 0 var(--purple);
+        overflow: hidden;
+      }
+      .pal input {
+        width: 100%;
+        font-family: 'VT323', monospace;
+        font-size: 1.4rem;
+        letter-spacing: 1px;
+        color: var(--lime);
+        background: #000;
+        border: 0;
+        border-bottom: 2px solid var(--line);
+        padding: 0.9rem 1.1rem;
+        outline: none;
+      }
+      .pal input::placeholder { color: var(--ink-dim); }
+      .pal-list { list-style: none; max-height: 290px; overflow-y: auto; }
+      .pal-list li {
+        font-family: 'VT323', monospace;
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+        padding: 0.55rem 1.1rem;
+        color: var(--ink);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      .pal-list li .t { color: var(--ink-dim); font-size: 0.95rem; text-transform: uppercase; }
+      .pal-list li.sel, .pal-list li:hover { background: rgba(57,255,20,0.12); color: var(--lime); }
+      .pal-hint {
+        font-family: 'VT323', monospace;
+        font-size: 0.95rem;
+        color: var(--ink-dim);
+        padding: 0.5rem 1.1rem;
+        border-top: 2px solid var(--line);
+        letter-spacing: 1px;
+      }
+      kbd {
+        font-family: 'VT323', monospace;
+        border: 2px solid var(--line);
+        border-radius: 4px;
+        padding: 0 0.4rem;
+        background: var(--glass-strong);
+        color: var(--ink);
+      }
+
+      /* ========== TOAST ========== */
+      .toast {
+        position: fixed;
+        left: 50%;
+        bottom: 2rem;
+        transform: translateX(-50%) translateY(20px);
+        z-index: 2600;
+        font-family: 'VT323', monospace;
+        font-size: 1.15rem;
+        letter-spacing: 1px;
+        background: var(--lime);
+        color: var(--bg);
+        border: 3px solid #fff;
+        box-shadow: 4px 4px 0 var(--purple);
+        border-radius: 8px;
+        padding: 0.6rem 1.2rem;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease, transform 0.25s ease;
+        max-width: min(520px, 92vw);
+        text-align: center;
+      }
+      .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+      /* ========== MY FAKES — WALLET CHECKLIST ========== */
+      .wallet-panel {
+        max-width: 1400px;
+        margin: 0 auto 4rem;
+        padding: 1.75rem;
+        background: var(--glass);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 2px solid var(--line);
+        border-radius: var(--radius);
+      }
+      .wallet-bar { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
+      .wallet-bar input {
+        flex: 1;
+        min-width: 240px;
+        font-family: 'VT323', monospace;
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+        color: var(--cyan);
+        background: #000;
+        border: 2px solid var(--line);
+        border-radius: 6px;
+        padding: 0.6rem 0.9rem;
+        outline: none;
+      }
+      .wallet-bar input:focus { border-color: var(--cyan); }
+      .wallet-bar input::placeholder { color: var(--ink-dim); }
+      .wallet-status {
+        font-family: 'VT323', monospace;
+        font-size: 1.2rem;
+        color: var(--lime);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-top: 1rem;
+        min-height: 1.4em;
+      }
+      .wallet-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+        gap: 0.75rem;
+        margin-top: 1rem;
+      }
+      .wallet-grid[hidden] { display: none; }
+      .wallet-grid .wc {
+        position: relative;
+        border: 2px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+        background: #000;
+        aspect-ratio: 1;
+        cursor: pointer;
+        filter: grayscale(0.9) brightness(0.45);
+        transition: filter 0.3s ease, border-color 0.3s ease;
+      }
+      .wallet-grid .wc img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .wallet-grid .wc .wc-txt {
+        position: absolute; inset: 0;
+        display: flex; align-items: center; justify-content: center;
+        font-family: 'Press Start 2P', monospace;
+        font-size: 0.4rem;
+        letter-spacing: 1px;
+        color: var(--cyan);
+        padding: 0.3rem;
+        text-align: center;
+        word-break: break-all;
+        background: linear-gradient(160deg, #0b0b14, #000);
+      }
+      .wallet-grid .wc.owned { filter: none; border-color: var(--lime); box-shadow: 0 0 14px rgba(57,255,20,0.35); }
+      .wallet-grid .wc.owned::after {
+        content: '✓';
+        position: absolute;
+        top: 2px; right: 5px;
+        font-family: 'Press Start 2P', monospace;
+        font-size: 0.6rem;
+        color: var(--lime);
+        text-shadow: 0 0 6px rgba(57,255,20,0.9);
+      }
+
+      /* ========== HISTORY / EXHIBITIONS TIMELINE ========== */
+      .tl {
+        list-style: none;
+        margin: 2rem 0 0;
+        position: relative;
+        padding-left: 1.8rem;
+        max-width: 900px;
+      }
+      .tl::before {
+        content: '';
+        position: absolute;
+        left: 6px; top: 6px; bottom: 6px;
+        width: 3px;
+        background: var(--grad-1);
+      }
+      .tl li {
+        position: relative;
+        margin-bottom: 1.4rem;
+        font-family: 'VT323', monospace;
+        font-size: 1.25rem;
+        color: var(--ink-dim);
+        letter-spacing: 0.5px;
+      }
+      .tl li::before {
+        content: '';
+        position: absolute;
+        left: -1.8rem; top: 0.45rem;
+        width: 11px; height: 11px;
+        background: var(--lime);
+        border: 2px solid #fff;
+        box-shadow: 2px 2px 0 var(--purple);
+      }
+      .tl li b { color: var(--ink); margin-right: 0.4rem; font-weight: 400; }
+      .tl li .yr { color: var(--pink); margin-right: 0.5rem; }
+      .tl li a.tl-card { border-bottom: 1px dashed rgba(0,240,255,0.3); cursor: pointer; }
+
+      /* ========== FAKE ORACLE ========== */
+      .oracle-fab {
+        position: fixed;
+        left: 1.25rem;
+        bottom: 1.25rem;
+        z-index: 1900;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.7rem 1rem;
+        font-family: 'Press Start 2P', monospace;
+        font-size: 0.62rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--ink);
+        background: #15151d;
+        border: 3px solid var(--ink);
+        border-radius: 999px;
+        box-shadow: 4px 4px 0 var(--ink), 4px 4px 0 3px var(--pink);
+        cursor: pointer;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+      .oracle-fab:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--ink), 6px 6px 0 3px var(--pink); }
+      .oracle-fab .orb { color: var(--pink); animation: flash 1.6s infinite; }
+      .oracle-panel {
+        position: fixed;
+        left: 1.25rem;
+        bottom: 4.6rem;
+        z-index: 1901;
+        width: min(400px, 92vw);
+        border: 3px solid #fff;
+        border-radius: var(--radius);
+        background: linear-gradient(180deg, #12121c, #07070d);
+        box-shadow: 6px 6px 0 var(--pink);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .oracle-panel[hidden] { display: none; }
+      .oracle-head {
+        font-family: 'Press Start 2P', monospace;
+        font-size: 0.6rem;
+        letter-spacing: 1.5px;
+        color: var(--pink);
+        padding: 0.7rem 0.9rem;
+        border-bottom: 2px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .oracle-head button {
+        background: none;
+        border: 0;
+        color: var(--ink-dim);
+        font-family: 'Press Start 2P', monospace;
+        font-size: 0.6rem;
+        cursor: pointer;
+      }
+      .oracle-head button:hover { color: var(--lime); }
+      .oracle-log {
+        padding: 0.8rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        overflow-y: auto;
+        max-height: 300px;
+        min-height: 140px;
+        background: #000;
+      }
+      .omsg {
+        font-family: 'VT323', monospace;
+        font-size: 1.15rem;
+        letter-spacing: 0.5px;
+        line-height: 1.45;
+        padding: 0.45rem 0.7rem;
+        border-radius: 8px;
+        max-width: 92%;
+      }
+      .omsg.u { align-self: flex-end; background: rgba(0,240,255,0.1); border: 2px solid rgba(0,240,255,0.35); color: var(--cyan); }
+      .omsg.b { align-self: flex-start; background: rgba(255,46,136,0.07); border: 2px solid rgba(255,46,136,0.3); color: var(--ink); }
+      .omsg.b::before { content: 'ORACLE › '; color: var(--pink); font-size: 0.95rem; letter-spacing: 1px; }
+      .omsg .ocard {
+        display: inline-block;
+        margin: 0.2rem 0.25rem 0 0;
+        font-family: 'VT323', monospace;
+        font-size: 1rem;
+        letter-spacing: 1px;
+        color: var(--lime);
+        border: 2px solid rgba(57,255,20,0.4);
+        border-radius: 6px;
+        padding: 0.05rem 0.5rem;
+        background: rgba(57,255,20,0.07);
+        cursor: pointer;
+        text-transform: uppercase;
+      }
+      .omsg .ocard:hover { background: var(--lime); color: var(--bg); }
+      .oracle-sugg { display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 0.6rem 0.8rem 0.2rem; }
+      .oracle-sugg button {
+        font-family: 'VT323', monospace;
+        font-size: 0.95rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--ink-dim);
+        background: var(--glass);
+        border: 2px solid var(--line);
+        border-radius: 6px;
+        padding: 0.25rem 0.6rem;
+        cursor: pointer;
+      }
+      .oracle-sugg button:hover { color: var(--lime); border-color: var(--lime); }
+      .oracle-input {
+        display: flex;
+        gap: 0.5rem;
+        padding: 0.7rem 0.8rem 0.8rem;
+      }
+      .oracle-input input {
+        flex: 1;
+        font-family: 'VT323', monospace;
+        font-size: 1.15rem;
+        letter-spacing: 1px;
+        color: var(--ink);
+        background: #000;
+        border: 2px solid var(--line);
+        border-radius: 6px;
+        padding: 0.45rem 0.7rem;
+        outline: none;
+      }
+      .oracle-input input:focus { border-color: var(--pink); }
+      .oracle-input button {
+        font-family: 'VT323', monospace;
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--bg);
+        background: var(--pink);
+        border: 2px solid #fff;
+        border-radius: 6px;
+        padding: 0.45rem 0.9rem;
+        cursor: pointer;
+      }
+      .oracle-input button:hover { box-shadow: 3px 3px 0 var(--purple); transform: translate(-1px,-1px); }
+
+      /* god mode (konami) */
+      body.godmode { animation: god-hue 3s linear infinite; }
+      @keyframes god-hue { from { filter: hue-rotate(0deg); } to { filter: hue-rotate(360deg); } }
+
+      /* view transition timing for the card morph */
+      ::view-transition-old(vt-card),
+      ::view-transition-new(vt-card) { animation-duration: 0.42s; }
+      @media (max-width: 600px) {
+        .music-toggle { right: 0.75rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+    <!-- ambient background music: starts on first user interaction, pauses while the arcade game is playing.
+         crossorigin lets the analyser read the signal for audio-reactive UI; if the host ever refuses CORS,
+         JS drops the attribute and reloads so playback always wins over visualization. -->
+    <audio id="bg-music" loop preload="auto" crossorigin="anonymous">
+      <!-- local repo copy first; the browser falls through to the Arweave original automatically -->
+      <source src="MEDIA for Github/fake-anthem.mp3" type="audio/mpeg">
+      <source src="https://estym7h6gpbmfsavm3p6ppiplpoekfz5ns6ipfwovufldgwobipq.ar.io/JKeGfP4zwsLIFWbf570PW9xFFz1svIeWzq0KsZrOCh8" type="audio/mpeg">
+    </audio>
+    <button class="music-toggle is-muted" id="music-toggle" type="button" aria-label="Switch between FAKE music and SFX" title="Switch between FAKE music and SFX">
+      <span class="music-wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="music-label" id="music-label">FAKE MUSIC</span>
+    </button>
+
+    <nav class="top-nav">
+      <a class="logo" href="#home">
+        <img src="MEDIA for Github/pfp.svg" data-fallback="https://stampchain.io/s/A9392207840692937001" alt="HNFT Pepe" class="nav-pfp">
+        <span class="logo-text">HNFT PEPE // FAKE ART</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#home" class="nav-link active">HOME</a></li>
+        <li><a href="#fake-rares" class="nav-link">FAKE RARES</a></li>
+        <li><a href="#fake-commons" class="nav-link">FAKE COMMONS</a></li>
+        <li><a href="#history" class="nav-link">HISTORY</a></li>
+        <li><a href="#console" class="nav-console" id="console-btn" title="Cheat console — search every card">&#8984;K</a></li>
+      </ul>
+    </nav>
+
+    <!-- mobile bottom tab bar -->
+    <nav class="bottom-nav" aria-label="Primary">
+      <a href="#home" class="nav-link active">HOME</a>
+      <a href="#fake-rares" class="nav-link">RARES</a>
+      <a href="#fake-commons" class="nav-link">COMMONS</a>
+      <a href="#history" class="nav-link">HISTORY</a>
+      <a href="#console" id="console-btn-m">SEARCH</a>
+    </nav>
+
+    <!-- ================== HOME ================== -->
+    <section id="home" class="active">
+      <!-- live on-chain activity (hidden until real data arrives) -->
+      <div class="chain-tick" id="chain-tick" hidden aria-label="Recent on-chain activity">
+        <div class="tick-row" id="tick-row"></div>
+      </div>
+
+      <div class="hero-title reveal">
+        <h1 class="glitch" data-text="FAKE MEMETICS">FAKE MEMETICS</h1>
+        <p class="hero-sub">Exploring the insane world of FAKE art by HNFT Pepe <span class="blink">_</span></p>
+      </div>
+
+      <div class="hero-cabinet-wrap reveal">
+        <div class="cabinet-label">INSERT COIN // FAKEQUEST ARCADE</div>
+        <div class="cabinet">
+          <div class="cabinet-marquee">F A K E &nbsp; Q U E S T</div>
+          <div class="cabinet-screen" id="cabinet-screen">
+            <!-- attract rows are built by JS from the card data (lazy-loaded) -->
+            <div class="attract-marquee" id="attract-loop"></div>
+            <iframe class="game-frame" id="game-frame" title="FAKEQUEST" allow="autoplay; fullscreen" allowfullscreen></iframe>
+            <div class="play-overlay" id="play-overlay" role="button" tabindex="0" aria-label="Click to play FAKEQUEST">
+              <button class="play-btn" id="play-btn" type="button">&#9654;&nbsp; CLICK TO PLAY</button>
+              <div class="play-hint">PRESS START</div>
+            </div>
+          </div>
+          <div class="cabinet-controls">
+            <button class="cabinet-btn" id="fullscreen-btn" type="button">&#8599; FULLSCREEN</button>
+            <button class="cabinet-btn" id="newtab-btn" type="button">&#8599; PLAY IN NEW TAB</button>
+            <a class="cabinet-btn" href="https://pepe.wtf/asset/FAKEQUEST" target="_blank" rel="noopener noreferrer">VIEW ON pepe.wtf</a>
+            <button class="cabinet-btn cabinet-btn--pack" id="open-pack" type="button">&#127183; OPEN A FAKE PACK</button>
+            <button class="cabinet-btn" id="reset-btn" type="button" style="display:none">&#x27F3; BACK TO DEFAULT</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-strip reveal">
+        <img src="MEDIA for Github/banner-1.gif" data-fallback="https://fakeraredirectory.com/wp-content/uploads/2022/05/ezgif-5-97dfbd89e1.gif" alt="Fake Rare Animation" loading="lazy" decoding="async">
+        <img src="MEDIA for Github/banner-2.gif" data-fallback="https://wiki.pepe.wtf/~gitbook/image?url=https%3A%2F%2F3880206652-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FtFGLX5vUSjQUQaKvGdHF%252Fuploads%252FM6xg0yoFLhdEFzfLJj2g%252FFAKEASF.gif%3Falt%3Dmedia%26token%3D0aefc37f-7d27-4138-83f5-45ad13d97e51&width=768&dpr=2&quality=100&sign=f112e188&sv=2" alt="FAKEASF" loading="lazy" decoding="async">
+        <img src="MEDIA for Github/banner-3.jpg" data-fallback="https://fakeraredirectory.com/wp-content/uploads/2022/05/2022-05-28-06.59.28.jpg" alt="Fake Rare Art" loading="lazy" decoding="async">
+      </div>
+
+      <!-- ========== MY FAKES — wallet checklist (public chain data, no wallet extension needed) ========== -->
+      <div class="content-wrapper reveal">
+        <h2 class="section-h">MY <span class="h-accent">FAKES</span></h2>
+        <div class="wallet-panel">
+          <p class="section-intro" style="margin-bottom:1rem">Paste any BTC / Counterparty address to light up the HP FAKEs it holds. Public chain data only — no wallet connection, no signatures, nothing leaves your browser.</p>
+          <div class="wallet-bar">
+            <input id="wallet-addr" type="text" placeholder="PASTE ADDRESS (1..., bc1..., 3...)" autocomplete="off" spellcheck="false" aria-label="Bitcoin or Counterparty address">
+            <button class="pix-btn pix-btn--go pix-btn--lg" id="wallet-scan" type="button" style="min-width:160px">SCAN WALLET</button>
+          </div>
+          <div class="wallet-status" id="wallet-status" aria-live="polite"></div>
+          <div class="wallet-grid" id="wallet-grid" hidden></div>
+        </div>
+      </div>
+
+      <div class="content-wrapper reveal">
+        <h2 class="section-h">LEARN ABOUT <span class="h-accent">FAKE RARES</span></h2>
+        <div class="info-section">
+          <h3 class="sub-h">Overview</h3>
+          <p>If you're here and have no idea what you've stumbled into, then welcome to the insane and wonderful world of Fake Rares.</p>
+          <h3 class="sub-h">History</h3>
+          <p>In April 2018, the Rare Pepe Scientists retired, leaving many Pepes unsubmitted, rejected, or created outside the Rare Pepe era but with significant memetic appeal. This situation led to the creation of the Fake Rare Directory and the Dank Directory, designed to preserve and showcase these overlooked pieces of Pepe culture.</p>
+          <p>The Fake Rare Pepe movement officially began in September 2021 when @ScrillaVentura, an OG Rare Pepe artist, shared a non-official Rare Pepe asset in the Official Rare Pepe Telegram group. This act led to his temporary ban from the community. In response, he created the BEWARE OF FAKE RARES Telegram group ( <a href="https://t.me/OFFICIALFAKERARES" target="_blank" rel="noopener noreferrer">https://t.me/OFFICIALFAKERARES</a>), marking the birth of an alternative movement. </p>
+          <p>The initial Fake Rare that sparked this movement, known as "Proof of Ban," became the first official Fake Rare, designated as S0 C0, the FREEDOMKEK ( <a href="https://pepe.wtf/asset/FREEDOMKEK" target="_blank" rel="noopener noreferrer">https://pepe.wtf/asset/FREEDOMKEK</a>). This card symbolized the beginning of a new era in Pepe memetics. </p>
+          <p>Fake Rares pay homage to Rare Pepes through a similar structure, rules, and ecosystem approach. However, the Fake Rare directory distinguishes itself through decentralization with no fees, and publication uses a community-derived, deflationary asset system that emphasizes collective ownership and curation.</p>
+          <p>The unofficial official first Fake Rare, designated S1 C1, was FAKEASF ( <a href="https://pepe.wtf/asset/FAKEASF" target="_blank" rel="noopener noreferrer">https://pepe.wtf/asset/FAKEASF</a>). This card was airdropped in batches of 20 to the first 100 members who joined the Telegram group, rewarding early supporters and building community engagement from the ground up. </p>
+          <p>The "Fake Scientists" — the curators and community members behind Fake Rares — view both Rare Pepes and Fake Rares as reflecting Bitcoin's narrative on sovereignty, provenance, immutability, and the trustless dissemination of information, beliefs, and culture. In this framework, Pepes act as a conduit for these fundamental principles, evolving to bridge communities and expand the broader memetic landscape.</p>
+          <p>This evolution ignited the Summer of Pepe in 2022 with an all-stars Series 8 curated by Vincent Van Dough, bringing together top artists and creators in a celebration of Pepe culture that bridged the gap between Rare and Fake Rare communities.</p>
+          <p>Joe Looney, the creator of the RarePepeWallet ( <a href="https://rarepepewallet.com/" target="_blank" rel="noopener noreferrer">https://rarepepewallet.com/</a>), recognized the importance of the Fake Rare movement and created the FakeRareWallet ( <a href="https://fakerarewallet.com/" target="_blank" rel="noopener noreferrer">https://fakerarewallet.com/</a>) specifically for Fake Rare Pepes. The FakeRareWallet displays all Fake Rare Pepes, including animated ones, with proper rendering — an improvement over the RarePepeWallet which only properly displays original Rare Pepes. </p>
+          <h3 class="sub-h">Definitions</h3>
+          <p><strong>Fake Rares:</strong>These are assets that are not official Rare Pepes. The term began as derogatory but has evolved into a badge of honor representing the continuation of the Rare Pepe legacy. They follow a structured, curated approach similar to Rare Pepes but with a decentralized mechanism that emphasizes community governance and accessibility.</p>
+          <p><strong>Commons:</strong>These are Pepes that were left out of official Rare Pepe submissions due to various reasons — timing (created before or after the Rare Pepe era), rejection by the Rare Pepe Scientists, or simply existing outside the formal submission process. Despite not being official Rare Pepes, many Commons possess significant artistic merit and memetic value.</p>
+          <h3 class="sub-h">Key Events</h3>
+          <ul>
+            <li><strong>April 2018:</strong>The Rare Pepe Scientists officially retired, closing submissions for new Rare Pepes and marking the end of an era in Pepe history.</li>
+            <li><strong>September 2021:</strong>@ScrillaVentura was banned from the Official Rare Pepe Telegram for sharing a non-official asset. He subsequently started the Fake Rare movement and created the BEWARE OF FAKE RARES group, establishing a new community for overlooked Pepe assets.</li>
+            <li><strong>2022:</strong>The Summer of Pepe was ignited with Series 8, curated by Vincent Van Dough. This landmark series brought together all-star artists and helped legitimize the Fake Rare movement within the broader Pepe community.</li>
+          </ul>
+          <h3 class="sub-h">Notable Cards</h3>
+          <p><strong>FREEDOMKEK</strong>( <a href="https://pepe.wtf/asset/FREEDOMKEK" target="_blank" rel="noopener noreferrer">https://pepe.wtf/asset/FREEDOMKEK</a>): The first official Fake Rare, designated S0 C0. Originally created as "Proof of Ban" following @ScrillaVentura's temporary ban from the Official Rare Pepe Telegram, this card represents the founding moment of the Fake Rare movement and embodies the spirit of creative freedom and resistance to centralized authority.</p>
+          <p><strong>FAKEASF</strong>( <a href="https://pepe.wtf/asset/FAKEASF" target="_blank" rel="noopener noreferrer">https://pepe.wtf/asset/FAKEASF</a>): The unofficial official first Fake Rare, designated S1 C1. This card was airdropped to the first 100 members of the BEWARE OF FAKE RARES Telegram group in batches of 20, creating an immediate sense of community ownership and participation in the nascent movement.</p>
+          <h3 class="sub-h">Controversies</h3>
+          <p>The term "Fake Rares" began as a tastefully derogatory label applied to non-official Rare Pepe assets — a way to distinguish them from the canonized Rare Pepe collection. However, the community embraced this label and transformed it into a badge of authenticity and independence.</p>
+          <p>The movement itself started with @ScrillaVentura's deliberate rule-breaking and subsequent ban from the Official Rare Pepe Telegram. What some viewed as a troll action evolved into a legitimate homage to the Rare Pepe legacy, creating a parallel ecosystem that honors the original while forging its own identity based on decentralization and community curation.</p>
+          <h3 class="sub-h">Other Relevant Information</h3>
+          <p>The Fake Rare Directory and Dank Directory were specifically created to include Pepes that had been overlooked, rejected, or created outside the official Rare Pepe timeline. These directories serve as archives and marketplaces for valuable Pepe art that might otherwise have been lost to history.</p>
+          <p>The Fake Rare ecosystem emphasizes several core principles: community curation (decisions are made collectively rather than by a central authority), deflationary assets (limited supply creates value), and narrative alignment with Bitcoin principles such as sovereignty, provenance, and immutability. These values connect Fake Rares to the broader cryptocurrency ethos.</p>
+          <p>The FakeRareWallet represents a significant technical improvement in how Fake Rares are displayed and experienced. Unlike the RarePepeWallet which was optimized specifically for original Rare Pepes, the FakeRareWallet properly renders all types of Fake Rares including animated cards, providing a superior viewing experience for collectors and enthusiasts.</p>
+          <div class="external-links">
+            <h3 class="sub-h">External Resources</h3>
+            <p><strong>Fake Rare Directory:</strong><a href="https://fakeraredirectory.com/" target="_blank" rel="noopener noreferrer">https://fakeraredirectory.com/</a></p>
+            <p><strong>Fake Rare X (Twitter):</strong><a href="https://x.com/FAKERARES_XCP" target="_blank" rel="noopener noreferrer">https://x.com/FAKERARES_XCP</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================== FAKE RARES ================== -->
+    <section id="fake-rares">
+      <div class="content-wrapper">
+        <h2 class="section-h reveal">FAKE <span class="h-accent">RARES</span></h2>
+        <p class="section-intro reveal">Explore the curated collection of Fake Rare Pepes by HP. Fakest Rares on the Blockchain. Each card represents a continuation of the Rare Pepe legacy with its own unique memetic value.</p>
+        <div class="filter-bar" data-section="rares" role="group" aria-label="Filter Fake Rares"></div>
+        <div class="card-grid" id="grid-rares"></div>
+      </div>
+    </section>
+
+    <!-- ================== FAKE COMMONS ================== -->
+    <section id="fake-commons">
+      <div class="content-wrapper">
+        <h2 class="section-h reveal">FAKE <span class="h-accent">COMMONS</span></h2>
+        <p class="section-intro reveal">Discover Commons by HP — Fakest Commons on the Blockchain. Despite not being Fake Rares, these pieces possess significant artistic merit and memetic value.</p>
+        <div class="filter-bar" data-section="commons" role="group" aria-label="Filter Fake Commons"></div>
+        <div class="card-grid" id="grid-commons"></div>
+      </div>
+    </section>
+
+    <!-- ================== HISTORY / EXHIBITIONS ================== -->
+    <section id="history">
+      <div class="content-wrapper">
+        <h2 class="section-h reveal">FAKE <span class="h-accent">HISTORY</span></h2>
+        <p class="section-intro reveal">From a Telegram ban to gallery walls: the movement, and where HP FAKEs have been shown IRL. Click any card name to open it.</p>
+
+        <h3 class="sub-h reveal">The Movement</h3>
+        <ul class="tl reveal">
+          <li><span class="yr">APR 2018</span><b>Rare Pepe Scientists retire</b> — submissions close; overlooked Pepes drift into the wilderness.</li>
+          <li><span class="yr">SEP 2021</span><b>Proof of Ban</b> — @ScrillaVentura gets banned, FREEDOMKEK (S0 C0) mints, and the Fake Rare movement is born.</li>
+          <li><span class="yr">2022</span><b>Summer of Pepe</b> — Series 8, curated by Vincent Van Dough, bridges the Rare and Fake Rare communities.</li>
+        </ul>
+
+        <h3 class="sub-h reveal">HP FAKEs — Milestones &amp; Exhibitions</h3>
+        <ul class="tl reveal">
+          <li><span class="yr">2023</span><b>PEPESLAMBO mints</b> — first card of the HNFT Pepe Collection, on the sixth birthday of the Nakamoto Card; first HP FAKE approved to the directory. <a class="tl-card" data-card="PEPESLAMBO">PEPESLAMBO</a></li>
+          <li><span class="yr">DEC 2023</span><b>Crypto Winter Wonderland, Beeple Studios</b> — the first HP FAKE RARE approved to the directory goes on display. <a class="tl-card" data-card="PEPEWINTER">PEPEWINTER</a></li>
+          <li><span class="yr">2024</span><b>PepeFest, Beeple Studios</b> — CUBEMOTO, 28KB of unprunable SVG cubism, gets blessed. <a class="tl-card" data-card="A1619006396900464164">CUBEMOTO</a></li>
+          <li><span class="yr">2024</span><b>Pepe in Bali, Superlative Gallery</b> — the sacred bird goes neon. <a class="tl-card" data-card="GARUDAPEPE">GARUDAPEPE</a></li>
+          <li><span class="yr">NOV 2024</span><b>Election Night, Beeple Studios</b> — minted before the markets knew; displayed the night it all played out. <a class="tl-card" data-card="TRUMPMOTO">TRUMPMOTO</a></li>
+          <li><span class="yr">AUG 2025</span><b>CryptoPunks Meet Up 2.0, Beeple Studios</b> — the first-NFT debate, settled by a frog. <a class="tl-card" data-card="PUNKSMEETUP">PUNKSMEETUP</a></li>
+          <li><span class="yr">FALL 2025</span><b>PEPEFLOW inscribes</b> — a generative neural field, fully on-chain via Ordinals. <a class="tl-card" data-card="PEPEFLOW">PEPEFLOW</a></li>
+        </ul>
+
+        <div class="info-section reveal">
+          <h3 class="sub-h">About HNFT Pepe</h3>
+          <p>HNFT Pepe (HP) makes FAKEs: Fake Rares and Fake Commons minted on Bitcoin via Counterparty, Stamps and Ordinals — games, generative code, cubist frogs and AI slop, all etched into the chain forever. Fakest Rares on the Blockchain. Contact and links live in the footer below.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <h3>Contact HNFT Pepe</h3>
+      <p><strong>Email:</strong>hnftpepe@proton.me</p>
+      <p><strong>X (Twitter):</strong><a href="https://x.com/HnftPepe" target="_blank" rel="noopener noreferrer">https://x.com/HnftPepe</a></p>
+      <p><strong>Telegram:</strong>@HNFTPEPE</p>
+    </footer>
+
+    <!-- ================== CARD DETAIL MODAL ================== -->
+    <div class="modal-backdrop" id="card-modal" hidden>
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button class="modal-close" id="modal-close" type="button" aria-label="Close card details">&#10005; CLOSE</button>
+        <div class="modal-media" id="modal-media"></div>
+        <div class="modal-info">
+          <h3 class="modal-title" id="modal-title"></h3>
+          <div class="modal-meta" id="modal-meta"></div>
+          <div class="modal-stats" id="modal-stats" hidden></div>
+          <p class="modal-story" id="modal-story"></p>
+          <div class="modal-links" id="modal-links"></div>
+          <div class="modal-nav">
+            <button class="pix-btn" id="modal-prev" type="button" aria-label="Previous card">&#9664; PREV</button>
+            <span class="modal-counter" id="modal-counter"></span>
+            <button class="pix-btn" id="modal-next" type="button" aria-label="Next card">NEXT &#9654;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================== FAKE PACK OVERLAY ================== -->
+    <div class="pk-backdrop" id="pk-backdrop" hidden>
+      <div class="pack" id="pack" role="button" tabindex="0" aria-label="Rip open the pack">
+        <div class="pk-tear"></div>
+        <div class="pk-logo">FAKE<br>PACK</div>
+        <div class="pk-sub">HNFT PEPE &#183; BOOSTER</div>
+      </div>
+      <div class="pk-hint" id="pk-hint">CLICK THE PACK TO RIP IT OPEN</div>
+      <div class="pk-cards" id="pk-cards"></div>
+      <div class="pk-row">
+        <button class="pk-btn pk-btn--hot" id="pk-again" type="button" hidden>&#x27F3; RIP ANOTHER</button>
+        <button class="pk-btn" id="pk-close" type="button">&#10005; CLOSE</button>
+      </div>
+    </div>
+    <div class="pk-flash" id="pk-flash" aria-hidden="true"></div>
+
+    <!-- ================== CHEAT CONSOLE ================== -->
+    <div class="pal-backdrop" id="pal-backdrop" hidden>
+      <div class="pal" role="dialog" aria-modal="true" aria-label="Cheat console — card search">
+        <input id="pal-input" type="text" placeholder="TYPE A CARD NAME… (TRY 'PEPE')" autocomplete="off" spellcheck="false">
+        <ul class="pal-list" id="pal-list"></ul>
+        <div class="pal-hint"><kbd>&#8593;&#8595;</kbd> NAVIGATE &nbsp; <kbd>&#8629;</kbd> OPEN CARD &nbsp; <kbd>ESC</kbd> CLOSE</div>
+      </div>
+    </div>
+
+    <!-- ================== FAKE ORACLE ================== -->
+    <button class="oracle-fab" id="oracle-fab" type="button" aria-label="Ask the FAKE Oracle" aria-expanded="false">
+      <span class="orb" aria-hidden="true">&#9679;</span> FAKE ORACLE
+    </button>
+    <div class="oracle-panel" id="oracle-panel" hidden>
+      <div class="oracle-head">FAKE ORACLE // LORE TERMINAL <button id="oracle-close" type="button" aria-label="Close oracle">&#10005;</button></div>
+      <div class="oracle-log" id="oracle-log">
+        <div class="omsg b">Ask me about the FAKES. I know every card's story. Kek.</div>
+      </div>
+      <div class="oracle-sugg" id="oracle-sugg">
+        <button type="button">what is fakequest?</button>
+        <button type="button">which cards have sound?</button>
+        <button type="button">shown at beeple studios?</button>
+        <button type="button">what was first?</button>
+      </div>
+      <div class="oracle-input">
+        <input id="oracle-q" type="text" placeholder="ask the oracle…" autocomplete="off" spellcheck="false" aria-label="Ask the FAKE Oracle">
+        <button id="oracle-send" type="button">ASK</button>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script>
+      'use strict';
+
+      /* ================================================================
+         CARD DATA — single source of truth.
+         Grids, filters, the attract marquee, the detail modal, the pack,
+         the console, the oracle and the wallet checklist all render
+         from this array. To add a card, add one entry here.
+
+         slug   = on-chain asset name (pepe.wtf + horizon.market slug)
+         name   = display name (usually = slug)
+         sec    = 'rares' | 'commons'
+         tags   = filterable: 'game' | 'interactive' | 'animated' | 'static'
+         media  = { k:'img'|'video'|'iframe', src } — card front + marquee thumb
+         view   = "VIEW RAW ART" target
+         opensea= full OpenSea URL or null (commons have none)
+         audio  = true if the video has a soundtrack
+         ================================================================ */
+      const CARDS = [
+
+        /* ---------- FAKE RARES ---------- */
+        {
+          slug: 'FAKEQUEST', name: 'FAKEQUEST', sec: 'rares', tags: ['game', 'animated'],
+          media: { k: 'img', src: 'https://7quvioek3qb6wutrdgrfrjrqilwy2zovup7yqvenvzfg5r332qbq.ar.io/_ClUOIrcA-tScRmiWKYwQu2NZdWj_4hUja5Kbsd71AM?.gif' },
+          view: 'https://hpep24.github.io/fake-quest-card/',
+          opensea: 'https://opensea.io/item/ethereum/0x4c03bcad293fb0562d26faa7d90a0cb3ea74c919/73911367149346780424866873265502597248743129685179094468491762614343670897395',
+          story: `FAKEQUEST: the ultimate 80s retro game. Conquer four levels packed with every HP FAKE RARE and FAKE Common approved as of the creation of FAKEQUEST. Every frog in the directory is a foe. Pixelated chaos, retro controls, 80s vibes, a chiptune FAKE anthem blazes through every screen. Defeat the collection to become the ultimate collector. The real flex: game code minted on Bitcoin. On-chain forever, etched into Bitcoin nodes. The game is the collection. Kek hard!`
+        },
+        {
+          slug: 'PEPEFLOW', name: 'PEPEFLOW', sec: 'rares', tags: ['interactive'],
+          media: { k: 'iframe', src: 'https://ordinals.com/content/b7635e9702b52d679c04136ed492a0d5265b18b2007a9d52928edef77bd1da68i0' },
+          view: 'https://ordinals.com/content/b7635e9702b52d679c04136ed492a0d5265b18b2007a9d52928edef77bd1da68i0',
+          opensea: null, /* TODO: original site reused FAKEQUEST's OpenSea token ID here — add the correct PEPEFLOW vault URL */
+          story: `PEPEFLOW: generative neural field, fully on-chain. Pepe dissolves into particles, each one caught in a living current of flow vectors. Drag to disrupt it. Scroll to zoom in. Tune the Chaos Factor, dial the Flow Speed, shift the palette. Every interaction reshapes the field in real time. No two moments identical. The code is the art and the art is the code, inscribed on Bitcoin via Ordinals in Fall 2025. Drag. Disrupt. Watch the frog emerge from the chaos.`
+        },
+        {
+          slug: 'READYTOKEK', name: 'READYTOKEK', sec: 'rares', tags: ['animated'],
+          media: { k: 'img', src: 'https://5mmyzdwwyfobatmrrxup6vucubljm3pggw4lyiytztc3yoehr5mq.ar.io/6xmMjtbBXBBNkY3o_1aCoFaWbeY1uLwjE8zFvDiHj1k/j1d507_image.gif' },
+          view: 'https://5mmyzdwwyfobatmrrxup6vucubljm3pggw4lyiytztc3yoehr5mq.ar.io/6xmMjtbBXBBNkY3o_1aCoFaWbeY1uLwjE8zFvDiHj1k/j1d507_image.gif',
+          opensea: 'https://opensea.io/item/ethereum/0x4c03bcad293fb0562d26faa7d90a0cb3ea74c919/79554947407152248718728587302041082778211747676650592334381616100619096374592',
+          story: `Multiple fail-safes locked in: on-chain base64 fully embedded in the code, an Arweave version with increased detail and artistic edits, all data and links made immutable through the UTXO set and stored on every Bitcoin node. Edition 21. READYTOKEK: Pepe as Biggie, "Ready to Die" reborn through Frog Memetics. Digitally drawn Pepefication, nostalgic palette, animated GIF. Hip-hop legend and meme culture fused forever in an immutable, decentralized form.`
+        },
+        {
+          slug: 'A1619006396900464164', name: 'A1619006396900464164', sec: 'rares', tags: ['static'],
+          media: { k: 'img', src: 'https://stampchain.io/stamps/1876c3bbeab9a6046a0913591e9a8e9ee9fc147ed912fe151ecab777a2e102a5.svg' },
+          view: 'https://stampchain.io/stamps/1876c3bbeab9a6046a0913591e9a8e9ee9fc147ed912fe151ecab777a2e102a5.svg',
+          opensea: 'https://opensea.io/item/ethereum/0x4c03bcad293fb0562d26faa7d90a0cb3ea74c919/49222075291044332845338162860808553535373908167811911720218053190121680927753',
+          story: `CUBEMOTO bows to S1 C1, the Nakamoto RAREPEPE: a Pepe-fied Dorian Nakamoto portrait, the holy grail of cryptoart and the first Rare Pepe on Bitcoin. Cubist green planes fracture and reassemble, every angle at once: googly eyes splitting, red lips offset, blazer dissolving into Bitcoin code. Etched into the UTXO set: 28KB of unprunable SVG, in every node forever. Compressionism: max meaning, min bytes. FAKE Rareness 96. Blessed at Beeple Studios for PepeFest 2024.`
+        },
+        {
+          slug: 'DRPEPEMUMULV', name: 'DRPEPEMUMULV', sec: 'rares', tags: ['animated'],
+          media: { k: 'img', src: 'https://lwdl74u7wzn6hcq6qp4gkw6xstqwnw5qsmjvpdxlooha4did4l6q.ar.io/XYa_8p-2W-OKHoP4ZVvXlOFm27CTE1eO63OODg0D4v0/h0q8lu_image.gif' },
+          view: 'https://lwdl74u7wzn6hcq6qp4gkw6xstqwnw5qsmjvpdxlooha4did4l6q.ar.io/XYa_8p-2W-OKHoP4ZVvXlOFm27CTE1eO63OODg0D4v0/h0q8lu_image.gif',
+          opensea: 'https://opensea.io/item/ethereum/0x4c03bcad293fb0562d26faa7d90a0cb3ea74c919/102125175629136206770607017959159158236719057933479079239896463411464817911405',
+          story: `Doctor Dré and Ed Lover built Yo! MTV Raps from 1988, giving hip hop its first real television home. In 1994 they dropped "Back Up Off Me!", sampling Sugarhill Gang's Rapper's Delight and cracking the Hot Rap Singles chart. DRPEPEMUMULV fuses Pepe and Mumu into one card: the meme frog and the crypto bull sharing one legendary frame. The card bottom pulled straight from the 1991 Pro Set Yo! MTV Raps collectible trading cards. Vinyl spinning. Kek up off it.`
+        },
+        {
+          slug: 'DANKKAST', name: 'DANKKAST', sec: 'rares', tags: ['animated'],
+          media: { k: 'img', src: 'https://waepuuwvsaizbqpo2ixu2uuk5lyilxxrry7sujoux5n6jylj7gkq.ar.io/sAj6UtWQEZDB7tIvTVKK6vCF3vGOPyol1L9b5OFp-ZU' },
+          view: 'https://waepuuwvsaizbqpo2ixu2uuk5lyilxxrry7sujoux5n6jylj7gkq.ar.io/sAj6UtWQEZDB7tIvTVKK6vCF3vGOPyol1L9b5OFp-ZU',
+          opensea: 'https://opensea.io/item/ethereum/0x4c03bcad293fb0562d26faa7d90a0cb3ea74c919/73911367149346780424866873265502597248743129685179094468491762614343670897395',
+          story: `OutKast's 1996 ATLiens sent Big Boi and André 3000 to outer space: Atlanta outsiders, alien production, dub and gospel woven in, debuting at number two on the Billboard 200, certified double platinum, ranked among the greatest hip hop albums ever made. DANKKAST channels that alien frequency: Pepe and Coco the crocodile locked in front, Wojak looming in the back. Atlanta to the internet. Frog, crocodile, sad man. The dankest cast ever assembled.`
+        },
+        {
+          slug: 'PEPEWINTER', name: 'PEPEWINTER', sec: 'rares', tags: ['animated'],
+          media: { k: 'img', src: 'https://bvrl5ihw7wa5ir5fznwpy2tkufo2ass5r5fwffm2eln2grsgf5na.ar.io/DWK-oPb9gdRHpcts_GpqoV2gSl2PS2KVmiLbo0ZGL1o' },
+          view: 'https://bvrl5ihw7wa5ir5fznwpy2tkufo2ass5r5fwffm2eln2grsgf5na.ar.io/DWK-oPb9gdRHpcts_GpqoV2gSl2PS2KVmiLbo0ZGL1o',
+          opensea: 'https://opensea.io/item/ethereum/0x4c03bcad293fb0562d26faa7d90a0cb3ea74c919/107094990642449892235806470960333108805681833342075933838156189541116518381868',
+          story: `The bear market checked in. It never checked out. PEPEWINTER is the frog at the end of Kubrick's 1980 The Shining: Pepe as Jack Torrance, five months deep, frozen solid in the Colorado snow, face locked mid-grin, barely clinging. Game of Thrones warned it. Crypto lived it. The very first HP FAKE RARE approved to the directory. Three winters in one card: Kubrick's, crypto, Pepe art. Featured at Beeple Studios, Crypto Winter Wonderland, December 2023.`
+        },
+
+        /* ---------- FAKE COMMONS ---------- */
+        {
+          slug: 'A198100000000001981', name: 'A198100000000001981', sec: 'commons', tags: ['static'], fbk: 'iframe',
+          media: { k: 'img', src: 'https://ordinals.com/content/045a3389db42dedc6bcf50a447bf62f3c9c965d02ae35765f6b40d5c93e6b818i0' },
+          view: 'https://ordinals.com/content/045a3389db42dedc6bcf50a447bf62f3c9c965d02ae35765f6b40d5c93e6b818i0',
+          opensea: null,
+          story: `The cover that haunted a generation. Alvin Schwartz's folklore nightmares, drawn by Gammell in charcoal: ghosts, cannibals, urban legends, called repulsive and unfit for kids, yet selling seven million copies, eventually inspiring a Guillermo del Toro film. KEKLASTIC pepe'd it: halftone-dotted frog, blue eye bulging wide, red grin jagged, joint lit. "Scary Stories to Tell About Memes." Retold from the trenches. On-chain forever.`
+        },
+        {
+          slug: 'CUBED.CUBED', name: 'CUBED.CUBED', sec: 'commons', tags: ['interactive'],
+          media: { k: 'iframe', src: 'https://hpep24.github.io/CUBED/' },
+          view: 'https://hpep24.github.io/CUBED/',
+          opensea: null,
+          story: `16,000 particles, each carrying a pixel of Pepe's color, scattered across a black canvas in swirling physics-like motion. Click: free them. They explode. Click again: Pepe reassembles from the void. CUBED is a CounterParty token born October 6, 2015, now an interactive on-chain artifact. Blue neon title pulses on a 1.4-second cycle. Minted via CounterParty, inscribed via Ordinals. Coded Pepe memetics, forever.`
+        },
+        {
+          slug: 'GREEDISGOOD', name: 'GREEDISGOOD', sec: 'commons', tags: ['animated'], audio: true,
+          media: { k: 'video', src: 'https://l4owhd4nbos4jgeqfss2ecfb6grwmpzr2s2skih76kmap2s434la.ar.io/Xx1jj40LpcSYkCylogih8aNmPzHUtSUg__KYB-pc3xY' },
+          view: 'https://l4owhd4nbos4jgeqfss2ecfb6grwmpzr2s2skih76kmap2s434la.ar.io/Xx1jj40LpcSYkCylogih8aNmPzHUtSUg__KYB-pc3xY',
+          opensea: null,
+          story: `Gordon Gekko declared it in 1987. Jordan Belfort lived it at Stratton Oakmont. Now Pepe owns it. GREEDISGOOD: Wolf of Pepe Street, gold-trimmed green borders, Pepe and Bitcoin icons, stats reading Attack 69, Defense 420, Wealth: Rare Pepes. Skills: Memetics Master, Ponzinomics, BSD. Animated MP4, hype vocals: "Learn Fakes and realize the opportunity sucka." Proof of Ban. The hungriest frog wins.`
+        },
+        {
+          slug: 'ESCHERWORLD', name: 'ESCHERWORLD', sec: 'commons', tags: ['animated'], audio: true,
+          media: { k: 'video', src: 'https://guhs7wqftvdzqsxsjf5lxq5fs4c525xl3sbj53x32h7izqox6suq.ar.io/NQ8v2gWdR5hK8kl6u8OllwXdduvcgp7u-9H-jMHX9Kk' },
+          view: 'https://guhs7wqftvdzqsxsjf5lxq5fs4c525xl3sbj53x32h7izqox6suq.ar.io/NQ8v2gWdR5hK8kl6u8OllwXdduvcgp7u-9H-jMHX9Kk',
+          opensea: null,
+          story: `Escher's 1935 "Hand with Reflecting Sphere" turned a self-portrait into a study of perception, infinity, and anamorphic distortion. ESCHERWORLD Pepefies it: webbed hand, glowing orb, Pepe gazing in. Then dimensional magic erupts. He steps through. Distorted furniture. Psychedelic walls. An alien figure emerges from the shadows. The video cuts out. No resolution. No exit. Just a frog lost between reflections, and the suspense of what comes next.`
+        },
+        {
+          slug: 'CHEETO', name: 'CHEETO', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://q5bx4t3qgbmaztx2yqfq5dxen4lj2gpq5jecd7dz5z5rlu6nthda.ar.io/h0N-T3AwWAzO-sQLDo7kbxadGfDqSCH8ee57FdPNmcY' },
+          view: 'https://q5bx4t3qgbmaztx2yqfq5dxen4lj2gpq5jecd7dz5z5rlu6nthda.ar.io/h0N-T3AwWAzO-sQLDo7kbxadGfDqSCH8ee57FdPNmcY',
+          opensea: null,
+          story: `October 10, 2025: the dam collapsed. CHEETO is an AI slop Pepe meme, orange and absurd, wedged into the crack of absolute failure. A cheeto stuck in a door lock against impossible pressure. It should have snapped. It did not. Not crushed. Not surrendered. Just there. Sleepless nights, reckless bets, rent-money gambles. The rare was always the mirage. The fake is the spine. We are all cheetos: born to be devoured, holding the maw open with stubborn starch.`
+        },
+        {
+          slug: 'OLDGUITARIST', name: 'OLDGUITARIST', sec: 'commons', tags: ['animated'], audio: true,
+          media: { k: 'video', src: 'https://n5zym5r2potl5owl4r3ppk4gmnfmp2yf6txzlxiw577yjlvr7naa.ar.io/b3OGdjp7pr66y-R296uGY0rH6wX075XdFu__hK6x-0A/r5sqmv_video.mp4' },
+          view: 'https://n5zym5r2potl5owl4r3ppk4gmnfmp2yf6txzlxiw577yjlvr7naa.ar.io/b3OGdjp7pr66y-R296uGY0rH6wX075XdFu__hK6x-0A/r5sqmv_video.mp4',
+          opensea: null,
+          story: `Picasso's 1903 "The Old Guitarist" painted poverty, isolation, and despair in cold blue and gray. The Art Institute of Chicago holds the original. OLDGUITARIST holds the frog. Blue-tinged Pepe, tattered rags, bony fingers on worn strings, weary eyes cast down in the same moody blue void. Then he plays. Slow. Haunting. A Blue Period tune drifts through the frame. Ornate wooden carvings. A FAKE RARES emblem. The blues hit hardest when a Pepe picks up the guitar.`
+        },
+        {
+          slug: 'RAREPEPEALSO', name: 'RAREPEPEALSO', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://a5gvpb2sa2fmf3quupzcrfnib5l5anu5joc7lx55sshjjvxh3ygq.ar.io/B01Xh1IGisLuFKPyKJWoD1fQNp1LhfXfvZSOlNbn3g0' },
+          view: 'https://a5gvpb2sa2fmf3quupzcrfnib5l5anu5joc7lx55sshjjvxh3ygq.ar.io/B01Xh1IGisLuFKPyKJWoD1fQNp1LhfXfvZSOlNbn3g0',
+          opensea: null,
+          story: `The Satoshi hunt never ends. S1C1 RARE PEPEs started it. RAREPEPEALSO keeps it alive: Weinermoto, green-skinned, grumpy, glasses, floating Bitcoin symbols, Rareness 69, flavor text reading "Also, the creator of the Bitcoin." Mr. Weiner, crypto veteran since the early 2010s, leaned into the mystery. "We are all Satoshi." Cryptic non-denials. Livestream teases. X Spaces speculation. No proof, just the world's most durable rabbit hole. Another FAKE Satoshi.`
+        },
+        {
+          slug: 'RAREPEPETOO', name: 'RAREPEPETOO', sec: 'commons', tags: ['animated'],
+          media: { k: 'video', src: 'https://kuecrp7k2netqbx6db6wziec3spkgllynfvowefdu5lqt3xl6h2a.ar.io/VQgov-rTSTgG_hh9bKCC3J6jLXhpausQo6dXCe7r8fQ' },
+          view: 'https://kuecrp7k2netqbx6db6wziec3spkgllynfvowefdu5lqt3xl6h2a.ar.io/VQgov-rTSTgG_hh9bKCC3J6jLXhpausQo6dXCe7r8fQ',
+          opensea: null,
+          story: `Rodney Nakamoto: green-skinned elder, glasses, gray hair, knowing grin. Rareness 91, stats reading Ele=Buckazoids. Background: live Space Quest footage. The lore runs deep. Buckazoids, the 1991 adventure game's digital currency, bears a logo uncannily close to Bitcoin's, seeding endless memes about time-travel, Hal Finney, and cypherpunk easter eggs. RAREPEPETOO: a loving riff on S1C1 RARE PEPEs. The rabbit holes always start with a frog.`
+        },
+        {
+          slug: 'KNOTRAREPEPE', name: 'KNOTRAREPEPE', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://i3jbdwaspq4sjscp2xhe33fttxi5tjv3odmr3mfxsurnn4dhzxsq.ar.io/RtIR2BJ8OSTIT9XOTeyzndHZprtw2R2wt5Ui1vBnzeU' },
+          view: 'https://i3jbdwaspq4sjscp2xhe33fttxi5tjv3odmr3mfxsurnn4dhzxsq.ar.io/RtIR2BJ8OSTIT9XOTeyzndHZprtw2R2wt5Ui1vBnzeU',
+          opensea: null,
+          story: `Bitcoin Knots: the alternative full node that treats Ordinals, Runes, and arbitrary data as spam and filters them hard. Heated debates over protocol purity, network congestion, and user sovereignty followed. KNOTRAREPEPE channels that energy: Knotsmoto, green-skinned, bearded, orange hoodie, furious. Rareness 11. Stats: Ele=Filters. "The creator of spam protection on Bitcoin. One of the most angry Pepes in existence." On-chain forever. The spam wars never end.`
+        },
+        {
+          slug: 'FAKEASSDAY', name: 'FAKEASSDAY', sec: 'commons', tags: ['animated'], audio: true,
+          media: { k: 'video', src: 'https://bsw25ytxwajiyje3mgktlmhed4cbnayd2dvrbwaafij7aplpcmva.ar.io/DK2u4newEowkm2GVNbDkHwQWgwPQ6xDYACoT8D1vEyo/2xqa5l_video.MP4' },
+          view: 'https://bsw25ytxwajiyje3mgktlmhed4cbnayd2dvrbwaafij7aplpcmva.ar.io/DK2u4newEowkm2GVNbDkHwQWgwPQ6xDYACoT8D1vEyo/2xqa5l_video.MP4',
+          opensea: null,
+          story: `Straight outta the blockchain: one Pepe, one SoCal sunrise, one FAKEASSDAY. AI slop video bumping Dre-inspired beats. Pepe rolls through Compton in a low rider, all the homies deep, all the fly girls waving from the curb. Unique Fake and Pepe lyrics spitting truths only a frog could know. Green skin soaking in pure 90s gangsta rap glory. The chronic. The hood. The meme. Every bar a FAKE. Day in the life of the realest frog in the directory.`
+        },
+        {
+          slug: 'A757879848380698069', name: 'A757879848380698069', sec: 'commons', tags: ['interactive'],
+          media: { k: 'iframe', src: 'https://stampchain.io/stamps/db0f65ab1a49bd43ac221b849833515ef784e60c1b7924900ecfa5ca35f44c71.html' },
+          view: 'https://stampchain.io/stamps/db0f65ab1a49bd43ac221b849833515ef784e60c1b7924900ecfa5ca35f44c71.html',
+          opensea: null,
+          story: `Bitcoin Knots declared war on pixels. KNOTS PEPE fired back: an interactive HTML UTXO asset fully on-chain, living in every node that will have it. The warning loads first: KNOTS IS ATTEMPTING TO KNOT PEPE. One button: UNCENSOR. Click it. Pepe breathes. The drama is real: Knots filter spam, Bitcoin maxis rage at art spammers, art spammers rage right back. The punchline: the censorship tool cannot censor what is already written in stone. Kek.`
+        },
+        {
+          slug: 'A7007137931404140870', name: 'A7007137931404140870', sec: 'commons', tags: ['animated'],
+          media: { k: 'video', src: 'https://cdn.doggy.market/content/4700d316d8df9f3b5e9a7b60723bc2d04d56caa9c89124739c655cbf1701dbfdi0' },
+          view: 'https://cdn.doggy.market/content/4700d316d8df9f3b5e9a7b60723bc2d04d56caa9c89124739c655cbf1701dbfdi0',
+          opensea: null,
+          story: `Banksy put it on the Christie's wall. Bobo the Bear plays judge, red gavel raised and lightning cracking, looming over Pepe in a green heap, fist clenching the Infinity Gauntlet. September 2025: Christie's shut the digital art department. The NFT era hammered into pavement. From the $69.3 million Beeple to a strategic reformatting. The establishment blessed it, then buried it. Pepe holds the Gauntlet. Bobo holds the hammer. The frog still has the stones.`
+        },
+        {
+          slug: 'PUNKSMEETUP', name: 'PUNKSMEETUP', sec: 'commons', tags: ['animated'],
+          media: { k: 'video', src: 'https://sd65hwpzkh3xdkdxfb2xwezvvvy4lb3hu5hvpbkfvc6ds5rq65vq.ar.io/kP3T2flR93Godyh1exM1rXHFh2enT1eFRai8OXYw92s' },
+          view: 'https://sd65hwpzkh3xdkdxfb2xwezvvvy4lb3hu5hvpbkfvc6ds5rq65vq.ar.io/kP3T2flR93Godyh1exM1rXHFh2enT1eFRai8OXYw92s',
+          opensea: null,
+          story: `The first NFT? CryptoPunks claim 2017. Rare Pepes on Bitcoin arrived in 2016, community-verified, tradeable on Counterparty. V1 and V2 both claim the CryptoPunks original, Spider-Man meme style pointing at each other while a 2018 Pride Punk stands between them and a thousand derivatives blur in the background. Pepe steps forward, full RARE directory at his back. Look at me. I am the Captain now. Displayed at Beeple Studios, CryptoPunks Meet Up 2.0, August 2025.`
+        },
+        {
+          slug: 'SHITTERPEPE', name: 'SHITTERPEPE', sec: 'commons', tags: ['animated'], fbk: 'video',
+          media: { k: 'img', src: 'https://kecageqbvspwco6dypbz5myllflsqzhupxjits5keprzlf3cbhea.ar.io/UQQDEgGsn2E7w8PDnrMLWVcoZPR90onLqiPjlZdiCcg' },
+          view: 'https://kecageqbvspwco6dypbz5myllflsqzhupxjits5keprzlf3cbhea.ar.io/UQQDEgGsn2E7w8PDnrMLWVcoZPR90onLqiPjlZdiCcg',
+          opensea: null,
+          story: `SHITTER PEPE: SVG vector art Pepe born in the filthiest bathroom on the blockchain. A green toilet head, psychedelic eyes, dripping brown, Skibidi Toilet lurking in the crumbling background. Three gold shitter tokens spin in the foreground: the degens love their meme coins, their shitcoin gambles, their 1000x dreams dissolving into 00. HP=#TWO, ATK=11, SPD=00, Ele=Shit. The video says it all. Rareness Score 100. The most perfect shit ever minted.`
+        },
+        {
+          slug: 'TRUMPMOTO', name: 'TRUMPMOTO', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://4tcoeobjrydcpuawkjh4ptbfpivvezuro3pgbayocywwlvb2cayq.ar.io/5MTiOCmOBifQFlJPx8wleitSZpF23mCDDhYtZdQ6EDE/joxrxz_image.png' },
+          view: 'https://4tcoeobjrydcpuawkjh4ptbfpivvezuro3pgbayocywwlvb2cayq.ar.io/5MTiOCmOBifQFlJPx8wleitSZpF23mCDDhYtZdQ6EDE/joxrxz_image.png',
+          opensea: null,
+          story: `S1C1 RARE PEPE crowned Nakamoto the creator of Bitcoin. TRUMPMOTO answers with a different creator. Pepe as Trump: green skin, red tie, the self-declared originator of the Trump Pump. Minted early 2024 before markets knew what was coming. Supply 300: 277 on Stamps, 21 on OG Counterparty as FAKE Commons, 1 Uncommon Sat, 1 Black Uncommon Sat. Selected and displayed at Beeple Studios, Election Night, November 2024. The pump arrived. The frog had called it all along.`
+        },
+        {
+          slug: 'RONALDPEPE', name: 'RONALDPEPE', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://tokenscan.io/img/cards/RONALDPEPE.jpg' },
+          view: 'https://ordinals.com/content/15c2f55cb807601e3b9d515fef9bfb67a7a25d6ed0bbf6b594c8c1f03430dacbi0',
+          opensea: null,
+          story: `Ronald McDonald is the original mascot. Pepe is the original meme. RONALDPEPE fuses both: red wig, painted grin, green Pepe skin, full clown suit, the golden arches of a vintage 1940s San Bernardino McDonald's glowing warm in the background. Dick and Mac McDonald opened that first stand in 1940. The frog arrived on Bitcoin a few decades later. Not a Happy Meal toy. A fully on-chain minted artifact. The clown was always a little unhinged. The frog understood.`
+        },
+        {
+          slug: 'STAMPSOFBTC.SHITCOINJESUS', name: 'SHITCOINJESUS', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://stampchain.io/stamps/c90c0208afa9aea91a09f7d1a729904c8d4bc8d7d1209998b60af9253eba6588.svg' },
+          view: 'https://stampchain.io/stamps/c90c0208afa9aea91a09f7d1a729904c8d4bc8d7d1209998b60af9253eba6588.svg',
+          opensea: null,
+          story: `Murad of @MustStopMurad: Princeton alumnus, 727,000 followers, full-time SPX6900 messiah. Two years of daily posts. Stop trading. Believe. SHITCOINJESUS channels the archetype: Pepe as the meme-coin prophet, arms wide, preaching the greater fool doctrine to the faithful degens. Cryptoassets are communities not businesses. Conviction is the product. The coin is the church. Every holder a disciple waiting for the next believer to arrive. Fully on-chain. Kek.`
+        },
+        {
+          slug: 'A1286795239919077352', name: 'A1286795239919077352', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://stampchain.io/stamps/3212afd135f4bd80baa36bfea32427de4ed02b5eeef59da285b6515c8dbfcd08.jpeg' },
+          view: 'https://stampchain.io/stamps/3212afd135f4bd80baa36bfea32427de4ed02b5eeef59da285b6515c8dbfcd08.jpeg',
+          opensea: null,
+          story: `MAD Magazine Issue 217, September 1980: Alfred E. Neuman for President. His face built from names, a hundred ridiculous candidates packed tight: Carter, Reagan, Kennedy, King Kong. Why not? We could do a lot worse. A1286795239919077352 answers: Pepe as Alfred, green face assembled from the names of a new era only a degen would recognize. Trump. Biden. Xi. SBF. Kwon. Putin. Same absurdist logic. New election cycle. Fully on-chain, in the UTXO set. Feels good, man.`
+        },
+        {
+          slug: 'PHATPEPEBOOK', name: 'PHATPEPEBOOK', sec: 'commons', tags: ['animated'],
+          media: { k: 'img', src: 'https://ykpqvr7h6kiq57nkf7sovb36yj4v5fev4yf7a7f2rm75br3p34da.ar.io/wp8Kx-fykQ79qi_k6od-wnlelJXmC_B8uos_0Mdv3wY/0iisll_image.gif' },
+          view: 'https://ykpqvr7h6kiq57nkf7sovb36yj4v5fev4yf7a7f2rm75br3p34da.ar.io/wp8Kx-fykQ79qi_k6od-wnlelJXmC_B8uos_0Mdv3wY/0iisll_image.gif',
+          opensea: null,
+          story: `Hey hey hey! Fat Albert hit CBS in 1972. Junkyard Gang. North Philly. Thirteen years of educational cartoons, beloved by generations of Saturday morning kids. Then the creator got exposed and the whole thing went dark. Pepe does not care. Pepe memes all. Pepe absorbs what culture discards, flips it green, and keeps it alive. PHATPEPEBOOK: the frog inherits Fat Albert's frequency, round and hollering, unbothered by legacy. Na na na, gonna have a good time. Kek.`
+        },
+        {
+          slug: 'GARUDAPEPE', name: 'GARUDAPEPE', sec: 'commons', tags: ['animated'],
+          media: { k: 'img', src: 'https://2qkmc4ejel2rfdbubftzrqq7gsf3c465d66ij72gktod3g3m5siq.ar.io/1BTBcIki9RKMNAlnmMIfNIuxc90fvIT_RlTcPZts7JE' },
+          view: 'https://2qkmc4ejel2rfdbubftzrqq7gsf3c465d66ij72gktod3g3m5siq.ar.io/1BTBcIki9RKMNAlnmMIfNIuxc90fvIT_RlTcPZts7JE',
+          opensea: null,
+          story: `King of the birds. Enemy of every serpent. State emblem of India, Indonesia, and Thailand. Garuda is divine, mythic, winged: the protector who travels anywhere in an instant. GARUDAPEPE pepefies the icon: Pepe's head transplanted onto the sacred bird, colors neon and strobing, a deity turned into a flashing sign in a Bali night market. Curated into the Pepe in Bali exhibition at Superlative Gallery, 2024. Sacred meets surreal. The frog reigns. Kek.`
+        },
+        {
+          slug: 'CUBISMPEPE', name: 'CUBISMPEPE', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://n3whh5nj65jkml23fc7mypjbafdt2amyjtsur7zmljm6qfdni4eq.ar.io/buxz9an3UqYvWyi-zD0hAUc9AZhM5Uj_LFpZ6BRtRwk' },
+          view: 'https://n3whh5nj65jkml23fc7mypjbafdt2amyjtsur7zmljm6qfdni4eq.ar.io/buxz9an3UqYvWyi-zD0hAUc9AZhM5Uj_LFpZ6BRtRwk',
+          opensea: null,
+          story: `Picasso and Braque broke reality in 1907: multiple viewpoints at once, fractured planes, geometry over illusion. Cubism shattered the single perspective and never apologized. CUBISMPEPE applies the same treatment to the frog: green planes fracturing, eyes splitting across angles, jaw offset, every surface exposed at once. The original lives in Bitcoin's UTXO set. This version inflated into 3D: cubist Pepe puffed out, geometry made flesh. Abstract forever.`
+        },
+        {
+          slug: 'VECTOREDPEPE', name: 'VECTOREDPEPE', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://2y5fmvtpohkz5lududwfk7qqizefpxyekvqxasop2rj5q2tofnna.ar.io/1jpWVm9x1Z6ug6DsVX4QRkhX3wRVYXBJz9RT2GpuK1o' },
+          view: 'https://2y5fmvtpohkz5lududwfk7qqizefpxyekvqxasop2rj5q2tofnna.ar.io/1jpWVm9x1Z6ug6DsVX4QRkhX3wRVYXBJz9RT2GpuK1o',
+          opensea: null,
+          story: `Vector art lives in math: bezier curves, anchor points, paths defined by coordinates, infinitely scalable without a single pixel degrading. The medium is precision. VECTOREDPEPE runs the frog through it: Pepe reduced to pure geometry, curves and nodes, the meme as mathematical object. The original lives in Bitcoin's UTXO set. This version inflated into 3D: flat vector paths extruded outward, the abstract frog puffed into relief. Clean lines. Infinite scale. Kek.`
+        },
+        {
+          slug: 'OUTLAWPEPE', name: 'OUTLAWPEPE', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://eoqc52ubmqop6xorvsnm6kcsx27usqio3zvrbnxcacnjocda6fda.ar.io/I6Au6oFkHP9d0ayazyhSvr9JQQ7eaxC24gCalwhg8UY' },
+          view: 'https://eoqc52ubmqop6xorvsnm6kcsx27usqio3zvrbnxcacnjocda6fda.ar.io/I6Au6oFkHP9d0ayazyhSvr9JQQ7eaxC24gCalwhg8UY',
+          opensea: null,
+          story: `WANTED: OUTLAWPEPE. Last seen warping reality across the frontier, inciting kek, resisting every authority that tried to erase him. Vector compressionism original, max meaning, min bytes, etched into Bitcoin's UTXO set. This version inflated into 3D: a vintage western wanted poster, the frog's face staring back from aged parchment. Reward: Bitcoin. Original logo. The sheriff cannot collect. No jail was built for a frog who lives in every node. Kek.`
+        },
+        {
+          slug: 'HOTLICKSPEPE', name: 'HOTLICKSPEPE', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://tokenscan.io/img/cards/HOTLICKSPEPE.jpg' },
+          view: 'https://ordinals.com/content/c08b8690ec7edc9a1b29f1ef11a9be0734e07070f67c17d17779b1feef9b0786i0',
+          opensea: null,
+          story: `The Rolling Stones needed a logo in 1970. Mick Jagger suggested the tongue of Kali. John Pasche sketched it for fifty pounds: lips apart, tongue out, rebellion made visual. It became the most famous logo in rock history. HOTLICKSPEPE: the frog steps into Mick's mouth, tongue extended, fully Peped. Vector compressionism original, max meaning, min bytes, etched into Bitcoin's UTXO set. Named for Rolling Stones Hot Licks. Can't get no satisfaction? Kek.`
+        },
+        {
+          slug: 'TOBIPEPE', name: 'TOBIPEPE', sec: 'commons', tags: ['animated'],
+          media: { k: 'img', src: 'https://epjprumxjlywmx5vqdvp3v2sd4srce3kpmractbopzzrrhlp722a.ar.io/I9L40ZdK8WZftYDq_ddSHyURE2p7IgFMLn5zGJ1v_rQ' },
+          view: 'https://epjprumxjlywmx5vqdvp3v2sd4srce3kpmractbopzzrrhlp722a.ar.io/I9L40ZdK8WZftYDq_ddSHyURE2p7IgFMLn5zGJ1v_rQ',
+          opensea: null,
+          story: `Sarutobi launched in 2015: a mobile game by Christian Moss where a monkey swings through the sky collecting Bitcoin, among the first games ever to put real cryptocurrency into players' hands. Sarutobi Island followed. TOBIPEPE salutes the legacy: Pepe with a jetpack, tropical palms, GIMMIE PEPES AND HISTORICAL NFTS NOM NOM NOM. One of ten in the original HNFT Pepe Collection. Dedicated to the blockchain gaming pioneers who showed up first.`
+        },
+        {
+          slug: 'CHATGTP', name: 'CHATGTP', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://eigd4dhdhzugvxe2sm7jl4ghyivppm3d2gohevlxsuk4gr64kkna.ar.io/Igw-DOM-aGrcmpM-lfDHwir3s2PRnHJVd5UVw0fcUpo' },
+          view: 'https://eigd4dhdhzugvxe2sm7jl4ghyivppm3d2gohevlxsuk4gr64kkna.ar.io/Igw-DOM-aGrcmpM-lfDHwir3s2PRnHJVd5UVw0fcUpo',
+          opensea: null,
+          story: `November 30, 2022: OpenAI launched ChatGPT. One million users in five days. One hundred million in two months. Nothing would be the same. CHATGTP marks the moment: a bonus card for the mainstream AI surge, Pepe transformed into a glowing green robot, red eyes blazing, cyberpunk skyline behind him. HP=69, ATK=100, ELE=AI. Artificial intelligence Pepe. One of the most rare AI robots in existence. The frog adapted first. The frog always adapts.`
+        },
+        {
+          slug: 'FIGHTERPEPE', name: 'FIGHTERPEPE', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://ctspdptllxby4ythrxqjpfxqdcwd42jyqkp4xx4ectwzrg5fvclq.ar.io/FOTxvmtdw45iZ43gl5bwGKw-aTiCn8vfhBTtmJulqJc' },
+          view: 'https://ctspdptllxby4ythrxqjpfxqdcwd42jyqkp4xx4ectwzrg5fvclq.ar.io/FOTxvmtdw45iZ43gl5bwGKw-aTiCn8vfhBTtmJulqJc',
+          opensea: null,
+          story: `Before the metaverse, before the big studios, there was CryptoFighters: 2018, Ethereum, collect warriors and battle them on-chain. FIGHTERPEPE is the tribute: Pepe in full armor, ready for battle. HP=25, ATK=50, SPD=18, ELE=Unusual, Rareness 61. A crypto warrior of battles on the block, sword drawn, charging hard. One of the most rare Fighters in existence. Part of the original HNFT Pepe Collection. Minted for the ones who built it first. Kek.`
+        },
+        {
+          slug: 'CURIOPEPE', name: 'CURIOPEPE', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://nrzwe72kcpymoa5jb3dmeswylwquybvllgd4m4o6q35lp6apoeza.ar.io/bHNif0oT8McDqQ7GwkrYXaFMBqtZh8Zx3ob6t_gPcTI' },
+          view: 'https://nrzwe72kcpymoa5jb3dmeswylwquybvllgd4m4o6q35lp6apoeza.ar.io/bHNif0oT8McDqQ7GwkrYXaFMBqtZh8Zx3ob6t_gPcTI',
+          opensea: null,
+          story: `Before most people knew what an NFT was, MyCurioCards was minting original art on Ethereum in 2017. Digital trading cards. Real artists. Verifiable ownership. CURIOPEPE channels that energy: Pepe as artist, as collector, as the art itself. Hat on. Colors wild. HP=29.7, ATK=30, SPD=17, ELE=Art, Rareness 84. One of the most rare Artists in existence. One of ten original HNFT Pepe Collection cards.`
+        },
+        {
+          slug: 'REALMSOFPEPE', name: 'REALMSOFPEPE', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://jiyngse3uxwnqikw6xhca3qtk4b7sh2ndl4gxoutl6gherxg2peq.ar.io/SjDTSJul7NghVvXOIG4TVwP5H00a-Gu6k1-Mckbm08k' },
+          view: 'https://jiyngse3uxwnqikw6xhca3qtk4b7sh2ndl4gxoutl6gherxg2peq.ar.io/SjDTSJul7NghVvXOIG4TVwP5H00a-Gu6k1-Mckbm08k',
+          opensea: null,
+          story: `Realms of Ether launched on Ethereum in December 2017: one of the earliest NFT strategy games ever built. Players minted fortresses, defended territory, built kingdoms on-chain. REALMSOFPEPE is the tribute: Pepe as dragon, Pepe as ruler, Pepe as the kingdom itself. HP=105, STR=105, INT=105, DEX=105. The ruler of the Pepe Kingdom. One of the most rare realms in existence. Rareness 91. One of ten original HNFT Pepe Collection cards. The realm is forever.`
+        },
+        {
+          slug: 'PEPESLAMBO', name: 'PEPESLAMBO', sec: 'commons', tags: ['static'],
+          media: { k: 'img', src: 'https://etotmjejrmm6rusm7kvw2pjabbip5qw4nk6r3y7lrn3vz6d6et2a.ar.io/JN02JImLGejSTPqrbT0gCFD-wtxqvR3j64t3XPh-JPQ' },
+          view: 'https://etotmjejrmm6rusm7kvw2pjabbip5qw4nk6r3y7lrn3vz6d6et2a.ar.io/JN02JImLGejSTPqrbT0gCFD-wtxqvR3j64t3XPh-JPQ',
+          opensea: null,
+          story: `Etherlambos launched in 2018: collectible Lamborghinis on Ethereum, early NFT collecting before the world caught on. PEPESLAMBO is the first card ever minted in the HNFT Pepe Collection, on the sixth birthday of the legendary Nakamoto Card, and the very first HP FAKE approved to the directory. Green Lambo. MODEL-PEPE. HP=12, SPD=450, RPM=8400. The original Pepe Lambo. One of the most rare Lambos in existence. Rareness 88. When the Lambo question finally had an answer.`
+        }
+      ];
+
+      /* attract-marquee row order (matches the original site) */
+      const MARQUEE_R1 = ['READYTOKEK','DRPEPEMUMULV','PEPEWINTER','ESCHERWORLD','OLDGUITARIST','RAREPEPETOO','FAKEASSDAY','PUNKSMEETUP','TRUMPMOTO','STAMPSOFBTC.SHITCOINJESUS','PHATPEPEBOOK','CUBISMPEPE','OUTLAWPEPE','TOBIPEPE','FIGHTERPEPE','REALMSOFPEPE'];
+      const MARQUEE_R2 = ['A1619006396900464164','DANKKAST','GREEDISGOOD','CHEETO','RAREPEPEALSO','KNOTRAREPEPE','A7007137931404140870','SHITTERPEPE','RONALDPEPE','A1286795239919077352','GARUDAPEPE','VECTOREDPEPE','HOTLICKSPEPE','CHATGTP','CURIOPEPE','PEPESLAMBO'];
+
+      /* ================================================================
+         SELF-HOSTED MEDIA — every img/video loads from the flat
+         "./MEDIA for Github/" folder in this repo (filenames match the
+         files Torin supplied). If a local file is missing, a global
+         error handler falls back to the original on-chain / gateway
+         URL in CARDS, so the site never breaks mid-migration.
+         Interactive iframe cards intentionally stay on-chain.
+         ================================================================ */
+      const MEDIA_BASE = 'MEDIA for Github/';
+      const LOCAL_MEDIA = {
+        /* fake rares */
+        'FAKEQUEST':                 'FAKEQUEST.gif',
+        'READYTOKEK':                'READYTOKEK.gif',
+        'A1619006396900464164':      'A1619006396900464164.svg',
+        'DRPEPEMUMULV':              'DRPEPEMUMULV.gif',
+        'DANKKAST':                  'DANKKAST.gif',
+        'PEPEWINTER':                'PEPEWINTER.gif',
+        /* fake commons */
+        'A198100000000001981':       'A198100000000001981.png',
+        'GREEDISGOOD':               'GREEDISGOOD.mp4',
+        'ESCHERWORLD':               'ESCHERWORLD.mp4',
+        'CHEETO':                    'CHEETO.png',
+        'OLDGUITARIST':              'OLDGUITARIST.mp4',
+        'RAREPEPEALSO':              'RAREPEPEALSO.png',
+        'RAREPEPETOO':               'RAREPEPETOO.mp4',
+        'KNOTRAREPEPE':              'KNOTRAREPEPE.png',
+        'FAKEASSDAY':                'FAKEASSDAY.MP4',
+        'A7007137931404140870':      'A7007137931404140870.mp4',
+        'PUNKSMEETUP':               'PUNKSMEETUP.mp4',
+        'SHITTERPEPE':               'SHITTERPEPE.gif',
+        'TRUMPMOTO':                 'TRUMPMOTO.png',
+        'RONALDPEPE':                'RONALDPEPE.png',
+        'STAMPSOFBTC.SHITCOINJESUS': 'STAMPSOFBTC.SHITCOINJESUS.png',
+        'A1286795239919077352':      'A1286795239919077352.png',
+        'PHATPEPEBOOK':              'PHATPEPEBOOK.gif',
+        'GARUDAPEPE':                'GARUDAPEPE.gif',
+        'CUBISMPEPE':                'CUBISMPEPE.png',
+        'VECTOREDPEPE':              'VECTOREDPEPE.png',
+        'OUTLAWPEPE':                'OUTLAWPEPE.png',
+        'HOTLICKSPEPE':              'HOTLICKSPEPE.jpg',
+        'TOBIPEPE':                  'TOBIPEPE.gif',
+        'CHATGTP':                   'CHATGTP.png',
+        'FIGHTERPEPE':               'FIGHTERPEPE.png',
+        'CURIOPEPE':                 'CURIOPEPE.png',
+        'REALMSOFPEPE':              'REALMSOFPEPE.jpeg',
+        'PEPESLAMBO':                'PEPESLAMBO.jpeg'
+      };
+      CARDS.forEach(c => {
+        const f = LOCAL_MEDIA[c.slug];
+        if (f && c.media.k !== 'iframe') c.local = MEDIA_BASE + f;
+      });
+      /* preferred src (local repo copy) + original as fallback attribute.
+         data-fbkind flags cards whose ORIGINAL is a different media kind
+         (e.g. SHITTERPEPE: local gif, on-chain original is a video). */
+      const msrc = c => c.local || c.media.src;
+      const fbAttr = c => c.local
+        ? ' data-fallback="' + c.media.src + '"' + (c.fbk ? ' data-fbkind="' + c.fbk + '"' : '')
+        : '';
+
+      /* ================================================================
+         HELPERS
+         ================================================================ */
+      const $ = id => document.getElementById(id);
+      const CARD_BY_SLUG = {};
+      CARDS.forEach(c => { CARD_BY_SLUG[c.slug] = c; });
+      const byId = slug => CARD_BY_SLUG[slug];
+
+      const HORIZON_BTC = s => 'https://horizon.market/assets/' + s + '?from=1M&quote_asset=BTC&tab=buy&type=dispenser';
+      const HORIZON_XCP = s => 'https://horizon.market/assets/' + s + '?from=1M&limit=10&offset=0&quote_asset=XCP&tab=buy&type=dispenser';
+      const PEPE_WTF    = s => 'https://pepe.wtf/asset/' + s;
+
+      const reducedMotion = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* ================================================================
+         SHARED AUDIO CONTEXT + 8-BIT SFX ENGINE (synthesized, 0 KB)
+         Default OFF; preference persisted. Master toggle floats bottom-right.
+         ================================================================ */
+      let audioCtx = null;
+      function ensureCtx() {
+        if (!audioCtx) {
+          try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { return null; }
+        }
+        if (audioCtx && audioCtx.state === 'suspended') { audioCtx.resume().catch(() => {}); }
+        return audioCtx;
+      }
+      /* SFX is the default audio layer. It has no button of its own:
+         switching MUSIC ON silences the blips; MUSIC OFF brings them
+         back (kept in sync wherever musicEnabled changes). */
+      let sfxOn = true;
+
+      function blip(freq, dur, type, vol, slide) {
+        if (!sfxOn) return;
+        const a = ensureCtx();
+        if (!a) return;
+        try {
+          const o = a.createOscillator(), g = a.createGain(), t = a.currentTime;
+          o.type = type || 'square';
+          o.frequency.setValueAtTime(freq, t);
+          if (slide) o.frequency.exponentialRampToValueAtTime(Math.max(40, freq + slide), t + dur);
+          g.gain.setValueAtTime(vol || 0.035, t);
+          g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+          o.connect(g).connect(a.destination);
+          o.start(t); o.stop(t + dur + 0.02);
+        } catch (e) {}
+      }
+      function noiseBurst(dur, vol) {
+        if (!sfxOn) return;
+        const a = ensureCtx();
+        if (!a) return;
+        try {
+          const n = Math.floor(a.sampleRate * dur), buf = a.createBuffer(1, n, a.sampleRate), d = buf.getChannelData(0);
+          for (let i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / n);
+          const s = a.createBufferSource(), g = a.createGain();
+          s.buffer = buf; g.gain.value = vol || 0.12;
+          s.connect(g).connect(a.destination); s.start();
+        } catch (e) {}
+      }
+      function jingle(notes, step, dur, vol) {
+        notes.forEach((f, i) => setTimeout(() => blip(f, dur || 0.11, 'square', vol || 0.045), (step || 110) * i));
+      }
+      const insertCoinSfx = () => jingle([988, 1319], 90, 0.09);
+
+      /* subtle hover/click blips across the UI (event delegation) */
+      const SFX_HOVER_SEL = '.pix-btn, .filter-chip, .nav-link, .nav-console, .cabinet-btn, .viewing-window, .play-btn, .pk-btn, .music-toggle, .oracle-fab, .pack-card';
+      document.addEventListener('pointerover', e => {
+        if (!e.target.closest) return;
+        const t = e.target.closest(SFX_HOVER_SEL);
+        if (t && (!e.relatedTarget || !t.contains(e.relatedTarget))) blip(660, 0.03, 'square', 0.02);
+      });
+      document.addEventListener('click', e => {
+        if (!e.target.closest) return;
+        if (e.target.closest(SFX_HOVER_SEL)) blip(440, 0.07, 'square', 0.03, 200);
+      });
+
+      /* ================================================================
+         TOAST
+         ================================================================ */
+      const toastEl = $('toast');
+      let toastTimer = null;
+      function showToast(msg) {
+        toastEl.textContent = msg;
+        toastEl.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2800);
+      }
+
+      /* ================================================================
+         MEDIA FALLBACK — one capture-phase handler for every img/video:
+         if the local repo copy 404s, swap to the original URL from CARDS
+         (data-fallback). If even that fails inside the attract marquee,
+         hide the item. Console warns list any files still missing.
+         ================================================================ */
+      document.addEventListener('error', e => {
+        const el = e.target;
+        if (!el || !el.tagName) return;
+        if (el.tagName !== 'IMG' && el.tagName !== 'VIDEO') return;
+        if (el.dataset && el.dataset.fallback) {
+          const fb = el.dataset.fallback;
+          const fbkind = el.dataset.fbkind || '';
+          delete el.dataset.fallback;
+          delete el.dataset.fbkind;
+          console.warn('[FAKE MEMETICS] local media missing, using origin fallback for:', el.getAttribute('src') || el.dataset.src || fb);
+          // original is a different media kind → swap the element itself
+          if (el.tagName === 'IMG' && fbkind === 'video') {
+            const v = document.createElement('video');
+            v.src = fb;
+            v.muted = true; v.loop = true; v.autoplay = true; v.playsInline = true;
+            v.setAttribute('aria-label', el.alt || '');
+            el.replaceWith(v);
+            const p = v.play();
+            if (p && typeof p.catch === 'function') p.catch(() => {});
+            return;
+          }
+          if (el.tagName === 'IMG' && fbkind === 'iframe') {
+            const f = document.createElement('iframe');
+            f.src = fb;
+            f.title = el.alt || '';
+            f.setAttribute('allow', 'autoplay');
+            el.replaceWith(f);
+            return;
+          }
+          if (el.dataset.src) el.dataset.src = fb; // keep lazy-loader in sync
+          el.src = fb;
+          if (el.tagName === 'VIDEO') {
+            const p = el.play();
+            if (p && typeof p.catch === 'function') p.catch(() => {});
+          }
+          return;
+        }
+        const item = el.closest && el.closest('.attract-item');
+        if (item) item.style.display = 'none';
+      }, true);
+
+      /* ================================================================
+         VIEW TRANSITIONS — one helper, graceful everywhere else
+         ================================================================ */
+      function withVT(mutate, clean) {
+        if (!document.startViewTransition || reducedMotion()) {
+          mutate();
+          if (clean) clean();
+          return;
+        }
+        let t;
+        try { t = document.startViewTransition(mutate); }
+        catch (e) { mutate(); if (clean) clean(); return; }
+        if (clean) t.finished.then(clean, clean);
+      }
+
+      /* ================================================================
+         HOLO TILT — pointer-tracked 3D + glare + foil (delegated so it
+         also works on pack cards created later). data-max caps the angle.
+         ================================================================ */
+      document.addEventListener('pointermove', e => {
+        if (!e.target.closest) return;
+        const el = e.target.closest('.holo-tilt, .holo-lite');
+        if (!el || reducedMotion()) return;
+        const r = el.getBoundingClientRect();
+        if (!r.width || !r.height) return;
+        const x = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+        const y = Math.min(1, Math.max(0, (e.clientY - r.top) / r.height));
+        const max = parseFloat(el.dataset.max || '14');
+        el.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
+        el.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+        el.style.setProperty('--rx', ((y - 0.5) * -max).toFixed(2) + 'deg');
+        el.style.setProperty('--ry', ((x - 0.5) * max).toFixed(2) + 'deg');
+        el.style.setProperty('--hue', Math.round(x * 360) + 'deg');
+      });
+      document.addEventListener('pointerout', e => {
+        if (!e.target.closest) return;
+        const el = e.target.closest('.holo-tilt, .holo-lite');
+        if (!el || (e.relatedTarget && el.contains(e.relatedTarget))) return;
+        el.style.setProperty('--rx', '0deg');
+        el.style.setProperty('--ry', '0deg');
+      });
+
+      /* ================================================================
+         SCROLL REVEAL — IntersectionObserver one-shot fallback.
+         Where CSS animation-timeline is supported the stylesheet takes
+         over and these classes become inert (opacity forced to 1).
+         ================================================================ */
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            revealObserver.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+      /* scroll progress bar — JS fallback when CSS scroll() timelines are unsupported */
+      if (!(window.CSS && CSS.supports && CSS.supports('animation-timeline: scroll()'))) {
+        const bar = $('scroll-progress');
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(() => {
+            const h = document.documentElement;
+            const max = h.scrollHeight - h.clientHeight;
+            bar.style.transform = 'scaleX(' + (max > 0 ? (h.scrollTop / max) : 0) + ')';
+            ticking = false;
+          });
+        }, { passive: true });
+      }
+
+      /* ================================================================
+         LAZY MEDIA — videos only get a src when near the viewport,
+         and are paused whenever they leave it.
+         ================================================================ */
+      const vidIO = new IntersectionObserver((entries) => {
+        entries.forEach(en => {
+          const v = en.target;
+          if (en.isIntersecting) {
+            if (v.dataset.src && !v.getAttribute('src')) {
+              v.muted = true;
+              v.src = v.dataset.src;
+            }
+            const p = v.play();
+            if (p && typeof p.catch === 'function') p.catch(() => {});
+          } else if (!v.paused) {
+            v.pause();
+          }
+        });
+      }, { rootMargin: '250px' });
+
+      function observeLazyVideos(root) {
+        (root || document).querySelectorAll('video.lazy-video').forEach(v => vidIO.observe(v));
+      }
+
+      /* live interactive iframes load once they approach the viewport, then stay loaded */
+      const frameIO = new IntersectionObserver((entries) => {
+        entries.forEach(en => {
+          if (en.isIntersecting) {
+            const f = en.target;
+            if (f.dataset.src && !f.getAttribute('src')) f.src = f.dataset.src;
+            frameIO.unobserve(f);
+          }
+        });
+      }, { rootMargin: '250px' });
+
+      /* ================================================================
+         SECTION NAV + HASH ROUTING (deep-linkable tabs & cards)
+         Section changes crossfade via the View Transitions API.
+         ================================================================ */
+      let currentSection = 'home';
+      const SECTION_IDS = ['home', 'fake-rares', 'fake-commons', 'history'];
+
+      function showSection(sectionId, instantScroll) {
+        document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+        const target = document.getElementById(sectionId);
+        if (target) {
+          target.classList.add('active');
+          window.scrollTo({ top: 0, behavior: instantScroll ? 'auto' : 'smooth' });
+          target.querySelectorAll('.reveal').forEach(el => {
+            el.classList.remove('in');
+            requestAnimationFrame(() => revealObserver.observe(el));
+          });
+        }
+        document.querySelectorAll('.nav-link').forEach(l => {
+          l.classList.toggle('active', l.getAttribute('href') === '#' + sectionId);
+        });
+        currentSection = sectionId;
+      }
+
+      function showSectionVT(sectionId) {
+        if (sectionId === currentSection && document.getElementById(sectionId).classList.contains('active')) return;
+        withVT(() => showSection(sectionId, true));
+      }
+
+      function route() {
+        const h = decodeURIComponent(location.hash.slice(1));
+        if (h.indexOf('card-') === 0) {
+          const c = byId(h.slice(5));
+          if (c) {
+            const secId = c.sec === 'rares' ? 'fake-rares' : 'fake-commons';
+            if (currentSection !== secId) showSection(secId, true);
+            openModal(c.slug, false);
+            return;
+          }
+        }
+        closeModal(false);
+        showSectionVT(SECTION_IDS.indexOf(h) !== -1 ? h : 'home');
+      }
+      window.addEventListener('hashchange', route);
+
+      /* ================================================================
+         ATTRACT MARQUEE — built from card data, cloned row for the loop
+         ================================================================ */
+      const attractLoop = document.getElementById('attract-loop');
+
+      function attractItemHTML(slug, hidden) {
+        const c = byId(slug);
+        if (!c) return '';
+        const ah = hidden ? ' aria-hidden="true"' : '';
+        if (c.media.k === 'video') {
+          return '<div class="attract-item"' + ah + '><video class="lazy-video" data-src="' + msrc(c) + '"' + fbAttr(c) + ' muted loop playsinline preload="none" aria-label="' + c.name + '"></video></div>';
+        }
+        return '<div class="attract-item"' + ah + '><img loading="lazy" decoding="async" src="' + msrc(c) + '"' + fbAttr(c) + ' alt="' + c.name + '"></div>';
+      }
+
+      function buildMarquee() {
+        if (!attractLoop) return;
+        [['r1', MARQUEE_R1], ['r2', MARQUEE_R2]].forEach(pair => {
+          const row = document.createElement('div');
+          row.className = 'attract-row ' + pair[0];
+          row.innerHTML =
+            pair[1].map(id => attractItemHTML(id, false)).join('') +
+            pair[1].map(id => attractItemHTML(id, true)).join('');
+          attractLoop.appendChild(row);
+        });
+        // media failures (incl. exhausted fallbacks) are handled by the
+        // global capture-phase error handler, which hides dead items.
+        observeLazyVideos(attractLoop);
+      }
+
+      /* ================================================================
+         CARD GRIDS — rendered from CARDS, filterable, holo-tilted
+         ================================================================ */
+      function cardMediaHTML(c) {
+        if (c.media.k === 'img') {
+          return '<img loading="lazy" decoding="async" src="' + msrc(c) + '"' + fbAttr(c) + ' alt="' + c.name + '">';
+        }
+        if (c.media.k === 'video') {
+          return '<video class="lazy-video" data-src="' + msrc(c) + '"' + fbAttr(c) + ' muted loop playsinline preload="none" aria-label="' + c.name + '"></video>';
+        }
+        // interactive pieces: live, locked preview (loads near the viewport; full
+        // interaction happens in the modal). Plain on-chain art iframes load directly.
+        if (c.tags.indexOf('interactive') !== -1) {
+          return '<iframe class="lazy-frame" data-src="' + c.media.src + '" title="' + c.name + '" allow="autoplay"></iframe>';
+        }
+        return '<iframe src="' + c.media.src + '" title="' + c.name + '" loading="lazy" allow="autoplay"></iframe>';
+      }
+
+      function cardHTML(c) {
+        let label = '';
+        if (c.tags.indexOf('game') !== -1) label = '<span class="interactive-label game-tag">GAME</span>';
+        else if (c.tags.indexOf('interactive') !== -1) label = '<span class="interactive-label"><i class="live-dot" aria-hidden="true"></i>INTERACTIVE</span>';
+        const meta = (c.sec === 'rares' ? 'FAKE RARE' : 'FAKE COMMON') + ' &#183; ' + c.tags.join(' &#183; ').toUpperCase();
+        return '<article class="viewing-window reveal card ' + (c.sec === 'rares' ? 'r-rare' : 'r-common') + '" data-slug="' + c.slug + '" data-tags="' + c.tags.join(' ') + '" tabindex="0" aria-label="' + c.name + ' — open details">' +
+          label +
+          '<div class="holo-tilt"><div class="window-content ratio-4-5-6">' + cardMediaHTML(c) + '</div></div>' +
+          '<div class="asset-name">' + c.name + (c.audio ? ' <span class="sound-note" title="This card has sound">&#9834;</span>' : '') + '</div>' +
+          '<div class="asset-meta">' + meta + '</div>' +
+          '<div class="card-actions">' +
+            '<button class="pix-btn pix-btn--go" type="button">FAKE STORY</button>' +
+          '</div>' +
+        '</article>';
+      }
+
+      function renderGrids() {
+        ['rares', 'commons'].forEach(sec => {
+          const grid = document.getElementById('grid-' + sec);
+          if (!grid) return;
+          grid.innerHTML = CARDS.filter(c => c.sec === sec).map(cardHTML).join('');
+
+          grid.addEventListener('click', e => {
+            if (e.target.closest('a')) return; // real links pass through
+            const card = e.target.closest('.card');
+            if (card) openModal(card.dataset.slug, true, card.querySelector('.window-content'));
+          });
+          grid.addEventListener('keydown', e => {
+            if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('card')) {
+              e.preventDefault();
+              openModal(e.target.dataset.slug, true, e.target.querySelector('.window-content'));
+            }
+          });
+        });
+        observeLazyVideos(document.getElementById('grid-rares'));
+        observeLazyVideos(document.getElementById('grid-commons'));
+        document.querySelectorAll('.card-grid iframe.lazy-frame').forEach(f => frameIO.observe(f));
+      }
+
+      /* ================================================================
+         FILTERS — changes animate via view transition crossfade
+         ================================================================ */
+      const FILTERS = {
+        rares:   ['all', 'game', 'interactive', 'animated', 'static'],
+        commons: ['all', 'interactive', 'animated', 'static']
+      };
+
+      function applyFilter(sec, f) {
+        let shown = 0;
+        document.querySelectorAll('#grid-' + sec + ' .card').forEach(el => {
+          const ok = f === 'all' || el.dataset.tags.split(' ').indexOf(f) !== -1;
+          el.style.display = ok ? '' : 'none';
+          if (ok) { shown++; el.classList.add('in'); }
+        });
+        const total = CARDS.filter(c => c.sec === sec).length;
+        const count = document.getElementById('count-' + sec);
+        if (count) count.textContent = 'SHOWING ' + shown + ' / ' + total;
+      }
+
+      function buildFilterBars() {
+        document.querySelectorAll('.filter-bar').forEach(bar => {
+          const sec = bar.dataset.section;
+          bar.innerHTML = FILTERS[sec].map((f, i) =>
+            '<button class="filter-chip' + (i === 0 ? ' active' : '') + '" data-filter="' + f + '" type="button">' + f.toUpperCase() + '</button>'
+          ).join('') + '<span class="filter-count" id="count-' + sec + '" aria-live="polite"></span>';
+
+          bar.addEventListener('click', e => {
+            const chip = e.target.closest('.filter-chip');
+            if (!chip) return;
+            bar.querySelectorAll('.filter-chip').forEach(c => c.classList.toggle('active', c === chip));
+            withVT(() => applyFilter(sec, chip.dataset.filter));
+          });
+          applyFilter(sec, 'all');
+        });
+      }
+
+      /* ================================================================
+         CARD DETAIL MODAL — full art (uncropped), readable story,
+         all collect links + share, live on-chain stats, prev/next,
+         deep links (#card-NAME). Opens with a view-transition morph
+         from the grid card; closes by morphing back.
+         ================================================================ */
+      const modalBackdrop = document.getElementById('card-modal');
+      const modalMedia    = document.getElementById('modal-media');
+      let modalList = [];
+      let modalIdx  = -1;
+
+      function visibleSlugs(sec) {
+        return Array.prototype.slice.call(document.querySelectorAll('#grid-' + sec + ' .card'))
+          .filter(el => el.style.display !== 'none')
+          .map(el => el.dataset.slug);
+      }
+
+      function buildModal(c) {
+        // media (always uncropped via object-fit: contain)
+        modalMedia.innerHTML = '';
+        modalMedia.classList.toggle('holo-lite', c.media.k !== 'iframe');
+        modalMedia.dataset.max = '6';
+        if (c.media.k === 'img') {
+          const img = document.createElement('img');
+          img.src = msrc(c);
+          if (c.local) img.dataset.fallback = c.media.src;
+          if (c.local && c.fbk) img.dataset.fbkind = c.fbk;
+          img.alt = c.name;
+          modalMedia.appendChild(img);
+        } else if (c.media.k === 'video') {
+          const v = document.createElement('video');
+          v.src = msrc(c);
+          if (c.local) v.dataset.fallback = c.media.src;
+          v.controls = true;
+          v.autoplay = true;
+          v.loop = true;
+          v.muted = true;
+          v.playsInline = true;
+          // duck the background music when the card's own sound is on
+          v.addEventListener('volumechange', () => {
+            const on = !v.muted && v.volume > 0;
+            if (on) pauseMusic(); else tryPlayMusic();
+            const sBtn = document.querySelector('.modal-title .sound-note--btn');
+            if (sBtn) {
+              sBtn.classList.toggle('is-on', on);
+              sBtn.setAttribute('aria-pressed', String(on));
+            }
+          });
+          modalMedia.appendChild(v);
+          const p = v.play();
+          if (p && typeof p.catch === 'function') p.catch(() => {});
+        } else {
+          const f = document.createElement('iframe');
+          f.src = c.media.src;
+          f.title = c.name;
+          f.setAttribute('allow', 'autoplay; fullscreen');
+          modalMedia.appendChild(f);
+        }
+
+        const titleEl = document.getElementById('modal-title');
+        titleEl.textContent = c.name;
+        if (c.media.k === 'video' && c.audio) {
+          const sBtn = document.createElement('button');
+          sBtn.className = 'sound-note sound-note--btn';
+          sBtn.title = 'Toggle sound';
+          sBtn.setAttribute('aria-pressed', 'false');
+          sBtn.innerHTML = '&#9834;';
+          sBtn.addEventListener('click', () => {
+            const v = modalMedia.querySelector('video');
+            if (!v) return;
+            v.muted = !v.muted;
+            if (!v.muted && v.volume === 0) v.volume = 1;
+          });
+          titleEl.appendChild(document.createTextNode(' '));
+          titleEl.appendChild(sBtn);
+        }
+
+        const meta = [c.sec === 'rares' ? 'FAKE RARE' : 'FAKE COMMON']
+          .concat(c.tags.map(t => t.toUpperCase()));
+        if (c.audio) meta.push('HAS SOUND');
+        document.getElementById('modal-meta').innerHTML = meta.map(m => '<span>' + m + '</span>').join('');
+
+        document.getElementById('modal-story').textContent = c.story;
+
+        const links = [
+          [c.view, c.slug === 'FAKEQUEST' ? 'PLAY GAME' : 'VIEW RAW ART'],
+          [PEPE_WTF(c.slug), 'VIEW ON pepe.wtf'],
+          [HORIZON_BTC(c.slug), 'COLLECT ON BTC'],
+          [HORIZON_XCP(c.slug), 'COLLECT w/ XCP']
+        ];
+        if (c.opensea) links.push([c.opensea, 'COLLECT ON OpenSea']);
+        const linksEl = document.getElementById('modal-links');
+        linksEl.innerHTML = links.map(l =>
+          '<a class="pix-btn" href="' + l[0] + '" target="_blank" rel="noopener noreferrer">' + l[1] + '</a>'
+        ).join('');
+        const shareBtn = document.createElement('button');
+        shareBtn.className = 'pix-btn';
+        shareBtn.type = 'button';
+        shareBtn.innerHTML = '&#8599; SHARE CARD';
+        shareBtn.addEventListener('click', () => shareCard(c));
+        linksEl.appendChild(shareBtn);
+
+        document.getElementById('modal-counter').textContent = (modalIdx + 1) + ' / ' + modalList.length;
+
+        // live on-chain stats (fail-soft, cached, async)
+        loadCardStats(c);
+      }
+
+      function openModal(slug, updateHash, sourceEl) {
+        const c = byId(slug);
+        if (!c) return;
+        if (updateHash === undefined) updateHash = true;
+
+        modalList = visibleSlugs(c.sec);
+        if (modalList.indexOf(slug) === -1) modalList = [slug];
+        modalIdx = modalList.indexOf(slug);
+
+        const wasOpen = !modalBackdrop.hidden;
+        const mutate = () => {
+          if (sourceEl) sourceEl.style.viewTransitionName = '';
+          modalMedia.style.viewTransitionName = 'vt-card';
+          buildModal(c);
+          modalBackdrop.hidden = false;
+          document.body.classList.add('modal-open');
+        };
+        if (!wasOpen && sourceEl) {
+          sourceEl.style.viewTransitionName = 'vt-card';
+          withVT(mutate, () => { if (sourceEl) sourceEl.style.viewTransitionName = ''; });
+        } else if (wasOpen) {
+          withVT(mutate); // prev/next: morph the media in place
+        } else {
+          mutate(); // deep link / route: no morph source
+        }
+
+        if (updateHash) history.replaceState(null, '', '#card-' + c.slug);
+        document.getElementById('modal-close').focus();
+      }
+
+      function closeModal(updateHash) {
+        if (modalBackdrop.hidden) return;
+        if (updateHash === undefined) updateHash = true;
+        const slug = modalList[modalIdx];
+        let target = null;
+        if (slug) {
+          const cardEl = document.querySelector('.card[data-slug="' + (window.CSS && CSS.escape ? CSS.escape(slug) : slug) + '"]');
+          if (cardEl && cardEl.style.display !== 'none' && cardEl.closest('section') && cardEl.closest('section').classList.contains('active')) {
+            target = cardEl.querySelector('.window-content');
+          }
+        }
+        withVT(() => {
+          modalMedia.style.viewTransitionName = '';
+          if (target) target.style.viewTransitionName = 'vt-card';
+          modalBackdrop.hidden = true;
+          document.body.classList.remove('modal-open');
+          modalMedia.innerHTML = ''; // stops video/iframe playback immediately
+          modalMedia.classList.remove('holo-lite');
+        }, () => { if (target) target.style.viewTransitionName = ''; });
+        tryPlayMusic();
+        if (updateHash) history.replaceState(null, '', '#' + currentSection);
+      }
+
+      function modalStep(dir) {
+        if (!modalList.length) return;
+        modalIdx = (modalIdx + dir + modalList.length) % modalList.length;
+        openModal(modalList[modalIdx]);
+      }
+
+      function shareCard(c) {
+        const url = location.origin !== 'null'
+          ? location.origin + location.pathname + '#card-' + c.slug
+          : location.href.split('#')[0] + '#card-' + c.slug;
+        const data = { title: c.name + ' — FAKE MEMETICS', text: 'FAKE by HNFT Pepe: ' + c.name, url: url };
+        if (navigator.share) {
+          navigator.share(data).catch(() => {});
+        } else if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(
+            () => showToast('LINK COPIED — SPREAD THE FAKE'),
+            () => showToast(url)
+          );
+        } else {
+          showToast(url);
+        }
+      }
+
+      document.getElementById('modal-close').addEventListener('click', () => closeModal());
+      document.getElementById('modal-prev').addEventListener('click', () => modalStep(-1));
+      document.getElementById('modal-next').addEventListener('click', () => modalStep(1));
+      modalBackdrop.addEventListener('click', e => { if (e.target === modalBackdrop) closeModal(); });
+      document.addEventListener('keydown', e => {
+        if (modalBackdrop.hidden) return;
+        if (e.key === 'Escape') closeModal();
+        else if (e.key === 'ArrowLeft') modalStep(-1);
+        else if (e.key === 'ArrowRight') modalStep(1);
+      });
+
+      /* ================================================================
+         ARCADE CABINET
+         ================================================================ */
+      /* FAKEQUEST loads from the repo copy when it exists (HEAD-checked
+         once at startup); otherwise from the Arweave original. */
+      const GAME_LOCAL  = 'MEDIA for Github/fakequest.html';
+      const GAME_REMOTE = 'https://5t2d7nntkzfihmarwgga5ivitr27yare7bmd75mtv36jmh6fnixa.ar.io/7PQ_tbNWSoOwEbGMDqKonHX8AiT4WD_1k678lh_Fai4';
+      let gameUrlResolved = null;
+      (function resolveGameUrl() {
+        try {
+          fetch(GAME_LOCAL, { method: 'HEAD' })
+            .then(r => { gameUrlResolved = r.ok ? GAME_LOCAL : GAME_REMOTE; })
+            .catch(() => { gameUrlResolved = GAME_REMOTE; });
+        } catch (e) { gameUrlResolved = GAME_REMOTE; }
+      })();
+      const theGame = () => gameUrlResolved || GAME_REMOTE;
+      const playOverlay   = document.getElementById('play-overlay');
+      const playBtn       = document.getElementById('play-btn');
+      const gameFrame     = document.getElementById('game-frame');
+      const fullscreenBtn = document.getElementById('fullscreen-btn');
+      const resetBtn      = document.getElementById('reset-btn');
+      const newTabBtn     = document.getElementById('newtab-btn');
+      const cabinetScreen = document.getElementById('cabinet-screen');
+
+      /* ================================================================
+         BACKGROUND MUSIC — preference persisted in localStorage.
+         v6: crossorigin lets an AnalyserNode drive audio-reactive UI;
+         if the CDN refuses CORS we reload without it (playback > viz).
+         ================================================================ */
+      const bgMusic     = document.getElementById('bg-music');
+      const musicToggle = document.getElementById('music-toggle');
+      const musicLabel  = document.getElementById('music-label');
+      /* music defaults OFF (SFX mode is the default); preference persists */
+      let musicEnabled  = false;
+      try { musicEnabled = localStorage.getItem('fm-music') === 'on'; } catch (e) {}
+      sfxOn = !musicEnabled;
+      let gameIsPlaying = false;
+
+      let vizBlocked = false, vizReady = false, vizAnalyser = null, vizData = null, vizRAF = null;
+      function handleAudioError() {
+        if (vizBlocked) return;
+        vizBlocked = true;
+        bgMusic.removeAttribute('crossorigin');
+        try { bgMusic.load(); } catch (e) {}
+        if (musicEnabled && !gameIsPlaying) tryPlayMusic();
+      }
+      bgMusic.addEventListener('error', handleAudioError);
+      (function () {
+        const s = bgMusic.querySelector('source');
+        if (s) s.addEventListener('error', handleAudioError);
+      })();
+
+      function setupViz() {
+        if (vizReady || vizBlocked) return;
+        const a = ensureCtx();
+        if (!a) return;
+        try {
+          const src = a.createMediaElementSource(bgMusic);
+          vizAnalyser = a.createAnalyser();
+          vizAnalyser.fftSize = 64;
+          vizData = new Uint8Array(vizAnalyser.frequencyBinCount);
+          src.connect(vizAnalyser);
+          vizAnalyser.connect(a.destination);
+          vizReady = true;
+          musicToggle.classList.add('viz-live');
+          vizLoop();
+        } catch (e) { /* already connected or blocked — leave viz off */ }
+      }
+      const vizBars = musicToggle.querySelectorAll('.music-wave i');
+      function vizLoop() {
+        if (!vizReady) return;
+        if (bgMusic.paused || document.hidden) {
+          document.body.style.setProperty('--amp', '0');
+          vizRAF = null;
+          return;
+        }
+        vizAnalyser.getByteFrequencyData(vizData);
+        let low = 0;
+        for (let i = 0; i < 6; i++) low += vizData[i];
+        const amp = low / (6 * 255);
+        document.body.style.setProperty('--amp', amp.toFixed(3));
+        for (let i = 0; i < vizBars.length; i++) {
+          const v = vizData[2 + i * 4] / 255;
+          vizBars[i].style.height = Math.round(25 + v * 75) + '%';
+        }
+        vizRAF = requestAnimationFrame(vizLoop);
+      }
+      bgMusic.addEventListener('playing', () => {
+        if (!vizBlocked && !vizReady) setupViz();
+        if (vizReady && !vizRAF) vizLoop();
+      });
+
+      function setToggleUI() {
+        if (!musicToggle) return;
+        /* label = what clicking DOES: "FAKE MUSIC" invites starting the
+           music (SFX currently on); "BACK TO SFX" invites returning. */
+        if (musicEnabled) {
+          musicToggle.classList.remove('is-muted');
+          if (musicLabel) musicLabel.textContent = gameIsPlaying ? 'GAME AUDIO' : 'BACK TO SFX';
+        } else {
+          musicToggle.classList.add('is-muted');
+          if (musicLabel) musicLabel.textContent = 'FAKE MUSIC';
+        }
+      }
+      function tryPlayMusic() {
+        if (!bgMusic || !musicEnabled || gameIsPlaying) return;
+        // don't fight a modal video that has its sound on
+        const mv = modalMedia.querySelector('video');
+        if (mv && !mv.muted && mv.volume > 0 && !modalBackdrop.hidden) return;
+        bgMusic.volume = 0.35;
+        const p = bgMusic.play();
+        if (p && typeof p.catch === 'function') p.catch(() => {});
+      }
+      function pauseMusic() {
+        if (!bgMusic) return;
+        try { bgMusic.pause(); } catch (e) {}
+      }
+
+      if (bgMusic) bgMusic.addEventListener('loadeddata', tryPlayMusic, { once: true });
+      const kickstartMusic = () => {
+        ensureCtx(); // resume the shared AudioContext on first gesture
+        if (musicEnabled && !gameIsPlaying && bgMusic && bgMusic.paused) tryPlayMusic();
+        document.removeEventListener('pointerdown', kickstartMusic);
+        document.removeEventListener('keydown', kickstartMusic);
+      };
+      document.addEventListener('pointerdown', kickstartMusic);
+      document.addEventListener('keydown', kickstartMusic);
+
+      if (musicToggle) {
+        musicToggle.addEventListener('click', e => {
+          e.stopPropagation();
+          musicEnabled = !musicEnabled;
+          sfxOn = !musicEnabled; // music mode and SFX mode are mutually exclusive
+          try { localStorage.setItem('fm-music', musicEnabled ? 'on' : 'off'); } catch (err) {}
+          if (musicEnabled) tryPlayMusic(); else { pauseMusic(); jingle([660, 880], 90, 0.08); }
+          setToggleUI();
+        });
+      }
+      setToggleUI();
+
+      /* ================================================================
+         GAME PLAY / RESET / NEW TAB / FULLSCREEN
+         ================================================================ */
+      function setMarqueeVideos(playing) {
+        if (!attractLoop) return;
+        attractLoop.querySelectorAll('video').forEach(v => {
+          if (playing) { const p = v.play(); if (p && typeof p.catch === 'function') p.catch(() => {}); }
+          else v.pause();
+        });
+      }
+
+      function startGame() {
+        insertCoinSfx();
+        gameFrame.src = theGame();
+        gameFrame.classList.add('playing');
+        playOverlay.classList.add('hidden');
+        attractLoop.classList.add('hidden');
+        setMarqueeVideos(false); // display:none alone does not pause videos
+        if (resetBtn) resetBtn.style.display = '';
+        gameIsPlaying = true;
+        pauseMusic();
+        setToggleUI();
+      }
+      function resetGame() {
+        gameFrame.src = '';
+        gameFrame.classList.remove('playing');
+        attractLoop.classList.remove('hidden');
+        setMarqueeVideos(true);
+        playOverlay.classList.remove('hidden');
+        if (resetBtn) resetBtn.style.display = 'none';
+        gameIsPlaying = false;
+        tryPlayMusic();
+        setToggleUI();
+      }
+
+      if (playBtn) playBtn.addEventListener('click', startGame);
+      if (playOverlay) {
+        playOverlay.addEventListener('click', e => { if (e.target === playOverlay) startGame(); });
+        playOverlay.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); startGame(); }
+        });
+      }
+      if (resetBtn) resetBtn.addEventListener('click', resetGame);
+      if (newTabBtn) newTabBtn.addEventListener('click', () => window.open(theGame(), '_blank', 'noopener'));
+      if (fullscreenBtn) fullscreenBtn.addEventListener('click', () => {
+        if (gameFrame.classList.contains('playing') && gameFrame.requestFullscreen) {
+          gameFrame.requestFullscreen().catch(() => window.open(theGame(), '_blank', 'noopener'));
+        } else if (cabinetScreen && cabinetScreen.requestFullscreen) {
+          cabinetScreen.requestFullscreen().catch(() => window.open(theGame(), '_blank', 'noopener'));
+        } else {
+          window.open(theGame(), '_blank', 'noopener');
+        }
+      });
+
+      /* ================================================================
+         TAB VISIBILITY — stop all media work when the tab is hidden
+         ================================================================ */
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          document.querySelectorAll('video').forEach(v => { if (!v.paused) v.pause(); });
+          pauseMusic();
+        } else {
+          if (!gameIsPlaying && attractLoop && !attractLoop.classList.contains('hidden')) setMarqueeVideos(true);
+          tryPlayMusic();
+        }
+      });
+
+      /* ================================================================
+         LIVE ON-CHAIN LAYER — Counterparty explorers (tokenscan/xchain).
+         Everything here is fail-soft: no data, no widget, no breakage.
+         Responses are cached in sessionStorage for 10 minutes.
+         ================================================================ */
+      const API_BASES = ['https://tokenscan.io/api', 'https://xchain.io/api'];
+
+      async function apiJSON(url, ms) {
+        const ctl = new AbortController();
+        const t = setTimeout(() => ctl.abort(), ms || 6000);
+        try {
+          const r = await fetch(url, { signal: ctl.signal });
+          if (!r.ok) throw new Error('http ' + r.status);
+          return await r.json();
+        } finally { clearTimeout(t); }
+      }
+      async function apiTry(path) {
+        for (let i = 0; i < API_BASES.length; i++) {
+          try {
+            const j = await apiJSON(API_BASES[i] + path);
+            if (j) return j;
+          } catch (e) {}
+        }
+        return null;
+      }
+      const fmtNum = v => {
+        const n = parseFloat(v);
+        return isFinite(n) ? n.toLocaleString(undefined, { maximumFractionDigits: 2 }) : String(v);
+      };
+      const trimBtc = v => v.toFixed(8).replace(/0+$/, '').replace(/\.$/, '');
+      function relTime(ts) {
+        const d = Date.now() / 1000 - ts;
+        if (!isFinite(d) || d < 0) return '';
+        if (d < 90) return 'JUST NOW';
+        if (d < 3600) return Math.round(d / 60) + 'M AGO';
+        if (d < 86400) return Math.round(d / 3600) + 'H AGO';
+        return Math.round(d / 86400) + 'D AGO';
+      }
+
+      async function getAssetStats(slug) {
+        const key = 'fm-stats-' + slug;
+        try {
+          const hit = JSON.parse(sessionStorage.getItem(key) || 'null');
+          if (hit && Date.now() - hit.t < 600000) return hit.d;
+        } catch (e) {}
+        const out = {};
+        const info = await apiTry('/asset/' + encodeURIComponent(slug));
+        if (info && (info.asset || info.asset_longname)) {
+          if (info.supply !== undefined) out.supply = info.supply;
+          if (info.holders !== undefined) out.holders = info.holders;
+          if (info.locked !== undefined) out.locked = !!(info.locked === true || info.locked === 1 || info.locked === 'true');
+        }
+        const disp = await apiTry('/dispensers/' + encodeURIComponent(slug));
+        const rows = disp && (disp.data || disp.dispensers);
+        if (Array.isArray(rows)) {
+          const open = rows.filter(d => d && d.satoshirate !== undefined &&
+            (d.give_remaining === undefined || parseFloat(d.give_remaining) > 0) &&
+            (d.status === undefined || d.status === 0 || d.status === '0' || d.status === 'open')); /* 10 = closed */
+          if (open.length) {
+            const sat = Math.min.apply(null, open.map(d => parseFloat(d.satoshirate)));
+            if (isFinite(sat) && sat > 0) out.floor = sat / 1e8;
+            out.dispensing = open.length;
+          }
+        }
+        if (Object.keys(out).length) {
+          try { sessionStorage.setItem(key, JSON.stringify({ t: Date.now(), d: out })); } catch (e) {}
+          return out;
+        }
+        return null;
+      }
+
+      let statsToken = 0;
+      async function loadCardStats(c) {
+        const el = $('modal-stats');
+        el.hidden = true;
+        el.innerHTML = '';
+        const my = ++statsToken;
+        let s = null;
+        try { s = await getAssetStats(c.slug); } catch (e) {}
+        if (!s || my !== statsToken || modalBackdrop.hidden) return;
+        const chips = ['<span><i class="live-dot" aria-hidden="true"></i>LIVE CHAIN</span>'];
+        if (s.supply !== undefined) chips.push('<span>SUPPLY<b>' + fmtNum(s.supply) + '</b></span>');
+        if (s.holders !== undefined) chips.push('<span>HOLDERS<b>' + fmtNum(s.holders) + '</b></span>');
+        if (s.floor !== undefined) chips.push('<span>FLOOR<b>' + trimBtc(s.floor) + ' BTC</b></span>');
+        if (s.dispensing) chips.push('<span>DISPENSING<b>&#10003; ' + s.dispensing + ' OPEN</b></span>');
+        if (s.locked) chips.push('<span>SUPPLY LOCKED<b>&#10003;</b></span>');
+        if (chips.length > 1) { el.innerHTML = chips.join(''); el.hidden = false; }
+      }
+
+      /* --- recent-dispense ticker: only shows with >=2 real events --- */
+      const TICKER_SLUGS = ['FAKEQUEST', 'PEPEWINTER', 'READYTOKEK', 'DRPEPEMUMULV', 'DANKKAST', 'A1619006396900464164'];
+      async function buildTicker() {
+        const events = [];
+        for (let i = 0; i < TICKER_SLUGS.length; i++) {
+          try {
+            const j = await apiTry('/dispenses/' + encodeURIComponent(TICKER_SLUGS[i]));
+            const rows = j && (j.data || j.dispenses);
+            if (Array.isArray(rows)) {
+              rows.slice(0, 2).forEach(d => {
+                if (d && d.timestamp) events.push({ s: TICKER_SLUGS[i], t: parseFloat(d.timestamp), q: d.dispense_quantity });
+              });
+            }
+          } catch (e) {}
+          await new Promise(r => setTimeout(r, 600));
+        }
+        if (events.length < 2) return; // no fake data on the real site — ticker stays hidden
+        events.sort((a, b) => b.t - a.t);
+        const items = events.slice(0, 10).map(ev => {
+          let txt = '<b>' + ev.s + '</b> dispensed';
+          if (ev.q !== undefined) txt += ' &#215; ' + fmtNum(ev.q);
+          const rt = relTime(ev.t);
+          if (rt) txt += ' &#183; <i>' + rt + '</i>';
+          return txt;
+        });
+        const row = $('tick-row');
+        row.innerHTML =
+          items.map(t => '<span class="ti">' + t + '</span>').join('') +
+          items.map(t => '<span class="ti" aria-hidden="true">' + t + '</span>').join('');
+        $('chain-tick').hidden = false;
+      }
+
+      /* --- MY FAKES: address-paste collection checklist --- */
+      const walletGrid = $('wallet-grid'), walletStatus = $('wallet-status'), walletAddr = $('wallet-addr');
+      function walletCellHTML(c) {
+        let inner;
+        if (c.media.k === 'img') inner = '<img loading="lazy" decoding="async" src="' + msrc(c) + '"' + fbAttr(c) + ' alt="' + c.name + '">';
+        else if (c.media.k === 'video') inner = '<video class="lazy-video" data-src="' + msrc(c) + '"' + fbAttr(c) + ' muted loop playsinline preload="none" aria-label="' + c.name + '"></video>';
+        else inner = '<span class="wc-txt">' + c.name + '</span>';
+        return '<div class="wc" data-slug="' + c.slug + '" title="' + c.name + '" role="button" tabindex="0">' + inner + '</div>';
+      }
+      function renderWalletGrid() {
+        walletGrid.innerHTML = CARDS.map(walletCellHTML).join('');
+        walletGrid.addEventListener('click', e => {
+          const cell = e.target.closest('.wc');
+          if (cell) location.hash = '#card-' + cell.dataset.slug;
+        });
+      }
+      async function scanWallet() {
+        const addr = walletAddr.value.trim();
+        if (addr.length < 20) { walletStatus.textContent = 'PASTE A VALID ADDRESS FIRST'; return; }
+        if (walletGrid.hidden) { walletGrid.hidden = false; observeLazyVideos(walletGrid); }
+        walletStatus.textContent = 'SCANNING THE CHAIN…';
+        walletGrid.querySelectorAll('.wc').forEach(c => c.classList.remove('owned'));
+        let j = null;
+        try { j = await apiTry('/balances/' + encodeURIComponent(addr)); } catch (e) {}
+        const rows = j && (j.data || j.balances);
+        if (!Array.isArray(rows)) {
+          walletStatus.textContent = 'CHAIN API UNREACHABLE RIGHT NOW — TRY AGAIN IN A BIT';
+          return;
+        }
+        const ownedSet = {};
+        rows.forEach(b => {
+          if (!b) return;
+          [b.asset, b.asset_longname].forEach(n => { if (n) ownedSet[n] = true; });
+        });
+        const hits = [];
+        walletGrid.querySelectorAll('.wc').forEach(cell => {
+          if (ownedSet[cell.dataset.slug]) hits.push(cell);
+        });
+        hits.forEach((cell, k) => setTimeout(() => {
+          cell.classList.add('owned');
+          blip(620 + k * 70, 0.1, 'square', 0.04, 200);
+        }, 200 * k));
+        const owned = hits.length;
+        const pct = Math.round(owned / CARDS.length * 100);
+        setTimeout(() => {
+          walletStatus.textContent = owned
+            ? '✓ ' + owned + ' / ' + CARDS.length + ' COLLECTED — ' + pct + '% FAKE COMPLETE'
+            : 'NO HP FAKES AT THIS ADDRESS (YET). EVERY COLLECTION STARTS AT ZERO. KEK.';
+          if (owned) jingle([523, 659, 784], 100, 0.1);
+        }, 200 * hits.length + 120);
+      }
+      $('wallet-scan').addEventListener('click', scanWallet);
+      walletAddr.addEventListener('keydown', e => { if (e.key === 'Enter') scanWallet(); });
+
+      /* ================================================================
+         FAKE PACK — rip a booster, deal 3 random cards from the collection
+         ================================================================ */
+      const PACK_POOL = CARDS.filter(c => c.media.k !== 'iframe');
+      const pkBackdrop = $('pk-backdrop'), pack = $('pack'), pkCards = $('pk-cards'),
+            pkHint = $('pk-hint'), pkAgain = $('pk-again'), pkFlash = $('pk-flash');
+
+      function packCardHTML(c, i) {
+        const media = c.media.k === 'video'
+          ? '<video src="' + msrc(c) + '"' + fbAttr(c) + ' muted loop playsinline autoplay></video>'
+          : '<img src="' + msrc(c) + '"' + fbAttr(c) + ' alt="' + c.name + '" decoding="async">';
+        return '<div class="pack-card ' + (c.sec === 'rares' ? 'r-rare' : 'r-common') + '" data-slug="' + c.slug + '" style="--d:' + (i * 0.18) + 's" title="Open ' + c.name + '">' +
+          '<div class="holo-tilt"><span class="pk-rar">' + (c.sec === 'rares' ? 'FAKE RARE' : 'COMMON') + '</span><div class="window-content ratio-4-5-6">' + media + '</div></div>' +
+          '<div class="pk-name">' + c.name + '</div>' +
+        '</div>';
+      }
+      function packReset() {
+        pkCards.innerHTML = '';
+        pack.style.display = '';
+        pkHint.style.display = '';
+        pkAgain.hidden = true;
+      }
+      function openPack() {
+        packReset();
+        pkBackdrop.hidden = false;
+      }
+      function ripPack() {
+        if (pack.classList.contains('rip') || pack.style.display === 'none') return;
+        pack.classList.add('rip');
+        noiseBurst(0.35, 0.14);
+        blip(220, 0.3, 'sawtooth', 0.035, 800);
+        setTimeout(() => {
+          pack.classList.remove('rip');
+          pack.style.display = 'none';
+          pkHint.style.display = 'none';
+          pkFlash.classList.add('go');
+          setTimeout(() => pkFlash.classList.remove('go'), 500);
+          const picks = PACK_POOL.slice().sort(() => Math.random() - 0.5).slice(0, 3);
+          pkCards.innerHTML = picks.map(packCardHTML).join('');
+          picks.forEach((c, i) => setTimeout(() => {
+            blip(520 + i * 180, 0.12, 'square', 0.045, 240);
+            if (c.sec === 'rares') setTimeout(() => jingle([784, 988, 1319], 80, 0.09), 160);
+          }, 180 * i + 150));
+          pkAgain.hidden = false;
+        }, 580);
+      }
+      $('open-pack').addEventListener('click', openPack);
+      $('pk-close').addEventListener('click', () => { pkBackdrop.hidden = true; });
+      pkAgain.addEventListener('click', packReset);
+      pack.addEventListener('click', ripPack);
+      pack.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); ripPack(); } });
+      pkCards.addEventListener('click', e => {
+        const pc = e.target.closest('.pack-card');
+        if (!pc) return;
+        pkBackdrop.hidden = true;
+        location.hash = '#card-' + pc.dataset.slug;
+      });
+      pkBackdrop.addEventListener('click', e => { if (e.target === pkBackdrop) pkBackdrop.hidden = true; });
+
+      /* ================================================================
+         CHEAT CONSOLE — ⌘K / CTRL+K fuzzy search over cards + commands
+         ================================================================ */
+      const palBackdrop = $('pal-backdrop'), palInput = $('pal-input'), palList = $('pal-list');
+      let palSel = 0, palItems = [];
+
+      const PAL_ITEMS = CARDS.map(c => ({
+        label: c.name,
+        tag: c.sec === 'rares' ? 'RARE' : 'COMMON',
+        go: () => { location.hash = '#card-' + c.slug; }
+      })).concat([
+        { label: 'GO: HOME', tag: 'PAGE', go: () => { location.hash = '#home'; } },
+        { label: 'GO: FAKE RARES', tag: 'PAGE', go: () => { location.hash = '#fake-rares'; } },
+        { label: 'GO: FAKE COMMONS', tag: 'PAGE', go: () => { location.hash = '#fake-commons'; } },
+        { label: 'GO: HISTORY', tag: 'PAGE', go: () => { location.hash = '#history'; } },
+        { label: 'OPEN A FAKE PACK', tag: 'ACTION', go: openPack },
+        { label: 'PLAY FAKEQUEST', tag: 'ACTION', go: () => { location.hash = '#home'; setTimeout(startGame, 400); } },
+        { label: 'ASK THE ORACLE', tag: 'ACTION', go: () => oracleOpen() }
+      ]);
+
+      function palRender() {
+        const q = palInput.value.trim().toUpperCase();
+        palItems = PAL_ITEMS.filter(d => !q || d.label.toUpperCase().indexOf(q) !== -1);
+        palSel = Math.min(palSel, Math.max(0, palItems.length - 1));
+        palList.innerHTML = palItems.length
+          ? palItems.map((d, i) => '<li class="' + (i === palSel ? 'sel' : '') + '" data-i="' + i + '">' + d.label + '<span class="t">' + d.tag + '</span></li>').join('')
+          : '<li>NO FAKES FOUND…</li>';
+        const sel = palList.querySelector('li.sel');
+        if (sel && sel.scrollIntoView) sel.scrollIntoView({ block: 'nearest' });
+      }
+      function palOpen() {
+        palBackdrop.hidden = false;
+        palInput.value = '';
+        palSel = 0;
+        palRender();
+        palInput.focus();
+        blip(880, 0.06, 'square', 0.03);
+      }
+      function palClose() { palBackdrop.hidden = true; }
+      function palGo() {
+        if (!palItems.length) return;
+        const item = palItems[palSel];
+        palClose();
+        item.go();
+      }
+      palBackdrop.addEventListener('click', e => { if (e.target === palBackdrop) palClose(); });
+      palInput.addEventListener('input', () => { palSel = 0; palRender(); });
+      palInput.addEventListener('keydown', e => {
+        if (e.key === 'ArrowDown') { e.preventDefault(); palSel = Math.min(palSel + 1, palItems.length - 1); palRender(); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); palSel = Math.max(palSel - 1, 0); palRender(); }
+        else if (e.key === 'Enter') { palGo(); }
+      });
+      palList.addEventListener('click', e => {
+        const li = e.target.closest('li[data-i]');
+        if (li) { palSel = +li.dataset.i; palGo(); }
+      });
+      ['console-btn', 'console-btn-m'].forEach(id => {
+        const el = $(id);
+        if (el) el.addEventListener('click', e => { e.preventDefault(); palOpen(); });
+      });
+
+      /* global keys: ⌘K console, ESC closes overlays, konami god mode */
+      document.addEventListener('keydown', e => {
+        if ((e.metaKey || e.ctrlKey) && (e.key === 'k' || e.key === 'K')) {
+          e.preventDefault();
+          if (palBackdrop.hidden) palOpen(); else palClose();
+          return;
+        }
+        if (e.key === 'Escape') {
+          if (!palBackdrop.hidden) palClose();
+          if (!pkBackdrop.hidden) pkBackdrop.hidden = true;
+          if (!oraclePanel.hidden) oracleClose();
+        }
+      });
+
+      /* ================================================================
+         FAKE ORACLE — lore terminal. 100% client-side search over the
+         card stories in CARDS. No backend, no cost, no hallucinations.
+         ================================================================ */
+      const oracleFab = $('oracle-fab'), oraclePanel = $('oracle-panel'),
+            oracleLog = $('oracle-log'), oracleQ = $('oracle-q');
+      function oracleOpen() {
+        oraclePanel.hidden = false;
+        oracleFab.setAttribute('aria-expanded', 'true');
+        oracleQ.focus();
+      }
+      function oracleClose() {
+        oraclePanel.hidden = true;
+        oracleFab.setAttribute('aria-expanded', 'false');
+      }
+      oracleFab.addEventListener('click', () => { if (oraclePanel.hidden) oracleOpen(); else oracleClose(); });
+      $('oracle-close').addEventListener('click', oracleClose);
+
+      function oracleAnswer(q) {
+        const ql = q.toLowerCase();
+        const has = re => re.test(ql);
+        if (has(/sound|audio|song|listen|soundtrack/)) {
+          const list = CARDS.filter(c => c.audio);
+          return { text: list.length + ' cards carry a soundtrack. Open one and click the ♪ note to unmute. Kek responsibly.', cards: list };
+        }
+        if (has(/beeple|exhibit|gallery|museum|shown|display|irl|superlative/)) {
+          return {
+            text: 'Shown IRL: PEPEWINTER (Crypto Winter Wonderland 2023), CUBEMOTO (PepeFest 2024), TRUMPMOTO (Election Night 2024) and PUNKSMEETUP (CryptoPunks Meet Up 2.0, 2025) at Beeple Studios — plus GARUDAPEPE at Superlative Gallery, Bali 2024. The full timeline lives in HISTORY.',
+            cards: ['PEPEWINTER', 'A1619006396900464164', 'TRUMPMOTO', 'PUNKSMEETUP', 'GARUDAPEPE'].map(byId)
+          };
+        }
+        if (has(/first|origin|start|began|earliest|history/)) {
+          return {
+            text: 'PEPESLAMBO: first card minted in the HNFT Pepe Collection and first HP FAKE approved to the directory. PEPEWINTER: first HP FAKE RARE approved. The movement itself began with FREEDOMKEK, the Proof of Ban, September 2021 — the whole saga is in HISTORY.',
+            cards: [byId('PEPESLAMBO'), byId('PEPEWINTER')]
+          };
+        }
+        if (has(/game|play|quest|arcade|interactive/)) {
+          return {
+            text: 'FAKEQUEST: four levels, every HP FAKE as a foe, game code minted on Bitcoin — play it in the arcade cabinet on HOME. CUBED and PEPEFLOW are interactive art: click in, mess with the code.',
+            cards: [byId('FAKEQUEST'), byId('CUBED.CUBED'), byId('PEPEFLOW')]
+          };
+        }
+        if (has(/how many|count|total|collection size/)) {
+          const r = CARDS.filter(c => c.sec === 'rares').length;
+          return { text: CARDS.length + ' FAKEs in the collection: ' + r + ' FAKE RARES and ' + (CARDS.length - r) + ' FAKE COMMONS. All on-chain. All frog.', cards: [] };
+        }
+        if (has(/difference|rare.*common|common.*rare/)) {
+          return { text: 'FAKE RARES follow the curated directory rules. FAKE COMMONS are the overlooked, rejected and out-of-era Pepes with memetic value anyway. Same frog energy, different tier.', cards: [] };
+        }
+        const words = ql.replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(w => w.length > 2);
+        let best = null, bestScore = 0;
+        CARDS.forEach(c => {
+          let s = 0;
+          const name = c.name.toLowerCase(), story = c.story.toLowerCase();
+          words.forEach(w => {
+            if (name.indexOf(w) !== -1) s += 6;
+            if (story.indexOf(w) !== -1) s += 2;
+          });
+          if (name.length > 3 && ql.indexOf(name) !== -1) s += 10;
+          if (s > bestScore) { bestScore = s; best = c; }
+        });
+        if (best && bestScore >= 4) {
+          const snippet = best.story.split('. ').slice(0, 2).join('. ');
+          return { text: snippet + (snippet.slice(-1) === '.' ? '' : '.'), cards: [best] };
+        }
+        return { text: 'The oracle sees only FAKES. Try a card name, or ask about sound, exhibitions, the first card, or the game.', cards: [] };
+      }
+
+      let oracleBusy = false;
+      function oracleAsk(q) {
+        q = (q || '').trim();
+        if (!q || oracleBusy) return;
+        const u = document.createElement('div');
+        u.className = 'omsg u';
+        u.textContent = q;
+        oracleLog.appendChild(u);
+        oracleQ.value = '';
+        const ans = oracleAnswer(q);
+        const b = document.createElement('div');
+        b.className = 'omsg b';
+        oracleLog.appendChild(b);
+        oracleLog.scrollTop = oracleLog.scrollHeight;
+        oracleBusy = true;
+        let i = 0;
+        blip(760, 0.05, 'square', 0.03);
+        const iv = setInterval(() => {
+          i += 3;
+          b.textContent = ans.text.slice(0, i);
+          oracleLog.scrollTop = oracleLog.scrollHeight;
+          if (i >= ans.text.length) {
+            clearInterval(iv);
+            (ans.cards || []).slice(0, 6).forEach(c => {
+              if (!c) return;
+              const chip = document.createElement('button');
+              chip.type = 'button';
+              chip.className = 'ocard';
+              chip.textContent = c.name;
+              chip.addEventListener('click', () => { location.hash = '#card-' + c.slug; });
+              b.appendChild(document.createTextNode(' '));
+              b.appendChild(chip);
+            });
+            oracleLog.scrollTop = oracleLog.scrollHeight;
+            oracleBusy = false;
+          }
+        }, 14);
+      }
+      $('oracle-send').addEventListener('click', () => oracleAsk(oracleQ.value));
+      oracleQ.addEventListener('keydown', e => { if (e.key === 'Enter') oracleAsk(oracleQ.value); });
+      $('oracle-sugg').addEventListener('click', e => {
+        const btn = e.target.closest('button');
+        if (btn) oracleAsk(btn.textContent);
+      });
+
+      /* ================================================================
+         KONAMI CODE — ↑↑↓↓←→←→BA = GOD MODE
+         ================================================================ */
+      const KONAMI = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+      let kPos = 0;
+      document.addEventListener('keydown', e => {
+        const k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+        kPos = (k === KONAMI[kPos]) ? kPos + 1 : (k === KONAMI[0] ? 1 : 0);
+        if (kPos === KONAMI.length) {
+          kPos = 0;
+          document.body.classList.add('godmode');
+          setTimeout(() => document.body.classList.remove('godmode'), 3500);
+          jingle([523, 659, 784, 1047], 110, 0.12, 0.05);
+          showToast('↑↑↓↓←→←→BA — GOD MODE. THE FAKES SEE YOU NOW.');
+        }
+      });
+
+      /* ================================================================
+         HISTORY TIMELINE — card links open the modal
+         ================================================================ */
+      document.querySelectorAll('.tl-card').forEach(a => {
+        a.addEventListener('click', () => { location.hash = '#card-' + a.dataset.card; });
+      });
+
+      /* ================================================================
+         PWA — manifest injected as a Blob (file stays self-contained);
+         sw.js registers only when served over https/localhost.
+         ================================================================ */
+      (function initPWA() {
+        try {
+          const iconHref = document.getElementById('app-icon').getAttribute('href');
+          const manifest = {
+            name: 'FAKE MEMETICS // HNFT PEPE ARCADE',
+            short_name: 'FAKE MEMETICS',
+            description: 'Fakest Rares on the Blockchain.',
+            start_url: './',
+            scope: './',
+            display: 'standalone',
+            background_color: '#05050a',
+            theme_color: '#05050a',
+            icons: [{ src: iconHref, sizes: 'any', type: 'image/svg+xml', purpose: 'any' }]
+          };
+          const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+          document.getElementById('manifest-link').setAttribute('href', URL.createObjectURL(blob));
+        } catch (e) {}
+        if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+          window.addEventListener('load', () => {
+            navigator.serviceWorker.register('./sw.js').catch(() => {});
+          });
+        }
+      })();
+
+      /* ================================================================
+         JSON-LD — every card as a VisualArtwork (SEO)
+         ================================================================ */
+      (function injectJSONLD() {
+        try {
+          const ld = {
+            '@context': 'https://schema.org',
+            '@type': 'CollectionPage',
+            name: 'FAKE MEMETICS // HNFT PEPE ARCADE',
+            description: 'Fakest Rares on the Blockchain — Fake Rares and Fake Commons by HNFT Pepe.',
+            creator: { '@type': 'Person', name: 'HNFT Pepe', url: 'https://x.com/HnftPepe' },
+            hasPart: CARDS.map(c => ({
+              '@type': 'VisualArtwork',
+              name: c.name,
+              image: c.media.src,
+              url: '#card-' + c.slug,
+              creator: { '@type': 'Person', name: 'HNFT Pepe' },
+              artMedium: 'On-chain digital art (Bitcoin)'
+            }))
+          };
+          const s = document.createElement('script');
+          s.type = 'application/ld+json';
+          s.textContent = JSON.stringify(ld);
+          document.head.appendChild(s);
+        } catch (e) {}
+      })();
+
+      /* ================================================================
+         INIT
+         ================================================================ */
+      buildMarquee();
+      renderGrids();
+      buildFilterBars();
+      renderWalletGrid();
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+      route(); // honor #fake-rares / #fake-commons / #history / #card-NAME deep links on load
+      setTimeout(() => { buildTicker().catch(() => {}); }, 2500);
+    </script>
+  </body>
+</html>
