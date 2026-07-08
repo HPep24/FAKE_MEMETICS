@@ -67,7 +67,7 @@
         --amp: 0; /* audio-reactive amplitude 0..1, set by JS */
       }
 
-      html { scroll-behavior: smooth; }
+      html { scroll-behavior: smooth; overflow-x: clip; -webkit-text-size-adjust: 100%; }
 
       body {
         font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -218,36 +218,70 @@
       .nav-links a.nav-console { color: var(--cyan); border-color: rgba(0,240,255,0.35); }
       .nav-links a.nav-console:hover { color: var(--bg); }
 
-      /* mobile bottom tab bar (app-like, thumb-reachable) */
+      /* mobile bottom tab bar (app-like: pixel icon + label per tab) */
       .bottom-nav {
         display: none;
         position: fixed;
         left: 0; right: 0; bottom: 0;
         z-index: 1100;
-        background: rgba(5,5,10,0.85);
+        background: rgba(5,5,10,0.94);
         backdrop-filter: blur(16px) saturate(140%);
         -webkit-backdrop-filter: blur(16px) saturate(140%);
-        border-top: 2px solid var(--line);
-        padding: 0.4rem 0.4rem calc(0.4rem + env(safe-area-inset-bottom, 0px));
-        gap: 0.3rem;
+        padding: 0.3rem 0.35rem calc(0.3rem + env(safe-area-inset-bottom, 0px));
+        gap: 0.15rem;
+      }
+      .bottom-nav::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 2px;
+        background: var(--grad-1);
+        opacity: 0.85;
       }
       .bottom-nav a {
         flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
         text-align: center;
-        font-family: 'VT323', monospace;
-        font-size: 1.05rem;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        color: var(--ink);
+        color: var(--ink-dim);
         text-decoration: none;
         border: 0;
-        padding: 0.45rem 0.2rem;
-        border-radius: 6px;
-        background: var(--glass);
-        box-shadow: inset 0 0 0 1px var(--line);
-        transition: color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+        padding: 0.4rem 0.1rem 0.35rem;
+        border-radius: 8px;
+        position: relative;
+        transition: color 0.15s ease, background 0.15s ease;
       }
-      .bottom-nav a.active, .bottom-nav a:hover { color: var(--bg); background: var(--lime); box-shadow: 0 0 12px rgba(57,255,20,0.5), inset 0 0 0 1px var(--lime); }
+      .bottom-nav .bn-ico { line-height: 0; }
+      .bottom-nav .bn-ico svg {
+        width: 20px;
+        height: 20px;
+        display: block;
+        filter: drop-shadow(0 0 0 transparent);
+        transition: filter 0.15s ease;
+      }
+      .bottom-nav a.active .bn-ico svg { filter: drop-shadow(0 0 5px rgba(57,255,20,0.8)); }
+      .bottom-nav .bn-lbl {
+        font-family: 'Press Start 2P', monospace;
+        font-size: 0.42rem;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+      .bottom-nav a.active,
+      .bottom-nav a:hover {
+        color: var(--lime);
+        background: rgba(57,255,20,0.08);
+        text-shadow: 0 0 10px rgba(57,255,20,0.55);
+      }
+      .bottom-nav a.active::after {
+        content: '';
+        position: absolute;
+        top: -2px; left: 22%; right: 22%;
+        height: 2px;
+        background: var(--lime);
+        box-shadow: 0 0 8px var(--lime);
+      }
 
       /* ========== SECTIONS ========== */
       section {
@@ -745,7 +779,7 @@
 
       .card-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
         gap: 2rem;
         margin: 2rem 0;
       }
@@ -764,7 +798,10 @@
         flex-direction: column;
         cursor: pointer;
         content-visibility: auto;
-        contain-intrinsic-size: auto 640px;
+        /* height hint only — hinting the WIDTH (contain-intrinsic-size)
+           forced 640px-wide grid tracks and broke mobile scaling */
+        contain-intrinsic-width: auto 300px;
+        contain-intrinsic-height: auto 640px;
       }
       .viewing-window:hover,
       .viewing-window:focus-visible {
@@ -1269,7 +1306,7 @@
         section { padding: 5.5rem 1rem 6.5rem; } /* clear the bottom bar */
         footer { padding-bottom: 6rem; }
 
-        .card-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+        .card-grid { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
         .cabinet-controls { grid-template-columns: 1fr 1fr; }
         .hero-title { margin: 2rem auto 1rem; }
         .modal-links { grid-template-columns: 1fr 1fr; }
@@ -1718,14 +1755,19 @@
          .music-toggle / .oracle-panel rules so it wins on source order; otherwise
          the pills fall back to bottom:1.25rem and overlap the bottom tab bar. */
       @media (max-width: 768px) {
+        /* compact round pills on mobile: icon only, labels hidden —
+           they stop covering card content near the bottom bar */
         .oracle-fab, .music-toggle {
-          bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
-          padding: 0.55rem 0.8rem;
+          bottom: calc(4.4rem + env(safe-area-inset-bottom, 0px));
+          padding: 0.75rem;
           font-size: 0.55rem;
         }
+        .music-toggle .music-label, .oracle-fab .fab-lbl { display: none; }
+        .oracle-fab .orb { font-size: 0.95rem; line-height: 1; }
         .oracle-fab   { left: 0.75rem; }
         .music-toggle { right: 0.75rem; }
         .oracle-panel { left: 0.5rem; right: 0.5rem; width: auto; bottom: calc(8rem + env(safe-area-inset-bottom, 0px)); }
+        .toast { bottom: calc(4.6rem + env(safe-area-inset-bottom, 0px)); }
       }
 
       .oracle-head {
@@ -1875,11 +1917,11 @@
 
     <!-- mobile bottom tab bar -->
     <nav class="bottom-nav" aria-label="Primary">
-      <a href="#home" class="nav-link active">HOME</a>
-      <a href="#fake-rares" class="nav-link">RARES</a>
-      <a href="#fake-commons" class="nav-link">COMMONS</a>
-      <a href="#history" class="nav-link">HISTORY</a>
-      <a href="#console" id="console-btn-m">SEARCH</a>
+      <a href="#home" class="nav-link active"><i class="bn-ico" aria-hidden="true"><svg viewBox="0 0 16 16" shape-rendering="crispEdges" fill="currentColor"><rect x="7" y="2" width="2" height="1"/><rect x="6" y="3" width="4" height="1"/><rect x="5" y="4" width="6" height="1"/><rect x="4" y="5" width="8" height="1"/><rect x="5" y="6" width="6" height="4"/><rect x="5" y="10" width="2" height="4"/><rect x="9" y="10" width="2" height="4"/></svg></i><span class="bn-lbl">HOME</span></a>
+      <a href="#fake-rares" class="nav-link"><i class="bn-ico" aria-hidden="true"><svg viewBox="0 0 16 16" shape-rendering="crispEdges" fill="currentColor"><rect x="7" y="1" width="2" height="4"/><rect x="7" y="11" width="2" height="4"/><rect x="1" y="7" width="4" height="2"/><rect x="11" y="7" width="4" height="2"/><rect x="6" y="6" width="4" height="4"/></svg></i><span class="bn-lbl">RARES</span></a>
+      <a href="#fake-commons" class="nav-link"><i class="bn-ico" aria-hidden="true"><svg viewBox="0 0 16 16" shape-rendering="crispEdges" fill="currentColor"><rect x="2" y="2" width="5" height="5"/><rect x="9" y="2" width="5" height="5"/><rect x="2" y="9" width="5" height="5"/><rect x="9" y="9" width="5" height="5"/></svg></i><span class="bn-lbl">COMMONS</span></a>
+      <a href="#history" class="nav-link"><i class="bn-ico" aria-hidden="true"><svg viewBox="0 0 16 16" shape-rendering="crispEdges" fill="currentColor"><rect x="3" y="1" width="10" height="2"/><rect x="4" y="3" width="8" height="2"/><rect x="6" y="5" width="4" height="2"/><rect x="7" y="7" width="2" height="2"/><rect x="6" y="9" width="4" height="2"/><rect x="4" y="11" width="8" height="2"/><rect x="3" y="13" width="10" height="2"/></svg></i><span class="bn-lbl">HISTORY</span></a>
+      <a href="#console" id="console-btn-m"><i class="bn-ico" aria-hidden="true"><svg viewBox="0 0 16 16" shape-rendering="crispEdges" fill="currentColor"><rect x="4" y="2" width="6" height="2"/><rect x="2" y="4" width="2" height="6"/><rect x="10" y="4" width="2" height="6"/><rect x="4" y="10" width="6" height="2"/><rect x="11" y="11" width="2" height="2"/><rect x="13" y="13" width="2" height="2"/></svg></i><span class="bn-lbl">SEARCH</span></a>
     </nav>
 
     <!-- ================== HOME ================== -->
@@ -2084,7 +2126,7 @@
 
     <!-- ================== FAKE ORACLE ================== -->
     <button class="oracle-fab" id="oracle-fab" type="button" aria-label="Ask the FAKE Oracle" aria-expanded="false">
-      <span class="orb" aria-hidden="true">&#9679;</span> FAKE ORACLE
+      <span class="orb" aria-hidden="true">&#9679;</span><span class="fab-lbl">&nbsp;FAKE ORACLE</span>
     </button>
     <div class="oracle-panel" id="oracle-panel" hidden>
       <div class="oracle-head">FAKE ORACLE // LORE TERMINAL <button id="oracle-close" type="button" aria-label="Close oracle">&#10005;</button></div>
@@ -2604,6 +2646,7 @@
         try { t = document.startViewTransition(mutate); }
         catch (e) { mutate(); if (clean) clean(); return; }
         if (clean) t.finished.then(clean, clean);
+        else t.finished.catch(() => {}); // rapid switches abort transitions — that's fine
       }
 
       /* ================================================================
