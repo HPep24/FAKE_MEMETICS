@@ -1,0 +1,465 @@
+{
+  "facts": [
+    {
+      "id": "f001",
+      "topic": "fake-rares-origin",
+      "q": ["what are fake rares", "who started fake rares", "fake rares history", "how did fake rares start"],
+      "a": "Fake Rares began in September 2021 when Rare Scrilla, an original Rare Pepe artist, broke the one rule of the official Rare Pepe Telegram by posting a non-official Pepe asset. He was banned, so he started his own chat, 'BEWARE OF FAKE RARES,' as a home for unofficial 'fake' Pepes. What began as a troll became a full ecosystem that pays homage to Rare Pepes with similar structure and rules, but a more decentralized, fee-free curation process.",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares.md",
+      "cards": ["FREEDOMKEK"]
+    },
+    {
+      "id": "f002",
+      "topic": "freedomkek",
+      "q": ["what is freedomkek", "proof of ban card", "first fake rare", "series 0 card 1"],
+      "a": "FREEDOMKEK is the card Rare Scrilla shared that got him banned from the Rare Pepe Telegram on Sept 21, 2021 — a Fake Rare rejected from the directory back in 2018 that he'd rediscovered in his wallet. Nicknamed the 'Proof of Ban' card, it became Series 0, Card 1: the first entry in the Fake Rare Directory.",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares/fake-rares-card-specific-lore.md",
+      "cards": ["FREEDOMKEK"]
+    },
+    {
+      "id": "f003",
+      "topic": "fakeasf",
+      "q": ["what is fakeasf", "access card fake rares", "series 1 card 1"],
+      "a": "FAKEASF (Series 1, Card 1) is a community-created card airdropped to the first 100 people who joined the Fake Rares Telegram. It doubles as the ecosystem's 'access card': submitting a new Fake Rare to the directory requires destroying one FAKEASF token.",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares/fake-rares-card-specific-lore.md",
+      "cards": ["FAKEASF"]
+    },
+    {
+      "id": "f004",
+      "topic": "faketorch",
+      "q": ["what is faketorch", "the only 1 of 1 fake rare"],
+      "a": "FAKETORCH (Series 1, Card 2) is the only 1-of-1 card in the Fake Rares collection. It was designed to pass from faker to faker weekly, with each holder earning the right to add a qualifying old-school fake into Series 0, the series reserved for Rare Pepe-era rejects.",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares/fake-rares-card-specific-lore.md",
+      "cards": ["FAKETORCH"]
+    },
+    {
+      "id": "f005",
+      "topic": "fake-commons-vs-fake-rares",
+      "q": ["difference between fake rares and fake commons", "what are fake commons", "fake commons vs fake rares"],
+      "a": "Fake Commons is the looser, experimental sibling of Fake Rares: fewer rules, a lower barrier to entry, and more room for artists to test out distribution ideas. Entry costs burning at least 2,100 PEPECASH, versus destroying a FAKEASF token for Fake Rares. Commons is a common on-ramp for new artists before they graduate to Fake Rares.",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares/fake-commons.md",
+      "cards": []
+    },
+    {
+      "id": "f006",
+      "topic": "rare-pepe-scientists-retirement",
+      "q": ["why did fake rares start", "rare pepe scientists retire", "why is the rare pepe directory closed"],
+      "a": "The volunteer 'Rare Pepe Scientists' who vetted cards for the official Rare Pepe Directory stopped taking new submissions around April 2018, once the certified set reached 1,774 cards. Fakes and rejects that never made the cut had nowhere to go — the gap that Fake Rares filled in 2021.",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares.md",
+      "cards": []
+    },
+    {
+      "id": "f007",
+      "topic": "fake-rares-submission-rules",
+      "q": ["how do i submit a fake rare", "fake rares submission rules", "fake rares format requirements"],
+      "a": "To submit a Fake Rare, an artist first mints a locked, non-divisible Counterparty asset (400×560, animated GIFs kept under ~3MB) and destroys one FAKEASF token via the Fake Submission Portal. Rules cap issuance between 21 and 10,000 tokens, bar NSFW content, and generally allow one open submission per artist until it's approved or denied.",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares/fake-rares-submission-rules.md",
+      "cards": []
+    },
+    {
+      "id": "f008",
+      "topic": "fake-commons-submission-rules",
+      "q": ["how do i submit a fake common", "fake commons submission rules"],
+      "a": "Submitting to Fake Commons requires destroying at least 2,100 PEPECASH via the Fake Submission Portal. The base card image should be portrait, roughly 400×560, and under 10MB; the asset's token description should reference a JSON that points to the base image as 'image_large.' Unlike Fake Rares, Commons has no one-submission-at-a-time limit.",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares/fake-commons/fake-commons-submission-rules.md",
+      "cards": []
+    },
+    {
+      "id": "f009",
+      "topic": "what-is-rare-pepe",
+      "q": ["what is a rare pepe", "how many rare pepes are there", "rare pepe directory basics"],
+      "a": "Rare Pepes are the original certified set: 1,774 cards across 36 series, issued on Bitcoin via Counterparty between 2016 and 2018, and unrelated to Matt Furie despite using his character. Every card was hand-approved by the volunteer 'Rare Pepe Scientists,' and submissions closed for good once the set was complete.",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/the-rare-pepe-blockchain-project.md",
+      "cards": ["A1619006396900464164", "RAREPEPEALSO", "RAREPEPETOO", "TRUMPMOTO", "PUNKSMEETUP"]
+    },
+    {
+      "id": "f010",
+      "topic": "rare-pepe-submission-rules-historical",
+      "q": ["original rare pepe submission rules", "how were rare pepes approved"],
+      "a": "Historical Rare Pepe submission rules required a locked, non-divisible 400×560 Counterparty asset, at minimum some connection to Pepe, no NSFW content, issuance between 100 and 100,000 shares, and a 200 PEPECASH submission fee. Only one submission was allowed per artist per day, and proven plagiarism sent the fee to a burn address.",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/the-rare-pepe-blockchain-project/the-rare-pepe-directory.md",
+      "cards": []
+    },
+    {
+      "id": "f011",
+      "topic": "dank-rares-def",
+      "q": ["what are dank rares", "dank rares vs fake rares"],
+      "a": "Dank Rares is a separate directory of unofficial Pepe assets, distinct from Fake Rares, curated by original Rare Pepe artist Dankboost and hosted at the Dank Directory.",
+      "source": "https://wiki.pepe.wtf/dank-rares.md",
+      "cards": []
+    },
+    {
+      "id": "f012",
+      "topic": "matt-furie-bio",
+      "q": ["who is matt furie", "who created pepe the frog", "matt furie biography"],
+      "a": "Matt Furie was born in 1979 in Columbus, Ohio, and graduated from Ohio Wesleyan University in 2001; he's now based in Los Angeles. He describes his style as 'children's book illustrations for adults,' and his comic 'Boy's Club,' published by Fantagraphics, is where Pepe the Frog first appeared.",
+      "source": "https://wiki.pepe.wtf/chapter-1-historical-lore/the-creator-matt-furie.md",
+      "cards": []
+    },
+    {
+      "id": "f013",
+      "topic": "pepe-created-boys-club",
+      "q": ["origin of pepe the frog", "boys club comic", "who else is in boys club"],
+      "a": "Pepe the Frog started as one member of a four-character friend group in Matt Furie's comic 'Boy's Club,' alongside Landwolf (the party dog), Andy (the jokester), and Brett — with Pepe cast as the group's easygoing little brother. Furie drew the character in Microsoft Paint and posted early strips to his MySpace blog.",
+      "source": "https://wiki.pepe.wtf/chapter-1-historical-lore/the-creation-pepe-the-frog/birth-of-pepe-the-frog.md",
+      "cards": []
+    },
+    {
+      "id": "f014",
+      "topic": "feels-good-man-phrase-origin",
+      "q": ["where does feels good man come from", "origin of feels good man meme"],
+      "a": "'Feels good, man' comes from a 'Boy's Club' strip where Pepe is caught peeing with his pants pulled all the way down and explains it feels good. The phrase spread first through bodybuilding forums, then across the wider internet; Jon Hendren posted the comic to 4chan on Feb 4, 2008, and Urban Dictionary recognized the phrase in March 2009.",
+      "source": "https://wiki.pepe.wtf/chapter-1-historical-lore/the-creation-pepe-the-frog/birth-of-the-meme.md",
+      "cards": []
+    },
+    {
+      "id": "f015",
+      "topic": "sad-frog-feels-bad-man",
+      "q": ["what is sad frog", "feels bad man origin"],
+      "a": "'Sad Frog,' or 'Feels Bad Man,' is a distraught-looking edit of Pepe that began circulating on 4chan around Jan 20, 2009, used to express disappointment or failure. It's treated as the emotional opposite of the original 'Feels Good Man' Pepe.",
+      "source": "https://wiki.pepe.wtf/chapter-1-historical-lore/the-creation-pepe-the-frog/4chan-and-the-sad-frog.md",
+      "cards": []
+    },
+    {
+      "id": "f016",
+      "topic": "pepe-becomes-hijacked-4chan",
+      "q": ["how did pepe become a 4chan meme", "why did 4chan claim pepe"],
+      "a": "As Pepe spread to Instagram and mainstream celebrities like Katy Perry and Nicki Minaj posted him, the 4chan community that had adopted him as their own reacted badly to 'normies' co-opting what they saw as their symbol — a resentment that fed directly into the character's darker, more offensive spinoffs.",
+      "source": "https://wiki.pepe.wtf/chapter-1-historical-lore/the-creation-pepe-the-frog/4chan-and-the-sad-frog.md",
+      "cards": []
+    },
+    {
+      "id": "f017",
+      "topic": "angry-pepe-beta-uprising",
+      "q": ["what is angry pepe", "beta uprising meme"],
+      "a": "'Angry Pepe' emerged as 4chan's deliberately offensive response to outsiders adopting the meme — the idea being that the more offensive Pepe became, the less appealing he'd be to mainstream users. This escalated into dark, ironic 'Beta Uprising' imagery that researchers have since linked to real-world violence being memeified online.",
+      "source": "https://wiki.pepe.wtf/chapter-1-historical-lore/the-creation-pepe-the-frog/4chan-and-the-sad-frog.md",
+      "cards": []
+    },
+    {
+      "id": "f018",
+      "topic": "smug-pepe-trump",
+      "q": ["smug pepe and trump", "how did pepe get linked to trump"],
+      "a": "'Smug Pepe' became associated with Donald Trump's 2016 campaign, since 4chan users saw him as a similarly polarizing, widely-disliked figure. Trump himself tweeted a Pepe-styled illustration of himself on Oct 13, 2015, which the community read as tacit approval and fueled a wave of political Pepe memes.",
+      "source": "https://wiki.pepe.wtf/chapter-1-historical-lore/the-creation-pepe-the-frog/4chan-and-the-sad-frog.md",
+      "cards": []
+    },
+    {
+      "id": "f019",
+      "topic": "reclaiming-savepepe-campaign",
+      "q": ["savepepe campaign", "matt furie reclaim pepe", "adl pepe hate symbol"],
+      "a": "After the Anti-Defamation League listed Pepe as a hate symbol, Matt Furie partnered with the ADL on a #SavePepe campaign inviting people to draw and share their own wholesome versions of the character. The campaign, and an associated Kickstarter, drew support from other cartoonists but didn't turn the tide before Trump's election win emboldened the meme's darker users.",
+      "source": "https://wiki.pepe.wtf/chapter-1-historical-lore/the-creation-pepe-the-frog/reclaiming-pepe.md",
+      "cards": []
+    },
+    {
+      "id": "f020",
+      "topic": "rip-pepe-comic",
+      "q": ["rip pepe comic", "matt furie kills pepe"],
+      "a": "On May 6, 2017, Matt Furie published a comic depicting Pepe's funeral, attended by the other 'Boy's Club' characters — a symbolic attempt to distance himself from how the character had been co-opted. Major outlets covered the story, though it didn't stop the meme's misuse.",
+      "source": "https://wiki.pepe.wtf/chapter-1-historical-lore/the-creation-pepe-the-frog/reclaiming-pepe.md",
+      "cards": []
+    },
+    {
+      "id": "f021",
+      "topic": "infowars-lawsuit",
+      "q": ["matt furie sues alex jones", "infowars pepe lawsuit"],
+      "a": "Matt Furie sued Alex Jones's Infowars for selling a poster featuring Pepe alongside Trump and other right-wing figures without permission. After a lengthy legal battle, Infowars agreed in June 2019 to pay Furie $2,000,000 in damages — a case that helped Furie also win intellectual-property actions against other figures who'd misused the character.",
+      "source": "https://wiki.pepe.wtf/chapter-1-historical-lore/the-creation-pepe-the-frog/reclaiming-pepe.md",
+      "cards": []
+    },
+    {
+      "id": "f022",
+      "topic": "hong-kong-protest-pepe",
+      "q": ["pepe hong kong protests", "pepe as protest symbol"],
+      "a": "During the 2019–2020 Hong Kong protests, demonstrators adopted a version of Pepe wearing protest gear as a symbol of resistance and youth, spread widely as messaging-app stickers. Furie welcomed this use, since it carried no alt-right associations.",
+      "source": "https://wiki.pepe.wtf/chapter-1-historical-lore/the-creation-pepe-the-frog/reclaiming-pepe.md",
+      "cards": []
+    },
+    {
+      "id": "f023",
+      "topic": "groyper-def",
+      "q": ["what is groyper", "groyper army meaning"],
+      "a": "'Groyper' is a chin-resting Pepe illustration that also names a loosely organized group of far-right commentators critical of mainstream conservatism, associated with Nicholas J. Fuentes.",
+      "source": "https://wiki.pepe.wtf/chapter-1-historical-lore/the-creation-pepe-the-frog/types-of-pepes.md",
+      "cards": []
+    },
+    {
+      "id": "f024",
+      "topic": "apu-apustaja-def",
+      "q": ["what is apu apustaja", "help helper pepe"],
+      "a": "Apu Apustaja ('Help Helper') is a crudely drawn Pepe variant in the Spurdo Spärde style, believed to have started on the Finnish imageboard Ylilauta before spreading through 4chan and becoming a staple emote on Discord and Telegram.",
+      "source": "https://wiki.pepe.wtf/chapter-1-historical-lore/the-creation-pepe-the-frog/types-of-pepes.md",
+      "cards": []
+    },
+    {
+      "id": "f025",
+      "topic": "clown-pepe-honkler",
+      "q": ["what is clown pepe", "honkler meme origin"],
+      "a": "'Clown Pepe' (Honkler/Pepoclown), a rainbow-wigged, red-nosed Pepe used with 'Clown World' jokes, originated on a League of Legends Discord server under the alias 'Brizi' before a 2019 YouTube video spread it widely.",
+      "source": "https://wiki.pepe.wtf/chapter-1-historical-lore/the-creation-pepe-the-frog/types-of-pepes.md",
+      "cards": []
+    },
+    {
+      "id": "f026",
+      "topic": "collectible-pepes-pre-blockchain",
+      "q": ["rare pepe before blockchain", "pre-blockchain collectible pepes"],
+      "a": "Before Rare Pepes existed on the blockchain, 4chan's /r9k/ board had already started treating Pepe images as tradeable 'rare' collectibles as early as October 2014, complete with eBay listings that reached nearly $100,000 for a single collection — a direct precursor to the tokenized version that followed in 2016.",
+      "source": "https://wiki.pepe.wtf/chapter-1-historical-lore/the-creation-pepe-the-frog/types-of-pepes.md",
+      "cards": []
+    },
+    {
+      "id": "f027",
+      "topic": "rare-pepe-blockchain-launch",
+      "q": ["when did rare pepe start", "first rare pepe blockchain", "rarepepe card history", "nakamoto rarepepe card", "dorian nakamoto pepe"],
+      "a": "The Rare Pepe Blockchain Project launched Sept 9, 2016, when the RAREPEPE card — based on Dorian Nakamoto, the man Newsweek misidentified as Bitcoin's creator — became the first Rare Pepe on the blockchain. An artist known only as Mike posted it in a Telegram chat with no marketplace or plan for a series yet in place.",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/the-rare-pepe-blockchain-project/famous-rare-pepe-cards.md",
+      "cards": ["RAREPEPE", "A1619006396900464164", "RAREPEPEALSO", "RAREPEPETOO", "TRUMPMOTO"]
+    },
+    {
+      "id": "f028",
+      "topic": "homerpepe-story",
+      "q": ["what is homerpepe", "most expensive rare pepe", "1 of 1 rare pepe"],
+      "a": "HOMERPEPE, a unique 1-of-1 card, sold for 350,000 PEPECASH (~$39,000) at the 2018 Rare Digital Art Festival in NYC — widely cited as one of the first major NFT sales. Buyer Peter Kell later resold it in March 2021 for 205 ETH (~$320,000).",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/the-rare-pepe-blockchain-project/rare-pepe-valuation.md",
+      "cards": ["HOMERPEPE"]
+    },
+    {
+      "id": "f029",
+      "topic": "lordkek-story",
+      "q": ["what is lordkek", "lordkek divisible mistake"],
+      "a": "LORDKEK holds near-mythical status in Rare Pepe lore: creator @Robness accidentally minted it as infinitely divisible, so it broke apart into tradeable 'dust' fractions shortly after minting. Only 7 addresses are believed to hold a full, unbroken card.",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/the-rare-pepe-blockchain-project/famous-rare-pepe-cards.md",
+      "cards": ["LORDKEK"]
+    },
+    {
+      "id": "f030",
+      "topic": "djpepe-first-audio-nft",
+      "q": ["first audio nft", "what is djpepe"],
+      "a": "DJPEPE, created by Rare Scrilla on Oct 13, 2016, is considered the first audio NFT — owners could unlock a private SoundCloud link with exclusive music, one of the earliest examples of 'unlockable content' tied to a token.",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/the-rare-pepe-blockchain-project/famous-rare-pepe-cards.md",
+      "cards": ["DJPEPE"]
+    },
+    {
+      "id": "f031",
+      "topic": "feelsgoodman-card-matt-furie",
+      "q": ["matt furie's rare pepe card", "feelsgoodman card"],
+      "a": "One slot in the Rare Pepe Directory (Series 20, Card 50) was reserved for Matt Furie himself. Even though the directory had closed in 2018, Furie finally submitted his own card, FEELSGOODMAN, on Oct 5, 2021 — officially completing the 1,774-card set.",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/the-rare-pepe-blockchain-project/famous-rare-pepe-cards.md",
+      "cards": ["FEELSGOODMAN"]
+    },
+    {
+      "id": "f032",
+      "topic": "pepecash-original-card",
+      "q": ["pepecash rare pepe card", "pepecash series 1"],
+      "a": "PEPECASH is itself Rare Pepe Series 1, Card 11 — the same token used as the ecosystem's currency. A fixed 1 billion were issued, and a portion of weekly submission fees was routinely burned, making it mildly deflationary over time.",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/the-rare-pepe-blockchain-project/famous-rare-pepe-cards.md",
+      "cards": ["PEPECASH"]
+    },
+    {
+      "id": "f033",
+      "topic": "rare-pepe-valuation-factors",
+      "q": ["how are rare pepes valued", "what makes a rare pepe valuable"],
+      "a": "Rare Pepe value is generally driven by three factors: age (earlier issuance dates), rarity (lower supply), and 'dankness' — the card's memetic or cultural weight within the community.",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/the-rare-pepe-blockchain-project/rare-pepe-valuation.md",
+      "cards": []
+    },
+    {
+      "id": "f034",
+      "topic": "unique-sets-overview",
+      "q": ["rare pepe series and sets", "themed rare pepe collections"],
+      "a": "Several Rare Pepe artists built connected mini-series across the 1,774-card set — DanDarkPill's fine-art homages (Picasso, Van Gogh, Dali) and Putin portraits, Rare Scrilla's hip-hop 'elements' series featuring DJPEPE, Mr Hansel's three-part Pepe narrative, and Kappepe's jazz-trio and Japanese-seasons sets are among the best known.",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/the-rare-pepe-blockchain-project/unique-rare-pepe-sets.md",
+      "cards": []
+    },
+    {
+      "id": "f035",
+      "topic": "rare-pepe-scientists-who",
+      "q": ["who were the rare pepe scientists", "names of rare pepe scientists"],
+      "a": "The original Rare Pepe Scientists — the volunteer curators who vetted submissions for originality and 'dankness' — included Mike (creator of the first three cards), Joe Looney (also the builder of RarePepeWallet), John Villar, Shawn Leary, Theo Goodman, and J-Dog.",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/the-rare-pepe-blockchain-project/rare-pepe-scientists.md",
+      "cards": []
+    },
+    {
+      "id": "f036",
+      "topic": "rare-pepe-wallet-history",
+      "q": ["who made rare pepe wallet", "history of rarepepewallet"],
+      "a": "Joe Looney built RarePepeWallet in 2016, letting people buy, sell, trade, and even gift Rare Pepes directly on-chain, at zero commission — features that predate Metamask and OpenSea and helped establish conventions the broader NFT market would later adopt.",
+      "source": "https://wiki.pepe.wtf/chapter-3-blockchain-counterparty-how-to/best-pepe-wallets.md",
+      "cards": []
+    },
+    {
+      "id": "f037",
+      "topic": "fake-rare-wallet-def",
+      "q": ["what is fake rare wallet", "fakerarewallet"],
+      "a": "FakeRareWallet, also built by Joe Looney, is the dedicated wallet for viewing and managing Fake Rares — notably it correctly displays animated cards, which RarePepeWallet (built for the original, mostly static Rare Pepes) does not.",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares.md",
+      "cards": []
+    },
+    {
+      "id": "f038",
+      "topic": "dispensers-explainer",
+      "q": ["what is a counterparty dispenser", "how do dispensers work"],
+      "a": "A Counterparty dispenser works like a vending machine: someone locks up a supply of an asset, and anyone who sends the right amount of BTC to it receives the asset automatically. Because it's a simple smart contract, dispensers can run dry before a slow transaction confirms, so using a reasonable fee and buying from a recognizable address are standard precautions.",
+      "source": "https://wiki.pepe.wtf/chapter-3-blockchain-counterparty-how-to/dispensers-what-are-they-how-to-use-them.md",
+      "cards": []
+    },
+    {
+      "id": "f039",
+      "topic": "counterparty-proof-of-burn",
+      "q": ["how was xcp created", "counterparty proof of burn"],
+      "a": "Counterparty's native token, XCP, was created via proof-of-burn in January 2014: roughly 2,131 BTC were sent irretrievably to an unspendable address in exchange for the entire XCP supply, a deliberate move to avoid an ICO-style fundraiser or first-mover advantage for insiders.",
+      "source": "https://wiki.pepe.wtf/chapter-3-blockchain-counterparty-how-to/counterparty-what-is-it.md",
+      "cards": []
+    },
+    {
+      "id": "f040",
+      "topic": "pepaagotchi",
+      "q": ["what is pepaagotchi"],
+      "a": "PEPAAGOTCHI (Series 4, Card 46) is a collaboration between @BabyPicasso and @NftRooster paying tribute to Aavegotchi, echoing an earlier Rare Pepe (SARUTOBIPEPE) that unlocked a skin in the first playable Rare Pepe game, Sarutobi.",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares/fake-rares-card-specific-lore.md",
+      "cards": ["PEPAAGOTCHI"]
+    },
+    {
+      "id": "f041",
+      "topic": "misspepepunk",
+      "q": ["what is misspepepunk"],
+      "a": "MISSPEPEPUNK (Series 4, Card 43) is a Fake Rare tribute to MISSPEPE, an original Rare Pepe — both made by the same artist, Ffmad. The card depicts an NFT-savvy teacher character, with plans for unique profile-picture variants across its 100-piece run.",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares/fake-rares-card-specific-lore.md",
+      "cards": ["MISSPEPEPUNK"]
+    },
+    {
+      "id": "f042",
+      "topic": "fakewax",
+      "q": ["what is fakewax"],
+      "a": "FAKEWAX (Series 4, Card 51) broke the usual 50-card-per-series pattern as the only 51st card. Created by Viva La Vandal for an audio-focused series, holders could redeem an actual vinyl record containing the series' exclusive content.",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares/fake-rares-card-specific-lore.md",
+      "cards": ["FAKEWAX"]
+    },
+    {
+      "id": "f043",
+      "topic": "pepefication",
+      "q": ["what is pepefication"],
+      "a": "PEPEFICATION (Series 7, Card 22) by Crimson Rider depicts a figure becoming progressively more 'frog' with each door opened into Pepe culture, until wealth and obsession strip reality of meaning entirely.",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares/fake-rares-card-specific-lore.md",
+      "cards": ["PEPEFICATION"]
+    },
+    {
+      "id": "f044",
+      "topic": "peponacid",
+      "q": ["what is peponacid"],
+      "a": "PEPONACID (Series 4, Card 16) reimagines Pepe with a psychedelic twist, created by artist Prateek Dhiman as a personal homage to psychedelics.",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares/fake-rares-card-specific-lore.md",
+      "cards": ["PEPONACID"]
+    },
+    {
+      "id": "f045",
+      "topic": "fakebanksy",
+      "q": ["what is fakebanksy"],
+      "a": "FAKEBANKSY (Series 2, Card 1) by Wizard X plays on Banksy's shredded-painting stunt, with the artist noting: 'on a long enough timeline, every shitcoin gets shredded.'",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares/fake-rares-card-specific-lore.md",
+      "cards": ["FAKEBANKSY"]
+    },
+    {
+      "id": "f046",
+      "topic": "pepepopo",
+      "q": ["what is pepepopo"],
+      "a": "PEPEPOPO (Series 3, Card 32) by SeerLight blends Pepe with a 'Ghost in the Shell' and vaporwave aesthetic — the artist has said the idea came to him in the shower.",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares/fake-rares-card-specific-lore.md",
+      "cards": ["PEPEPOPO"]
+    },
+    {
+      "id": "f047",
+      "topic": "wagmiworld",
+      "q": ["what is wagmiworld"],
+      "a": "WAGMIWORLD (Series 8, Card 43) by SuperTrip64 was released alongside a free multiplayer browser game exploring a Pepe-themed amusement park, drawing 770 players in a single 24-hour event — an early example of a Fake Rare launching with playable, interactive content.",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares/fake-rares-card-specific-lore.md",
+      "cards": ["WAGMIWORLD"]
+    },
+    {
+      "id": "f048",
+      "topic": "bootlegged",
+      "q": ["what is bootlegged card"],
+      "a": "BOOTLEGGED (Series 8, Card 17) was SeerLight's first Fake Rare. Some animation frames embed a timestamp matching the exact moment the artist locked the token's issuance — read by collectors as the artwork's literal 'finishing stroke.'",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares/fake-rares-card-specific-lore.md",
+      "cards": ["BOOTLEGGED"]
+    },
+    {
+      "id": "f049",
+      "topic": "pepemagpie",
+      "q": ["what is pepemagpie"],
+      "a": "PEPEMAGPIE (Series 4, Card 25) by Pepenardo depicts a hermit peper surrounded by symbols referencing other Counterparty assets; it was also featured on the cover of FAKEFAKEWAX, a 35-edition vinyl tribute to the original FAKEWAX auctioned through PepePawnShop.",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares/fake-rares-card-specific-lore.md",
+      "cards": ["PEPEMAGPIE", "FAKEFAKEWAX"]
+    },
+    {
+      "id": "f050",
+      "topic": "series-8-summer-of-pepe",
+      "q": ["what is summer of pepe", "series 8 fake rares"],
+      "a": "Series 8, curated by Vincent Van Dough in 2022, brought together an all-star artist lineup and is widely credited with sparking the 'Summer of Pepe' — a surge of mainstream attention for Fake Rares that year.",
+      "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares.md",
+      "cards": []
+    }
+  ],
+  "glossary": [
+    { "term": "XCP (Counterparty)", "def": "A protocol layered on Bitcoin since 2014 that lets users issue and trade custom assets. Naming an asset costs 0.5 XCP; XCP itself was created through proof-of-burn rather than a sale.", "source": "https://wiki.pepe.wtf/chapter-3-blockchain-counterparty-how-to/counterparty-what-is-it.md" },
+    { "term": "PEPECASH", "def": "The Rare Pepe ecosystem's native currency, a fixed-supply (1 billion) Counterparty token used historically for submission fees; roughly 30% has been sent to a burn address over time.", "source": "https://wiki.pepe.wtf/chapter-3-blockchain-counterparty-how-to/what-is-pepecash.md" },
+    { "term": "Rare Pepe", "def": "One of the 1,774 originally certified Pepe cards issued on Counterparty between 2016 and 2018, vetted by the volunteer 'Rare Pepe Scientists.' Submissions are permanently closed.", "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/the-rare-pepe-blockchain-project/the-rare-pepe-directory.md" },
+    { "term": "Fake Rare", "def": "An unofficial Pepe asset accepted into the Fake Rare Directory, following rules similar to Rare Pepes but curated informally by the community and gated by destroying a FAKEASF token.", "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares.md" },
+    { "term": "Fake Common", "def": "A lower-barrier, higher-volume counterpart to Fake Rares, gated by burning at least 2,100 PEPECASH rather than a FAKEASF token.", "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares/fake-commons.md" },
+    { "term": "Dank Rare", "def": "A separately curated directory of unofficial Pepe assets, run by original Rare Pepe artist Dankboost via the Dank Directory.", "source": "https://wiki.pepe.wtf/dank-rares.md" },
+    { "term": "Rare Pepe Scientists", "def": "The informal, volunteer group who vetted submissions to the original Rare Pepe Directory for originality and 'dankness' until the set closed at 1,774 cards.", "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/the-rare-pepe-blockchain-project/rare-pepe-scientists.md" },
+    { "term": "Dispenser", "def": "A Counterparty smart contract that works like a vending machine: it locks a supply of an asset and releases it automatically to anyone who sends the correct amount of BTC.", "source": "https://wiki.pepe.wtf/chapter-3-blockchain-counterparty-how-to/dispensers-what-are-they-how-to-use-them.md" },
+    { "term": "Proof-of-burn", "def": "A distribution method where value is destroyed (BTC sent to an unspendable address) rather than raised, used to mint the original XCP supply without giving anyone a fundraising advantage.", "source": "https://wiki.pepe.wtf/chapter-3-blockchain-counterparty-how-to/counterparty-what-is-it.md" },
+    { "term": "Locked / non-divisible", "def": "Two required settings for a Fake Rare or Rare Pepe asset: 'locked' prevents the supply from ever being inflated after minting, and 'non-divisible' keeps the token from being split into fractional units.", "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares/fake-rares-submission-rules.md" },
+    { "term": "RarePepeWallet", "def": "The 2016 wallet built by Joe Looney for buying, selling, trading, and destroying original Rare Pepes on-chain, predating tools like Metamask and OpenSea.", "source": "https://wiki.pepe.wtf/chapter-3-blockchain-counterparty-how-to/best-pepe-wallets.md" },
+    { "term": "FakeRareWallet", "def": "Joe Looney's companion wallet for the Fake Rares ecosystem, notable for correctly displaying animated cards.", "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares.md" },
+    { "term": "Series (Fake Rares)", "def": "The numbering system for Fake Rare drops; Series 0 is reserved for cards created in the Rare Pepe era that were rejected or never submitted, while Series 1 onward covers new community submissions.", "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares/fake-rares-card-specific-lore.md" },
+    { "term": "400×560", "def": "The standard portrait aspect ratio required for Rare Pepe and Fake Rare card art, carried over from the original Rare Pepe template.", "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/the-rare-pepe-blockchain-project/the-rare-pepe-directory.md" },
+    { "term": "Fake Scientists", "def": "An informal, half-joking term for whoever is currently curating submissions to the Fake Rare Directory, echoing the original Rare Pepe Scientists.", "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares.md" }
+  ],
+  "timeline": [
+    { "date": "2008-02-04", "event": "The 'Feels Good Man' Boy's Club comic strip is posted to 4chan by Jon Hendren, kicking off Pepe's meme career.", "source": "https://wiki.pepe.wtf/chapter-1-historical-lore/the-creation-pepe-the-frog/birth-of-the-meme.md" },
+    { "date": "2009-01-20", "event": "A distraught edited version of Pepe — 'Feels Bad Man' / Sad Frog — begins circulating on 4chan.", "source": "https://wiki.pepe.wtf/chapter-1-historical-lore/the-creation-pepe-the-frog/4chan-and-the-sad-frog.md" },
+    { "date": "2009-03", "event": "Urban Dictionary recognizes the phrase 'Feels Good Man.'", "source": "https://wiki.pepe.wtf/chapter-1-historical-lore/the-creation-pepe-the-frog/birth-of-the-meme.md" },
+    { "date": "2012", "event": "McSweeney's publishes Matt Furie's first children's book, 'The Night Riders.'", "source": "https://wiki.pepe.wtf/chapter-1-historical-lore/the-creator-matt-furie.md" },
+    { "date": "2014-01", "event": "Counterparty's XCP token is created via proof-of-burn: roughly 2,131 BTC sent to an unspendable address.", "source": "https://wiki.pepe.wtf/chapter-3-blockchain-counterparty-how-to/counterparty-what-is-it.md" },
+    { "date": "2014-10", "event": "4chan's /r9k/ board starts trading Pepe images as collectible 'rares' pre-blockchain, foreshadowing Rare Pepes.", "source": "https://wiki.pepe.wtf/chapter-1-historical-lore/the-creation-pepe-the-frog/types-of-pepes.md" },
+    { "date": "2015-10-13", "event": "Donald Trump tweets a Pepe-styled illustration of himself, which 4chan reads as endorsement.", "source": "https://wiki.pepe.wtf/chapter-1-historical-lore/the-creation-pepe-the-frog/4chan-and-the-sad-frog.md" },
+    { "date": "2016-09-09", "event": "RAREPEPE, the first Rare Pepe, is issued on the Bitcoin blockchain via Counterparty.", "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/the-rare-pepe-blockchain-project.md" },
+    { "date": "2016-10-13", "event": "DJPEPE is created, considered the first audio-linked NFT.", "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/the-rare-pepe-blockchain-project/famous-rare-pepe-cards.md" },
+    { "date": "2016-12-02", "event": "Trading of HAIRPEPE clogs the Bitcoin mempool.", "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/the-rare-pepe-blockchain-project/famous-rare-pepe-cards.md" },
+    { "date": "2017-05-06", "event": "Matt Furie publishes the 'RIP Pepe' comic, symbolically killing off the character.", "source": "https://wiki.pepe.wtf/chapter-1-historical-lore/the-creation-pepe-the-frog/reclaiming-pepe.md" },
+    { "date": "2018-01", "event": "HOMERPEPE, a unique 1/1 card, sells for 350,000 PEPECASH (~$39,000) at the Rare Digital Art Festival in NYC.", "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/the-rare-pepe-blockchain-project/rare-pepe-valuation.md" },
+    { "date": "2018-04", "event": "The Rare Pepe Scientists retire; the directory closes at 1,774 certified cards.", "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares.md" },
+    { "date": "2019-06", "event": "Infowars settles Matt Furie's lawsuit over unauthorized Pepe merchandise, paying $2,000,000 in damages.", "source": "https://wiki.pepe.wtf/chapter-1-historical-lore/the-creation-pepe-the-frog/reclaiming-pepe.md" },
+    { "date": "2019", "event": "Hong Kong protesters adopt a modified Pepe as a symbol of resistance during the 2019–2020 protests.", "source": "https://wiki.pepe.wtf/chapter-1-historical-lore/the-creation-pepe-the-frog/reclaiming-pepe.md" },
+    { "date": "2021-03", "event": "HOMERPEPE is resold for 205 ETH (~$320,000).", "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/the-rare-pepe-blockchain-project/rare-pepe-valuation.md" },
+    { "date": "2021-09-21", "event": "Rare Scrilla is banned from the Rare Pepe Telegram over the FREEDOMKEK card, sparking the Fake Rares movement.", "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares/fake-rares-card-specific-lore.md" },
+    { "date": "2021-10-05", "event": "Matt Furie submits FEELSGOODMAN, filling the Rare Pepe Directory's last reserved slot and officially completing the 1,774-card set.", "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/the-rare-pepe-blockchain-project/famous-rare-pepe-cards.md" },
+    { "date": "2022", "event": "Series 8, curated by Vincent Van Dough, launches an all-star artist lineup and is credited with igniting the 2022 'Summer of Pepe.'", "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares.md" },
+    { "date": "2026-07 (snapshot)", "event": "As of this Oracle update, the Fake Rare Directory spans Series 0 through 18, and Fake Commons has released dozens of numbered series plus special editions (Fake Basel, Kekmas, Pepes in Paris, and more).", "source": "https://fakeraredirectory.com/fake-rares/" }
+  ],
+  "resources": [
+    { "category": "Counterparty Tools", "label": "Counterparty.io (official site)", "url": "https://www.counterparty.io" },
+    { "category": "Counterparty Tools", "label": "XChain.io (block explorer)", "url": "https://www.xchain.io" },
+    { "category": "Counterparty Tools", "label": "University of Counterparty (video tutorials)", "url": "https://www.youtube.com/channel/UCoNpaXRjlY9iOBEbtPRFnnQ/videos" },
+    { "category": "Counterparty Tools", "label": "Robotlovecoffee.io (Counterparty tutorials)", "url": "https://robotlovecoffee.io/" },
+    { "category": "Directories & Explorers", "label": "Pepe.wtf", "url": "https://pepe.wtf/" },
+    { "category": "Directories & Explorers", "label": "Rare Pepe Directory", "url": "http://rarepepedirectory.com/" },
+    { "category": "Directories & Explorers", "label": "Fake Rare Directory", "url": "https://fakeraredirectory.com/" },
+    { "category": "Directories & Explorers", "label": "Dank Rare Directory", "url": "https://www.dankdirectory.io/" },
+    { "category": "Directories & Explorers", "label": "Rare Pepe Finder", "url": "https://rarepepefinder.com/" },
+    { "category": "Directories & Explorers", "label": "Dankset.io", "url": "https://dankset.io/" },
+    { "category": "Marketplaces", "label": "Scarce.city", "url": "https://scarce.city/" },
+    { "category": "Marketplaces", "label": "Counterparty Dispensers on XChain", "url": "https://xchain.io/dispensers" },
+    { "category": "Marketplaces", "label": "Rare Pepes on Magic Eden", "url": "https://magiceden.io/collections/ethereum/0x7e6027a6a84fc1f6db6782c523efe62c923e46ff" },
+    { "category": "Marketplaces", "label": "Fake Rares on Magic Eden", "url": "https://magiceden.io/collections/ethereum/0x4c03bcad293fb0562d26faa7d90a0cb3ea74c919" },
+    { "category": "Marketplaces", "label": "Emblem Vault Curated (OpenSea)", "url": "https://opensea.io/collection/rare-pepe-curated" },
+    { "category": "Wallets", "label": "Freewallet.io", "url": "http://freewallet.io/" },
+    { "category": "Wallets", "label": "Counterwallet", "url": "https://counterwallet.io/" },
+    { "category": "Wallets", "label": "Rare Pepe Wallet", "url": "https://rarepepewallet.com/" },
+    { "category": "Wallets", "label": "Fake Rare Wallet", "url": "https://fakerarewallet.com/" },
+    { "category": "Wallets", "label": "Casa Tookan Wallet", "url": "https://crystalsuite.com/casa-tookan-wallet/" }
+  ]
+}

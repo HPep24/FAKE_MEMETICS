@@ -2074,13 +2074,15 @@
     <div class="oracle-panel" id="oracle-panel" hidden>
       <div class="oracle-head">FAKE ORACLE // LORE TERMINAL <button id="oracle-close" type="button" aria-label="Close oracle">&#10005;</button></div>
       <div class="oracle-log" id="oracle-log">
-        <div class="omsg b">Ask me about the FAKES. I know every card's story. Kek.</div>
+        <div class="omsg b">Ask me about the FAKES — and the lore behind them. Card stories, Fake Rares history, Pepe's origins. Kek.</div>
       </div>
       <div class="oracle-sugg" id="oracle-sugg">
         <button type="button">what is fakequest?</button>
         <button type="button">which cards have sound?</button>
         <button type="button">shown at beeple studios?</button>
         <button type="button">what was first?</button>
+        <button type="button">what are fake rares?</button>
+        <button type="button">who is matt furie?</button>
       </div>
       <div class="oracle-input">
         <input id="oracle-q" type="text" placeholder="ask the oracle…" autocomplete="off" spellcheck="false" aria-label="Ask the FAKE Oracle">
@@ -2090,6 +2092,9 @@
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+    <!-- Fuse.js v7.0.0 — self-hosted, typo-tolerant fuzzy search for the FAKE ORACLE.
+         MIT/Apache-2.0, no telemetry, no network calls of its own. -->
+    <script src="fuse.js"></script>
     <script>
       'use strict';
 
@@ -3559,8 +3564,89 @@
       });
 
       /* ================================================================
+         ORACLE LORE INDEX — fetches lore.json (same-origin static file,
+         so no CORS issues on GitHub Pages) and indexes it alongside the
+         card stories in CARDS. Matching is word-based (weighted overlap
+         between the question and each card/fact/glossary/timeline entry)
+         with Fuse.js — self-hosted above — used underneath to correct
+         individual mistyped words against a vocabulary built from every
+         card name, fact topic/alias and glossary term. Still 100%
+         client-side: no backend, no per-question cost, and every answer
+         is a stored, source-cited string — never generated, never
+         hallucinated. If fuse.js or lore.json fail to load (e.g. the
+         very first offline visit, before the SW has cached them), the
+         oracle quietly falls back to card-only matching with no typo
+         correction.
+         ================================================================ */
+      let LORE = null;
+      let LORE_ENTRIES = [];
+      let VOCAB = [];
+      let vocabFuse = null;
+      const ORACLE_STOP = new Set(['what','whats','is','are','the','a','an','of','how','many','do','does','did',
+        'was','were','who','which','and','or','to','in','on','for','about','you','your','me','tell','card','cards']);
+
+      function buildVocab() {
+        const words = new Set();
+        const add = s => (s || '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(/\s+/)
+          .forEach(w => { if (w.length > 3) words.add(w); });
+        CARDS.forEach(c => add(c.name));
+        (LORE.facts || []).forEach(f => { add(f.topic); (f.q || []).forEach(add); });
+        (LORE.glossary || []).forEach(g => add(g.term));
+        VOCAB = Array.from(words);
+        try {
+          if (typeof Fuse !== 'undefined') vocabFuse = new Fuse(VOCAB, { includeScore: true, threshold: 0.3 });
+        } catch (e) {}
+      }
+      function correctToken(w) {
+        if (!vocabFuse || w.length < 4 || VOCAB.indexOf(w) !== -1) return w;
+        const r = vocabFuse.search(w, { limit: 1 });
+        return (r.length && r[0].score <= 0.3) ? r[0].item : w;
+      }
+      function oracleTokenize(q) {
+        return q.toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(/\s+/)
+          .filter(w => w.length > 2 && !ORACLE_STOP.has(w))
+          .map(correctToken);
+      }
+      function bestCardMatch(tokens) {
+        let best = null, bestScore = 0;
+        CARDS.forEach(c => {
+          let s = 0; const name = c.name.toLowerCase(), story = c.story.toLowerCase();
+          tokens.forEach(w => { if (name.indexOf(w) !== -1) s += 6; if (story.indexOf(w) !== -1) s += 2; });
+          if (s > bestScore) { bestScore = s; best = c; }
+        });
+        return { item: best, score: bestScore };
+      }
+      function bestLoreMatch(tokens) {
+        let best = null, bestScore = 0;
+        LORE_ENTRIES.forEach(e => {
+          let s = 0; const key = (e.key || '').toLowerCase(), alias = (e.alias || '').toLowerCase(), body = (e.body || '').toLowerCase();
+          tokens.forEach(w => { if (key.indexOf(w) !== -1) s += 8; if (alias.indexOf(w) !== -1) s += 5; if (body.indexOf(w) !== -1) s += 1; });
+          if (s > bestScore) { bestScore = s; best = e; }
+        });
+        return { item: best, score: bestScore };
+      }
+      function factById(id) { return LORE && (LORE.facts || []).find(f => f.id === id); }
+
+      fetch('./lore.json').then(r => r.ok ? r.json() : null).then(data => {
+        if (!data) return;
+        LORE = data;
+        LORE_ENTRIES = [];
+        (LORE.facts || []).forEach(f => LORE_ENTRIES.push({
+          kind: 'fact', key: f.topic, alias: (f.q || []).join(' '), body: f.a, a: f.a, source: f.source, cards: f.cards || []
+        }));
+        (LORE.glossary || []).forEach(g => LORE_ENTRIES.push({
+          kind: 'glossary', key: g.term, alias: g.term, body: g.def, a: g.term + ': ' + g.def, source: g.source, cards: []
+        }));
+        (LORE.timeline || []).forEach(t => LORE_ENTRIES.push({
+          kind: 'timeline', key: t.date, alias: t.event, body: t.event, a: t.date + ' — ' + t.event, source: t.source, cards: []
+        }));
+        buildVocab();
+      }).catch(() => {});
+
+      /* ================================================================
          FAKE ORACLE — lore terminal. 100% client-side search over the
-         card stories in CARDS. No backend, no cost, no hallucinations.
+         card stories in CARDS, plus Fake Rares / Pepe lore in lore.json.
+         No backend, no cost, no hallucinations.
          ================================================================ */
       const oracleFab = $('oracle-fab'), oraclePanel = $('oracle-panel'),
             oracleLog = $('oracle-log'), oracleQ = $('oracle-q');
@@ -3606,25 +3692,30 @@
           return { text: CARDS.length + ' FAKEs in the collection: ' + r + ' FAKE RARES and ' + (CARDS.length - r) + ' FAKE COMMONS. All on-chain. All frog.', cards: [] };
         }
         if (has(/difference|rare.*common|common.*rare/)) {
-          return { text: 'FAKE RARES follow the curated directory rules. FAKE COMMONS are the overlooked, rejected and out-of-era Pepes with memetic value anyway. Same frog energy, different tier.', cards: [] };
+          let text = 'FAKE RARES follow the curated directory rules. FAKE COMMONS are the overlooked, rejected and out-of-era Pepes with memetic value anyway. Same frog energy, different tier.';
+          const f = factById('f005');
+          if (f) text += ' ' + f.a;
+          return { text, cards: [], link: f && f.source };
         }
-        const words = ql.replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(w => w.length > 2);
-        let best = null, bestScore = 0;
-        CARDS.forEach(c => {
-          let s = 0;
-          const name = c.name.toLowerCase(), story = c.story.toLowerCase();
-          words.forEach(w => {
-            if (name.indexOf(w) !== -1) s += 6;
-            if (story.indexOf(w) !== -1) s += 2;
-          });
-          if (name.length > 3 && ql.indexOf(name) !== -1) s += 10;
-          if (s > bestScore) { bestScore = s; best = c; }
-        });
-        if (best && bestScore >= 4) {
-          const snippet = best.story.split('. ').slice(0, 2).join('. ');
-          return { text: snippet + (snippet.slice(-1) === '.' ? '' : '.'), cards: [best] };
+
+        /* -------- word-overlap search: card stories + lore.json,
+           typo-corrected via the Fuse-backed vocabulary above -------- */
+        const tokens = oracleTokenize(q);
+        const c = bestCardMatch(tokens);
+        const l = bestLoreMatch(tokens);
+        if (c.item && c.score >= 4 && c.score >= l.score) {
+          const snippet = c.item.story.split('. ').slice(0, 2).join('. ');
+          return { text: snippet + (snippet.slice(-1) === '.' ? '' : '.'), cards: [c.item] };
         }
-        return { text: 'The oracle sees only FAKES. Try a card name, or ask about sound, exhibitions, the first card, or the game.', cards: [] };
+        if (l.item && l.score >= 5) {
+          return { text: l.item.a, cards: (l.item.cards || []).map(byId).filter(Boolean), link: l.item.source };
+        }
+        return {
+          text: LORE
+            ? 'The oracle sees only FAKES and the lore that shaped them. Try a card name, or ask about Fake Rares, PEPECASH, Matt Furie, or the game.'
+            : 'The oracle sees only FAKES. Try a card name, or ask about sound, exhibitions, the first card, or the game.',
+          cards: []
+        };
       }
 
       let oracleBusy = false;
@@ -3660,6 +3751,16 @@
               b.appendChild(document.createTextNode(' '));
               b.appendChild(chip);
             });
+            if (ans.link) {
+              const src = document.createElement('a');
+              src.className = 'ocard';
+              src.href = ans.link;
+              src.target = '_blank';
+              src.rel = 'noopener noreferrer';
+              src.textContent = 'SOURCE ↗';
+              b.appendChild(document.createTextNode(' '));
+              b.appendChild(src);
+            }
             oracleLog.scrollTop = oracleLog.scrollHeight;
             oracleBusy = false;
           }
