@@ -1713,6 +1713,21 @@
         overflow: hidden;
       }
       .oracle-panel[hidden] { display: none; }
+
+      /* Mobile FAB + panel placement — MUST come after the base .oracle-fab /
+         .music-toggle / .oracle-panel rules so it wins on source order; otherwise
+         the pills fall back to bottom:1.25rem and overlap the bottom tab bar. */
+      @media (max-width: 768px) {
+        .oracle-fab, .music-toggle {
+          bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+          padding: 0.55rem 0.8rem;
+          font-size: 0.55rem;
+        }
+        .oracle-fab   { left: 0.75rem; }
+        .music-toggle { right: 0.75rem; }
+        .oracle-panel { left: 0.5rem; right: 0.5rem; width: auto; bottom: calc(8rem + env(safe-area-inset-bottom, 0px)); }
+      }
+
       .oracle-head {
         font-family: 'Press Start 2P', monospace;
         font-size: 0.6rem;
