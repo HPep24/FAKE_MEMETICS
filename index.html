@@ -1001,6 +1001,44 @@
         transform: translate(-1px,-1px);
         box-shadow: 3px 3px 0 var(--purple);
       }
+      /* --- LORE: link out to the idea that inspired the art --- */
+      /* NB: base rule is `.pix-btn, a.pix-btn` — the `a.pix-btn` half wins on
+         specificity, so every override below must be at least (0,2,0). */
+      .modal-links .pix-btn--lore {
+        grid-column: 1 / -1;
+        border-color: var(--amber);
+        color: var(--amber);
+      }
+      .modal-links .pix-btn--lore:hover {
+        border-color: var(--amber);
+        color: var(--bg);
+        background: var(--amber);
+        box-shadow: 3px 3px 0 var(--purple);
+      }
+      .lore-caret { display: inline-block; transition: transform 0.2s ease; }
+      .modal-links .pix-btn--lore.is-open .lore-caret { transform: rotate(180deg); }
+      .modal-links .lore-menu {
+        grid-column: 1 / -1;
+        display: grid;
+        gap: 0.4rem;
+        padding: 0.4rem 0 0.1rem 0.8rem;
+        border-left: 2px solid var(--amber);
+        margin-left: 0.25rem;
+      }
+      .modal-links .lore-menu[hidden] { display: none; }
+      .lore-menu a.pix-btn--lore-item {
+        font-size: 0.88rem;
+        padding: 0.5rem 0.45rem;
+        letter-spacing: 0.5px;
+        color: var(--ink-dim);
+        border-color: rgba(255,184,0,0.28);
+        background: rgba(255,184,0,0.04);
+      }
+      .lore-menu a.pix-btn--lore-item:hover {
+        color: var(--amber);
+        border-color: var(--amber);
+        background: rgba(255,184,0,0.10);
+      }
       .pix-btn--hot { border-color: var(--pink); color: var(--pink); }
       .pix-btn--hot:hover {
         background: var(--pink);
@@ -2907,6 +2945,111 @@
           .map(el => el.dataset.slug);
       }
 
+      /* =====================================================================
+         LORE LINKS — the idea / concept / event that inspired each piece.
+         Value is either a URL string (single source) or an array of
+         { url, label } (renders an expanding named drop-list under LORE).
+         Keyed by card slug. A card with no entry simply gets no LORE button.
+      ===================================================================== */
+      const FAMOUS_RP = 'https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/the-rare-pepe-blockchain-project/famous-rare-pepe-cards';
+
+      const LORE_LINKS = {
+        /* ---- FAKE RARES ---- */
+        'FAKEQUEST':                 'https://en.wikipedia.org/wiki/1980_in_video_games',
+        'READYTOKEK':                'https://en.wikipedia.org/wiki/Ready_to_Die',
+        'A1619006396900464164':      FAMOUS_RP,
+        'DRPEPEMUMULV':              'https://en.wikipedia.org/wiki/Back_Up_Off_Me!',
+        'DANKKAST':                  'https://en.wikipedia.org/wiki/ATLiens',
+        'PEPEWINTER':                'https://en.wikipedia.org/wiki/The_Shining_(film)',
+
+        /* ---- FAKE COMMONS ---- */
+        'A198100000000001981':       'https://en.wikipedia.org/wiki/Alvin_Schwartz_(children%27s_author)',
+        'GREEDISGOOD':               'https://en.wikipedia.org/wiki/Gordon_Gekko',
+        'ESCHERWORLD':               'https://en.wikipedia.org/wiki/Hand_with_Reflecting_Sphere',
+        'CHEETO':                    'https://x.com/redbeardnft/status/1994511193730338915?s=20',
+        'OLDGUITARIST':              'https://en.wikipedia.org/wiki/The_Old_Guitarist',
+        'FAKEASSDAY':                'https://en.wikipedia.org/wiki/Gangsta_rap',
+        'TRUMPMOTO':                 FAMOUS_RP,
+        'RONALDPEPE':                'https://en.wikipedia.org/wiki/McDonald%27s_No._1_Store_Museum',
+        'STAMPSOFBTC.SHITCOINJESUS': 'https://www.youtube.com/@MustStopMurad',
+        'A1286795239919077352':      'https://screenrant.com/iconic-mad-magazine-covers-ranked/',
+        'PHATPEPEBOOK':              'https://www.commonsensemedia.org/tv-reviews/fat-albert-and-the-cosby-kids',
+        'GARUDAPEPE':                'https://en.wikipedia.org/wiki/Garuda',
+        'CUBISMPEPE':                'https://xcp.io/asset/A12394435489634753420',
+        'VECTOREDPEPE':              'https://xcp.io/asset/A5968356289406155902',
+        'OUTLAWPEPE':                'https://xcp.io/asset/A8224440913037959138',
+        'HOTLICKSPEPE':              'https://xcp.io/asset/A12354135474386500298',
+        'TOBIPEPE':                  'https://thebitcoinmanual.com/articles/bitcoin-gaming-sarutobi/',
+        'FIGHTERPEPE':               'https://cryptofighters.io/',
+        'CURIOPEPE':                 'https://curio.cards/',
+        'REALMSOFPEPE':              'https://linktr.ee/realmsofether',
+        'PEPESLAMBO':                'https://linktr.ee/realmsofether',
+
+        /* ---- two sources: named drop-list ---- */
+        'RAREPEPEALSO': [
+          { url: 'https://x.com/HnftPepe/status/2018693206204874951?s=20', label: '@HnftPepe on X' },
+          { url: FAMOUS_RP, label: 'Famous Rare Pepes' }
+        ],
+        'RAREPEPETOO': [
+          { url: 'https://x.com/HnftPepe/status/2014706436408766703?s=20', label: '@HnftPepe on X' },
+          { url: FAMOUS_RP, label: 'Famous Rare Pepes' }
+        ],
+        'KNOTRAREPEPE': [
+          { url: 'https://x.com/HnftPepe/status/2016882273141022921?s=20', label: '@HnftPepe on X' },
+          { url: FAMOUS_RP, label: 'Famous Rare Pepes' }
+        ],
+        'A7007137931404140870': [
+          { url: 'https://www.art-insider.com/banksy-murals-cost-uk-exchequer-200k-in-bills/8658', label: 'Banksy and the 200k bill' },
+          { url: 'https://www.art-insider.com/christies-reportedly-shutters-nft-digital-art-department/7942', label: 'Christie&rsquo;s shutters NFT dept' }
+        ],
+        'CHATGTP': [
+          { url: 'https://en.wikipedia.org/wiki/ChatGPT', label: 'ChatGPT' },
+          { url: 'https://en.wikipedia.org/wiki/Terminator_2:_Judgment_Day', label: 'Terminator 2: Judgment Day' }
+        ]
+      };
+
+      /* Insert the LORE control at the head of the modal link grid. */
+      function buildLoreLink(c, linksEl) {
+        const entry = LORE_LINKS[c.slug];
+        if (!entry) return;
+        const first = linksEl.firstChild;
+
+        if (typeof entry === 'string') {
+          const a = document.createElement('a');
+          a.className = 'pix-btn pix-btn--lore';
+          a.href = entry;
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+          a.innerHTML = '&#9670; LORE';
+          linksEl.insertBefore(a, first);
+          return;
+        }
+
+        const btn = document.createElement('button');
+        btn.className = 'pix-btn pix-btn--lore';
+        btn.type = 'button';
+        btn.setAttribute('aria-expanded', 'false');
+        btn.innerHTML = '&#9670; LORE <span class="lore-caret">&#9662;</span>';
+
+        const menu = document.createElement('div');
+        menu.className = 'lore-menu';
+        menu.hidden = true;
+        menu.innerHTML = entry.map(function (e) {
+          return '<a class="pix-btn pix-btn--lore-item" href="' + e.url +
+                 '" target="_blank" rel="noopener noreferrer">&#8599; ' + e.label + '</a>';
+        }).join('');
+
+        btn.addEventListener('click', function () {
+          const opening = menu.hidden;
+          menu.hidden = !opening;
+          btn.setAttribute('aria-expanded', opening ? 'true' : 'false');
+          btn.classList.toggle('is-open', opening);
+        });
+
+        linksEl.insertBefore(btn, first);
+        linksEl.insertBefore(menu, btn.nextSibling);
+      }
+
       function buildModal(c) {
         // media (always uncropped via object-fit: contain)
         modalMedia.innerHTML = '';
@@ -2985,6 +3128,8 @@
         linksEl.innerHTML = links.map(l =>
           '<a class="pix-btn" href="' + l[0] + '" target="_blank" rel="noopener noreferrer">' + l[1] + '</a>'
         ).join('');
+        buildLoreLink(c, linksEl);
+
         const shareBtn = document.createElement('button');
         shareBtn.className = 'pix-btn';
         shareBtn.type = 'button';
