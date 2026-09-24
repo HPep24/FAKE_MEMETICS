@@ -417,8 +417,7 @@
         z-index: 3;
       }
 
-      .attract-marquee,
-      .game-frame {
+      .attract-marquee {
         position: absolute;
         inset: 0;
         width: 100%;
@@ -426,9 +425,144 @@
         border: 0;
         z-index: 1;
       }
-      .game-frame { background: #000; z-index: 2; display: none; }
-      .game-frame.playing { display: block; }
       .attract-marquee.hidden { display: none; }
+
+      /* ----- GAME SELECT: KEKTRA (left) | FAKEQUEST (right) -----
+         Each preview is the real game page, rendered at a desktop-sized
+         virtual viewport and scaled down (JS sets the sizes), so both
+         title screens look right at any cabinet width. Picking one switches
+         that same frame to full screen in place (no reload); the other
+         frame is removed. */
+      .game-select {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        display: none;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        grid-template-rows: minmax(0, 1fr);
+        gap: clamp(6px, 1.4vw, 18px);
+        padding: clamp(6px, 1.4vw, 18px);
+        background:
+          radial-gradient(ellipse at 50% 45%, rgba(168,85,247,0.16) 0%, transparent 70%),
+          linear-gradient(180deg, #0b0015 0%, #000 75%);
+      }
+      .game-select.on { display: grid; }
+      .game-slot {
+        min-width: 0;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(4px, 1vw, 12px);
+        cursor: pointer;
+      }
+      .game-thumb {
+        position: relative;
+        flex: 0 0 auto;
+        box-sizing: content-box;
+        overflow: hidden;
+        background: #000;
+        border: 2px solid var(--line);
+        border-radius: var(--radius-sm);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+      /* visible until the game page paints over it */
+      .game-thumb::before {
+        content: 'LOADING\2026';
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'VT323', monospace;
+        font-size: clamp(0.8rem, 1.6vw, 1.3rem);
+        letter-spacing: 3px;
+        color: var(--ink-dim);
+        animation: flash 1.1s infinite;
+      }
+      .game-thumb .game-frame {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        display: block;
+        border: 0;
+        transform-origin: 0 0;
+        pointer-events: none; /* a tap on a preview picks it; it does not start the game */
+      }
+      .game-slot:hover .game-thumb,
+      .game-slot:focus-within .game-thumb {
+        border-color: var(--lime);
+        box-shadow: 0 0 0 2px var(--lime), 0 0 26px rgba(57,255,20,0.35);
+      }
+      .game-pick {
+        flex: 0 0 auto;
+        max-width: 100%;
+        font-family: 'Press Start 2P', monospace;
+        font-size: clamp(0.42rem, 1.05vw, 0.85rem);
+        line-height: 1.2;
+        padding: 0.6em 1em;
+        border: 2px solid var(--ink);
+        background: var(--lime);
+        color: var(--bg);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        white-space: nowrap;
+        overflow: hidden;
+        cursor: pointer;
+        box-shadow: 3px 3px 0 var(--purple), 6px 6px 0 var(--cyan);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+      .game-slot:hover .game-pick,
+      .game-pick:focus-visible {
+        transform: translate(-1px, -1px);
+        box-shadow: 4px 4px 0 var(--purple), 8px 8px 0 var(--cyan);
+      }
+      .game-pick:active {
+        transform: translate(2px, 2px);
+        box-shadow: 1px 1px 0 var(--purple), 2px 2px 0 var(--cyan);
+      }
+      @media (max-width: 480px) {
+        .game-pick .gp-verb { display: none; } /* "PLAY" drops on phones: ▶ KEKTRA / ▶ FAKEQUEST */
+      }
+      /* picked: the chosen game takes the whole screen */
+      .game-select.on.picked { display: block; padding: 0; background: #000; }
+      .game-select.picked .game-slot { display: none; }
+      .game-select.picked .game-slot.is-picked {
+        display: block;
+        position: absolute;
+        inset: 0;
+        cursor: auto;
+      }
+      .game-select.picked .game-slot.is-picked .game-thumb {
+        position: absolute;
+        inset: 0;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        animation: pick-flash 0.35s ease-out;
+      }
+      .game-select.picked .game-slot.is-picked .game-thumb::before,
+      .game-select.picked .game-slot.is-picked .game-pick { display: none; }
+      .game-select.picked .game-slot.is-picked .game-thumb .game-frame {
+        width: 100%;
+        height: 100%;
+        pointer-events: auto;
+      }
+      @keyframes pick-flash {
+        from { filter: brightness(2.2) saturate(1.4); }
+        to   { filter: none; }
+      }
+      /* marquee game names never break mid-name */
+      .mq-word { white-space: nowrap; }
+      @media (max-width: 640px) {
+        /* phones: KEKTRA stacked over FAKE QUEST (slash dropped), and a slightly
+           smaller header so "F A K E  Q U E S T" stays on one line down to 320px */
+        .cabinet-marquee { font-size: min(0.85rem, 3.2vw); }
+        .cabinet-marquee .mq-word { display: block; }
+        .cabinet-marquee .mq-sep { display: none; }
+      }
 
       .play-overlay {
         position: absolute;
@@ -1974,22 +2108,34 @@
       </div>
 
       <div class="hero-cabinet-wrap reveal">
-        <div class="cabinet-label">INSERT COIN // FAKEQUEST ARCADE</div>
+        <div class="cabinet-label">INSERT COIN // HNFT PEPE ARCADE</div>
         <div class="cabinet">
-          <div class="cabinet-marquee">F A K E &nbsp; Q U E S T</div>
+          <div class="cabinet-marquee" id="cabinet-marquee"><span class="mq-word">K E K T R A</span><span class="mq-sep"> &nbsp;/&nbsp; </span><span class="mq-word">F A K E &nbsp; Q U E S T</span></div>
           <div class="cabinet-screen" id="cabinet-screen">
             <!-- attract rows are built by JS from the card data (lazy-loaded) -->
             <div class="attract-marquee" id="attract-loop"></div>
-            <iframe class="game-frame" id="game-frame" title="FAKEQUEST" allow="autoplay; fullscreen" allowfullscreen></iframe>
-            <div class="play-overlay" id="play-overlay" role="button" tabindex="0" aria-label="Click to play FAKEQUEST">
+            <!-- game select: KEKTRA left, FAKEQUEST right. JS adds the game frames
+                 on CLICK TO PLAY; the picked one then fills the whole screen. -->
+            <div class="game-select" id="game-select">
+              <div class="game-slot" data-game="kektra">
+                <div class="game-thumb"></div>
+                <button class="game-pick" type="button">&#9654;&nbsp;<span class="gp-verb">PLAY </span>KEKTRA</button>
+              </div>
+              <div class="game-slot" data-game="fakequest">
+                <div class="game-thumb"></div>
+                <button class="game-pick" type="button">&#9654;&nbsp;<span class="gp-verb">PLAY </span>FAKEQUEST</button>
+              </div>
+            </div>
+            <div class="play-overlay" id="play-overlay" role="button" tabindex="0" aria-label="Click to play: choose KEKTRA or FAKEQUEST">
               <button class="play-btn" id="play-btn" type="button">&#9654;&nbsp; CLICK TO PLAY</button>
               <div class="play-hint">PRESS START</div>
             </div>
           </div>
           <div class="cabinet-controls">
             <button class="cabinet-btn" id="fullscreen-btn" type="button">&#8599; FULLSCREEN</button>
-            <button class="cabinet-btn" id="newtab-btn" type="button">&#8599; PLAY IN NEW TAB</button>
-            <a class="cabinet-btn" href="https://pepe.wtf/asset/FAKEQUEST" target="_blank" rel="noopener noreferrer">VIEW ON pepe.wtf</a>
+            <!-- NEW TAB + VIEW follow the picked game; hidden until one is picked -->
+            <button class="cabinet-btn" id="newtab-btn" type="button" style="display:none">&#8599; PLAY IN NEW TAB</button>
+            <a class="cabinet-btn" id="view-btn" href="https://pepe.wtf/asset/FAKEQUEST" target="_blank" rel="noopener noreferrer" style="display:none">VIEW ON pepe.wtf</a>
             <button class="cabinet-btn cabinet-btn--pack" id="open-pack" type="button">&#127183; OPEN A FAKE PACK</button>
             <button class="cabinet-btn" id="reset-btn" type="button" style="display:none">&#x27F3; BACK TO DEFAULT</button>
           </div>
@@ -2581,7 +2727,7 @@
       const insertCoinSfx = () => jingle([988, 1319], 90, 0.09);
 
       /* subtle hover/click blips across the UI (event delegation) */
-      const SFX_HOVER_SEL = '.pix-btn, .filter-chip, .nav-link, .nav-console, .cabinet-btn, .viewing-window, .play-btn, .pk-btn, .music-toggle, .oracle-fab, .pack-card';
+      const SFX_HOVER_SEL = '.pix-btn, .filter-chip, .nav-link, .nav-console, .cabinet-btn, .viewing-window, .play-btn, .game-slot, .pk-btn, .music-toggle, .oracle-fab, .pack-card';
       document.addEventListener('pointerover', e => {
         if (!e.target.closest) return;
         const t = e.target.closest(SFX_HOVER_SEL);
@@ -3246,9 +3392,34 @@
         } catch (e) { gameUrlResolved = GAME_REMOTE; }
       })();
       const theGame = () => gameUrlResolved || GAME_REMOTE;
+      /* KEKTRA loads straight from ACME: the minted on-chain file
+         (acme.pics/a/KEKTRA, 322,383 bytes, SHA-256
+         f72ea4b2df1d261c896da0da0cc14c1aaafea96e74afd76df040de86000a7b62). */
+      const KEKTRA_URL = 'https://acme.pics/a/KEKTRA';
+      const GAMES = {
+        kektra: {
+          title: 'KEKTRA',
+          url: () => KEKTRA_URL,
+          viewUrl: 'https://acme.pics/asset/KEKTRA',
+          viewLabel: 'VIEW ON ACME',
+          marquee: '<span class="mq-word">K E K T R A</span>'
+        },
+        fakequest: {
+          title: 'FAKEQUEST',
+          url: theGame,
+          viewUrl: 'https://pepe.wtf/asset/FAKEQUEST',
+          viewLabel: 'VIEW ON pepe.wtf',
+          marquee: '<span class="mq-word">F A K E &nbsp; Q U E S T</span>'
+        }
+      };
+      const gameUrl = id => GAMES[id].url();
       const playOverlay   = document.getElementById('play-overlay');
       const playBtn       = document.getElementById('play-btn');
-      const gameFrame     = document.getElementById('game-frame');
+      const gameSelect    = document.getElementById('game-select');
+      const gameSlots     = Array.from(gameSelect.querySelectorAll('.game-slot'));
+      const cabMarquee    = document.getElementById('cabinet-marquee');
+      const MARQUEE_BOTH  = cabMarquee.innerHTML;
+      const viewBtn       = document.getElementById('view-btn');
       const fullscreenBtn = document.getElementById('fullscreen-btn');
       const resetBtn      = document.getElementById('reset-btn');
       const newTabBtn     = document.getElementById('newtab-btn');
@@ -3381,10 +3552,82 @@
         });
       }
 
-      function startGame() {
+      /* CLICK TO PLAY opens the game select (KEKTRA | FAKEQUEST).
+         Picking a game grows that same frame to fill the cabinet screen,
+         so it keeps its title screen; the other frame is removed.
+         Frames are created fresh each time (no iframe history entries). */
+      const THUMB_W = 1040, THUMB_H = 780; // desktop-sized virtual viewport for the previews
+      const gameFrames = {};               // id -> iframe currently on screen
+      let activeGame = null;               // picked game id, or null
+
+      const slotFor = id => gameSlots.find(s => s.dataset.game === id);
+      function makeFrame(id) {
+        const f = document.createElement('iframe');
+        f.className = 'game-frame';
+        f.title = GAMES[id].title;
+        f.setAttribute('allow', 'autoplay; fullscreen');
+        f.setAttribute('allowfullscreen', '');
+        f.setAttribute('tabindex', '-1'); // previews stay out of the tab order until picked
+        f.src = gameUrl(id);
+        slotFor(id).querySelector('.game-thumb').appendChild(f);
+        gameFrames[id] = f;
+        return f;
+      }
+      function dropFrame(id) {
+        if (gameFrames[id]) gameFrames[id].remove(); // removing the frame also stops its audio
+        delete gameFrames[id];
+      }
+      function layoutThumbs() {
+        if (activeGame || !gameSelect.classList.contains('on')) return;
+        gameSlots.forEach(slot => {
+          const thumb = slot.querySelector('.game-thumb');
+          const pick  = slot.querySelector('.game-pick');
+          const gap   = parseFloat(getComputedStyle(slot).rowGap) || 0;
+          const edge  = thumb.offsetWidth - thumb.clientWidth; // left + right border
+          const maxW  = slot.clientWidth - edge;
+          const maxH  = slot.clientHeight - pick.offsetHeight - gap - edge;
+          const k     = Math.max(0, Math.min(maxW / THUMB_W, maxH / THUMB_H));
+          thumb.style.width  = Math.floor(THUMB_W * k) + 'px';
+          thumb.style.height = Math.floor(THUMB_H * k) + 'px';
+          const f = thumb.querySelector('iframe');
+          if (f) {
+            f.style.width  = THUMB_W + 'px';
+            f.style.height = THUMB_H + 'px';
+            f.style.transform = 'scale(' + k + ')';
+          }
+        });
+      }
+      if (window.ResizeObserver) new ResizeObserver(layoutThumbs).observe(gameSelect);
+      else window.addEventListener('resize', layoutThumbs);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(layoutThumbs);
+
+      function pickGame(id) {
+        if (!GAMES[id] || activeGame === id) return;
+        activeGame = id;
+        Object.keys(gameFrames).forEach(k => { if (k !== id) dropFrame(k); });
+        const f = gameFrames[id] || makeFrame(id);
+        const slot = slotFor(id);
+        gameSlots.forEach(s => s.classList.toggle('is-picked', s === slot));
+        const thumb = slot.querySelector('.game-thumb');
+        thumb.style.width = thumb.style.height = '';
+        f.style.width = f.style.height = f.style.transform = '';
+        f.removeAttribute('tabindex');
+        gameSelect.classList.add('on', 'picked');
+        cabMarquee.innerHTML = GAMES[id].marquee;
+        if (newTabBtn) newTabBtn.style.display = '';
+        if (viewBtn) {
+          viewBtn.href = GAMES[id].viewUrl;
+          viewBtn.textContent = GAMES[id].viewLabel;
+          viewBtn.style.display = '';
+        }
+        try { f.focus({ preventScroll: true }); } catch (e) {} // keys go straight to the game
+      }
+
+      /* startGame() = CLICK TO PLAY (game select); startGame('fakequest') skips the select */
+      function startGame(direct) {
+        const id = (typeof direct === 'string' && GAMES[direct]) ? direct : null;
+        if (id ? activeGame === id : gameIsPlaying) return;
         insertCoinSfx();
-        gameFrame.src = theGame();
-        gameFrame.classList.add('playing');
         playOverlay.classList.add('hidden');
         attractLoop.classList.add('hidden');
         setMarqueeVideos(false); // display:none alone does not pause videos
@@ -3392,10 +3635,23 @@
         gameIsPlaying = true;
         pauseMusic();
         setToggleUI();
+        if (id) { pickGame(id); return; }
+        gameSelect.classList.add('on');
+        Object.keys(GAMES).forEach(k => { if (!gameFrames[k]) makeFrame(k); });
+        layoutThumbs();
       }
       function resetGame() {
-        gameFrame.src = '';
-        gameFrame.classList.remove('playing');
+        activeGame = null;
+        Object.keys(gameFrames).forEach(dropFrame);
+        gameSelect.classList.remove('on', 'picked');
+        gameSlots.forEach(s => {
+          s.classList.remove('is-picked');
+          const t = s.querySelector('.game-thumb');
+          t.style.width = t.style.height = '';
+        });
+        cabMarquee.innerHTML = MARQUEE_BOTH;
+        if (newTabBtn) newTabBtn.style.display = 'none';
+        if (viewBtn) viewBtn.style.display = 'none';
         attractLoop.classList.remove('hidden');
         setMarqueeVideos(true);
         playOverlay.classList.remove('hidden');
@@ -3405,22 +3661,38 @@
         setToggleUI();
       }
 
-      if (playBtn) playBtn.addEventListener('click', startGame);
+      if (playBtn) playBtn.addEventListener('click', () => startGame());
       if (playOverlay) {
         playOverlay.addEventListener('click', e => { if (e.target === playOverlay) startGame(); });
         playOverlay.addEventListener('keydown', e => {
           if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); startGame(); }
         });
       }
+      gameSelect.addEventListener('click', e => {
+        if (activeGame) return;
+        const slot = e.target.closest('.game-slot');
+        if (!slot) return;
+        jingle([784, 1175, 1568], 70, 0.09);
+        pickGame(slot.dataset.game);
+      });
       if (resetBtn) resetBtn.addEventListener('click', resetGame);
-      if (newTabBtn) newTabBtn.addEventListener('click', () => window.open(theGame(), '_blank', 'noopener'));
+      if (newTabBtn) newTabBtn.addEventListener('click', () => {
+        if (activeGame) window.open(gameUrl(activeGame), '_blank', 'noopener');
+      });
       if (fullscreenBtn) fullscreenBtn.addEventListener('click', () => {
-        if (gameFrame.classList.contains('playing') && gameFrame.requestFullscreen) {
-          gameFrame.requestFullscreen().catch(() => window.open(theGame(), '_blank', 'noopener'));
+        const f = activeGame && gameFrames[activeGame];
+        const openTab = () => window.open(gameUrl(activeGame), '_blank', 'noopener');
+        if (f) {
+          // a game is picked: fullscreen that game (new tab where fullscreen is unsupported)
+          if (f.requestFullscreen) f.requestFullscreen().catch(openTab);
+          else openTab();
         } else if (cabinetScreen && cabinetScreen.requestFullscreen) {
-          cabinetScreen.requestFullscreen().catch(() => window.open(theGame(), '_blank', 'noopener'));
+          // nothing picked yet: fullscreen the cabinet screen (attract loop or game select)
+          cabinetScreen.requestFullscreen().catch(() => { if (!gameIsPlaying) startGame(); });
+        } else if (!gameIsPlaying) {
+          startGame(); // no fullscreen support (iPhone): show the game select instead
         } else {
-          window.open(theGame(), '_blank', 'noopener');
+          showToast('PICK A GAME FIRST');
         }
       });
 
@@ -3686,7 +3958,7 @@
         { label: 'GO: FAKE RARES', tag: 'PAGE', go: () => { location.hash = '#fake-rares'; } },
         { label: 'GO: FAKE COMMONS', tag: 'PAGE', go: () => { location.hash = '#fake-commons'; } },
         { label: 'OPEN A FAKE PACK', tag: 'ACTION', go: openPack },
-        { label: 'PLAY FAKEQUEST', tag: 'ACTION', go: () => { location.hash = '#home'; setTimeout(startGame, 400); } },
+        { label: 'PLAY FAKEQUEST', tag: 'ACTION', go: () => { location.hash = '#home'; setTimeout(() => startGame('fakequest'), 400); } },
         { label: 'ASK THE ORACLE', tag: 'ACTION', go: () => oracleOpen() }
       ]);
 
