@@ -579,16 +579,6 @@
       }
       .play-overlay.hidden { display: none; }
 
-      .play-hint {
-        font-family: 'VT323', monospace;
-        font-size: clamp(1.4rem, 3.2vw, 2.1rem);
-        color: var(--lime);
-        letter-spacing: 5px;
-        text-transform: uppercase;
-        animation: flash 1.1s infinite;
-        text-shadow: 0 0 12px rgba(57,255,20,0.9);
-      }
-
       .play-btn {
         font-family: 'Press Start 2P', monospace;
         font-size: clamp(1.3rem, 3.4vw, 2.2rem);
@@ -610,6 +600,18 @@
       .play-btn:active {
         transform: translate(3px, 3px);
         box-shadow: 4px 4px 0 var(--purple), 8px 8px 0 var(--cyan);
+      }
+      @media (max-width: 640px) {
+        /* phones: ENTER ARCADE stays on one line inside the cabinet screen */
+        .play-btn {
+          font-size: clamp(0.6rem, 3.3vw, 1.1rem);
+          padding: 1em 1.4em;
+          letter-spacing: 2px;
+          white-space: nowrap;
+          box-shadow: 4px 4px 0 var(--purple), 8px 8px 0 var(--cyan);
+        }
+        .play-btn:hover { box-shadow: 5px 5px 0 var(--purple), 10px 10px 0 var(--cyan); }
+        .play-btn:active { box-shadow: 2px 2px 0 var(--purple), 4px 4px 0 var(--cyan); }
       }
 
       .cabinet-controls {
@@ -644,6 +646,117 @@
       }
       .cabinet-btn--pack { border-color: rgba(255,46,136,0.5); color: var(--pink); }
       .cabinet-btn--pack:hover { border-color: var(--pink); color: var(--pink); background: rgba(255,46,136,0.08); }
+
+      /* ========== THE ARCADE (ENTER ARCADE) ==========
+         A full-screen layer over the site. arcade-kit.js draws the room
+         inside .fm-arcade__room and lays itself out from that box; the
+         site gives it its colours and fonts (see mountArcade in the JS). */
+      .fm-arcade {
+        position: fixed;
+        inset: 0;
+        z-index: 10000; /* above the nav bars, the music pill (9999) and every overlay */
+        background:
+          radial-gradient(60vmax 60vmax at 10% 6%, rgba(168,85,247,0.12), transparent 60%),
+          radial-gradient(60vmax 60vmax at 92% 12%, rgba(0,240,255,0.07), transparent 60%),
+          var(--bg);
+        color: var(--ink);
+        overflow: hidden;
+        overscroll-behavior: contain;
+      }
+      .fm-arcade[hidden] { display: none; }
+      .fm-arcade__room { position: absolute; inset: 0; }
+      /* the room is see-through, so the layer's glow shows behind the platform */
+      .fm-arcade .ak { background-color: transparent; }
+      /* the kit's two views are <section>s: keep the site's page-tab rule
+         (section { display: none; padding; min-height }) off them */
+      .fm-arcade section.ak-floor,
+      .fm-arcade section.ak-cab { padding: 0; min-height: 0; }
+      .fm-arcade section.ak-floor:not([hidden]),
+      .fm-arcade section.ak-cab:not([hidden]) { display: block; }
+      .fm-arcade .ak a { border-bottom: 0; }
+      /* the bar: brand on the left, EXIT on the right; the kit keeps
+         the top 52px clear for it (inset.top) */
+      .fm-arcade__bar {
+        position: absolute;
+        z-index: 30;
+        top: 0; left: 0; right: 0;
+        height: 52px;
+        padding: 0 clamp(10px, 2.4vw, 24px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        pointer-events: none;
+      }
+      .fm-arcade__bar > * { pointer-events: auto; }
+      .fm-arcade.is-full .fm-arcade__bar { display: none; } /* a full-screen game owns the whole box */
+      .fm-arcade__brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: 'Press Start 2P', monospace;
+        font-size: 0.62rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        white-space: nowrap;
+        pointer-events: none;
+      }
+      .fm-arcade__brand img {
+        width: 28px;
+        height: 28px;
+        border-radius: 5px;
+        border: 2px solid var(--lime);
+        box-shadow: 2px 2px 0 var(--purple);
+      }
+      .fm-arcade__name {
+        background: var(--grad-1);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .fm-arcade__exit {
+        font-family: 'VT323', monospace;
+        font-size: 1.25rem;
+        line-height: 1;
+        min-height: 38px;
+        padding: 0 0.9rem;
+        color: var(--ink);
+        background: rgba(5,5,10,0.6);
+        border: 2px solid var(--line);
+        border-radius: 6px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        white-space: nowrap;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      .fm-arcade__exit:hover,
+      .fm-arcade__exit:focus-visible {
+        color: var(--bg);
+        background: var(--lime);
+        border-color: var(--lime);
+        box-shadow: 3px 3px 0 var(--purple);
+        transform: translate(-1px, -1px);
+      }
+      .fm-arcade__load {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        margin: 0;
+        padding: 0 24px;
+        text-align: center;
+        font: 400 26px/1.3 'VT323', monospace;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--ink-dim);
+        pointer-events: none;
+      }
+      .fm-arcade__load[hidden] { display: none; }
+      html.arcade-open,
+      html.arcade-open body { overflow: hidden; }
+      @media (max-width: 420px) { .fm-arcade__brand .fm-long { display: none; } }
+      @media (pointer: coarse) { .fm-arcade__exit { min-height: 44px; } }
 
       @keyframes flash {
         0%, 100% { opacity: 1; }
@@ -2150,8 +2263,9 @@
           <div class="cabinet-screen" id="cabinet-screen">
             <!-- attract rows are built by JS from the card data (lazy-loaded) -->
             <div class="attract-marquee" id="attract-loop"></div>
-            <!-- game select: KEKTRA left, FAKEQUEST right. JS adds the game frames
-                 on CLICK TO PLAY; the picked one then fills the whole screen. -->
+            <!-- game select: KEKTRA left, FAKEQUEST right. Only startGame('fakequest')
+                 (search console: PLAY FAKEQUEST) uses it now: JS adds that game's frame
+                 and it fills the whole screen. ENTER ARCADE opens the arcade instead. -->
             <div class="game-select" id="game-select">
               <div class="game-slot" data-game="kektra">
                 <div class="game-thumb"></div>
@@ -2162,9 +2276,8 @@
                 <button class="game-pick" type="button">&#9654;&nbsp;<span class="gp-verb">PLAY </span>FAKEQUEST</button>
               </div>
             </div>
-            <div class="play-overlay" id="play-overlay" role="button" tabindex="0" aria-label="Click to play: choose KEKTRA or FAKEQUEST">
-              <button class="play-btn" id="play-btn" type="button">&#9654;&nbsp; CLICK TO PLAY</button>
-              <div class="play-hint">PRESS START</div>
+            <div class="play-overlay" id="play-overlay" role="button" tabindex="0" aria-label="Enter the arcade: KEKTRA, KEKBOMBS and FAKEQUEST">
+              <button class="play-btn" id="play-btn" type="button">&#9654;&nbsp; ENTER ARCADE</button>
             </div>
           </div>
           <div class="cabinet-controls">
@@ -2358,6 +2471,18 @@
     </div>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <!-- ================== THE ARCADE (ENTER ARCADE on HOME) ==================
+         arcade-kit.js mounts its 3D room in #fm-arcade-room the first time
+         the arcade opens; three.min.js, gsap.min.js and arcade-kit.js load then. -->
+    <div class="fm-arcade" id="fm-arcade" role="dialog" aria-modal="true" aria-label="HNFT PEPE ARCADE" hidden>
+      <div class="fm-arcade__room" id="fm-arcade-room"></div>
+      <p class="fm-arcade__load" id="fm-arcade-load" aria-live="polite">LOADING THE ARCADE</p>
+      <div class="fm-arcade__bar">
+        <span class="fm-arcade__brand"><img src="MEDIA for Github/pfp.svg" data-fallback="https://stampchain.io/s/A9392207840692937001" alt="" width="28" height="28"><span class="fm-arcade__name"><span class="fm-long">HNFT PEPE // </span>ARCADE</span></span>
+        <button class="fm-arcade__exit" id="fm-arcade-exit" type="button">&#10005;&nbsp;EXIT</button>
+      </div>
+    </div>
 
     <!-- Fuse.js v7.0.0 — self-hosted, typo-tolerant fuzzy search for the FAKE ORACLE.
          MIT/Apache-2.0, no telemetry, no network calls of its own. -->
@@ -3615,7 +3740,10 @@
         });
       }
 
-      /* CLICK TO PLAY opens the game select (KEKTRA | FAKEQUEST).
+      /* The in-cabinet game select (KEKTRA | FAKEQUEST). The hero's ENTER ARCADE
+         opens THE ARCADE below instead, so only the direct path is used now:
+         startGame('fakequest') (the search console's PLAY FAKEQUEST) plays
+         FAKEQUEST straight in the cabinet, skipping the select.
          Picking a game grows that same frame to fill the cabinet screen,
          so it keeps its title screen; the other frame is removed.
          Frames are created fresh each time (no iframe history entries). */
@@ -3686,7 +3814,7 @@
         try { f.focus({ preventScroll: true }); } catch (e) {} // keys go straight to the game
       }
 
-      /* startGame() = CLICK TO PLAY (game select); startGame('fakequest') skips the select */
+      /* startGame() = the game select; startGame('fakequest') skips the select */
       function startGame(direct) {
         const id = (typeof direct === 'string' && GAMES[direct]) ? direct : null;
         if (id ? activeGame === id : gameIsPlaying) return;
@@ -3724,11 +3852,12 @@
         setToggleUI();
       }
 
-      if (playBtn) playBtn.addEventListener('click', () => startGame());
+      /* ENTER ARCADE (the button or the screen around it) opens the arcade: see THE ARCADE below */
+      if (playBtn) playBtn.addEventListener('click', () => openArcade());
       if (playOverlay) {
-        playOverlay.addEventListener('click', e => { if (e.target === playOverlay) startGame(); });
+        playOverlay.addEventListener('click', e => { if (e.target === playOverlay) openArcade(); });
         playOverlay.addEventListener('keydown', e => {
-          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); startGame(); }
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openArcade(); }
         });
       }
       gameSelect.addEventListener('click', e => {
@@ -3750,13 +3879,263 @@
           if (f.requestFullscreen) f.requestFullscreen().catch(openTab);
           else openTab();
         } else if (cabinetScreen && cabinetScreen.requestFullscreen) {
-          // nothing picked yet: fullscreen the cabinet screen (attract loop or game select)
-          cabinetScreen.requestFullscreen().catch(() => { if (!gameIsPlaying) startGame(); });
+          // nothing picked yet: fullscreen the cabinet screen (attract loop + ENTER ARCADE)
+          cabinetScreen.requestFullscreen().catch(() => { if (!gameIsPlaying) openArcade(); });
         } else if (!gameIsPlaying) {
-          startGame(); // no fullscreen support (iPhone): show the game select instead
+          openArcade(); // no fullscreen support (iPhone): the arcade itself fills the screen
         } else {
           showToast('PICK A GAME FIRST');
         }
+      });
+
+      /* ================================================================
+         THE ARCADE: ENTER ARCADE opens arcade-kit.js full screen.
+         KEKTRA, KEKBOMBS and FAKEQUEST stand on a turntable, and each
+         plays on its own cabinet's screen. The kit and the libraries it
+         needs (three.js r128 for the room, GSAP 3 for the flights) are
+         self-hosted and load on the first ENTER ARCADE only, so the page
+         carries none of their weight until then. EXIT, Esc on the floor
+         or Back leaves; Back inside a cabinet steps down to the floor.
+         While the arcade is open the site sleeps under it (no music, no
+         attract videos) and wakes up as it was.
+         ================================================================ */
+      const arcadeLayer = document.getElementById('fm-arcade');
+      const arcadeRoom  = document.getElementById('fm-arcade-room');
+      const arcadeLoad  = document.getElementById('fm-arcade-load');
+      const arcadeExit  = document.getElementById('fm-arcade-exit');
+      const ARCADE_INSET = { top: 52, bottom: 0 }; // the EXIT bar's strip, kept clear by the kit
+      /* the cabinets, in platform order (01 / 02 / 03). play, size, extract and
+         fallback are what each game needs to run; screen = its title screen,
+         side = the card art on both sides of the cabinet. */
+      const ARCADE_GAMES = [
+        { name: 'KEKTRA',
+          play: KEKTRA_URL,
+          size: [960, 540],
+          screen: 'MEDIA for Github/KEKTRA-screen.jpg',
+          side: 'MEDIA for Github/KEKTRA-card.jpg',
+          color: '#8BE36A',
+          line: 'OPERATION ELIMINATE THE GRIFTERS',
+          tag: 'Fake Rare' },
+        { name: 'KEKBOMBS',
+          play: 'https://ordinals.com/content/3864f0ac63ae491617c734a18290b49d5cb2d41abd06a63598795a242b853974i0',
+          size: [600, 840],
+          screen: 'MEDIA for Github/KEKBOMBS-screen.jpg',
+          side: 'MEDIA for Github/KEKBOMBS-screen.jpg',
+          color: '#F072C2',
+          line: 'PEPE VS FAKE PLAYER',
+          controls: 'Drag the bomb to aim',
+          tag: 'Fake Commons' },
+        { name: 'FAKEQUEST',
+          play: 'https://hpep24.github.io/fake-quest-card/',
+          extract: true,
+          fallback: GAME_REMOTE,
+          size: [960, 720],
+          screen: 'MEDIA for Github/FAKEQUEST-screen.jpg',
+          side: 'MEDIA for Github/FAKEQUEST.gif',
+          color: '#E24BEA',
+          line: "PEPE'S FAKE QUEST · 1981",
+          controls: 'Arrows / WASD move · Space shoots · P pauses',
+          tag: 'Fake Rare' }
+      ];
+      const cssVar = (name, dflt) => (getComputedStyle(document.documentElement).getPropertyValue(name) || '').trim() || dflt;
+      let arcade = null, arcadeOpen = false, arcadeLibs = null, arcadeFullObs = null, arcadeFrameObs = null, arcadeInerted = [];
+      let arcadeHidAttract = false; // the carousel, hidden under the arcade as it is under a game
+      /* history: one entry when the arcade opens (v 1, the floor) and one when a
+         cabinet is stepped up to (v 2), each added inside the click or key that
+         did it. arcadeTok tells this visit's entries from older ones. */
+      let arcadeTok = 0, arcadeDepth = 0, arcadeOwnPops = 0, arcadeBackLeave = false, arcadeStepT = 0;
+
+      function loadArcadeLibs() {
+        if (window.ArcadeKit) return Promise.resolve();
+        if (arcadeLibs) return arcadeLibs;
+        const add = src => new Promise((resolve, reject) => {
+          const s = document.createElement('script');
+          s.src = src;
+          s.async = false; // all three download together and run in this order
+          s.onload = resolve;
+          s.onerror = () => reject(new Error(src));
+          document.head.appendChild(s);
+        });
+        const libs = [];
+        if (!window.THREE) libs.push(add('three.min.js').catch(() => {})); // without it the arcade runs flat
+        if (!window.gsap) libs.push(add('gsap.min.js').catch(() => {}));   // without it views change at once
+        libs.push(add('arcade-kit.js'));
+        arcadeLibs = Promise.all(libs)
+          .then(() => { if (!window.ArcadeKit) throw new Error('arcade-kit.js'); })
+          .catch(err => { arcadeLibs = null; throw err; });
+        return arcadeLibs;
+      }
+      /* the faces the kit letters its marquees and platform in, loaded before it draws them */
+      function loadArcadeFonts() {
+        if (!document.fonts || !document.fonts.load) return Promise.resolve();
+        const faces = ["400 26px 'VT323'", "400 12px 'Space Grotesk'", "500 12px 'Space Grotesk'"];
+        return Promise.race([
+          Promise.all(faces.map(f => document.fonts.load(f).catch(() => {}))),
+          new Promise(r => setTimeout(r, 2500))
+        ]);
+      }
+      function mountArcade() {
+        if (!arcadeOpen || arcade) return;
+        try {
+          arcade = window.ArcadeKit.mount(arcadeRoom, {
+            games: ARCADE_GAMES,
+            /* FAKE MEMETICS' own palette, read from :root so the two never drift apart */
+            palette: {
+              bg:      cssVar('--bg', '#05050a'),
+              fg:      cssVar('--ink', '#f5f6ff'),
+              hi:      cssVar('--lime', '#39ff14'),
+              dim:     cssVar('--ink-dim', '#9aa0bf'),
+              hair:    cssVar('--line', 'rgba(255,255,255,0.12)'),
+              floor:   cssVar('--bg-2', '#0b0b14'),
+              cabinet: '#12121c', /* the hero cabinet's own body colour */
+              line:    cssVar('--purple', '#a855f7')
+            },
+            fonts: {
+              pixel: "'VT323', 'Press Start 2P', monospace",
+              text: "'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+            },
+            title: 'HNFT PEPE ARCADE',
+            label: 'HNFT PEPE ARCADE',
+            keys: 'page',
+            inset: ARCADE_INSET,
+            slowAfter: 20000, // FAKEQUEST's frame reports 'load' only once all its artworks are in
+            onEnter: arcadeOnEnter,
+            onLeave: arcadeOnLeave
+          });
+        } catch (err) { arcadeFailed(); return; }
+        arcadeLoad.hidden = true;
+        const scr = arcade.element.querySelector('.ak-scr');
+        const scrFrame = arcade.element.querySelector('.ak-scr__frame');
+        if (scr && scrFrame && window.MutationObserver) {
+          /* the kit's full screen fills its box where the browser has none (an iPhone): the bar steps aside */
+          arcadeFullObs = new MutationObserver(() => arcadeLayer.classList.toggle('is-full', scr.classList.contains('is-full')));
+          arcadeFullObs.observe(scr, { attributes: true, attributeFilter: ['class'] });
+          /* FAKEQUEST runs from srcdoc: its page is in hand at once and draws its title
+             screen straight away, but its frame fires 'load' only after every one of its
+             artworks has arrived (about 10 s). The kit shows a game at 'load'; this one
+             is shown once it has had a moment to draw. */
+          arcadeFrameObs = new MutationObserver(() => {
+            const f = scrFrame.querySelector('iframe.ak-scr__game[srcdoc]');
+            if (!f || f.dataset.fmReveal) return;
+            f.dataset.fmReveal = '1';
+            setTimeout(() => { if (f.isConnected && !scr.classList.contains('is-in')) scr.classList.add('is-in'); }, 2000);
+          });
+          arcadeFrameObs.observe(scrFrame, { subtree: true, childList: true, attributes: true, attributeFilter: ['srcdoc'] });
+        }
+        try { arcade.element.focus({ preventScroll: true }); } catch (err) {}
+      }
+      function arcadeFailed() {
+        if (!arcadeOpen) return;
+        arcadeLoad.textContent = 'THE ARCADE DID NOT LOAD. CHECK THE CONNECTION, THEN EXIT AND TRY AGAIN.';
+        arcadeLoad.hidden = false;
+      }
+      /* everything else on the page sits out while the arcade is open */
+      function arcadeInert(on) {
+        if (on) {
+          arcadeInerted = Array.prototype.filter.call(document.body.children, el =>
+            el !== arcadeLayer && !el.inert && el.tagName !== 'SCRIPT' && el.tagName !== 'AUDIO');
+          arcadeInerted.forEach(el => { el.inert = true; });
+        } else {
+          arcadeInerted.forEach(el => { el.inert = false; });
+          arcadeInerted = [];
+        }
+      }
+      function openArcade() {
+        if (arcadeOpen || gameIsPlaying) return;
+        arcadeOpen = true;
+        document.body.classList.remove('godmode'); // its filter on <body> would misplace the fixed layer
+        insertCoinSfx();
+        if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(() => {});
+        arcadeHidAttract = !!attractLoop && !attractLoop.classList.contains('hidden');
+        if (arcadeHidAttract) attractLoop.classList.add('hidden'); // its rows and videos stop, as for a game
+        setMarqueeVideos(false);
+        gameIsPlaying = true; // the music and the attract loop wait, as they do for a game
+        pauseMusic();
+        setToggleUI();
+        arcadeLoad.textContent = 'LOADING THE ARCADE';
+        arcadeLoad.hidden = false;
+        arcadeLayer.hidden = false;
+        document.documentElement.classList.add('arcade-open');
+        arcadeInert(true);
+        try { arcadeExit.focus({ preventScroll: true }); } catch (err) {}
+        arcadeTok = Date.now() + Math.random();
+        arcadeDepth = 0; arcadeOwnPops = 0; arcadeBackLeave = false;
+        try { history.pushState({ fmArcade: arcadeTok, v: 1 }, ''); arcadeDepth = 1; } catch (err) {} // Back leaves the arcade, not the site
+        Promise.all([loadArcadeLibs(), loadArcadeFonts()]).then(mountArcade, arcadeFailed);
+      }
+      function closeArcade(fromHistory) {
+        if (!arcadeOpen) return;
+        arcadeOpen = false;
+        clearTimeout(arcadeStepT);
+        if (arcadeFullObs) { arcadeFullObs.disconnect(); arcadeFullObs = null; }
+        if (arcadeFrameObs) { arcadeFrameObs.disconnect(); arcadeFrameObs = null; }
+        // the kit's flights still under way would keep calling into a destroyed scene
+        if (window.gsap && gsap.globalTimeline) { try { gsap.globalTimeline.clear(); } catch (err) {} }
+        if (arcade) { try { arcade.destroy(); } catch (err) {} arcade = null; } // stops the game, frees the 3D
+        arcadeLayer.hidden = true;
+        arcadeLayer.classList.remove('is-full');
+        document.documentElement.classList.remove('arcade-open');
+        arcadeInert(false);
+        // take this visit's entries back off (a script's Back never skips entries)
+        if (!fromHistory && arcadeDepth > 0 && history.state && history.state.fmArcade === arcadeTok) { try { history.go(-arcadeDepth); } catch (err) {} }
+        arcadeDepth = 0; arcadeOwnPops = 0; arcadeBackLeave = false;
+        gameIsPlaying = false;
+        if (arcadeHidAttract) { attractLoop.classList.remove('hidden'); arcadeHidAttract = false; }
+        if (attractLoop && !attractLoop.classList.contains('hidden')) setMarqueeVideos(true);
+        tryPlayMusic();
+        setToggleUI();
+        try { playBtn.focus({ preventScroll: true }); } catch (err) {}
+      }
+      arcadeExit.addEventListener('click', () => closeArcade());
+      /* Esc on the floor leaves (in a cabinet the kit's own Esc steps down first);
+         ⌘K would open the search under the arcade, so it waits */
+      window.addEventListener('keydown', e => {
+        if (!arcadeOpen) return;
+        if ((e.metaKey || e.ctrlKey) && (e.key === 'k' || e.key === 'K')) { e.preventDefault(); e.stopImmediatePropagation(); return; }
+        if (e.key !== 'Escape') return;
+        const st = arcade && arcade.state();
+        if (!st || (st.view === 'floor' && !st.busy && !st.full && !st.live)) { e.stopImmediatePropagation(); closeArcade(); }
+      }, true);
+      /* Back and Forward. Back from a cabinet steps down to the floor; Back on
+         the floor leaves the arcade. Nothing here ever adds an entry while
+         handling Back (Chrome would then skip all of this page's entries on
+         the next Back): the cabinet's entry is added in the kit's onEnter,
+         inside the click or key that stepped up, and taken off in onLeave. */
+      function arcadeOnEnter() {
+        if (!arcadeOpen || arcadeDepth !== 1) return; // stepping along between cabinets adds nothing
+        try { history.pushState({ fmArcade: arcadeTok, v: 2 }, ''); arcadeDepth = 2; } catch (err) {}
+      }
+      function arcadeOnLeave() {
+        if (arcadeBackLeave) { arcadeBackLeave = false; return; } // Back has already taken the entry off
+        if (arcadeDepth === 2 && history.state && history.state.fmArcade === arcadeTok && history.state.v === 2) {
+          arcadeDepth = 1;
+          arcadeOwnPops++;
+          try { history.back(); } catch (err) { arcadeOwnPops--; }
+        }
+      }
+      /* a Back that arrives while the cabinet is still flying is answered when it lands */
+      function arcadeStepDown(tries, asked) {
+        const st = arcade && arcade.state();
+        if (!st || st.view !== 'cab' || tries > 80) return; // on the floor (or gone)
+        if (!st.busy && !asked) { arcade.leave(); asked = true; }
+        arcadeStepT = setTimeout(() => arcadeStepDown(tries + 1, asked), 100);
+      }
+      window.addEventListener('popstate', e => {
+        if (!arcadeOpen) return;
+        if (arcadeOwnPops > 0) { arcadeOwnPops--; return; } // our own Back, from onLeave
+        const s = e.state, ours = !!(s && s.fmArcade === arcadeTok);
+        const st = arcade && arcade.state();
+        if (ours && s.v === 1) { // Back from a cabinet
+          arcadeDepth = 1;
+          if (st && st.view === 'cab') { arcadeBackLeave = true; clearTimeout(arcadeStepT); arcadeStepDown(0, false); }
+          return;
+        }
+        if (ours && s.v === 2) { // Forward into the cabinet again
+          arcadeDepth = 2;
+          if (st && st.view === 'floor' && !st.busy) arcade.enter();
+          return;
+        }
+        closeArcade(true); // Back from the floor, or to before this visit
       });
 
       /* ================================================================
@@ -4200,7 +4579,7 @@
         }
         if (has(/game|play|quest|arcade|interactive/)) {
           return {
-            text: 'Two games in the arcade cabinet on HOME. KEKTRA: an 80s run-and-gun inspired by Contra, fully on-chain through the ACME Protocol. FAKEQUEST: four levels, every HP FAKE as a foe, game code minted on Bitcoin. CUBED and PEPEFLOW are interactive art: click in, mess with the code.',
+            text: 'Three games in the arcade on HOME: hit ENTER ARCADE. KEKTRA: an 80s run-and-gun inspired by Contra, fully on-chain through the ACME Protocol. KEKBOMBS: Pepe vs Fake Player, drag the bomb to aim. FAKEQUEST: four levels, every HP FAKE as a foe, game code minted on Bitcoin. CUBED and PEPEFLOW are interactive art: click in, mess with the code.',
             cards: [byId('KEKTRA'), byId('FAKEQUEST'), byId('CUBED.CUBED'), byId('PEPEFLOW')]
           };
         }
@@ -4296,6 +4675,7 @@
       const KONAMI = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
       let kPos = 0;
       document.addEventListener('keydown', e => {
+        if (arcadeOpen) return; // the arrows are the arcade's there (and god mode's filter would shift its layer)
         const k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
         kPos = (k === KONAMI[kPos]) ? kPos + 1 : (k === KONAMI[0] ? 1 : 0);
         if (kPos === KONAMI.length) {
