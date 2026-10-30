@@ -674,6 +674,18 @@
       .fm-arcade section.ak-floor:not([hidden]),
       .fm-arcade section.ak-cab:not([hidden]) { display: block; }
       .fm-arcade .ak a { border-bottom: 0; }
+      /* a cabinet's panel is a third of the width on a landscape screen, too
+         narrow in windows about 640-1020px wide for ALL CABINETS + the 01 / 03
+         stepper and for FULL SCREEN: there it takes the kit's phone labels and
+         buttons (ALL, FULL), and the stepper drops under ALL if still short */
+      .fm-arcade .ak-console__top { flex-wrap: wrap; }
+      .fm-arcade .ak-stepper { margin-left: auto; }
+      @container ak (min-width: 641px) and (max-width: 1020px) and (min-height: 481px) and (orientation: landscape) {
+        .fm-arcade .ak-console .ak-btn { padding: 0 6px; letter-spacing: .08em; }
+        .fm-arcade .ak-console .ak-lg,
+        .fm-arcade .ak-console .ak-lab-l { display: none; }
+        .fm-arcade .ak-console .ak-lab-s { display: inline; }
+      }
       /* the bar: brand on the left, EXIT on the right; the kit keeps
          the top 52px clear for it (inset.top) */
       .fm-arcade__bar {
