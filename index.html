@@ -859,6 +859,30 @@
       }
       .external-links h3.sub-h { margin-top: 0; }
 
+      /* ========== FAKE RARES STICKER (fakeraredirectory.com logo) ========== */
+      a.frl-link { display: block; border-bottom: 0; line-height: 0; }
+      a.frl-link:hover { border-bottom: 0; }
+      .frl { display: block; width: 100%; height: auto; filter: drop-shadow(3px 4px 0 rgba(0,0,0,0.6)); transition: transform 0.25s ease, filter 0.25s ease; }
+      a.frl-link:hover .frl,
+      a.frl-link:focus-visible .frl { transform: rotate(-4deg) scale(1.05); filter: drop-shadow(5px 7px 0 rgba(168,85,247,0.75)); }
+
+      /* OPEN A FAKE PACK: the sticker, scaled down, in place of the old card emoji.
+         Same size relative to the text on every screen; it sits in the text line (so on
+         phones it wraps with the words, the way the emoji did), centered on the capital
+         letters. The top/bottom padding gives back the height the sticker adds, so the
+         button stays the same height; balance keeps a wrapped label as OPEN A / FAKE PACK */
+      .cabinet-btn.cabinet-btn--pack { padding-top: 0.62rem; padding-bottom: 0.62rem; text-wrap: balance; }
+      .frl-pack { width: 1.4em; height: 1.4em; margin-right: 0.36em; vertical-align: -0.41em; }
+      .frl-float { float: right; width: 230px; margin: 0.25rem 0 1.25rem 2rem; transform: rotate(-4deg); }
+      @media (max-width: 640px) {
+        .frl-float { float: none; width: 170px; margin: 0 auto 1.5rem; }
+      }
+
+      .frl-foot { width: 118px; margin: 0 auto 1.75rem; }
+
+      .info-section p.fc-howto { margin: 1.25rem 0 0.25rem; }
+      .info-section ul.fc-list { margin-top: 0.5rem; }
+
       /* ========== FILTER BAR ========== */
       .filter-bar {
         display: flex;
@@ -1148,6 +1172,18 @@
         color: var(--bg);
         background: var(--amber);
         box-shadow: 3px 3px 0 var(--purple);
+      }
+      /* placeholder link (e.g. OpenSea SOON): same footprint, greyed out, inert */
+      .modal-links .pix-btn--soon,
+      .modal-links .pix-btn--soon:hover {
+        opacity: 0.45;
+        cursor: not-allowed;
+        color: var(--ink-dim);
+        background: var(--glass-strong);
+        border-color: var(--line);
+        border-style: dashed;
+        transform: none;
+        box-shadow: none;
       }
       .lore-caret { display: inline-block; transition: transform 0.2s ease; }
       .modal-links .pix-btn--lore.is-open .lore-caret { transform: rotate(180deg); }
@@ -2136,7 +2172,7 @@
             <!-- NEW TAB + VIEW follow the picked game; hidden until one is picked -->
             <button class="cabinet-btn" id="newtab-btn" type="button" style="display:none">&#8599; PLAY IN NEW TAB</button>
             <a class="cabinet-btn" id="view-btn" href="https://pepe.wtf/asset/FAKEQUEST" target="_blank" rel="noopener noreferrer" style="display:none">VIEW ON pepe.wtf</a>
-            <button class="cabinet-btn cabinet-btn--pack" id="open-pack" type="button">&#127183; OPEN A FAKE PACK</button>
+            <button class="cabinet-btn cabinet-btn--pack" id="open-pack" type="button"><img class="frl-pack" src="MEDIA for Github/fake-rares-logo.webp" alt="" width="640" height="640" decoding="async">OPEN A FAKE PACK</button>
             <button class="cabinet-btn" id="reset-btn" type="button" style="display:none">&#x27F3; BACK TO DEFAULT</button>
           </div>
         </div>
@@ -2165,6 +2201,7 @@
       <div class="content-wrapper reveal">
         <h2 class="section-h">LEARN ABOUT <span class="h-accent">FAKE RARES</span></h2>
         <div class="info-section">
+          <a class="frl-link frl-float" href="https://fakeraredirectory.com/" target="_blank" rel="noopener noreferrer" title="Fake Rare Directory"><img class="frl" src="MEDIA for Github/fake-rares-logo.webp" alt="FAKE RARES sticker: fakeraredirectory.com" width="640" height="640" loading="lazy" decoding="async"></a>
           <h3 class="sub-h">Overview</h3>
           <p>If you're here and have no idea what you've stumbled into, then welcome to the insane and wonderful world of Fake Rares.</p>
           <h3 class="sub-h">History</h3>
@@ -2187,10 +2224,18 @@
             <li><span class="yr">AUG 2025</span><b>CryptoPunks Meet Up 2.0, Beeple Studios</b> &#8212; the first-NFT debate, settled by a frog. <a class="tl-card" data-card="PUNKSMEETUP">PUNKSMEETUP</a></li>
             <li><span class="yr">FALL 2025</span><b>PEPEFLOW inscribes</b> &#8212; a generative neural field, fully on-chain via Ordinals. <a class="tl-card" data-card="PEPEFLOW">PEPEFLOW</a></li>
             <li><span class="yr">2026</span><b>FAKEQUEST arrives</b> &#8212; the first Fake Rare on-chain game, featuring all HP FAKE art. <a class="tl-card" data-card="FAKEQUEST">FAKEQUEST</a></li>
+            <li><span class="yr">2026</span><b>KEKTRA mints on ACME</b> &#8212; an 80s run-and-gun inspired by Contra, fully on-chain through the ACME Protocol. The game is the card. <a class="tl-card" data-card="KEKTRA">KEKTRA</a></li>
           </ul>
           <h3 class="sub-h">Definitions</h3>
           <p><strong>Fake Rares:</strong>These are assets that are not official Rare Pepes. The term began as derogatory but has evolved into a badge of honor representing the continuation of the Rare Pepe legacy. They follow a structured, curated approach similar to Rare Pepes but with a decentralized mechanism that emphasizes community governance and accessibility.</p>
-          <p><strong>Commons:</strong>These are Pepes that were left out of official Rare Pepe submissions due to various reasons — timing (created before or after the Rare Pepe era), rejection by the Rare Pepe Scientists, or simply existing outside the formal submission process. Despite not being official Rare Pepes, many Commons possess significant artistic merit and memetic value.</p>
+          <p><strong>Fake Commons:</strong>The open side of the Fake Rare directory. Commons don't go through the Fake Scientists' curation to become official, a new series of 50+ cards drops every week, and the one-submission-per-artist rule for Fake Rares doesn't apply &#8212; artists can submit as often as they like. Many Commons still carry real artistic merit and memetic value.</p>
+          <p class="fc-howto"><strong>How Fake Commons work:</strong></p>
+          <ul class="fc-list">
+            <li><strong>The card:</strong>A Counterparty asset issued before submitting &#8212; not divisible, with at least 21 and no more than 10,000 tokens.</li>
+            <li><strong>The art:</strong>A 400&#215;560 portrait card (a larger size in the same 5:7 ratio is fine), uploaded through the Fake Commons submission portal.</li>
+            <li><strong>The fee:</strong>As an ode to the forefrog-fathers, publishing costs a destroy of at least 2,100 PEPECASH &#8212; sent only after the card has been approved.</li>
+            <li><strong>The series:</strong>Approved cards are published together as numbered weekly series, from Series 1 onward.</li>
+          </ul>
           <h3 class="sub-h">Key Events</h3>
           <ul>
             <li><strong>April 2018:</strong>The Rare Pepe Scientists officially retired, closing submissions for new Rare Pepes and marking the end of an era in Pepe history.</li>
@@ -2237,6 +2282,7 @@
     </section>
 
     <footer>
+      <a class="frl-link frl-foot" href="https://fakeraredirectory.com/" target="_blank" rel="noopener noreferrer" title="Fake Rare Directory"><img class="frl" src="MEDIA for Github/fake-rares-logo.webp" alt="FAKE RARES sticker: fakeraredirectory.com" width="640" height="640" loading="lazy" decoding="async"></a>
       <h3>Contact HNFT Pepe</h3>
       <p><strong>Email:</strong>hnftpepe@proton.me</p>
       <p><strong>X (Twitter):</strong><a href="https://x.com/HnftPepe" target="_blank" rel="noopener noreferrer">https://x.com/HnftPepe</a></p>
@@ -2331,12 +2377,22 @@
          tags   = filterable: 'game' | 'interactive' | 'animated' | 'static'
          media  = { k:'img'|'video'|'iframe', src } — card front + marquee thumb
          view   = "VIEW RAW ART" target
-         opensea= full OpenSea URL or null (commons have none)
+         opensea= full OpenSea URL or null (commons have none);
+                  'SOON' = greyed-out placeholder button until a URL exists
+         acme   = optional ACME asset page (adds a VIEW ON ACME button)
          audio  = true if the video has a soundtrack
          ================================================================ */
       const CARDS = [
 
         /* ---------- FAKE RARES ---------- */
+        {
+          slug: 'KEKTRA', name: 'KEKTRA', sec: 'rares', tags: ['game', 'animated'],
+          media: { k: 'img', src: 'https://3ee3ow4fool6kbra4kiomdhr3cb7ixi7pgojqzci4idqazgrri5a.ar.io/2Qm3W4Vzl-UGIOKQ5gzx2IP0XR95nJhkSOIHAGTRijo?.gif' },
+          view: 'https://acme.pics/a/KEKTRACARD',   /* PLAY GAME: the holo card with the full game inside */
+          acme: 'https://acme.pics/asset/KEKTRACARD',
+          opensea: 'SOON', /* no OpenSea listing yet: button shows greyed out. Put the full URL here when it exists. */
+          story: `KEKTRA: the ultimate 80s run-and-gun. Inspired by Contra 1987, rebuilt as a memetic Pepe war across the crypto frontier. Characters and themes pulled from FAKE RARES and the chain itself. Pixelated chaos, two-stick mayhem, easter eggs buried in the art, the code, and the concept. Fully on-chain through the ACME Protocol. The KEKTRA CARD, art and Counterparty links, minted on ACME too. On-chain forever. The game is the card. Good luck finding every egg. Kek hard!`
+        },
         {
           slug: 'FAKEQUEST', name: 'FAKEQUEST', sec: 'rares', tags: ['game', 'animated'],
           media: { k: 'img', src: 'https://7quvioek3qb6wutrdgrfrjrqilwy2zovup7yqvenvzfg5r332qbq.ar.io/_ClUOIrcA-tScRmiWKYwQu2NZdWj_4hUja5Kbsd71AM?.gif' },
@@ -2615,6 +2671,7 @@
       const MEDIA_BASE = 'MEDIA for Github/';
       const LOCAL_MEDIA = {
         /* fake rares */
+        'KEKTRA':                    'KEKTRA.gif',
         'FAKEQUEST':                 'FAKEQUEST.gif',
         'READYTOKEK':                'READYTOKEK.gif',
         'A1619006396900464164':      'A1619006396900464164.svg',
@@ -3101,6 +3158,7 @@
 
       const LORE_LINKS = {
         /* ---- FAKE RARES ---- */
+        'KEKTRA':                    'https://en.wikipedia.org/wiki/Contra_(video_game)',
         'FAKEQUEST':                 'https://en.wikipedia.org/wiki/1980_in_video_games',
         'READYTOKEK':                'https://en.wikipedia.org/wiki/Ready_to_Die',
         'A1619006396900464164':      FAMOUS_RP,
@@ -3264,15 +3322,20 @@
         document.getElementById('modal-story').textContent = c.story;
 
         const links = [
-          [c.view, c.slug === 'FAKEQUEST' ? 'PLAY GAME' : 'VIEW RAW ART'],
+          [c.view, c.tags.indexOf('game') !== -1 ? 'PLAY GAME' : 'VIEW RAW ART']
+        ];
+        if (c.acme) links.push([c.acme, 'VIEW ON ACME']);
+        links.push(
           [PEPE_WTF(c.slug), 'VIEW ON pepe.wtf'],
           [HORIZON_BTC(c.slug), 'COLLECT ON BTC'],
           [HORIZON_XCP(c.slug), 'COLLECT w/ XCP']
-        ];
-        if (c.opensea) links.push([c.opensea, 'COLLECT ON OpenSea']);
+        );
+        // opensea 'SOON' = placeholder: same button, greyed out, no link yet
+        if (c.opensea) links.push([c.opensea === 'SOON' ? null : c.opensea, 'COLLECT ON OpenSea']);
         const linksEl = document.getElementById('modal-links');
-        linksEl.innerHTML = links.map(l =>
-          '<a class="pix-btn" href="' + l[0] + '" target="_blank" rel="noopener noreferrer">' + l[1] + '</a>'
+        linksEl.innerHTML = links.map(l => l[0]
+          ? '<a class="pix-btn" href="' + l[0] + '" target="_blank" rel="noopener noreferrer">' + l[1] + '</a>'
+          : '<span class="pix-btn pix-btn--soon" role="link" aria-disabled="true" title="Coming soon">' + l[1] + ' &#183; SOON</span>'
         ).join('');
         buildLoreLink(c, linksEl);
 
@@ -4137,8 +4200,8 @@
         }
         if (has(/game|play|quest|arcade|interactive/)) {
           return {
-            text: 'FAKEQUEST: four levels, every HP FAKE as a foe, game code minted on Bitcoin — play it in the arcade cabinet on HOME. CUBED and PEPEFLOW are interactive art: click in, mess with the code.',
-            cards: [byId('FAKEQUEST'), byId('CUBED.CUBED'), byId('PEPEFLOW')]
+            text: 'Two games in the arcade cabinet on HOME. KEKTRA: an 80s run-and-gun inspired by Contra, fully on-chain through the ACME Protocol. FAKEQUEST: four levels, every HP FAKE as a foe, game code minted on Bitcoin. CUBED and PEPEFLOW are interactive art: click in, mess with the code.',
+            cards: [byId('KEKTRA'), byId('FAKEQUEST'), byId('CUBED.CUBED'), byId('PEPEFLOW')]
           };
         }
         if (has(/how many|count|total|collection size/)) {
@@ -4146,7 +4209,7 @@
           return { text: CARDS.length + ' FAKEs in the collection: ' + r + ' FAKE RARES and ' + (CARDS.length - r) + ' FAKE COMMONS. All on-chain. All frog.', cards: [] };
         }
         if (has(/difference|rare.*common|common.*rare/)) {
-          let text = 'FAKE RARES follow the curated directory rules. FAKE COMMONS are the overlooked, rejected and out-of-era Pepes with memetic value anyway. Same frog energy, different tier.';
+          let text = 'FAKE RARES go through the Fake Scientists\' curation. FAKE COMMONS are the open side of the directory. Same frog energy, different tier.';
           const f = factById('f005');
           if (f) text += ' ' + f.a;
           return { text, cards: [], link: f && f.source };

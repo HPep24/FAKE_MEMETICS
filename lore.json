@@ -65,7 +65,7 @@
     "what are fake commons",
     "fake commons vs fake rares"
    ],
-   "a": "Fake Commons is the looser, experimental sibling of Fake Rares: fewer rules, a lower barrier to entry, and more room for artists to test out distribution ideas. Entry costs burning at least 2,100 PEPECASH, versus destroying a FAKEASF token for Fake Rares. Commons is a common on-ramp for new artists before they graduate to Fake Rares.",
+   "a": "Fake Commons is the open side of the Fake Rare directory: Commons don't go through the Fake Scientists' curation to become official, a new series of 50+ cards drops every week, and the one-submission-per-artist rule for Fake Rares doesn't apply, so artists can submit as often as they like. Publishing costs a destroy of at least 2,100 PEPECASH (versus a FAKEASF destroy for Fake Rares), sent only after the card has been approved. Many Commons still carry real artistic merit and memetic value.",
    "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares/fake-commons.md",
    "cards": []
   },
@@ -98,9 +98,12 @@
    "topic": "fake-commons-submission-rules",
    "q": [
     "how do i submit a fake common",
-    "fake commons submission rules"
+    "fake commons submission rules",
+    "fake commons fee",
+    "fake commons supply",
+    "fake commons series"
    ],
-   "a": "Submitting to Fake Commons requires destroying at least 2,100 PEPECASH via the Fake Submission Portal. The base card image should be portrait, roughly 400×560, and under 10MB; the asset's token description should reference a JSON that points to the base image as 'image_large.' Unlike Fake Rares, Commons has no one-submission-at-a-time limit.",
+   "a": "To publish a Fake Common, issue the Counterparty asset before submitting: not divisible, with at least 21 and no more than 10,000 tokens. The art is a 400×560 portrait card (a larger size in the same 5:7 ratio is fine), uploaded through the Fake Commons submission portal; the asset's token description should reference a JSON that points to the card as 'image_large.' As an ode to the forefrog-fathers, publishing costs a destroy of at least 2,100 PEPECASH, sent only after the card has been approved. Approved cards are published together as numbered weekly series, from Series 1 onward, and unlike Fake Rares there is no one-submission-per-artist limit.",
    "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares/fake-commons/fake-commons-submission-rules.md",
    "cards": []
   },
@@ -621,7 +624,7 @@
     "when was pepeslambo minted",
     "first hp fake"
    ],
-   "a": "HP FAKE milestones: PEPESLAMBO minted in 2022 — first card of the HNFT Pepe Collection and first HP FAKE approved to the directory. PEPEWINTER, the first HP FAKE RARE, showed at Crypto Winter Wonderland, Beeple Studios, December 2023. CUBEMOTO was blessed at PepeFest 2024, GARUDAPEPE hung at Superlative Gallery in Bali 2024, TRUMPMOTO displayed on Election Night, November 2024, and PUNKSMEETUP at CryptoPunks Meet Up 2.0, August 2025 — all at Beeple Studios. PEPEFLOW inscribed on Ordinals in Fall 2025. In 2026 FAKEQUEST arrived: the first Fake Rare on-chain game, featuring all HP FAKE art.",
+   "a": "HP FAKE milestones: PEPESLAMBO minted in 2022 — first card of the HNFT Pepe Collection and first HP FAKE approved to the directory. PEPEWINTER, the first HP FAKE RARE, showed at Crypto Winter Wonderland, Beeple Studios, December 2023. CUBEMOTO was blessed at PepeFest 2024, GARUDAPEPE hung at Superlative Gallery in Bali 2024, TRUMPMOTO displayed on Election Night, November 2024, and PUNKSMEETUP at CryptoPunks Meet Up 2.0, August 2025 — all at Beeple Studios. PEPEFLOW inscribed on Ordinals in Fall 2025. In 2026 FAKEQUEST arrived: the first Fake Rare on-chain game, featuring all HP FAKE art. Later in 2026 KEKTRA minted on ACME: an 80s run-and-gun inspired by Contra, fully on-chain through the ACME Protocol.",
    "cards": [
     "PEPESLAMBO",
     "PEPEWINTER",
@@ -630,7 +633,8 @@
     "TRUMPMOTO",
     "PUNKSMEETUP",
     "PEPEFLOW",
-    "FAKEQUEST"
+    "FAKEQUEST",
+    "KEKTRA"
    ],
    "source": "https://hpep24.github.io/FAKE_MEMETICS/"
   }
@@ -658,7 +662,7 @@
   },
   {
    "term": "Fake Common",
-   "def": "A lower-barrier, higher-volume counterpart to Fake Rares, gated by burning at least 2,100 PEPECASH rather than a FAKEASF token.",
+   "def": "The open side of the Fake Rare directory: no Fake Scientists' curation, a new weekly series of 50+ cards, and a destroy of at least 2,100 PEPECASH sent only after the card is approved.",
    "source": "https://wiki.pepe.wtf/chapter-2-the-rare-pepe-project/fake-rares-and-dank-rares/fake-commons.md"
   },
   {
@@ -875,6 +879,14 @@
    "source": "https://hpep24.github.io/FAKE_MEMETICS/",
    "cards": [
     "FAKEQUEST"
+   ]
+  },
+  {
+   "date": "2026",
+   "event": "KEKTRA mints on ACME: an 80s run-and-gun inspired by Contra, fully on-chain through the ACME Protocol. The KEKTRA CARD holds the whole game.",
+   "source": "https://hpep24.github.io/FAKE_MEMETICS/",
+   "cards": [
+    "KEKTRA"
    ]
   }
  ],
